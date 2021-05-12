@@ -49,7 +49,6 @@ static int staticFalse = 0; /* false */
 
 void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__accept_listen_bind_05_bad()
 {
-    if(staticTrue)
     {
         {
             char data[100] = "";
@@ -139,15 +138,6 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__accept_listen_bind
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char data[100] = "";
@@ -236,7 +226,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             char data[100] = "";

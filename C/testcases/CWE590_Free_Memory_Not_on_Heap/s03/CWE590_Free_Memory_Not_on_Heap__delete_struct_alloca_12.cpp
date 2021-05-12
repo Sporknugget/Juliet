@@ -27,21 +27,10 @@ void bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
             twoIntsStruct * dataBuffer = (twoIntsStruct *)ALLOCA(sizeof(twoIntsStruct));
-            dataBuffer->intOne = 1;
-            dataBuffer->intTwo = 1;
-            data = dataBuffer;
-        }
-    }
-    else
-    {
-        {
-            /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            twoIntsStruct * dataBuffer = new twoIntsStruct;
             dataBuffer->intOne = 1;
             dataBuffer->intTwo = 1;
             data = dataBuffer;
@@ -62,17 +51,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            twoIntsStruct * dataBuffer = new twoIntsStruct;
-            dataBuffer->intOne = 1;
-            dataBuffer->intTwo = 1;
-            data = dataBuffer;
-        }
-    }
-    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

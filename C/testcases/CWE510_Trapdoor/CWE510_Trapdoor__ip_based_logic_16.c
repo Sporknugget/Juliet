@@ -40,7 +40,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE510_Trapdoor__ip_based_logic_16_bad()
 {
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -119,7 +118,6 @@ void CWE510_Trapdoor__ip_based_logic_16_bad()
             }
 #endif
         }
-        break;
     }
 }
 
@@ -130,7 +128,6 @@ void CWE510_Trapdoor__ip_based_logic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -193,7 +190,6 @@ static void good1()
             }
 #endif
         }
-        break;
     }
 }
 

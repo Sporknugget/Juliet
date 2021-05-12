@@ -30,7 +30,6 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_05_b
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -42,7 +41,6 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_05_b
             }
         }
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -66,7 +64,6 @@ static void goodB2G1()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -78,12 +75,6 @@ static void goodB2G1()
             }
         }
     }
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -111,7 +102,6 @@ static void goodB2G2()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -123,7 +113,6 @@ static void goodB2G2()
             }
         }
     }
-    if(staticTrue)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -151,12 +140,6 @@ static void goodG2B1()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Completely initialize data */
         {
@@ -168,7 +151,6 @@ static void goodG2B1()
             }
         }
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -188,7 +170,6 @@ static void goodG2B2()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
-    if(staticTrue)
     {
         /* FIX: Completely initialize data */
         {
@@ -200,7 +181,6 @@ static void goodG2B2()
             }
         }
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

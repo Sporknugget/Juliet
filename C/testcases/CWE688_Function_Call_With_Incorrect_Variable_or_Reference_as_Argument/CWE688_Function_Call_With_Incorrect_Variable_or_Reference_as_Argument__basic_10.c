@@ -21,7 +21,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_10_bad()
 {
-    if(globalTrue)
     {
         {
             char dest[DEST_SIZE];
@@ -37,15 +36,6 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char dest[DEST_SIZE];
@@ -60,7 +50,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             char dest[DEST_SIZE];

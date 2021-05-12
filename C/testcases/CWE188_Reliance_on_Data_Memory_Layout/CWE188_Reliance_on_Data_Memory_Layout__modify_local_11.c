@@ -19,7 +19,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__modify_local_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             struct
@@ -43,15 +42,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             struct
@@ -72,7 +62,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             struct

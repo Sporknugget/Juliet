@@ -32,15 +32,9 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Did not leave space for a null terminator */
         data = new wchar_t[10];
-    }
-    else
-    {
-        /* FIX: Allocate space for a null terminator */
-        data = new wchar_t[10+1];
     }
     {
         wchar_t source[10+1] = SRC_STRING;
@@ -67,12 +61,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Allocate space for a null terminator */
-        data = new wchar_t[10+1];
-    }
-    else
     {
         /* FIX: Allocate space for a null terminator */
         data = new wchar_t[10+1];

@@ -27,13 +27,11 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         /* FLAW: Use a small buffer */
         data = new wchar_t[50];
         wmemset(data, L'A', 50-1); /* fill with 'A's */
         data[50-1] = L'\0'; /* null terminate */
-        break;
     }
     {
         wchar_t dest[100];
@@ -57,13 +55,11 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Use a large buffer */
         data = new wchar_t[100];
         wmemset(data, L'A', 100-1); /* fill with 'A's */
         data[100-1] = L'\0'; /* null terminate */
-        break;
     }
     {
         wchar_t dest[100];

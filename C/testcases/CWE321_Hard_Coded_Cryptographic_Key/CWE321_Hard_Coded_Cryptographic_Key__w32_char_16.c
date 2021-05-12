@@ -31,11 +31,9 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_char_16_bad()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    while(1)
     {
         /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
         strcpy(cryptoKey, CRYPTO_KEY);
-        break;
     }
     {
         HCRYPTPROV hCryptProv;
@@ -107,7 +105,6 @@ static void goodG2B()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    while(1)
     {
         {
             size_t cryptoKeyLen = strlen(cryptoKey);
@@ -130,7 +127,6 @@ static void goodG2B()
                 }
             }
         }
-        break;
     }
     {
         HCRYPTPROV hCryptProv;

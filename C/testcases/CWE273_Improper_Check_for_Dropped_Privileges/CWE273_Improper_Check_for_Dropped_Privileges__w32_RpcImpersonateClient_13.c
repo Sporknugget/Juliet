@@ -24,7 +24,6 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_13_bad()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         RpcImpersonateClient(0);
         /* FLAW: Do not check if RpcImpersonateClient() fails */
@@ -37,15 +36,6 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_13_b
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
-static void good1()
-{
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)
@@ -60,7 +50,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)

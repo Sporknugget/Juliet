@@ -45,7 +45,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_memmove_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -116,7 +115,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_memmove_16_bad()
             }
 #endif
         }
-        break;
     }
     {
         char source[100];
@@ -144,11 +142,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
-        break;
     }
     {
         char source[100];

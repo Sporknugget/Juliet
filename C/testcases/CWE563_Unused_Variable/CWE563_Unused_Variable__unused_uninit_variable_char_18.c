@@ -25,8 +25,6 @@ void CWE563_Unused_Variable__unused_uninit_variable_char_18_bad()
     char data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* FLAW: Do not use the variable */
     /* do nothing */
     ; /* empty statement needed for some flow variants */
@@ -42,8 +40,6 @@ static void goodB2G()
     char data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* FIX: Initialize then use data */
     data = 'C';
     printHexCharLine(data);

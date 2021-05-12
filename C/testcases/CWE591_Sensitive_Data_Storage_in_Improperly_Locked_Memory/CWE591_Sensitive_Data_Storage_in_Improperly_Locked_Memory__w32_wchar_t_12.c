@@ -28,7 +28,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_12_b
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    if(globalReturnsTrueOrFalse())
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
@@ -37,23 +36,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_12_b
             exit(1);
         }
         /* FLAW: Do not lock the memory */
-        /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
-        wcscpy(password, L"Password1234!");
-    }
-    else
-    {
-        password = (wchar_t *)malloc(100*sizeof(wchar_t));
-        if (password == NULL)
-        {
-            printLine("Memory could not be allocated");
-            exit(1);
-        }
-        /* FIX: Use VirtualLock() to lock the buffer into memory */
-        if(!VirtualLock(password, 100*sizeof(wchar_t)))
-        {
-            printLine("Memory could not be locked");
-            exit(1);
-        }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         wcscpy(password, L"Password1234!");
     }
@@ -93,24 +75,6 @@ static void goodG2B()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    if(globalReturnsTrueOrFalse())
-    {
-        password = (wchar_t *)malloc(100*sizeof(wchar_t));
-        if (password == NULL)
-        {
-            printLine("Memory could not be allocated");
-            exit(1);
-        }
-        /* FIX: Use VirtualLock() to lock the buffer into memory */
-        if(!VirtualLock(password, 100*sizeof(wchar_t)))
-        {
-            printLine("Memory could not be locked");
-            exit(1);
-        }
-        /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
-        wcscpy(password, L"Password1234!");
-    }
-    else
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)

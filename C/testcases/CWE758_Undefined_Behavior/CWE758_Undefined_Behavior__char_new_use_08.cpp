@@ -35,7 +35,6 @@ namespace CWE758_Undefined_Behavior__char_new_use_08
 
 void bad()
 {
-    if(staticReturnsTrue())
     {
         {
             char * pointer = new char;
@@ -50,15 +49,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char data;
@@ -77,7 +67,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             char data;

@@ -30,7 +30,6 @@ static int staticFalse = 0; /* false */
 
 void CWE620_Unverified_Password_Change__w32_05_bad()
 {
-    if(staticTrue)
     {
         {
             wchar_t newPassword[256];
@@ -60,15 +59,6 @@ void CWE620_Unverified_Password_Change__w32_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t oldPassword[256];
@@ -101,7 +91,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             wchar_t oldPassword[256];

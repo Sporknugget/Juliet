@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             STARTUPINFOW si;
@@ -57,38 +56,6 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_12_bad()
             CloseHandle(pi.hThread);
         }
     }
-    else
-    {
-        {
-            STARTUPINFOW si;
-            PROCESS_INFORMATION pi;
-            /* FIX: The commandLine parameter to CreateProcess() contains quotes surrounding the
-               executable path. */
-            if( !CreateProcessW(NULL,
-                                L"\"C:\\Program Files\\GoodApp\" arg1 arg2",
-                                NULL,
-                                NULL,
-                                FALSE,
-                                0,
-                                NULL,
-                                NULL,
-                                &si,
-                                &pi))
-            {
-                printf( "CreateProcess failed (%d).\n", GetLastError() );
-                return;
-            }
-            else
-            {
-                printLine("CreateProcess successful");
-            }
-            /* Wait until child process exits. */
-            WaitForSingleObject(pi.hProcess, INFINITE);
-            /* Close process and thread handles.*/
-            CloseHandle(pi.hProcess);
-            CloseHandle(pi.hThread);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -98,39 +65,6 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            STARTUPINFOW si;
-            PROCESS_INFORMATION pi;
-            /* FIX: The commandLine parameter to CreateProcess() contains quotes surrounding the
-               executable path. */
-            if( !CreateProcessW(NULL,
-                                L"\"C:\\Program Files\\GoodApp\" arg1 arg2",
-                                NULL,
-                                NULL,
-                                FALSE,
-                                0,
-                                NULL,
-                                NULL,
-                                &si,
-                                &pi))
-            {
-                printf( "CreateProcess failed (%d).\n", GetLastError() );
-                return;
-            }
-            else
-            {
-                printLine("CreateProcess successful");
-            }
-            /* Wait until child process exits. */
-            WaitForSingleObject(pi.hProcess, INFINITE);
-            /* Close process and thread handles.*/
-            CloseHandle(pi.hProcess);
-            CloseHandle(pi.hThread);
-        }
-    }
-    else
     {
         {
             STARTUPINFOW si;

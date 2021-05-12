@@ -47,7 +47,6 @@ void CWE78_OS_Command_Injection__char_file_popen_11_bad()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsTrue())
     {
         {
             /* Read input from a file */
@@ -92,12 +91,6 @@ static void goodG2B1()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
@@ -119,7 +112,6 @@ static void goodG2B2()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsTrue())
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

@@ -28,11 +28,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE15_External_Control_of_System_or_Configuration_Setting__w32_17_bad()
 {
-    int i;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
             WSADATA wsaData;
@@ -119,11 +117,9 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: get the hostname from a string literal */
         strcpy(data, "hostname");

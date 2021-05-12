@@ -48,9 +48,6 @@ void CWE400_Resource_Exhaustion__connect_socket_fwrite_15_bad()
     int count;
     /* Initialize count */
     count = -1;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -107,15 +104,6 @@ void CWE400_Resource_Exhaustion__connect_socket_fwrite_15_bad()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -138,12 +126,6 @@ void CWE400_Resource_Exhaustion__connect_socket_fwrite_15_bad()
         {
             fclose(pFile);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -157,9 +139,6 @@ static void goodB2G1()
     int count;
     /* Initialize count */
     count = -1;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -216,19 +195,6 @@ static void goodB2G1()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -250,8 +216,6 @@ static void goodB2G1()
                 fclose(pFile);
             }
         }
-    }
-    break;
     }
 }
 
@@ -261,9 +225,6 @@ static void goodB2G2()
     int count;
     /* Initialize count */
     count = -1;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -320,15 +281,6 @@ static void goodB2G2()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -351,12 +303,6 @@ static void goodB2G2()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -365,20 +311,8 @@ static void goodG2B1()
     int count;
     /* Initialize count */
     count = -1;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a relatively small number */
         count = 20;
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -401,12 +335,6 @@ static void goodG2B1()
         {
             fclose(pFile);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -416,20 +344,8 @@ static void goodG2B2()
     int count;
     /* Initialize count */
     count = -1;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a relatively small number */
         count = 20;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -452,12 +368,6 @@ static void goodG2B2()
         {
             fclose(pFile);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

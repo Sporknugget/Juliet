@@ -25,8 +25,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE327_Use_Broken_Crypto__w32_3DES_18_bad()
 {
-    goto sink;
-sink:
     {
         FILE *pFile;
         HCRYPTPROV hCryptProv;
@@ -126,8 +124,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         FILE *pFile;
         HCRYPTPROV hCryptProv;

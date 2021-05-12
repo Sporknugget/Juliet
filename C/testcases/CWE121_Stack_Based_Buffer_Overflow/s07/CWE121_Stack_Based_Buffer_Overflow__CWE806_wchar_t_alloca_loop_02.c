@@ -25,7 +25,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE806_wchar_t_alloca_loop_02_bad()
     wchar_t * data;
     wchar_t * dataBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
     data = dataBuffer;
-    if(1)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         wmemset(data, L'A', 100-1); /* fill with L'A's */
@@ -55,12 +54,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t * dataBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
     data = dataBuffer;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */
@@ -86,7 +79,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t * dataBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
     data = dataBuffer;
-    if(1)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */

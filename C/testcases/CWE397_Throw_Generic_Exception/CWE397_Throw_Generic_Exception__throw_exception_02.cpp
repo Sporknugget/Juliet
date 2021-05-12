@@ -28,7 +28,6 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_02
 
 void bad()
 {
-    if(1)
     {
         /* FLAW: throw std::exception class, which is very generic */
         throw exception();
@@ -39,15 +38,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(0) instead of if(1) */
-static void good1()
-{
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");
@@ -57,7 +47,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(1)
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");

@@ -26,11 +26,9 @@ void CWE124_Buffer_Underwrite__char_alloca_memmove_16_bad()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
-    while(1)
     {
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
-        break;
     }
     {
         char source[100];
@@ -55,11 +53,9 @@ static void goodG2B()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
-    while(1)
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
-        break;
     }
     {
         char source[100];

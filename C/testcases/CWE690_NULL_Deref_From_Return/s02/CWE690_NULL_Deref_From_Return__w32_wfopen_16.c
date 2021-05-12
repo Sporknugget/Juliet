@@ -25,11 +25,9 @@ void CWE690_NULL_Deref_From_Return__w32_wfopen_16_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = _wfopen(L"file.txt", L"w+");
-    while(1)
     {
         /* FLAW: if the fopen failed, data will be NULL here */
         fclose(data);
-        break;
     }
 }
 
@@ -45,14 +43,12 @@ static void goodB2G()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = _wfopen(L"file.txt", L"w+");
-    while(1)
     {
         /* FIX: check the return value */
         if (data != NULL)
         {
             fclose(data);
         }
-        break;
     }
 }
 

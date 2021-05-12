@@ -29,12 +29,10 @@ static const int STATIC_CONST_FIVE = 5;
 void CWE476_NULL_Pointer_Dereference__long_06_bad()
 {
     long * data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLine(*data);
@@ -49,17 +47,10 @@ void CWE476_NULL_Pointer_Dereference__long_06_bad()
 static void goodB2G1()
 {
     long * data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -77,12 +68,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     long * data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -101,19 +90,12 @@ static void goodG2B1()
 {
     long * data;
     long tmpData = 5L;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLine(*data);
@@ -125,14 +107,12 @@ static void goodG2B2()
 {
     long * data;
     long tmpData = 5L;
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLine(*data);

@@ -23,13 +23,11 @@ namespace CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer__class_17
 
 void bad()
 {
-    int i;
     void * data;
     TwoIntsClass dataGoodBuffer;
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set data to point to an int */
         data = &dataBadBuffer;
@@ -45,13 +43,11 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     void * data;
     TwoIntsClass dataGoodBuffer;
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data to point to a TwoIntsClass class */
         data = &dataGoodBuffer;

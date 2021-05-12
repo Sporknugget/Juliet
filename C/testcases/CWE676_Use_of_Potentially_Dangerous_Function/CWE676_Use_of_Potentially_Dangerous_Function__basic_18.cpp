@@ -28,8 +28,6 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_18
 
 void bad()
 {
-    goto sink;
-sink:
     {
         char charBuffer[CHAR_BUFFER_SIZE];
         /* FLAW: using cin in an inherently dangerous fashion */
@@ -47,8 +45,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         char charBuffer[CHAR_BUFFER_SIZE];
         /* FIX: Use cin after specifying the length of the input */

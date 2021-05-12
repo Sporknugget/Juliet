@@ -29,7 +29,6 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -38,13 +37,10 @@ void bad()
         data->intTwo = 0;
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -57,7 +53,6 @@ static void goodB2G()
 {
     TwoIntsClass * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -66,13 +61,10 @@ static void goodB2G()
         data->intTwo = 0;
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
-        break;
     }
-    while(1)
     {
         /* FIX: Deallocate memory */
         delete data;
-        break;
     }
 }
 
@@ -81,7 +73,6 @@ static void goodG2B()
 {
     TwoIntsClass * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer;
@@ -91,13 +82,10 @@ static void goodG2B()
         data->intTwo = 0;
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 

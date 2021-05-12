@@ -27,7 +27,6 @@ static int staticFalse = 0; /* false */
 
 void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_05_bad()
 {
-    if(staticTrue)
     {
         {
             static stdThreadLock badLock = NULL;
@@ -50,15 +49,6 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             static stdThreadLock goodLock = NULL;
@@ -82,7 +72,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             static stdThreadLock goodLock = NULL;

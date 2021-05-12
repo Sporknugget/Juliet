@@ -30,7 +30,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_char_declare_loop_10_bad()
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
-    if(globalTrue)
     {
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -61,12 +60,6 @@ static void goodG2B1()
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -93,7 +86,6 @@ static void goodG2B2()
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
-    if(globalTrue)
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */

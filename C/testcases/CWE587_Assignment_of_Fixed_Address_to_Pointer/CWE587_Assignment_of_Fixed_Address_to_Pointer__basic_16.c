@@ -19,14 +19,12 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_16_bad()
 {
-    while(1)
     {
         {
             /* FLAW: Assigning fixed address to pointer */
             char *charPointer = (char*)0x400000;
             printHexCharLine(*charPointer);
         }
-        break;
     }
 }
 
@@ -37,7 +35,6 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             /* FIX: Assign the pointer to a stack variable */
@@ -45,7 +42,6 @@ static void good1()
             char *charPointer = &charStack;
             printHexCharLine(*charPointer);
         }
-        break;
     }
 }
 

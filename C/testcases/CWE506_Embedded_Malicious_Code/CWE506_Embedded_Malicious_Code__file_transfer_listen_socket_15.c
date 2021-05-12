@@ -41,9 +41,6 @@ Template File: point-flaw-badonly-15.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -117,12 +114,6 @@ void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_15_bad()
             WSACleanup();
         }
 #endif
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

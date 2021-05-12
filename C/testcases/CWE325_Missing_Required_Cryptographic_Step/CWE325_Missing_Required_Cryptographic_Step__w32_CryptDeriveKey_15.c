@@ -28,9 +28,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE325_Missing_Required_Cryptographic_Step__w32_CryptDeriveKey_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         BYTE payload[100];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -81,12 +78,6 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptDeriveKey_15_bad()
         /* Do something with the encrypted data */
         printBytesLine(payload, payloadLen);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -96,13 +87,6 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptDeriveKey_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         BYTE payload[100];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -156,17 +140,12 @@ static void good1()
         }
         /* Do something with the encrypted data */
         printBytesLine(payload, payloadLen);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         BYTE payload[100];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -220,12 +199,6 @@ static void good2()
         }
         /* Do something with the encrypted data */
         printBytesLine(payload, payloadLen);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

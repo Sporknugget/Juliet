@@ -34,24 +34,9 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_12_bad()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Assign data to another file descriptor without closing the descriptor from the source */
         data = OPEN("BadSink_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-        /* avoid incidental for not closing the file */
-        if (data != -1)
-        {
-            CLOSE(data);
-        }
-    }
-    else
-    {
-        /* FIX: Close the file from the source before reassigning data to a new file descriptor */
-        if (data != -1)
-        {
-            CLOSE(data);
-        }
-        data = OPEN("GoodSink_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* avoid incidental for not closing the file */
         if (data != -1)
         {
@@ -73,21 +58,6 @@ static void goodB2G()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Close the file from the source before reassigning data to a new file descriptor */
-        if (data != -1)
-        {
-            CLOSE(data);
-        }
-        data = OPEN("GoodSink_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-        /* avoid incidental for not closing the file */
-        if (data != -1)
-        {
-            CLOSE(data);
-        }
-    }
-    else
     {
         /* FIX: Close the file from the source before reassigning data to a new file descriptor */
         if (data != -1)

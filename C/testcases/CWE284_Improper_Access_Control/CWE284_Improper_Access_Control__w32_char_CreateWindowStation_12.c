@@ -22,7 +22,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateWindowStation_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             HWINSTA hWinStation;
@@ -44,28 +43,6 @@ void CWE284_Improper_Access_Control__w32_char_CreateWindowStation_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            HWINSTA hWinStation;
-            char * wStationName = "WindowsStationExample";
-            /* FIX: Call CreateWindowStationA() without GENERIC_READ as the 3rd parameter to limit access */
-            hWinStation = CreateWindowStationA(
-                              wStationName,
-                              0,
-                              GENERIC_READ,
-                              NULL);
-            if (hWinStation == NULL)
-            {
-                printLine("Windows station could not be created");
-            }
-            else
-            {
-                printLine("Windows Station created successfully");
-                CloseWindowStation(hWinStation);
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -75,29 +52,6 @@ void CWE284_Improper_Access_Control__w32_char_CreateWindowStation_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            HWINSTA hWinStation;
-            char * wStationName = "WindowsStationExample";
-            /* FIX: Call CreateWindowStationA() without GENERIC_READ as the 3rd parameter to limit access */
-            hWinStation = CreateWindowStationA(
-                              wStationName,
-                              0,
-                              GENERIC_READ,
-                              NULL);
-            if (hWinStation == NULL)
-            {
-                printLine("Windows station could not be created");
-            }
-            else
-            {
-                printLine("Windows Station created successfully");
-                CloseWindowStation(hWinStation);
-            }
-        }
-    }
-    else
     {
         {
             HWINSTA hWinStation;

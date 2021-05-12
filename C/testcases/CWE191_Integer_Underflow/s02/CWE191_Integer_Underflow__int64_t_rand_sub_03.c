@@ -23,12 +23,10 @@ void CWE191_Integer_Underflow__int64_t_rand_sub_03_bad()
 {
     int64_t data;
     data = 0LL;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
     }
-    if(5==5)
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -47,17 +45,10 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -77,12 +68,10 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
     }
-    if(5==5)
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -102,17 +91,10 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(5==5)
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -127,12 +109,10 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
-    if(5==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(5==5)
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

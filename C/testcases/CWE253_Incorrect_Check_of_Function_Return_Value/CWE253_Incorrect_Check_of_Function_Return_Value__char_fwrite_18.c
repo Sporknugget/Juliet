@@ -23,8 +23,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_fwrite_18_bad()
 {
-    goto sink;
-sink:
     /* FLAW: fwrite() might fail, in which case the return value will not be equal to strlen(data),
      * but we are checking to see if the return value is less than 0 */
     if (fwrite((char *)"string", sizeof(char), strlen("string"), stdout) < 0)
@@ -40,8 +38,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     /* FIX: check for the correct return value */
     if (fwrite((char *)"string", sizeof(char), strlen("string"), stdout) != strlen("string"))
     {

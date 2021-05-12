@@ -34,7 +34,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_16_bad()
 {
-    while(1)
     {
         /* FLAW: rename() might fail, in which case the return value will be non-zero, but
          * we are checking to see if the return value is 0 */
@@ -42,7 +41,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_16_bad()
         {
             printLine("rename failed!");
         }
-        break;
     }
 }
 
@@ -53,14 +51,12 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: check for the correct return value */
         if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)
         {
             printLine("rename failed!");
         }
-        break;
     }
 }
 

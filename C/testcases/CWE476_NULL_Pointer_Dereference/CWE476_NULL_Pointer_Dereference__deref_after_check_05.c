@@ -25,7 +25,6 @@ static int staticFalse = 0; /* false */
 
 void CWE476_NULL_Pointer_Dereference__deref_after_check_05_bad()
 {
-    if(staticTrue)
     {
         {
             /* FLAW: Check for NULL, but still dereference the pointer */
@@ -42,15 +41,6 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
@@ -66,7 +56,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             /* FIX: Check for NULL and do not dereference the pointer if it is NULL */

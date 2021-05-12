@@ -30,7 +30,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE459_Incomplete_Cleanup__wchar_t_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * filename;
@@ -50,27 +49,6 @@ void CWE459_Incomplete_Cleanup__wchar_t_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            wchar_t * filename;
-            wchar_t tmpl[] = L"goodXXXXXX";
-            FILE *pFile;
-            /* Establish that this is a temporary file and that it should be deleted */
-            filename = MKTEMP(tmpl);
-            if (filename != NULL)
-            {
-                pFile = FOPEN(filename, L"w");
-                if (pFile != NULL)
-                {
-                    fprintf(pFile, "Temporary file");
-                    fclose(pFile);
-                    /* FIX: Unlink the temporary file */
-                    UNLINK(filename); /* EXPECTED INCIDENTAL: CWE367 TOCTOU - This POSIX API is essentially insecure by design */
-                }
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -80,28 +58,6 @@ void CWE459_Incomplete_Cleanup__wchar_t_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t * filename;
-            wchar_t tmpl[] = L"goodXXXXXX";
-            FILE *pFile;
-            /* Establish that this is a temporary file and that it should be deleted */
-            filename = MKTEMP(tmpl);
-            if (filename != NULL)
-            {
-                pFile = FOPEN(filename, L"w");
-                if (pFile != NULL)
-                {
-                    fprintf(pFile, "Temporary file");
-                    fclose(pFile);
-                    /* FIX: Unlink the temporary file */
-                    UNLINK(filename); /* EXPECTED INCIDENTAL: CWE367 TOCTOU - This POSIX API is essentially insecure by design */
-                }
-            }
-        }
-    }
-    else
     {
         {
             wchar_t * filename;

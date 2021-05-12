@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__struct_pointer_malloc_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             twoIntsStruct * * pointer = (twoIntsStruct * *)malloc(sizeof(twoIntsStruct *));
@@ -28,26 +27,6 @@ void CWE758_Undefined_Behavior__struct_pointer_malloc_use_12_bad()
             free(pointer);
             printIntLine(data->intOne);
             printIntLine(data->intTwo);
-        }
-    }
-    else
-    {
-        {
-            twoIntsStruct * data;
-            twoIntsStruct * * pointer = (twoIntsStruct * *)malloc(sizeof(twoIntsStruct *));
-            if (pointer == NULL) {exit(-1);}
-            /* initialize both the pointer and the data pointed to */
-            data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
-            if (data == NULL) {exit(-1);}
-            data->intOne = 5;
-            data->intTwo = 6;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                twoIntsStruct * data = *pointer;
-                printIntLine(data->intOne);
-                printIntLine(data->intTwo);
-            }
-            free(pointer);
         }
     }
 }
@@ -59,27 +38,6 @@ void CWE758_Undefined_Behavior__struct_pointer_malloc_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            twoIntsStruct * data;
-            twoIntsStruct * * pointer = (twoIntsStruct * *)malloc(sizeof(twoIntsStruct *));
-            if (pointer == NULL) {exit(-1);}
-            /* initialize both the pointer and the data pointed to */
-            data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
-            if (data == NULL) {exit(-1);}
-            data->intOne = 5;
-            data->intTwo = 6;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                twoIntsStruct * data = *pointer;
-                printIntLine(data->intOne);
-                printIntLine(data->intTwo);
-            }
-            free(pointer);
-        }
-    }
-    else
     {
         {
             twoIntsStruct * data;

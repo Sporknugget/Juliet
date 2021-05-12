@@ -45,7 +45,6 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -116,7 +115,6 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_16_bad()
             }
 #endif
         }
-        break;
     }
     {
         size_t i;
@@ -144,11 +142,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
-        break;
     }
     {
         size_t i;

@@ -23,15 +23,9 @@ void CWE194_Unexpected_Sign_Extension__rand_strncpy_12_bad()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a random value that could be less than 0 */
         data = (short)RAND32();
-    }
-    else
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
     }
     {
         char source[100];
@@ -60,12 +54,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
-    }
-    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

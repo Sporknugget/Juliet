@@ -24,12 +24,10 @@ Template File: sources-sinks-10.tmpl.c
 void CWE476_NULL_Pointer_Dereference__struct_10_bad()
 {
     twoIntsStruct * data;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -44,17 +42,10 @@ void CWE476_NULL_Pointer_Dereference__struct_10_bad()
 static void goodB2G1()
 {
     twoIntsStruct * data;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -72,12 +63,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     twoIntsStruct * data;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(globalTrue)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -96,12 +85,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     twoIntsStruct tmpData;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         {
@@ -110,7 +93,6 @@ static void goodG2B1()
             data = &tmpData;
         }
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -122,7 +104,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     twoIntsStruct tmpData;
-    if(globalTrue)
     {
         /* FIX: Initialize data */
         {
@@ -131,7 +112,6 @@ static void goodG2B2()
             data = &tmpData;
         }
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

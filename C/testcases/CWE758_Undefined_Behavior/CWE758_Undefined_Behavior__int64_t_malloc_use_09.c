@@ -19,7 +19,6 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE758_Undefined_Behavior__int64_t_malloc_use_09_bad()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
@@ -35,15 +34,6 @@ void CWE758_Undefined_Behavior__int64_t_malloc_use_09_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
-static void good1()
-{
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int64_t data;
@@ -63,7 +53,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             int64_t data;

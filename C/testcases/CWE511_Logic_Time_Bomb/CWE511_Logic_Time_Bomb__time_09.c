@@ -30,7 +30,6 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE511_Logic_Time_Bomb__time_09_bad()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             time_t currentTime;
@@ -48,15 +47,6 @@ void CWE511_Logic_Time_Bomb__time_09_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
-static void good1()
-{
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             time_t currentTime;
@@ -73,7 +63,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             time_t currentTime;

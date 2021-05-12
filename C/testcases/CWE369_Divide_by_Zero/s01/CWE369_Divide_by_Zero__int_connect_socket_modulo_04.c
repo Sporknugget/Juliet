@@ -52,7 +52,6 @@ void CWE369_Divide_by_Zero__int_connect_socket_modulo_04_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -111,7 +110,6 @@ void CWE369_Divide_by_Zero__int_connect_socket_modulo_04_bad()
 #endif
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
@@ -128,7 +126,6 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -187,12 +184,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -212,7 +203,6 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -271,7 +261,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -291,17 +280,10 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
@@ -314,12 +296,10 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);

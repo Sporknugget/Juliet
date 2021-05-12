@@ -26,14 +26,12 @@ void CWE415_Double_Free__malloc_free_long_11_bad()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -50,19 +48,12 @@ static void goodB2G1()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -76,14 +67,12 @@ static void goodB2G2()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    if(globalReturnsTrue())
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -97,18 +86,11 @@ static void goodG2B1()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -121,13 +103,11 @@ static void goodG2B2()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);

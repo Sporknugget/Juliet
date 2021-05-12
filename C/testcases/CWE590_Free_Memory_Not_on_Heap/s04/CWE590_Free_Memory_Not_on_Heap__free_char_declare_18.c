@@ -24,8 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_declare_18_bad()
 {
     char * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         char dataBuffer[100];
@@ -47,8 +45,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         char * dataBuffer = (char *)malloc(100*sizeof(char));

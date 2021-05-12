@@ -19,7 +19,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE546_Suspicious_Comment__BUG_10_bad()
 {
-    if(globalTrue)
     {
         /* FLAW: The following comment has the letters 'BUG' in it*/
         /* BUG: This comment has the letters 'BUG' in it, which is certainly
@@ -33,15 +32,6 @@ void CWE546_Suspicious_Comment__BUG_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -51,7 +41,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

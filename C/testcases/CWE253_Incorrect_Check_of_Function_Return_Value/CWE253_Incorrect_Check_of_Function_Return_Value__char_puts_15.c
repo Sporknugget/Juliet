@@ -29,21 +29,12 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_puts_15_bad()
 {
-    switch(6)
-    {
-    case 6:
         /* FLAW: puts() might fail, in which case the return value will be EOF (-1), but
          * we are checking to see if the return value is 0 */
         if (PUTS("string") == 0)
         {
             printLine("puts failed!");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -53,39 +44,21 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_puts_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: check for the correct return value */
         if (PUTS("string") == EOF)
         {
             printLine("puts failed!");
         }
-        break;
-    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
         /* FIX: check for the correct return value */
         if (PUTS("string") == EOF)
         {
             printLine("puts failed!");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_puts_15_good()

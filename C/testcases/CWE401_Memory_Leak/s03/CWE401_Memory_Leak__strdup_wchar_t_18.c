@@ -25,8 +25,6 @@ void CWE401_Memory_Leak__strdup_wchar_t_18_bad()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     {
         wchar_t myString[] = L"myString";
         /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
@@ -34,8 +32,6 @@ source:
         /* Use data */
         printWLine(data);
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: No deallocation of memory */
     /* no deallocation */
     ; /* empty statement needed for some flow variants */
@@ -50,8 +46,6 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     {
         wchar_t myString[] = L"myString";
         /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
@@ -59,8 +53,6 @@ source:
         /* Use data */
         printWLine(data);
     }
-    goto sink;
-sink:
     /* FIX: Deallocate memory initialized in the source */
     free(data);
 }
@@ -70,15 +62,11 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     /* FIX: Use memory allocated on the stack with ALLOCA */
     data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
     /* Initialize then use data */
     wcscpy(data, L"a string");
     printWLine(data);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: No deallocation of memory */
     /* no deallocation */
     ; /* empty statement needed for some flow variants */

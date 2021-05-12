@@ -43,11 +43,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE197_Numeric_Truncation_Error__short_listen_socket_17_bad()
 {
-    int i;
     short data;
     /* Initialize data */
     data = -1;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -133,11 +131,9 @@ void CWE197_Numeric_Truncation_Error__short_listen_socket_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     short data;
     /* Initialize data */
     data = -1;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;

@@ -53,7 +53,6 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_console_09_bad()
             }
         }
     }
-    if(GLOBAL_CONST_TRUE)
     {
         /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
          * memory block not at the start of the buffer */
@@ -105,12 +104,6 @@ static void goodB2G1()
             }
         }
     }
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t i;
@@ -160,7 +153,6 @@ static void goodB2G2()
             }
         }
     }
-    if(GLOBAL_CONST_TRUE)
     {
         {
             size_t i;

@@ -34,7 +34,6 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_02_bad()
 {
-    if(1)
     {
         {
             char filename[MAX_PATH] = "";
@@ -61,15 +60,6 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_02_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(0) instead of if(1) */
-static void good1()
-{
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char filename[MAX_PATH] = "";
@@ -97,7 +87,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(1)
     {
         {
             char filename[MAX_PATH] = "";

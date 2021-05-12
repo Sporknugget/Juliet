@@ -41,7 +41,6 @@ void CWE78_OS_Command_Injection__char_console_popen_12_bad()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from the console */
@@ -69,11 +68,6 @@ void CWE78_OS_Command_Injection__char_console_popen_12_bad()
             }
         }
     }
-    else
-    {
-        /* FIX: Append a fixed string to data (not user / external input) */
-        strcat(data, "*.*");
-    }
     {
         FILE *pipe;
         /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
@@ -96,12 +90,6 @@ static void goodG2B()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Append a fixed string to data (not user / external input) */
-        strcat(data, "*.*");
-    }
-    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

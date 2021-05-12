@@ -26,7 +26,6 @@ void bad()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
-    while(1)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         for(int i=0; i<(10/2); i++)
@@ -34,9 +33,7 @@ void bad()
             data[i].intOne = i;
             data[i].intTwo = i;
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -44,7 +41,6 @@ void bad()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
-        break;
     }
 }
 
@@ -58,7 +54,6 @@ static void goodB2G()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
-    while(1)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         for(int i=0; i<(10/2); i++)
@@ -66,9 +61,7 @@ static void goodB2G()
             data[i].intOne = i;
             data[i].intTwo = i;
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         for(int i=0; i<10; i++)
@@ -81,7 +74,6 @@ static void goodB2G()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
-        break;
     }
 }
 
@@ -91,7 +83,6 @@ static void goodG2B()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
-    while(1)
     {
         /* FIX: Completely initialize data */
         for(int i=0; i<10; i++)
@@ -99,9 +90,7 @@ static void goodG2B()
             data[i].intOne = i;
             data[i].intTwo = i;
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -109,7 +98,6 @@ static void goodG2B()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
-        break;
     }
 }
 

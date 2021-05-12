@@ -25,7 +25,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE615_Info_Exposure_by_Comment__w32_10_bad()
 {
-    if(globalTrue)
     {
         {
             size_t passwordLen = 0;
@@ -57,15 +56,6 @@ void CWE615_Info_Exposure_by_Comment__w32_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t passwordLen = 0;
@@ -96,7 +86,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             size_t passwordLen = 0;

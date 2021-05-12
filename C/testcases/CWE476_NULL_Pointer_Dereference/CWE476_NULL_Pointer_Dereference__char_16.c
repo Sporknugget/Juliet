@@ -24,18 +24,14 @@ Template File: sources-sinks-16.tmpl.c
 void CWE476_NULL_Pointer_Dereference__char_16_bad()
 {
     char * data;
-    while(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
         printHexCharLine(data[0]);
-        break;
     }
 }
 
@@ -47,13 +43,10 @@ void CWE476_NULL_Pointer_Dereference__char_16_bad()
 static void goodB2G()
 {
     char * data;
-    while(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
     }
-    while(1)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -65,7 +58,6 @@ static void goodB2G()
         {
             printLine("data is NULL");
         }
-        break;
     }
 }
 
@@ -73,18 +65,14 @@ static void goodB2G()
 static void goodG2B()
 {
     char * data;
-    while(1)
     {
         /* FIX: Initialize data */
         data = "Good";
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
         printHexCharLine(data[0]);
-        break;
     }
 }
 

@@ -54,7 +54,6 @@ void CWE190_Integer_Overflow__int_connect_socket_square_04_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -113,7 +112,6 @@ void CWE190_Integer_Overflow__int_connect_socket_square_04_bad()
 #endif
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
@@ -133,7 +131,6 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -192,12 +189,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data > INT_MIN && abs(data) < (long)sqrt((double)INT_MAX))
@@ -218,7 +209,6 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -277,7 +267,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data > INT_MIN && abs(data) < (long)sqrt((double)INT_MAX))
@@ -298,17 +287,10 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
@@ -324,12 +306,10 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */

@@ -38,9 +38,6 @@ static int _mkstemp(const char * t){
 
 void CWE459_Incomplete_Cleanup__char_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char filename[] = "badXXXXXX";
         FILE *pFile;
@@ -57,12 +54,6 @@ void CWE459_Incomplete_Cleanup__char_15_bad()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -72,13 +63,6 @@ void CWE459_Incomplete_Cleanup__char_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char filename[] = "goodXXXXXX";
         FILE *pFile;
@@ -95,17 +79,12 @@ static void good1()
                 UNLINK(filename); /* EXPECTED INCIDENTAL: CWE367 TOCTOU - This POSIX API is essentially insecure by design */
             }
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char filename[] = "goodXXXXXX";
         FILE *pFile;
@@ -122,12 +101,6 @@ static void good2()
                 UNLINK(filename); /* EXPECTED INCIDENTAL: CWE367 TOCTOU - This POSIX API is essentially insecure by design */
             }
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

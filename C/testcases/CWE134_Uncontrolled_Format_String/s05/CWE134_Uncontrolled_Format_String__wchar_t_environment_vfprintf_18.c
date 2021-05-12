@@ -48,8 +48,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_vfprintf_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -61,8 +59,6 @@ source:
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     badVaSinkB(data, data);
 }
 
@@ -87,8 +83,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -100,8 +94,6 @@ source:
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     goodB2GVaSinkG(data, data);
 }
 
@@ -122,12 +114,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     wcscpy(data, L"fixedstringtest");
-    goto sink;
-sink:
     goodG2BVaSinkB(data, data);
 }
 

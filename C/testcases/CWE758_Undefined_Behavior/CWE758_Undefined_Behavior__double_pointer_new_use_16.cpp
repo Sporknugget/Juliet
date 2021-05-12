@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__double_pointer_new_use_16
 
 void bad()
 {
-    while(1)
     {
         {
             double * * pointer = new double *;
@@ -30,7 +29,6 @@ void bad()
             delete pointer;
             printDoubleLine(*data);
         }
-        break;
     }
 }
 
@@ -41,7 +39,6 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
-    while(1)
     {
         {
             double * data;
@@ -56,7 +53,6 @@ static void good1()
             }
             delete pointer;
         }
-        break;
     }
 }
 

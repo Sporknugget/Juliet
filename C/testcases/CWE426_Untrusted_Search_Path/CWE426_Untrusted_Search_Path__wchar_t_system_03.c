@@ -45,7 +45,6 @@ void CWE426_Untrusted_Search_Path__wchar_t_system_03_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(5==5)
     {
         /* FLAW: the full path is not specified */
         wcscpy(data, BAD_OS_COMMAND);
@@ -69,12 +68,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: full path is specified */
         wcscpy(data, GOOD_OS_COMMAND);
@@ -94,7 +87,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(5==5)
     {
         /* FIX: full path is specified */
         wcscpy(data, GOOD_OS_COMMAND);

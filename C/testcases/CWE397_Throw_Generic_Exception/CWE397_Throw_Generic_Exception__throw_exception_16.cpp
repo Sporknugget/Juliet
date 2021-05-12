@@ -28,11 +28,9 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_16
 
 void bad()
 {
-    while(1)
     {
         /* FLAW: throw std::exception class, which is very generic */
         throw exception();
-        break;
     }
 }
 
@@ -43,11 +41,9 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
-    while(1)
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");
-        break;
     }
 }
 

@@ -25,7 +25,6 @@ static int staticFalse = 0; /* false */
 
 void CWE758_Undefined_Behavior__int64_t_alloca_use_05_bad()
 {
-    if(staticTrue)
     {
         {
             int64_t * pointer = (int64_t *)ALLOCA(sizeof(int64_t));
@@ -39,15 +38,6 @@ void CWE758_Undefined_Behavior__int64_t_alloca_use_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int64_t data;
@@ -65,7 +55,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             int64_t data;

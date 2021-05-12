@@ -23,9 +23,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t string1[] = SOURCE_STRING;
         wchar_t string2[] = SOURCE_STRING;
@@ -41,12 +38,6 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_15_bad()
         /* print the index of where the slash was found */
         printUnsignedLine(indexOfSlashInString1);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -56,13 +47,6 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         wchar_t string1[] = SOURCE_STRING;
         wchar_t * slashInString1;
@@ -76,17 +60,12 @@ static void good1()
         indexOfSlashInString1 = (size_t)(slashInString1 - string1);
         /* print the index of where the slash was found */
         printUnsignedLine(indexOfSlashInString1);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t string1[] = SOURCE_STRING;
         wchar_t * slashInString1;
@@ -100,12 +79,6 @@ static void good2()
         indexOfSlashInString1 = (size_t)(slashInString1 - string1);
         /* print the index of where the slash was found */
         printUnsignedLine(indexOfSlashInString1);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

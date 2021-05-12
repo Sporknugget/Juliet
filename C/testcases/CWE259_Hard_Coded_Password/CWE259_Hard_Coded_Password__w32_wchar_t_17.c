@@ -27,11 +27,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE259_Hard_Coded_Password__w32_wchar_t_17_bad()
 {
-    int i;
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Use a hardcoded password */
         wcscpy(password, PASSWORD);
@@ -66,11 +64,9 @@ void CWE259_Hard_Coded_Password__w32_wchar_t_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    for(h = 0; h < 1; h++)
     {
         {
             size_t passwordLen = 0;

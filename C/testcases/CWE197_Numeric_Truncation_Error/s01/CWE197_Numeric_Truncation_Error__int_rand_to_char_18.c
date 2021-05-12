@@ -23,8 +23,6 @@ void CWE197_Numeric_Truncation_Error__int_rand_to_char_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = RAND32();
     {
@@ -44,8 +42,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a positive integer less than CHAR_MAX*/
     data = CHAR_MAX-5;
     {

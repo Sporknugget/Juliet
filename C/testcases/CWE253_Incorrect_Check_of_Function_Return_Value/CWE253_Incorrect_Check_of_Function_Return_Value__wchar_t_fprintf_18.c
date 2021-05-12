@@ -23,8 +23,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_18_bad()
 {
-    goto sink;
-sink:
     /* FLAW: fwprintf() might fail, in which case the return value will be negative, but
      * we are checking to see if the return value is 0 */
     if (fwprintf(stdout, L"%s\n", L"string") == 0)
@@ -40,8 +38,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     /* FIX: check for the correct return value */
     if (fwprintf(stdout, L"%s\n", L"string") < 0)
     {

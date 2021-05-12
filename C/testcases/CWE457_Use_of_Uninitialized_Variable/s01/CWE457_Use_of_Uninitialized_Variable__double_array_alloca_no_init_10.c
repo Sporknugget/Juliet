@@ -23,12 +23,10 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_alloca_no_init_10_bad()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -50,17 +48,10 @@ static void goodB2G1()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -85,12 +76,10 @@ static void goodB2G2()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(globalTrue)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -115,12 +104,6 @@ static void goodG2B1()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Completely initialize data */
         {
@@ -131,7 +114,6 @@ static void goodG2B1()
             }
         }
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -149,7 +131,6 @@ static void goodG2B2()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalTrue)
     {
         /* FIX: Completely initialize data */
         {
@@ -160,7 +141,6 @@ static void goodG2B2()
             }
         }
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

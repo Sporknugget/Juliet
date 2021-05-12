@@ -49,8 +49,6 @@ static int _mkstemp(const char * t){
 
 void CWE377_Insecure_Temporary_File__char_mktemp_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char * filename;
@@ -80,8 +78,6 @@ void CWE377_Insecure_Temporary_File__char_mktemp_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename

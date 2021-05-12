@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_scanf_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -38,20 +37,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_scanf_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            /* By initializing dataBuffer, we ensure this will not be the
-             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
-            wchar_t dataBuffer[100] = L"";
-            wchar_t * data = dataBuffer;
-            /* FIX: check for the correct return value */
-            if (wscanf(L"%99s\0", data) == EOF)
-            {
-                printLine("wscanf failed!");
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -61,21 +46,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_scanf_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* By initializing dataBuffer, we ensure this will not be the
-             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
-            wchar_t dataBuffer[100] = L"";
-            wchar_t * data = dataBuffer;
-            /* FIX: check for the correct return value */
-            if (wscanf(L"%99s\0", data) == EOF)
-            {
-                printLine("wscanf failed!");
-            }
-        }
-    }
-    else
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the

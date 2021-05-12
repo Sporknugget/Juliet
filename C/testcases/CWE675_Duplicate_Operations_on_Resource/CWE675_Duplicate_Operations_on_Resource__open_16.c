@@ -32,18 +32,14 @@ void CWE675_Duplicate_Operations_on_Resource__open_16_bad()
 {
     int data;
     data = -1; /* Initialize data */
-    while(1)
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);
-        break;
     }
 }
 
@@ -56,19 +52,15 @@ static void goodB2G()
 {
     int data;
     data = -1; /* Initialize data */
-    while(1)
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
-        break;
     }
-    while(1)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -77,17 +69,13 @@ static void goodG2B()
 {
     int data;
     data = -1; /* Initialize data */
-    while(1)
     {
         /* FIX: Open, but do not close the file in the source */
         data = OPEN("GoodSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);
-        break;
     }
 }
 

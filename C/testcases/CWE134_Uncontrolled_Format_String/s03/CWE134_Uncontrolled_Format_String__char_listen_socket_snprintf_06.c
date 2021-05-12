@@ -60,7 +60,6 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_snprintf_06_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32
@@ -142,7 +141,6 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_snprintf_06_bad()
 #endif
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             char dest[100] = "";
@@ -163,7 +161,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32
@@ -245,12 +242,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char dest[100] = "";
@@ -267,7 +258,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32
@@ -349,7 +339,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             char dest[100] = "";
@@ -366,17 +355,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             char dest[100] = "";
@@ -393,12 +375,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             char dest[100] = "";

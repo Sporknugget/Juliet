@@ -30,7 +30,6 @@ void CWE606_Unchecked_Loop_Condition__char_console_14_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalFive==5)
     {
         {
             /* Read input from the console */
@@ -58,7 +57,6 @@ void CWE606_Unchecked_Loop_Condition__char_console_14_bad()
             }
         }
     }
-    if(globalFive==5)
     {
         {
             int i, n, intVariable;
@@ -87,7 +85,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalFive==5)
     {
         {
             /* Read input from the console */
@@ -115,12 +112,6 @@ static void goodB2G1()
             }
         }
     }
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int i, n, intVariable;
@@ -148,7 +139,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalFive==5)
     {
         {
             /* Read input from the console */
@@ -176,7 +166,6 @@ static void goodB2G2()
             }
         }
     }
-    if(globalFive==5)
     {
         {
             int i, n, intVariable;
@@ -204,17 +193,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
     }
-    if(globalFive==5)
     {
         {
             int i, n, intVariable;
@@ -239,12 +221,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalFive==5)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
     }
-    if(globalFive==5)
     {
         {
             int i, n, intVariable;

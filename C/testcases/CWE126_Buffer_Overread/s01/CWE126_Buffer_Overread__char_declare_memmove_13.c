@@ -29,7 +29,6 @@ void CWE126_Buffer_Overread__char_declare_memmove_13_bad()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
@@ -60,12 +59,6 @@ static void goodG2B1()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;
@@ -92,7 +85,6 @@ static void goodG2B2()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;

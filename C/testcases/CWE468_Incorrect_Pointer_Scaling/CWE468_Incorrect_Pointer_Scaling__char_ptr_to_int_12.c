@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -27,17 +26,6 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_12_bad()
             /* get intArray[2] */
             /* FLAW: sizeof() needed since pointer is a char*, not an int* */
             int toPrint = (int) (*(charPointer+2));
-            printIntLine(toPrint);
-        }
-    }
-    else
-    {
-        {
-            int intArray[5] = { 1, 2, 3, 4, 5 };
-            char *charPointer = (char *)intArray; /* get a char pointer to intArray - common idiom in file and network packet parsing */
-            /* get intArray[2] */
-            /* FIX: add *sizeof(int) to account for the difference in pointer types */
-            int toPrint = (int) (*(charPointer+(2*sizeof(int))));
             printIntLine(toPrint);
         }
     }
@@ -50,18 +38,6 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int intArray[5] = { 1, 2, 3, 4, 5 };
-            char *charPointer = (char *)intArray; /* get a char pointer to intArray - common idiom in file and network packet parsing */
-            /* get intArray[2] */
-            /* FIX: add *sizeof(int) to account for the difference in pointer types */
-            int toPrint = (int) (*(charPointer+(2*sizeof(int))));
-            printIntLine(toPrint);
-        }
-    }
-    else
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };

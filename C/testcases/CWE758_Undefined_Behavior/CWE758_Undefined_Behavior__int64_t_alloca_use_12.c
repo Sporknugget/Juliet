@@ -19,25 +19,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__int64_t_alloca_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int64_t * pointer = (int64_t *)ALLOCA(sizeof(int64_t));
             int64_t data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printLongLongLine(data);
-        }
-    }
-    else
-    {
-        {
-            int64_t data;
-            int64_t * pointer = (int64_t *)ALLOCA(sizeof(int64_t));
-            data = 5LL;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int64_t data = *pointer;
-                printLongLongLine(data);
-            }
         }
     }
 }
@@ -49,20 +35,6 @@ void CWE758_Undefined_Behavior__int64_t_alloca_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int64_t data;
-            int64_t * pointer = (int64_t *)ALLOCA(sizeof(int64_t));
-            data = 5LL;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int64_t data = *pointer;
-                printLongLongLine(data);
-            }
-        }
-    }
-    else
     {
         {
             int64_t data;

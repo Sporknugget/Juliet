@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_wchar_t_SHRegCreateUSKey_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";
@@ -32,28 +31,6 @@ void CWE284_Improper_Access_Control__w32_wchar_t_SHRegCreateUSKey_12_bad()
             if (SHRegCreateUSKeyW(
                         keyName,
                         KEY_ALL_ACCESS,
-                        NULL,
-                        &hKey,
-                        SHREGSET_HKCU) != ERROR_SUCCESS)
-            {
-                printLine("Registry key could not be created");
-            }
-            else
-            {
-                printLine("Registry key created successfully");
-                SHRegCloseUSKey(hKey);
-            }
-        }
-    }
-    else
-    {
-        {
-            wchar_t * keyName = L"TEST\\TestKey";
-            HUSKEY hKey = HKEY_CURRENT_USER;
-            /* FIX: Call SHRegCreateUSKeyW() without KEY_ALL_ACCESS as the 2nd parameter to limit access */
-            if (SHRegCreateUSKeyW(
-                        keyName,
-                        KEY_WRITE,
                         NULL,
                         &hKey,
                         SHREGSET_HKCU) != ERROR_SUCCESS)
@@ -76,29 +53,6 @@ void CWE284_Improper_Access_Control__w32_wchar_t_SHRegCreateUSKey_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t * keyName = L"TEST\\TestKey";
-            HUSKEY hKey = HKEY_CURRENT_USER;
-            /* FIX: Call SHRegCreateUSKeyW() without KEY_ALL_ACCESS as the 2nd parameter to limit access */
-            if (SHRegCreateUSKeyW(
-                        keyName,
-                        KEY_WRITE,
-                        NULL,
-                        &hKey,
-                        SHREGSET_HKCU) != ERROR_SUCCESS)
-            {
-                printLine("Registry key could not be created");
-            }
-            else
-            {
-                printLine("Registry key created successfully");
-                SHRegCloseUSKey(hKey);
-            }
-        }
-    }
-    else
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";

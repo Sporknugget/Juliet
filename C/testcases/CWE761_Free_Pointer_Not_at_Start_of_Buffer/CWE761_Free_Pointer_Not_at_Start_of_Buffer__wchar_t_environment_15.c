@@ -47,9 +47,6 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_15_bad()
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    switch(6)
-    {
-    case 6:
         /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
          * memory block not at the start of the buffer */
         for (; *data != L'\0'; data++)
@@ -57,8 +54,6 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_15_bad()
             if (*data == SEARCH_CHAR)
             {
                 printLine("We have a match!");
-                break;
-            }
         }
         free(data);
         break;
@@ -91,13 +86,6 @@ static void goodB2G1()
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         size_t i;
         /* FIX: Use a loop variable to traverse through the string pointed to by data */
@@ -110,8 +98,6 @@ static void goodB2G1()
             }
         }
         free(data);
-    }
-    break;
     }
 }
 
@@ -133,9 +119,6 @@ static void goodB2G2()
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    switch(6)
-    {
-    case 6:
     {
         size_t i;
         /* FIX: Use a loop variable to traverse through the string pointed to by data */
@@ -148,12 +131,6 @@ static void goodB2G2()
             }
         }
         free(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

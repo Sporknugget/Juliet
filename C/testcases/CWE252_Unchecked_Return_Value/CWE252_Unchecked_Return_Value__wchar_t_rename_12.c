@@ -32,18 +32,9 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_rename_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Do not check the return value */
         RENAME(OLD_BAD_FILE_NAME, L"newbadfilename.txt");
-    }
-    else
-    {
-        /* FIX: check the return value */
-        if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)
-        {
-            printLine("rename failed!");
-        }
     }
 }
 
@@ -54,15 +45,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: check the return value */
-        if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)
-        {
-            printLine("rename failed!");
-        }
-    }
-    else
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)

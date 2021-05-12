@@ -22,7 +22,6 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close_17_bad()
 {
-    int j;
     HANDLE data;
     /* Initialize data */
     data = INVALID_HANDLE_VALUE;
@@ -34,7 +33,6 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
@@ -48,7 +46,6 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
-    int k;
     HANDLE data;
     /* Initialize data */
     data = INVALID_HANDLE_VALUE;
@@ -60,7 +57,6 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    for(k = 0; k < 1; k++)
     {
         /* FIX: If the file is still opened, close it */
         if (data != INVALID_HANDLE_VALUE)

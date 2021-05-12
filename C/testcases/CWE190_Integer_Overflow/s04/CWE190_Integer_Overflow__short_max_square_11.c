@@ -25,12 +25,10 @@ void CWE190_Integer_Overflow__short_max_square_11_bad()
 {
     short data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
@@ -49,17 +47,10 @@ static void goodB2G1()
 {
     short data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)SHRT_MAX))
@@ -79,12 +70,10 @@ static void goodB2G2()
 {
     short data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    if(globalReturnsTrue())
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)SHRT_MAX))
@@ -104,17 +93,10 @@ static void goodG2B1()
 {
     short data;
     data = 0;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
@@ -129,12 +111,10 @@ static void goodG2B2()
 {
     short data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */

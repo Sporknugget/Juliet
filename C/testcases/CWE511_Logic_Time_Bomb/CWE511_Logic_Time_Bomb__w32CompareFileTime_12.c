@@ -28,7 +28,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE511_Logic_Time_Bomb__w32CompareFileTime_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             SYSTEMTIME setTime, currentTime;
@@ -53,31 +52,6 @@ void CWE511_Logic_Time_Bomb__w32CompareFileTime_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            SYSTEMTIME setTime, currentTime;
-            FILETIME setTimeAsFileTime, currentTimeAsFileTime;
-            /* Jan 1, 2008 12:00:00 PM */
-            setTime.wYear         = 2008; /* Year */
-            setTime.wMonth        = 1;    /* January */
-            setTime.wDayOfWeek    = 0;    /* Ignored */
-            setTime.wDay          = 1;    /* The first of the month */
-            setTime.wHour         = 12;   /* 12 PM */
-            setTime.wMinute       = 0;    /* 0 minutes into the hour */
-            setTime.wSecond       = 0;    /* 0 seconds into the minute */
-            setTime.wMilliseconds = 0;    /* 0 milliseconds into the second */
-            GetSystemTime(&currentTime);
-            /* Must convert to FILETIME for comparison */
-            SystemTimeToFileTime(&currentTime, &currentTimeAsFileTime);
-            SystemTimeToFileTime(&setTime, &setTimeAsFileTime);
-            /* FIX: After a certain date, print to the console */
-            if (CompareFileTime(&currentTimeAsFileTime, &setTimeAsFileTime) == 1)
-            {
-                printLine("Happy New Year!");
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -87,32 +61,6 @@ void CWE511_Logic_Time_Bomb__w32CompareFileTime_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            SYSTEMTIME setTime, currentTime;
-            FILETIME setTimeAsFileTime, currentTimeAsFileTime;
-            /* Jan 1, 2008 12:00:00 PM */
-            setTime.wYear         = 2008; /* Year */
-            setTime.wMonth        = 1;    /* January */
-            setTime.wDayOfWeek    = 0;    /* Ignored */
-            setTime.wDay          = 1;    /* The first of the month */
-            setTime.wHour         = 12;   /* 12 PM */
-            setTime.wMinute       = 0;    /* 0 minutes into the hour */
-            setTime.wSecond       = 0;    /* 0 seconds into the minute */
-            setTime.wMilliseconds = 0;    /* 0 milliseconds into the second */
-            GetSystemTime(&currentTime);
-            /* Must convert to FILETIME for comparison */
-            SystemTimeToFileTime(&currentTime, &currentTimeAsFileTime);
-            SystemTimeToFileTime(&setTime, &setTimeAsFileTime);
-            /* FIX: After a certain date, print to the console */
-            if (CompareFileTime(&currentTimeAsFileTime, &setTimeAsFileTime) == 1)
-            {
-                printLine("Happy New Year!");
-            }
-        }
-    }
-    else
     {
         {
             SYSTEMTIME setTime, currentTime;

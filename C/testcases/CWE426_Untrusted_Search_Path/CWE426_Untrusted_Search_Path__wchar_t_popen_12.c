@@ -47,15 +47,9 @@ void CWE426_Untrusted_Search_Path__wchar_t_popen_12_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: the full path is not specified */
         wcscpy(data, BAD_OS_COMMAND);
-    }
-    else
-    {
-        /* FIX: full path is specified */
-        wcscpy(data, GOOD_OS_COMMAND);
     }
     {
         FILE *pipe;
@@ -80,12 +74,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: full path is specified */
-        wcscpy(data, GOOD_OS_COMMAND);
-    }
-    else
     {
         /* FIX: full path is specified */
         wcscpy(data, GOOD_OS_COMMAND);

@@ -24,12 +24,8 @@ namespace CWE476_NULL_Pointer_Dereference__class_18
 void bad()
 {
     TwoIntsClass * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to NULL */
     data = NULL;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
     printIntLine(data->intOne);
     /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
@@ -44,12 +40,8 @@ sink:
 static void goodB2G()
 {
     TwoIntsClass * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to NULL */
     data = NULL;
-    goto sink;
-sink:
     /* FIX: Check for NULL before attempting to print data */
     if (data != NULL)
     {
@@ -66,8 +58,6 @@ sink:
 static void goodG2B()
 {
     TwoIntsClass * data;
-    goto source;
-source:
     {
         TwoIntsClass * tmpData = new TwoIntsClass;
         tmpData->intOne = 0;
@@ -75,8 +65,6 @@ source:
         /* FIX: Initialize data */
         data = tmpData;
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
     printIntLine(data->intOne);
     /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */

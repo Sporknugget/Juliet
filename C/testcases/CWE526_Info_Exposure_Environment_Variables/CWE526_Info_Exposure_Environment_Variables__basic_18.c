@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE526_Info_Exposure_Environment_Variables__basic_18_bad()
 {
-    goto sink;
-sink:
     /* FLAW: environment variable exposed */
     printLine(getenv("PATH"));
 }
@@ -32,8 +30,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     /* FIX: error message is general */
     printLine("Not in path");
 }

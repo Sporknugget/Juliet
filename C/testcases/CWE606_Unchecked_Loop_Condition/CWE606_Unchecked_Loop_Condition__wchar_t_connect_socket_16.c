@@ -51,7 +51,6 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_connect_socket_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -120,9 +119,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_connect_socket_16_bad()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -138,7 +135,6 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_connect_socket_16_bad()
                 printIntLine(intVariable);
             }
         }
-        break;
     }
 }
 
@@ -152,7 +148,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -221,9 +216,7 @@ static void goodB2G()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -242,7 +235,6 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
 }
 
@@ -252,13 +244,10 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -274,7 +263,6 @@ static void goodG2B()
                 printIntLine(intVariable);
             }
         }
-        break;
     }
 }
 

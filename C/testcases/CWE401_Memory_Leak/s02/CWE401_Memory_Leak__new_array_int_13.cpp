@@ -29,7 +29,6 @@ void bad()
 {
     int * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int[100];
@@ -37,7 +36,6 @@ void bad()
         data[0] = 5;
         printIntLine(data[0]);
     }
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -53,7 +51,6 @@ static void goodB2G1()
 {
     int * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int[100];
@@ -61,12 +58,6 @@ static void goodB2G1()
         data[0] = 5;
         printIntLine(data[0]);
     }
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -78,7 +69,6 @@ static void goodB2G2()
 {
     int * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int[100];
@@ -86,7 +76,6 @@ static void goodB2G2()
         data[0] = 5;
         printIntLine(data[0]);
     }
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -98,12 +87,6 @@ static void goodG2B1()
 {
     int * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack */
         int dataGoodBuffer[100];
@@ -112,7 +95,6 @@ static void goodG2B1()
         data[0] = 5;
         printIntLine(data[0]);
     }
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -124,7 +106,6 @@ static void goodG2B2()
 {
     int * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Use memory allocated on the stack */
         int dataGoodBuffer[100];
@@ -133,7 +114,6 @@ static void goodG2B2()
         data[0] = 5;
         printIntLine(data[0]);
     }
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

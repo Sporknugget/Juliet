@@ -48,8 +48,6 @@ void CWE134_Uncontrolled_Format_String__char_environment_vprintf_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -61,8 +59,6 @@ source:
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     badVaSinkB(data, data);
 }
 
@@ -87,8 +83,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -100,8 +94,6 @@ source:
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     goodB2GVaSinkG(data, data);
 }
 
@@ -122,12 +114,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     strcpy(data, "fixedstringtest");
-    goto sink;
-sink:
     goodG2BVaSinkB(data, data);
 }
 

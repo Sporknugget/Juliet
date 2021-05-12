@@ -45,9 +45,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Read input from a file */
         size_t dataLen = strlen(data);
@@ -68,12 +65,6 @@ void bad()
                 fclose(pFile);
             }
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         int fileDesc;
@@ -96,13 +87,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "c:\\temp\\file.txt");
@@ -110,8 +94,6 @@ static void goodG2B1()
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "/tmp/file.txt");
 #endif
-        break;
-    }
     {
         int fileDesc;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -129,9 +111,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "c:\\temp\\file.txt");
@@ -139,12 +118,6 @@ static void goodG2B2()
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "/tmp/file.txt");
 #endif
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         int fileDesc;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */

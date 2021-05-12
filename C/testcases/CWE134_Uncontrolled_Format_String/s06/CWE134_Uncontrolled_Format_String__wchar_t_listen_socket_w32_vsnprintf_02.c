@@ -63,7 +63,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_listen_socket_w32_vsnprintf_02_b
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -145,7 +144,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_listen_socket_w32_vsnprintf_02_b
 #endif
         }
     }
-    if(1)
     {
         badVaSinkB(data, data);
     }
@@ -174,7 +172,6 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -256,12 +253,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         goodB2G1VaSinkG(data, data);
     }
@@ -286,7 +277,6 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -368,7 +358,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(1)
     {
         goodB2G2VaSinkG(data, data);
     }
@@ -393,17 +382,10 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(1)
     {
         goodG2B1VaSinkB(data, data);
     }
@@ -428,12 +410,10 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(1)
     {
         goodG2B2VaSinkB(data, data);
     }

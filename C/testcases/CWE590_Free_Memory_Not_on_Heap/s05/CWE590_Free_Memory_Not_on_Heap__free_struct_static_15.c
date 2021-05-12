@@ -24,9 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_static_15_bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    switch(6)
-    {
-    case 6:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         static twoIntsStruct dataBuffer[100];
@@ -39,12 +36,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_static_15_bad()
             }
         }
         data = dataBuffer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     printStructLine(&data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -60,13 +51,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
@@ -84,8 +68,6 @@ static void goodG2B1()
             }
         }
         data = dataBuffer;
-    }
-    break;
     }
     printStructLine(&data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -97,9 +79,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    switch(6)
-    {
-    case 6:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
@@ -117,12 +96,6 @@ static void goodG2B2()
             }
         }
         data = dataBuffer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     printStructLine(&data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

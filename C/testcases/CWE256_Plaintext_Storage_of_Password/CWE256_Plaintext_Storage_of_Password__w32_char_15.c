@@ -32,9 +32,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_15_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         FILE *pFile;
         pFile = fopen("passwords.txt", "r");
@@ -52,15 +49,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_15_bad()
             data[0] = '\0';
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -81,12 +69,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_15_bad()
         {
             printLine("Unable to login.");
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -100,9 +82,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         FILE *pFile;
         pFile = fopen("passwords.txt", "r");
@@ -120,19 +99,6 @@ static void goodB2G1()
             data[0] = '\0';
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -207,8 +173,6 @@ static void goodB2G1()
         {
             printLine("Unable to login.");
         }
-    }
-    break;
     }
 }
 
@@ -218,9 +182,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         FILE *pFile;
         pFile = fopen("passwords.txt", "r");
@@ -238,15 +199,6 @@ static void goodB2G2()
             data[0] = '\0';
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -322,12 +274,6 @@ static void goodB2G2()
             printLine("Unable to login.");
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -336,13 +282,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         FILE *pFile;
         HCRYPTPROV hCryptProv = 0;
@@ -414,11 +353,6 @@ static void goodG2B1()
             CryptReleaseContext(hCryptProv, 0);
         }
     }
-    break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -439,12 +373,6 @@ static void goodG2B1()
         {
             printLine("Unable to login.");
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -454,9 +382,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         FILE *pFile;
         HCRYPTPROV hCryptProv = 0;
@@ -528,15 +453,6 @@ static void goodG2B2()
             CryptReleaseContext(hCryptProv, 0);
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -557,12 +473,6 @@ static void goodG2B2()
         {
             printLine("Unable to login.");
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

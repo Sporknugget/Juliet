@@ -28,18 +28,14 @@ void bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new wchar_t;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
-        break;
     }
 }
 
@@ -53,19 +49,15 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new wchar_t;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
-        break;
     }
-    while(1)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -75,17 +67,13 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new wchar_t;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
-        break;
     }
 }
 

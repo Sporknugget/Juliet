@@ -23,13 +23,10 @@ void CWE191_Integer_Underflow__unsigned_int_fscanf_predec_16_bad()
 {
     unsigned int data;
     data = 0;
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -37,7 +34,6 @@ void CWE191_Integer_Underflow__unsigned_int_fscanf_predec_16_bad()
             unsigned int result = data;
             printUnsignedLine(result);
         }
-        break;
     }
 }
 
@@ -50,13 +46,10 @@ static void goodB2G()
 {
     unsigned int data;
     data = 0;
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
-        break;
     }
-    while(1)
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > 0)
@@ -69,7 +62,6 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
-        break;
     }
 }
 
@@ -78,13 +70,10 @@ static void goodG2B()
 {
     unsigned int data;
     data = 0;
-    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -92,7 +81,6 @@ static void goodG2B()
             unsigned int result = data;
             printUnsignedLine(result);
         }
-        break;
     }
 }
 

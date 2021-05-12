@@ -29,7 +29,6 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new wchar_t;
@@ -37,24 +36,9 @@ void bad()
         *data = L'A';
         printHexCharLine((char)*data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        wchar_t dataGoodBuffer;
-        data = &dataGoodBuffer;
-        /* Initialize and make use of data */
-        *data = L'A';
-        printHexCharLine((char)*data);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        delete data;
     }
 }
 
@@ -69,7 +53,6 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new wchar_t;
@@ -77,20 +60,6 @@ static void goodB2G()
         *data = L'A';
         printHexCharLine((char)*data);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = new wchar_t;
-        /* Initialize and make use of data */
-        *data = L'A';
-        printHexCharLine((char)*data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        delete data;
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -104,7 +73,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         wchar_t dataGoodBuffer;
@@ -113,21 +81,6 @@ static void goodG2B()
         *data = L'A';
         printHexCharLine((char)*data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        wchar_t dataGoodBuffer;
-        data = &dataGoodBuffer;
-        /* Initialize and make use of data */
-        *data = L'A';
-        printHexCharLine((char)*data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

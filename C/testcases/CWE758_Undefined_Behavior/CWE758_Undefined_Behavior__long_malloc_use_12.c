@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__long_malloc_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             long * pointer = (long *)malloc(sizeof(long));
@@ -27,21 +26,6 @@ void CWE758_Undefined_Behavior__long_malloc_use_12_bad()
             long data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             free(pointer);
             printLongLine(data);
-        }
-    }
-    else
-    {
-        {
-            long data;
-            long * pointer = (long *)malloc(sizeof(long));
-            if (pointer == NULL) {exit(-1);}
-            data = 5L;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                long data = *pointer;
-                printLongLine(data);
-            }
-            free(pointer);
         }
     }
 }
@@ -53,22 +37,6 @@ void CWE758_Undefined_Behavior__long_malloc_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            long data;
-            long * pointer = (long *)malloc(sizeof(long));
-            if (pointer == NULL) {exit(-1);}
-            data = 5L;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                long data = *pointer;
-                printLongLine(data);
-            }
-            free(pointer);
-        }
-    }
-    else
     {
         {
             long data;

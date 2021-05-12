@@ -39,7 +39,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(staticReturnsTrue())
     {
         /* FLAW: Set data to a value that will cause an integer overflow in the call to new[] in the sink */
         data = INT_MAX / 2 + 2; /* 1073741825 */
@@ -71,12 +70,6 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
@@ -102,7 +95,6 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(staticReturnsTrue())
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

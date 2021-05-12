@@ -23,35 +23,15 @@ void CWE191_Integer_Underflow__short_min_sub_12_bad()
 {
     short data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = SHRT_MIN;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
             short result = data - 1;
             printIntLine(result);
-        }
-    }
-    else
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > SHRT_MIN)
-        {
-            short result = data - 1;
-            printIntLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform subtraction.");
         }
     }
 }
@@ -67,30 +47,10 @@ static void goodB2G()
 {
     short data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = SHRT_MIN;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use the minimum size of the data type */
-        data = SHRT_MIN;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > SHRT_MIN)
-        {
-            short result = data - 1;
-            printIntLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform subtraction.");
-        }
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > SHRT_MIN)
@@ -112,25 +72,10 @@ static void goodG2B()
 {
     short data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
-            short result = data - 1;
-            printIntLine(result);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

@@ -25,34 +25,13 @@ void CWE476_NULL_Pointer_Dereference__int64_t_12_bad()
 {
     int64_t * data;
     int64_t tmpData = 5LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    else
-    {
-        /* FIX: Initialize data */
-        {
-            data = &tmpData;
-        }
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLongLine(*data);
-    }
-    else
-    {
-        /* FIX: Check for NULL before attempting to print data */
-        if (data != NULL)
-        {
-            printLongLongLine(*data);
-        }
-        else
-        {
-            printLine("data is NULL");
-        }
     }
 }
 
@@ -66,29 +45,10 @@ void CWE476_NULL_Pointer_Dereference__int64_t_12_bad()
 static void goodB2G()
 {
     int64_t * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Set data to NULL */
-        data = NULL;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Check for NULL before attempting to print data */
-        if (data != NULL)
-        {
-            printLongLongLine(*data);
-        }
-        else
-        {
-            printLine("data is NULL");
-        }
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -109,26 +69,12 @@ static void goodG2B()
 {
     int64_t * data;
     int64_t tmpData = 5LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    else
-    {
-        /* FIX: Initialize data */
-        {
-            data = &tmpData;
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
-        printLongLongLine(*data);
-    }
-    else
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLongLine(*data);

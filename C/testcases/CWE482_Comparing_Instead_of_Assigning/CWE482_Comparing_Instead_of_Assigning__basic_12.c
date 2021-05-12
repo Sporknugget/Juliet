@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE482_Comparing_Instead_of_Assigning__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int intBadSink = 0;
@@ -28,17 +27,6 @@ void CWE482_Comparing_Instead_of_Assigning__basic_12_bad()
             /* FLAW: meant to assign 5 to intBadSink.  Maintenance note: may generate a compiler warning, this is intentional */
             intBadSink == 5;
             printIntLine(intBadSink);
-        }
-    }
-    else
-    {
-        {
-            int intGoodSink = 0;
-            /* Print original value to avoid any unused variable incidentals */
-            printIntLine(intGoodSink);
-            /* FIX: use = instead of == */
-            intGoodSink = 5;
-            printIntLine(intGoodSink);
         }
     }
 }
@@ -50,18 +38,6 @@ void CWE482_Comparing_Instead_of_Assigning__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int intGoodSink = 0;
-            /* Print original value to avoid any unused variable incidentals */
-            printIntLine(intGoodSink);
-            /* FIX: use = instead of == */
-            intGoodSink = 5;
-            printIntLine(intGoodSink);
-        }
-    }
-    else
     {
         {
             int intGoodSink = 0;

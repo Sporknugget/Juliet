@@ -28,7 +28,6 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_16
 
 void bad()
 {
-    while(1)
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -38,7 +37,6 @@ void bad()
             charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
             printLine(charBuffer);
         }
-        break;
     }
 }
 
@@ -49,7 +47,6 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
-    while(1)
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -59,7 +56,6 @@ static void good1()
             charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
             printLine(charBuffer);
         }
-        break;
     }
 }
 

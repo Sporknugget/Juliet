@@ -22,8 +22,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_wchar_t_CreateWindowStation_18_bad()
 {
-    goto sink;
-sink:
     {
         HWINSTA hWinStation;
         wchar_t * wStationName = L"WindowsStationExample";
@@ -52,8 +50,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         HWINSTA hWinStation;
         wchar_t * wStationName = L"WindowsStationExample";

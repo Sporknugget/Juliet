@@ -38,7 +38,6 @@ void CWE606_Unchecked_Loop_Condition__char_environment_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -51,9 +50,7 @@ void CWE606_Unchecked_Loop_Condition__char_environment_16_bad()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -69,7 +66,6 @@ void CWE606_Unchecked_Loop_Condition__char_environment_16_bad()
                 printIntLine(intVariable);
             }
         }
-        break;
     }
 }
 
@@ -83,7 +79,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -96,9 +91,7 @@ static void goodB2G()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -117,7 +110,6 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
 }
 
@@ -127,13 +119,10 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -149,7 +138,6 @@ static void goodG2B()
                 printIntLine(intVariable);
             }
         }
-        break;
     }
 }
 

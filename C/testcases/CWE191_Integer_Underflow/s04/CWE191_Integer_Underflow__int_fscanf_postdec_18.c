@@ -24,12 +24,8 @@ void CWE191_Integer_Underflow__int_fscanf_postdec_18_bad()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         data--;
@@ -48,12 +44,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > INT_MIN)
     {
@@ -73,12 +65,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
     data = -2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         data--;

@@ -19,7 +19,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE484_Omitted_Break_Statement_in_Switch__basic_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             int x = (rand() % 3);
@@ -46,15 +45,6 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int x = (rand() % 3);
@@ -82,7 +72,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             int x = (rand() % 3);

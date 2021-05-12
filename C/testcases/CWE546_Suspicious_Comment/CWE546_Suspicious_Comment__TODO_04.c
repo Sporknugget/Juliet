@@ -25,7 +25,6 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE546_Suspicious_Comment__TODO_04_bad()
 {
-    if(STATIC_CONST_TRUE)
     {
         /* FLAW: The following comment has the letters 'TODO' in it*/
         /* TODO: This comment has the letters 'TODO' in it, which is certainly
@@ -39,15 +38,6 @@ void CWE546_Suspicious_Comment__TODO_04_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
-static void good1()
-{
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -57,7 +47,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

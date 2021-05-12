@@ -30,7 +30,6 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_memmove_07_bad()
 {
     char * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (char *)malloc(50*sizeof(char));
@@ -58,12 +57,6 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (char *)malloc(100*sizeof(char));
@@ -87,7 +80,6 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (char *)malloc(100*sizeof(char));

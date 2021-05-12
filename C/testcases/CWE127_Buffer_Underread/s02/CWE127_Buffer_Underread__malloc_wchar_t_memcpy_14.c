@@ -24,7 +24,6 @@ void CWE127_Buffer_Underread__malloc_wchar_t_memcpy_14_bad()
 {
     wchar_t * data;
     data = NULL;
-    if(globalFive==5)
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -58,12 +57,6 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -93,7 +86,6 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
-    if(globalFive==5)
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));

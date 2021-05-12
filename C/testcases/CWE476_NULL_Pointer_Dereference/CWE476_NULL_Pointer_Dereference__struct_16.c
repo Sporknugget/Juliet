@@ -24,17 +24,13 @@ Template File: sources-sinks-16.tmpl.c
 void CWE476_NULL_Pointer_Dereference__struct_16_bad()
 {
     twoIntsStruct * data;
-    while(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
-        break;
     }
 }
 
@@ -46,13 +42,10 @@ void CWE476_NULL_Pointer_Dereference__struct_16_bad()
 static void goodB2G()
 {
     twoIntsStruct * data;
-    while(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
     }
-    while(1)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -63,7 +56,6 @@ static void goodB2G()
         {
             printLine("data is NULL");
         }
-        break;
     }
 }
 
@@ -72,7 +64,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     twoIntsStruct tmpData;
-    while(1)
     {
         /* FIX: Initialize data */
         {
@@ -80,13 +71,10 @@ static void goodG2B()
             tmpData.intTwo = 0;
             data = &tmpData;
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
-        break;
     }
 }
 

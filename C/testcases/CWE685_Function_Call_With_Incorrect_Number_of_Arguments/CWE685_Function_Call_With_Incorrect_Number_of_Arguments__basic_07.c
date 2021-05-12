@@ -27,7 +27,6 @@ static int staticFive = 5;
 
 void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_07_bad()
 {
-    if(staticFive==5)
     {
         {
             char dest[DEST_SIZE];
@@ -42,15 +41,6 @@ void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_07_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char dest[DEST_SIZE];
@@ -64,7 +54,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             char dest[DEST_SIZE];

@@ -23,11 +23,9 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE416_Use_After_Free__malloc_free_wchar_t_17_bad()
 {
-    int i,j;
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -36,7 +34,6 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_17_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
@@ -51,11 +48,9 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -64,7 +59,6 @@ static void goodB2G()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -76,11 +70,9 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -88,7 +80,6 @@ static void goodG2B()
         data[100-1] = L'\0';
         /* FIX: Do not free data in the source */
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);

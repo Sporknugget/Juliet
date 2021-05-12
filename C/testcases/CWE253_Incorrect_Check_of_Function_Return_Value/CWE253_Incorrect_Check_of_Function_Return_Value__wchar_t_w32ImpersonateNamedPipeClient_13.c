@@ -27,7 +27,6 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32ImpersonateNamedPipeClient_13_bad()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
             wchar_t * pipeName = L"\\\\.\\pipe\\mypipe";
@@ -62,15 +61,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32ImpersonateName
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
-static void good1()
-{
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * pipeName = L"\\\\.\\pipe\\mypipe";
@@ -103,7 +93,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
             wchar_t * pipeName = L"\\\\.\\pipe\\mypipe";

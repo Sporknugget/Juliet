@@ -27,7 +27,6 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPipeClient_09_bad()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -62,15 +61,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPi
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
-static void good1()
-{
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -103,7 +93,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";

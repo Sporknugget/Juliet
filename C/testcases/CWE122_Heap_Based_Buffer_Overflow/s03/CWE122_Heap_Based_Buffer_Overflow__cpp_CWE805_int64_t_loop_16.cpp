@@ -25,11 +25,9 @@ void bad()
 {
     int64_t * data;
     data = NULL;
-    while(1)
     {
         /* FLAW: Allocate using new[] and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = new int64_t[50];
-        break;
     }
     {
         int64_t source[100] = {0}; /* fill with 0's */
@@ -55,11 +53,9 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new int64_t[100];
-        break;
     }
     {
         int64_t source[100] = {0}; /* fill with 0's */

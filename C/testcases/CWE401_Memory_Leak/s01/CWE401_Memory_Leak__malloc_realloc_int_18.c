@@ -23,8 +23,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_int_18_bad()
 {
-    goto sink;
-sink:
     {
         int * data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -50,8 +48,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int * data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}

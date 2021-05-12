@@ -23,18 +23,15 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE415_Double_Free__malloc_free_char_17_bad()
 {
-    int i,j;
     char * data;
     /* Initialize data */
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -48,18 +45,15 @@ void CWE415_Double_Free__malloc_free_char_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     char * data;
     /* Initialize data */
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    for(k = 0; k < 1; k++)
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -70,17 +64,14 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     char * data;
     /* Initialize data */
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);

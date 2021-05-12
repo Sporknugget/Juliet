@@ -55,7 +55,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -125,11 +124,6 @@ void bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Use a fixed file name */
-        wcscat(data, L"file.txt");
-    }
     {
         HANDLE hFile;
         /* POTENTIAL FLAW: Possibly creating and opening a file without validating the file name or path */
@@ -158,12 +152,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a fixed file name */
-        wcscat(data, L"file.txt");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");

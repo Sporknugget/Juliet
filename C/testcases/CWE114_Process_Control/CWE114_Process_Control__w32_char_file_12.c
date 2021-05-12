@@ -33,7 +33,6 @@ void CWE114_Process_Control__w32_char_file_12_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from a file */
@@ -56,11 +55,6 @@ void CWE114_Process_Control__w32_char_file_12_bad()
                 }
             }
         }
-    }
-    else
-    {
-        /* FIX: Specify the full pathname for the library */
-        strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
     }
     {
         HMODULE hModule;
@@ -90,12 +84,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Specify the full pathname for the library */
-        strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
-    }
-    else
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");

@@ -42,8 +42,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_snprintf_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -55,8 +53,6 @@ source:
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     {
         wchar_t dest[100] = L"";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
@@ -75,8 +71,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -88,8 +82,6 @@ source:
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     {
         wchar_t dest[100] = L"";
         /* FIX: Specify the format disallowing a format string vulnerability */
@@ -104,12 +96,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     wcscpy(data, L"fixedstringtest");
-    goto sink;
-sink:
     {
         wchar_t dest[100] = L"";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */

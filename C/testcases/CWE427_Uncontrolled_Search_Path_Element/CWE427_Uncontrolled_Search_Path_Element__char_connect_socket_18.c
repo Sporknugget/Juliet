@@ -53,8 +53,6 @@ void CWE427_Uncontrolled_Search_Path_Element__char_connect_socket_18_bad()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -136,8 +134,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Set the path as the "system" path */
     strcat(data, NEW_PATH);
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */

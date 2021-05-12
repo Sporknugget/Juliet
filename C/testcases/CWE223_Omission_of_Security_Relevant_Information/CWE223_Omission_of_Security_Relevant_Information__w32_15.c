@@ -29,9 +29,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE223_Omission_of_Security_Relevant_Information__w32_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -113,12 +110,6 @@ void CWE223_Omission_of_Security_Relevant_Information__w32_15_bad()
             WSACleanup();
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -128,13 +119,6 @@ void CWE223_Omission_of_Security_Relevant_Information__w32_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -215,17 +199,12 @@ static void good1()
         {
             WSACleanup();
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -306,12 +285,6 @@ static void good2()
         {
             WSACleanup();
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

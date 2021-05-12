@@ -28,7 +28,6 @@ void bad()
     char * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = new char[100];
         memset(data, 'A', 100-1);
@@ -36,25 +35,10 @@ void bad()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
-    else
-    {
-        data = new char[100];
-        memset(data, 'A', 100-1);
-        data[100-1] = '\0';
-        /* FIX: Do not delete data in the source */
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLine(data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
-    }
-    else
-    {
-        /* FIX: Don't use data that may have been deleted already */
-        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
-        /* do nothing */
-        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -70,7 +54,6 @@ static void goodB2G()
     char * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = new char[100];
         memset(data, 'A', 100-1);
@@ -78,22 +61,6 @@ static void goodB2G()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
-    else
-    {
-        data = new char[100];
-        memset(data, 'A', 100-1);
-        data[100-1] = '\0';
-        /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
-        delete [] data;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Don't use data that may have been deleted already */
-        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
-        /* do nothing */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -110,27 +77,12 @@ static void goodG2B()
     char * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = new char[100];
         memset(data, 'A', 100-1);
         data[100-1] = '\0';
         /* FIX: Do not delete data in the source */
     }
-    else
-    {
-        data = new char[100];
-        memset(data, 'A', 100-1);
-        data[100-1] = '\0';
-        /* FIX: Do not delete data in the source */
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Use of data that may have been deleted */
-        printLine(data);
-        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
-    }
-    else
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLine(data);

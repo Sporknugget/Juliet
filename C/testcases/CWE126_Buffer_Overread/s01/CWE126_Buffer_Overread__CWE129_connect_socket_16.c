@@ -46,7 +46,6 @@ void CWE126_Buffer_Overread__CWE129_connect_socket_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -104,9 +103,7 @@ void CWE126_Buffer_Overread__CWE129_connect_socket_16_bad()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         {
             int buffer[10] = { 0 };
@@ -121,7 +118,6 @@ void CWE126_Buffer_Overread__CWE129_connect_socket_16_bad()
                 printLine("ERROR: Array index is negative");
             }
         }
-        break;
     }
 }
 
@@ -135,7 +131,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -193,9 +188,7 @@ static void goodB2G()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         {
             int buffer[10] = { 0 };
@@ -209,7 +202,6 @@ static void goodB2G()
                 printLine("ERROR: Array index is out-of-bounds");
             }
         }
-        break;
     }
 }
 
@@ -219,14 +211,11 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
-        break;
     }
-    while(1)
     {
         {
             int buffer[10] = { 0 };
@@ -241,7 +230,6 @@ static void goodG2B()
                 printLine("ERROR: Array index is negative");
             }
         }
-        break;
     }
 }
 

@@ -21,20 +21,11 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__strtol_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         long longNumber;
         longNumber = strtol("0xfffffffff", NULL, 0);
         /* FLAW: Do not check to see if strtol() failed */
         printf("%li\n", longNumber);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -45,13 +36,6 @@ void CWE391_Unchecked_Error_Condition__strtol_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         long longNumber;
         errno = 0; /* set errno to zero before calling strtol(), which can change its value */
@@ -63,17 +47,12 @@ static void good1()
             exit(1);
         }
         printf("%li\n", longNumber);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         long longNumber;
         errno = 0; /* set errno to zero before calling strtol(), which can change its value */
@@ -85,12 +64,6 @@ static void good2()
             exit(1);
         }
         printf("%li\n", longNumber);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

@@ -23,7 +23,6 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_03_bad()
 {
-    if(5==5)
     {
         {
             char password[100] = "";
@@ -68,15 +67,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_03_
 
 #ifndef OMITGOOD
 
-/* good1() uses if(5!=5) instead of if(5==5) */
-static void good1()
-{
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char password[100] = "";
@@ -122,7 +112,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(5==5)
     {
         {
             char password[100] = "";

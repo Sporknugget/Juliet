@@ -25,7 +25,6 @@ void CWE401_Memory_Leak__strdup_char_12_bad()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         {
             char myString[] = "myString";
@@ -35,24 +34,10 @@ void CWE401_Memory_Leak__strdup_char_12_bad()
             printLine(data);
         }
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack with ALLOCA */
-        data = (char *)ALLOCA(100*sizeof(char));
-        /* Initialize then use data */
-        strcpy(data, "a string");
-        printLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory initialized in the source */
-        free(data);
     }
 }
 
@@ -67,7 +52,6 @@ static void goodB2G()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         {
             char myString[] = "myString";
@@ -77,22 +61,6 @@ static void goodB2G()
             printLine(data);
         }
     }
-    else
-    {
-        {
-            char myString[] = "myString";
-            /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
-            data = strdup(myString);
-            /* Use data */
-            printLine(data);
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory initialized in the source */
-        free(data);
-    }
-    else
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -106,7 +74,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
@@ -114,21 +81,6 @@ static void goodG2B()
         strcpy(data, "a string");
         printLine(data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack with ALLOCA */
-        data = (char *)ALLOCA(100*sizeof(char));
-        /* Initialize then use data */
-        strcpy(data, "a string");
-        printLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation of memory */
-        /* no deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */

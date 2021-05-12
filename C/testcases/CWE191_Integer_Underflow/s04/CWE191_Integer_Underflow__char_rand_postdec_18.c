@@ -23,12 +23,8 @@ void CWE191_Integer_Underflow__char_rand_postdec_18_bad()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (char)RAND32();
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         data--;
@@ -46,12 +42,8 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (char)RAND32();
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > CHAR_MIN)
     {
@@ -70,12 +62,8 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
     data = -2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         data--;

@@ -31,34 +31,9 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_char_12_bad()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
         strcpy(cryptoKey, CRYPTO_KEY);
-    }
-    else
-    {
-        {
-            size_t cryptoKeyLen = strlen(cryptoKey);
-            /* if there is room in cryptoKey, read into it from the console */
-            if(100-cryptoKeyLen > 1)
-            {
-                /* FIX: Obtain the hash input from the console */
-                if (fgets(cryptoKey+cryptoKeyLen, (int)(100-cryptoKeyLen), stdin) == NULL)
-                {
-                    printLine("fgets() failed");
-                    /* Restore NUL terminator if fgets fails */
-                    cryptoKey[cryptoKeyLen] = '\0';
-                }
-                /* The next 3 lines remove the carriage return from the string that is
-                 * inserted by fgets() */
-                cryptoKeyLen = strlen(cryptoKey);
-                if (cryptoKeyLen > 0)
-                {
-                    cryptoKey[cryptoKeyLen-1] = '\0';
-                }
-            }
-        }
     }
     {
         HCRYPTPROV hCryptProv;
@@ -131,31 +106,6 @@ static void goodG2B()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            size_t cryptoKeyLen = strlen(cryptoKey);
-            /* if there is room in cryptoKey, read into it from the console */
-            if(100-cryptoKeyLen > 1)
-            {
-                /* FIX: Obtain the hash input from the console */
-                if (fgets(cryptoKey+cryptoKeyLen, (int)(100-cryptoKeyLen), stdin) == NULL)
-                {
-                    printLine("fgets() failed");
-                    /* Restore NUL terminator if fgets fails */
-                    cryptoKey[cryptoKeyLen] = '\0';
-                }
-                /* The next 3 lines remove the carriage return from the string that is
-                 * inserted by fgets() */
-                cryptoKeyLen = strlen(cryptoKey);
-                if (cryptoKeyLen > 0)
-                {
-                    cryptoKey[cryptoKeyLen-1] = '\0';
-                }
-            }
-        }
-    }
-    else
     {
         {
             size_t cryptoKeyLen = strlen(cryptoKey);

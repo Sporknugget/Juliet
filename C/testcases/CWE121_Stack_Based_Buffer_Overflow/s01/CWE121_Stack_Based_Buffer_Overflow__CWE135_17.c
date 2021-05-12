@@ -26,15 +26,12 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE121_Stack_Based_Buffer_Overflow__CWE135_17_bad()
 {
-    int i,j;
     void * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -53,15 +50,12 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     void * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
-    for(k = 0; k < 1; k++)
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -76,15 +70,12 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     void * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */

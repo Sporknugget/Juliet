@@ -25,13 +25,11 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_char_declare_memmove_16_bad()
     char * data;
     char dataBadBuffer[50];
     char dataGoodBuffer[100];
-    while(1)
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
         data = dataBadBuffer;
         data[0] = '\0'; /* null terminate */
-        break;
     }
     {
         char source[100];
@@ -54,12 +52,10 @@ static void goodG2B()
     char * data;
     char dataBadBuffer[50];
     char dataGoodBuffer[100];
-    while(1)
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
         data[0] = '\0'; /* null terminate */
-        break;
     }
     {
         char source[100];

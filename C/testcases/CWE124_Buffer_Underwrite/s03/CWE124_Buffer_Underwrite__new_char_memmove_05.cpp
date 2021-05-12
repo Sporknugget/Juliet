@@ -33,7 +33,6 @@ void bad()
 {
     char * data;
     data = NULL;
-    if(staticTrue)
     {
         {
             char * dataBuffer = new char[100];
@@ -66,12 +65,6 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char * dataBuffer = new char[100];
@@ -100,7 +93,6 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    if(staticTrue)
     {
         {
             char * dataBuffer = new char[100];

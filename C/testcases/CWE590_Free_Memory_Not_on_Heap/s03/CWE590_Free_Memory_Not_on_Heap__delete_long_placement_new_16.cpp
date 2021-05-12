@@ -27,7 +27,6 @@ void bad()
 {
     long * data;
     data = NULL; /* Initialize data */
-    while(1)
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -36,7 +35,6 @@ void bad()
             *dataBuffer = 5L;
             data = dataBuffer;
         }
-        break;
     }
     printLongLine(*data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -52,7 +50,6 @@ static void goodG2B()
 {
     long * data;
     data = NULL; /* Initialize data */
-    while(1)
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
@@ -60,7 +57,6 @@ static void goodG2B()
             *dataBuffer = 5L;
             data = dataBuffer;
         }
-        break;
     }
     printLongLine(*data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

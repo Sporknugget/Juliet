@@ -46,7 +46,6 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_06_bad()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32

@@ -41,7 +41,6 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_08
 
 void bad()
 {
-    if(staticReturnsTrue())
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -58,15 +57,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -82,7 +72,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];

@@ -25,7 +25,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_sscanf_16_bad()
 {
-    while(1)
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -39,7 +38,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_sscanf_16_bad()
                 printLine("swscanf failed!");
             }
         }
-        break;
     }
 }
 
@@ -50,7 +48,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_sscanf_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -63,7 +60,6 @@ static void good1()
                 printLine("swscanf failed!");
             }
         }
-        break;
     }
 }
 

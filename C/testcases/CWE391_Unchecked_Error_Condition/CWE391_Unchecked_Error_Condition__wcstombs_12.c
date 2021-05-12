@@ -21,7 +21,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__wcstombs_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             size_t bytesTranslated = 0;
@@ -29,24 +28,6 @@ void CWE391_Unchecked_Error_Condition__wcstombs_12_bad()
             charString[0] = '\0';
             bytesTranslated = wcstombs((char *)&charString, L"\xffff", 100);
             /* FLAW: Do not check to see if wcstombs() failed */
-            printUnsignedLine(bytesTranslated);
-            printLine(charString);
-        }
-    }
-    else
-    {
-        {
-            size_t bytesTranslated = 0;
-            char charString[100];
-            charString[0] = '\0';
-            errno = 0; /* set errno to zero before calling wcstombs(), which can change its value */
-            bytesTranslated = wcstombs((char *)&charString, L"\xffff", 100);
-            /* FIX: Check errno to see if wcstombs() failed */
-            if (errno == EILSEQ)
-            {
-                printLine("wcstombs() failed");
-                exit(1);
-            }
             printUnsignedLine(bytesTranslated);
             printLine(charString);
         }
@@ -60,25 +41,6 @@ void CWE391_Unchecked_Error_Condition__wcstombs_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            size_t bytesTranslated = 0;
-            char charString[100];
-            charString[0] = '\0';
-            errno = 0; /* set errno to zero before calling wcstombs(), which can change its value */
-            bytesTranslated = wcstombs((char *)&charString, L"\xffff", 100);
-            /* FIX: Check errno to see if wcstombs() failed */
-            if (errno == EILSEQ)
-            {
-                printLine("wcstombs() failed");
-                exit(1);
-            }
-            printUnsignedLine(bytesTranslated);
-            printLine(charString);
-        }
-    }
-    else
     {
         {
             size_t bytesTranslated = 0;

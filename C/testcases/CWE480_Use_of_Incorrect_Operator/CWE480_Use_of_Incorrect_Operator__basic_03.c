@@ -48,7 +48,6 @@ static char * helperGood()
 
 void CWE480_Use_of_Incorrect_Operator__basic_03_bad()
 {
-    if(5==5)
     {
         /* FLAW: This will never be true becuase the () was omitted.  Also INCIDENTAL CWE 570 Expression Is Always False */
         if(helperBad == NULL)
@@ -62,15 +61,6 @@ void CWE480_Use_of_Incorrect_Operator__basic_03_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(5!=5) instead of if(5==5) */
-static void good1()
-{
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */
@@ -83,7 +73,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(5==5)
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */

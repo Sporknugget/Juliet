@@ -46,7 +46,6 @@ void CWE400_Resource_Exhaustion__listen_socket_for_loop_12_bad()
     int count;
     /* Initialize count */
     count = -1;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -118,12 +117,6 @@ void CWE400_Resource_Exhaustion__listen_socket_for_loop_12_bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Use a relatively small number */
-        count = 20;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             size_t i = 0;
@@ -131,20 +124,6 @@ void CWE400_Resource_Exhaustion__listen_socket_for_loop_12_bad()
             for (i = 0; i < (size_t)count; i++)
             {
                 printLine("Hello");
-            }
-        }
-    }
-    else
-    {
-        {
-            size_t i = 0;
-            /* FIX: Validate count before using it as the for loop variant */
-            if (count > 0 && count <= 20)
-            {
-                for (i = 0; i < (size_t)count; i++)
-                {
-                    printLine("Hello");
-                }
             }
         }
     }
@@ -162,7 +141,6 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -234,93 +212,6 @@ static void goodB2G()
 #endif
         }
     }
-    else
-    {
-        {
-#ifdef _WIN32
-            WSADATA wsaData;
-            int wsaDataInit = 0;
-#endif
-            int recvResult;
-            struct sockaddr_in service;
-            SOCKET listenSocket = INVALID_SOCKET;
-            SOCKET acceptSocket = INVALID_SOCKET;
-            char inputBuffer[CHAR_ARRAY_SIZE];
-            do
-            {
-#ifdef _WIN32
-                if (WSAStartup(MAKEWORD(2,2), &wsaData) != NO_ERROR)
-                {
-                    break;
-                }
-                wsaDataInit = 1;
-#endif
-                /* POTENTIAL FLAW: Read count using a listen socket */
-                listenSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-                if (listenSocket == INVALID_SOCKET)
-                {
-                    break;
-                }
-                memset(&service, 0, sizeof(service));
-                service.sin_family = AF_INET;
-                service.sin_addr.s_addr = INADDR_ANY;
-                service.sin_port = htons(TCP_PORT);
-                if (bind(listenSocket, (struct sockaddr*)&service, sizeof(service)) == SOCKET_ERROR)
-                {
-                    break;
-                }
-                if (listen(listenSocket, LISTEN_BACKLOG) == SOCKET_ERROR)
-                {
-                    break;
-                }
-                acceptSocket = accept(listenSocket, NULL, NULL);
-                if (acceptSocket == SOCKET_ERROR)
-                {
-                    break;
-                }
-                /* Abort on error or the connection was closed */
-                recvResult = recv(acceptSocket, inputBuffer, CHAR_ARRAY_SIZE - 1, 0);
-                if (recvResult == SOCKET_ERROR || recvResult == 0)
-                {
-                    break;
-                }
-                /* NUL-terminate the string */
-                inputBuffer[recvResult] = '\0';
-                /* Convert to int */
-                count = atoi(inputBuffer);
-            }
-            while (0);
-            if (listenSocket != INVALID_SOCKET)
-            {
-                CLOSE_SOCKET(listenSocket);
-            }
-            if (acceptSocket != INVALID_SOCKET)
-            {
-                CLOSE_SOCKET(acceptSocket);
-            }
-#ifdef _WIN32
-            if (wsaDataInit)
-            {
-                WSACleanup();
-            }
-#endif
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            size_t i = 0;
-            /* FIX: Validate count before using it as the for loop variant */
-            if (count > 0 && count <= 20)
-            {
-                for (i = 0; i < (size_t)count; i++)
-                {
-                    printLine("Hello");
-                }
-            }
-        }
-    }
-    else
     {
         {
             size_t i = 0;
@@ -344,28 +235,10 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    else
-    {
-        /* FIX: Use a relatively small number */
-        count = 20;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            size_t i = 0;
-            /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */
-            for (i = 0; i < (size_t)count; i++)
-            {
-                printLine("Hello");
-            }
-        }
-    }
-    else
     {
         {
             size_t i = 0;

@@ -30,16 +30,13 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE675_Duplicate_Operations_on_Resource__open_17_bad()
 {
-    int i,j;
     int data;
     data = -1; /* Initialize data */
-    for(i = 0; i < 1; i++)
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);
@@ -53,16 +50,13 @@ void CWE675_Duplicate_Operations_on_Resource__open_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     int data;
     data = -1; /* Initialize data */
-    for(i = 0; i < 1; i++)
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
     }
-    for(k = 0; k < 1; k++)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -73,15 +67,12 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     int data;
     data = -1; /* Initialize data */
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Open, but do not close the file in the source */
         data = OPEN("GoodSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);

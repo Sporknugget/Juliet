@@ -35,7 +35,6 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_04_bad()
 {
-    if(STATIC_CONST_TRUE)
     {
         {
             FILETIME ftModified;
@@ -86,15 +85,6 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_04_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
-static void good1()
-{
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
@@ -115,7 +105,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(STATIC_CONST_TRUE)
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),

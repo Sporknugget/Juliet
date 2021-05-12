@@ -51,7 +51,6 @@ void CWE606_Unchecked_Loop_Condition__char_connect_socket_02_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -121,7 +120,6 @@ void CWE606_Unchecked_Loop_Condition__char_connect_socket_02_bad()
 #endif
         }
     }
-    if(1)
     {
         {
             int i, n, intVariable;
@@ -150,7 +148,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -220,12 +217,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int i, n, intVariable;
@@ -253,7 +244,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -323,7 +313,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(1)
     {
         {
             int i, n, intVariable;
@@ -351,17 +340,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
     }
-    if(1)
     {
         {
             int i, n, intVariable;
@@ -386,12 +368,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(1)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
     }
-    if(1)
     {
         {
             int i, n, intVariable;

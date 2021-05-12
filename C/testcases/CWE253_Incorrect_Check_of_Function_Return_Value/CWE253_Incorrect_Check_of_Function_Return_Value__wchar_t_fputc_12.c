@@ -23,19 +23,10 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fputc_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: fputwc() might fail, in which case the return value will be WEOF (-1), but
          * we are checking to see if the return value is 0 */
         if (fputwc((wchar_t)L'A', stdout) == 0)
-        {
-            printLine("fputwc failed!");
-        }
-    }
-    else
-    {
-        /* FIX: check for the correct return value */
-        if (fputwc((wchar_t)L'A', stdout) == WEOF)
         {
             printLine("fputwc failed!");
         }
@@ -49,15 +40,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fputc_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: check for the correct return value */
-        if (fputwc((wchar_t)L'A', stdout) == WEOF)
-        {
-            printLine("fputwc failed!");
-        }
-    }
-    else
     {
         /* FIX: check for the correct return value */
         if (fputwc((wchar_t)L'A', stdout) == WEOF)

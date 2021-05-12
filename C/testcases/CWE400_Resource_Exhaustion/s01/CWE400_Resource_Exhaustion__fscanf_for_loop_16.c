@@ -24,13 +24,10 @@ void CWE400_Resource_Exhaustion__fscanf_for_loop_16_bad()
     int count;
     /* Initialize count */
     count = -1;
-    while(1)
     {
         /* POTENTIAL FLAW: Read count from the console using fscanf() */
         fscanf(stdin, "%d", &count);
-        break;
     }
-    while(1)
     {
         {
             size_t i = 0;
@@ -40,7 +37,6 @@ void CWE400_Resource_Exhaustion__fscanf_for_loop_16_bad()
                 printLine("Hello");
             }
         }
-        break;
     }
 }
 
@@ -54,13 +50,10 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    while(1)
     {
         /* POTENTIAL FLAW: Read count from the console using fscanf() */
         fscanf(stdin, "%d", &count);
-        break;
     }
-    while(1)
     {
         {
             size_t i = 0;
@@ -73,7 +66,6 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
 }
 
@@ -83,13 +75,10 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    while(1)
     {
         /* FIX: Use a relatively small number */
         count = 20;
-        break;
     }
-    while(1)
     {
         {
             size_t i = 0;
@@ -99,7 +88,6 @@ static void goodG2B()
                 printLine("Hello");
             }
         }
-        break;
     }
 }
 

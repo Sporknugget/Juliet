@@ -32,11 +32,9 @@ void bad()
 {
     char * data;
     data = NULL;
-    while(1)
     {
         /* FLAW: Did not leave space for a null terminator */
         data = new char[10];
-        break;
     }
     {
         char source[10+1] = SRC_STRING;
@@ -57,11 +55,9 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Allocate space for a null terminator */
         data = new char[10+1];
-        break;
     }
     {
         char source[10+1] = SRC_STRING;

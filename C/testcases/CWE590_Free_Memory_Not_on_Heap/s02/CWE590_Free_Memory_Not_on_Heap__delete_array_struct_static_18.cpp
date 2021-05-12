@@ -27,8 +27,6 @@ void bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         static twoIntsStruct dataBuffer[100];
@@ -56,8 +54,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = new twoIntsStruct[100];

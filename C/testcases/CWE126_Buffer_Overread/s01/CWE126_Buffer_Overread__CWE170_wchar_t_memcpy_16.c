@@ -21,7 +21,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_wchar_t_memcpy_16_bad()
 {
-    while(1)
     {
         {
             wchar_t data[150], dest[100];
@@ -32,7 +31,6 @@ void CWE126_Buffer_Overread__CWE170_wchar_t_memcpy_16_bad()
             /* FLAW: do not explicitly null terminate dest after the use of memcpy */
             printWLine(dest);
         }
-        break;
     }
 }
 
@@ -43,7 +41,6 @@ void CWE126_Buffer_Overread__CWE170_wchar_t_memcpy_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             wchar_t data[150], dest[100];
@@ -54,7 +51,6 @@ static void good1()
             dest[99] = L'\0'; /* FIX: null terminate dest */
             printWLine(dest);
         }
-        break;
     }
 }
 

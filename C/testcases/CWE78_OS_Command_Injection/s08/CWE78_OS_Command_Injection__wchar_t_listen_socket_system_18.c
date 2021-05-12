@@ -58,8 +58,6 @@ void CWE78_OS_Command_Injection__wchar_t_listen_socket_system_18_bad()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -157,8 +155,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    goto source;
-source:
     /* FIX: Append a fixed string to data (not user / external input) */
     wcscat(data, L"*.*");
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */

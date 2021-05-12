@@ -22,20 +22,11 @@ namespace CWE758_Undefined_Behavior__int_new_use_15
 
 void bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         int * pointer = new int;
         int data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         delete pointer;
         printIntLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -46,13 +37,6 @@ void bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         int data;
         data = 5;
@@ -63,17 +47,12 @@ static void good1()
             printIntLine(data);
         }
         delete pointer;
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         int data;
         data = 5;
@@ -84,12 +63,6 @@ static void good2()
             printIntLine(data);
         }
         delete pointer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

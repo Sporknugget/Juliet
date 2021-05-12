@@ -52,7 +52,6 @@ static int staticFalse = 0; /* false */
 
 void CWE510_Trapdoor__hostname_based_logic_05_bad()
 {
-    if(staticTrue)
     {
         {
 #ifdef _WIN32
@@ -147,15 +146,6 @@ void CWE510_Trapdoor__hostname_based_logic_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
 #ifdef _WIN32
@@ -224,7 +214,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
 #ifdef _WIN32

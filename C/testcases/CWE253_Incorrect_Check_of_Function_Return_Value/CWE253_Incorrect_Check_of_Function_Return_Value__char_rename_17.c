@@ -34,8 +34,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: rename() might fail, in which case the return value will be non-zero, but
          * we are checking to see if the return value is 0 */
@@ -53,8 +51,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: check for the correct return value */
         if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)

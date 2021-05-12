@@ -31,9 +31,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_snprintf_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* By initializing dataBuffer, we ensure this will not be the
          * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
@@ -41,12 +38,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_snprintf_15_bad()
         wchar_t * data = dataBuffer;
         /* FLAW: Do not check the return value */
         SNPRINTF(data,100-wcslen(SRC)-1, L"%s\n", SRC);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -57,13 +48,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_snprintf_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* By initializing dataBuffer, we ensure this will not be the
          * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
@@ -74,17 +58,12 @@ static void good1()
         {
             printLine("snwprintf failed!");
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* By initializing dataBuffer, we ensure this will not be the
          * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
@@ -95,12 +74,6 @@ static void good2()
         {
             printLine("snwprintf failed!");
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

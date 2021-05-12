@@ -24,12 +24,10 @@ void CWE369_Divide_by_Zero__int_fscanf_divide_02_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(1)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 / data);
@@ -46,17 +44,10 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
-    if(1)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -76,12 +67,10 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
-    if(1)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    if(1)
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -101,17 +90,10 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 / data);
@@ -124,12 +106,10 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(1)
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 / data);

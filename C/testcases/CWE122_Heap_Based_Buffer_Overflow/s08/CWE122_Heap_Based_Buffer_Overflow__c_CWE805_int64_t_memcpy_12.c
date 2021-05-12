@@ -22,16 +22,9 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memcpy_12_bad()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (int64_t *)malloc(50*sizeof(int64_t));
-        if (data == NULL) {exit(-1);}
-    }
-    else
-    {
-        /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (int64_t *)malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -53,13 +46,6 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (int64_t *)malloc(100*sizeof(int64_t));
-        if (data == NULL) {exit(-1);}
-    }
-    else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (int64_t *)malloc(100*sizeof(int64_t));

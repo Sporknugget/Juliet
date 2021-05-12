@@ -25,7 +25,6 @@ static int staticFalse = 0; /* false */
 
 void CWE758_Undefined_Behavior__double_pointer_malloc_use_05_bad()
 {
-    if(staticTrue)
     {
         {
             double * * pointer = (double * *)malloc(sizeof(double *));
@@ -41,15 +40,6 @@ void CWE758_Undefined_Behavior__double_pointer_malloc_use_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             double * data;
@@ -72,7 +62,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             double * data;

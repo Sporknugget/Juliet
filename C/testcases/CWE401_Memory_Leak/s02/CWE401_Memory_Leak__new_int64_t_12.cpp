@@ -29,7 +29,6 @@ void bad()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t;
@@ -37,24 +36,9 @@ void bad()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        int64_t dataGoodBuffer;
-        data = &dataGoodBuffer;
-        /* Initialize and make use of data */
-        *data = 5LL;
-        printLongLongLine(*data);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        delete data;
     }
 }
 
@@ -69,7 +53,6 @@ static void goodB2G()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t;
@@ -77,20 +60,6 @@ static void goodB2G()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = new int64_t;
-        /* Initialize and make use of data */
-        *data = 5LL;
-        printLongLongLine(*data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        delete data;
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -104,7 +73,6 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         int64_t dataGoodBuffer;
@@ -113,21 +81,6 @@ static void goodG2B()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        int64_t dataGoodBuffer;
-        data = &dataGoodBuffer;
-        /* Initialize and make use of data */
-        *data = 5LL;
-        printLongLongLine(*data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

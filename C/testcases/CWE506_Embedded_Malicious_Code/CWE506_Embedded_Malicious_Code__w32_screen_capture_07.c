@@ -28,7 +28,6 @@ static int staticFive = 5;
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_07_bad()
 {
-    if(staticFive==5)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

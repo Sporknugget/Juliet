@@ -40,7 +40,6 @@ void CWE134_Uncontrolled_Format_String__char_file_printf_05_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             /* Read input from a file */
@@ -64,7 +63,6 @@ void CWE134_Uncontrolled_Format_String__char_file_printf_05_bad()
             }
         }
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         printf(data);
@@ -81,7 +79,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             /* Read input from a file */
@@ -105,12 +102,6 @@ static void goodB2G1()
             }
         }
     }
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         printf("%s\n", data);
@@ -123,7 +114,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             /* Read input from a file */
@@ -147,7 +137,6 @@ static void goodB2G2()
             }
         }
     }
-    if(staticTrue)
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         printf("%s\n", data);
@@ -160,17 +149,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         printf(data);
@@ -183,12 +165,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticTrue)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         printf(data);

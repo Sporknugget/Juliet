@@ -23,7 +23,6 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_03_bad()
 {
-    if(5==5)
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -50,15 +49,6 @@ void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_03_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(5!=5) instead of if(5==5) */
-static void good1()
-{
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -87,7 +77,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(5==5)
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));

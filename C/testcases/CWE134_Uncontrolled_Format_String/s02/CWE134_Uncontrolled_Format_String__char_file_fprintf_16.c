@@ -34,7 +34,6 @@ void CWE134_Uncontrolled_Format_String__char_file_fprintf_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from a file */
@@ -57,13 +56,10 @@ void CWE134_Uncontrolled_Format_String__char_file_fprintf_16_bad()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fprintf(stdout, data);
-        break;
     }
 }
 
@@ -77,7 +73,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from a file */
@@ -100,13 +95,10 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         fprintf(stdout, "%s\n", data);
-        break;
     }
 }
 
@@ -116,17 +108,13 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fprintf(stdout, data);
-        break;
     }
 }
 

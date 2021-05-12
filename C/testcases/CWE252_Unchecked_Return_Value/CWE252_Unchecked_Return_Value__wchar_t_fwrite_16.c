@@ -23,11 +23,9 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_fwrite_16_bad()
 {
-    while(1)
     {
         /* FLAW: Do not check the return value */
         fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout);
-        break;
     }
 }
 
@@ -38,14 +36,12 @@ void CWE252_Unchecked_Return_Value__wchar_t_fwrite_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: check the return value */
         if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))
         {
             printLine("fwrite failed!");
         }
-        break;
     }
 }
 

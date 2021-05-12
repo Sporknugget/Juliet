@@ -45,10 +45,8 @@ static void helperGood(int sig)
 
 void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_16_bad()
 {
-    while(1)
     {
         signal(SIGINT, helperBad);
-        break;
     }
 }
 
@@ -59,10 +57,8 @@ void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         signal(SIGINT, helperGood);
-        break;
     }
 }
 

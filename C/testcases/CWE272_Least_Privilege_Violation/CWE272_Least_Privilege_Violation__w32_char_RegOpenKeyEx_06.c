@@ -27,7 +27,6 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE272_Least_Privilege_Violation__w32_char_RegOpenKeyEx_06_bad()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         {
             char * keyName = "TEST\\TestKey";
@@ -55,15 +54,6 @@ void CWE272_Least_Privilege_Violation__w32_char_RegOpenKeyEx_06_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
-static void good1()
-{
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char * keyName = "TEST\\TestKey";
@@ -90,7 +80,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         {
             char * keyName = "TEST\\TestKey";

@@ -55,8 +55,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -151,8 +149,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed file name */
     wcscat(data, L"file.txt");
     {

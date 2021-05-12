@@ -27,7 +27,6 @@ void bad()
 {
     char * data;
     data = NULL;
-    if(1)
     {
         /* FLAW: Use a small buffer */
         data = new char[50];
@@ -61,12 +60,6 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a large buffer */
         data = new char[100];
@@ -96,7 +89,6 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    if(1)
     {
         /* FIX: Use a large buffer */
         data = new char[100];

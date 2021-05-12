@@ -36,12 +36,10 @@ void CWE191_Integer_Underflow__int64_t_min_postdec_08_bad()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
-    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -61,17 +59,10 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -92,12 +83,10 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -118,17 +107,10 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -144,12 +126,10 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */

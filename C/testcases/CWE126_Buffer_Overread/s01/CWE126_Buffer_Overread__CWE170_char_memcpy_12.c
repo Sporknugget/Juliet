@@ -21,7 +21,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_memcpy_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             char data[150], dest[100];
@@ -30,18 +29,6 @@ void CWE126_Buffer_Overread__CWE170_char_memcpy_12_bad()
             data[149] = '\0';
             memcpy(dest, data, 99*sizeof(char));
             /* FLAW: do not explicitly null terminate dest after the use of memcpy */
-            printLine(dest);
-        }
-    }
-    else
-    {
-        {
-            char data[150], dest[100];
-            /* Initialize data */
-            memset(data, 'A', 149);
-            data[149] = '\0';
-            memcpy(dest, data, 99*sizeof(char));
-            dest[99] = '\0'; /* FIX: null terminate dest */
             printLine(dest);
         }
     }
@@ -54,19 +41,6 @@ void CWE126_Buffer_Overread__CWE170_char_memcpy_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            char data[150], dest[100];
-            /* Initialize data */
-            memset(data, 'A', 149);
-            data[149] = '\0';
-            memcpy(dest, data, 99*sizeof(char));
-            dest[99] = '\0'; /* FIX: null terminate dest */
-            printLine(dest);
-        }
-    }
-    else
     {
         {
             char data[150], dest[100];

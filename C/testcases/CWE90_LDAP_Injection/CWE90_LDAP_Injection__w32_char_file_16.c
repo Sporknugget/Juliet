@@ -34,7 +34,6 @@ void CWE90_LDAP_Injection__w32_char_file_16_bad()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from a file */
@@ -57,7 +56,6 @@ void CWE90_LDAP_Injection__w32_char_file_16_bad()
                 }
             }
         }
-        break;
     }
     {
         LDAP* pLdapConnection = NULL;
@@ -121,11 +119,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");
-        break;
     }
     {
         LDAP* pLdapConnection = NULL;

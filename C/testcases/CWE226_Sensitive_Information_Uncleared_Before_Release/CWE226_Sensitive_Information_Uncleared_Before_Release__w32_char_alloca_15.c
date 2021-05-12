@@ -23,9 +23,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char * password = (char *)ALLOCA(100*sizeof(char));
         size_t passwordLen = 0;
@@ -64,12 +61,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_15_b
         }
         /* FLAW: Release password from the stack without first clearing the buffer */
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -79,13 +70,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_15_b
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char * password = (char *)ALLOCA(100*sizeof(char));
         size_t passwordLen = 0;
@@ -125,17 +109,12 @@ static void good1()
         passwordLen = strlen(password);
         /* FIX: Clear password prior to release from stack */
         SecureZeroMemory(password, passwordLen * sizeof(char));
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char * password = (char *)ALLOCA(100*sizeof(char));
         size_t passwordLen = 0;
@@ -175,12 +154,6 @@ static void good2()
         passwordLen = strlen(password);
         /* FIX: Clear password prior to release from stack */
         SecureZeroMemory(password, passwordLen * sizeof(char));
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

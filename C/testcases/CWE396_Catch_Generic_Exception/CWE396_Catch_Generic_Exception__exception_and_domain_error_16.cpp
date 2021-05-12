@@ -26,7 +26,6 @@ namespace CWE396_Catch_Generic_Exception__exception_and_domain_error_16
 
 void bad()
 {
-    while(1)
     {
         try
         {
@@ -52,7 +51,6 @@ void bad()
             return;
         }
         printLine("ok");
-        break;
     }
 }
 
@@ -63,7 +61,6 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
-    while(1)
     {
         try
         {
@@ -87,7 +84,6 @@ static void good1()
             return;
         }
         printLine("ok");
-        break;
     }
 }
 

@@ -27,7 +27,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             BYTE payload[200];
@@ -97,15 +96,6 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             BYTE payload[200];
@@ -174,7 +164,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             BYTE payload[200];

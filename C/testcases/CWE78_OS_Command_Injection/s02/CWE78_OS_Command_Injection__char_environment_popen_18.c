@@ -49,8 +49,6 @@ void CWE78_OS_Command_Injection__char_environment_popen_18_bad()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -83,8 +81,6 @@ static void goodG2B()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    goto source;
-source:
     /* FIX: Append a fixed string to data (not user / external input) */
     strcat(data, "*.*");
     {

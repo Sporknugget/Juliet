@@ -23,14 +23,11 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE563_Unused_Variable__unused_value_char_17_bad()
 {
-    int i,j;
     char data;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';
@@ -45,14 +42,11 @@ void CWE563_Unused_Variable__unused_value_char_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     char data;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Use data without over-writing its value */
         printHexCharLine(data);
@@ -62,15 +56,12 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     char data;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 'C';
         printHexCharLine(data);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';

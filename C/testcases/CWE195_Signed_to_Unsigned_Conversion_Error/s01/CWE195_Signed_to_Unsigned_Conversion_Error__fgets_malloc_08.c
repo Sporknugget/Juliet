@@ -39,7 +39,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fgets_malloc_08_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(staticReturnsTrue())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -80,12 +79,6 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
@@ -111,7 +104,6 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(staticReturnsTrue())
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

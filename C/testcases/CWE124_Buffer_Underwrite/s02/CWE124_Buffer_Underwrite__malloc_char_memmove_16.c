@@ -24,7 +24,6 @@ void CWE124_Buffer_Underwrite__malloc_char_memmove_16_bad()
 {
     char * data;
     data = NULL;
-    while(1)
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));
@@ -34,7 +33,6 @@ void CWE124_Buffer_Underwrite__malloc_char_memmove_16_bad()
             /* FLAW: Set data pointer to before the allocated memory buffer */
             data = dataBuffer - 8;
         }
-        break;
     }
     {
         char source[100];
@@ -59,7 +57,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    while(1)
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));
@@ -69,7 +66,6 @@ static void goodG2B()
             /* FIX: Set data pointer to the allocated memory buffer */
             data = dataBuffer;
         }
-        break;
     }
     {
         char source[100];

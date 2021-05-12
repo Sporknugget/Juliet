@@ -28,7 +28,6 @@ void CWE369_Divide_by_Zero__float_fgets_16_bad()
     float data;
     /* Initialize data */
     data = 0.0F;
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -43,16 +42,13 @@ void CWE369_Divide_by_Zero__float_fgets_16_bad()
                 printLine("fgets() failed.");
             }
         }
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
             int result = (int)(100.0 / data);
             printIntLine(result);
         }
-        break;
     }
 }
 
@@ -66,7 +62,6 @@ static void goodB2G()
     float data;
     /* Initialize data */
     data = 0.0F;
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -81,9 +76,7 @@ static void goodB2G()
                 printLine("fgets() failed.");
             }
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -95,7 +88,6 @@ static void goodB2G()
         {
             printLine("This would result in a divide by zero");
         }
-        break;
     }
 }
 
@@ -105,20 +97,16 @@ static void goodG2B()
     float data;
     /* Initialize data */
     data = 0.0F;
-    while(1)
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
             int result = (int)(100.0 / data);
             printIntLine(result);
         }
-        break;
     }
 }
 

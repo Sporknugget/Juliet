@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE546_Suspicious_Comment__HACK_18_bad()
 {
-    goto sink;
-sink:
     /* FLAW: The following comment has the letters 'HACK' in it*/
     /* HACK: This comment has the letters 'HACK' in it, which is certainly
      * suspicious, because it could indicate this code needs to be investigated further.
@@ -35,8 +33,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     /* FIX: Removed the suspicious comments */
     printLine("Hello");
 }

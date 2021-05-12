@@ -40,7 +40,6 @@ void CWE123_Write_What_Where_Condition__fgets_02_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    if(1)
     {
         /* FLAW: overwrite linked list pointers with user data */
         if (fgets((char*)&data, sizeof(data), stdin) == NULL)
@@ -83,12 +82,6 @@ static void goodG2B1()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */
@@ -123,7 +116,6 @@ static void goodG2B2()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    if(1)
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */

@@ -26,9 +26,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         HANDLE hMutex = NULL;
         hMutex = CreateMutexW(NULL, FALSE, NULL);
@@ -42,12 +39,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_15_
          * and since the checkers are looking for certain function calls anyway */
         CloseHandle(hMutex);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -57,13 +48,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_15_
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         HANDLE hMutex = NULL;
         hMutex = CreateMutexW(NULL, FALSE, NULL);
@@ -75,17 +59,12 @@ static void good1()
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
         CloseHandle(hMutex);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         HANDLE hMutex = NULL;
         hMutex = CreateMutexW(NULL, FALSE, NULL);
@@ -97,12 +76,6 @@ static void good2()
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
         CloseHandle(hMutex);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

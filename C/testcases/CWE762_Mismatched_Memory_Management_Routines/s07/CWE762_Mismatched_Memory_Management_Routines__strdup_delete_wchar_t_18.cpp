@@ -28,15 +28,11 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     {
         wchar_t myString[] = L"myString";
         /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
         data = wcsdup(myString);
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete data;
@@ -52,15 +48,11 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     {
         wchar_t myString[] = L"myString";
         /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
         data = wcsdup(myString);
     }
-    goto sink;
-sink:
     /* FIX: Deallocate the memory using free() */
     free(data);
 }
@@ -71,12 +63,8 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     /* FIX: Allocate memory from the heap using new */
     data = new wchar_t;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete data;

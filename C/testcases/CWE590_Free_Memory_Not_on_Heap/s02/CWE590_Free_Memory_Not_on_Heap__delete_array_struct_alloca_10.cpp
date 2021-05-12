@@ -27,7 +27,6 @@ void bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    if(globalTrue)
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -57,12 +56,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
@@ -88,7 +81,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    if(globalTrue)
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

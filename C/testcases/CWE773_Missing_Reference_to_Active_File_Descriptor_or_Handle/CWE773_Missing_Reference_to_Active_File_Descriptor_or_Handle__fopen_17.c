@@ -20,12 +20,10 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__fopen_17_bad()
 {
-    int j;
     FILE * data;
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: Point data to another file handle without closing the handle from the source */
         data = fopen("BadSink_fopen.txt", "w+");
@@ -44,12 +42,10 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__fopen_17_bad(
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
-    int k;
     FILE * data;
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != NULL)

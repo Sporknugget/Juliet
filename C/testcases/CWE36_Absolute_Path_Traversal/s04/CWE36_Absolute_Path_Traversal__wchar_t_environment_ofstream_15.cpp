@@ -41,9 +41,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -54,12 +51,6 @@ void bad()
             /* POTENTIAL FLAW: Read data from an environment variable */
             wcsncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         ofstream outputFile;
@@ -79,13 +70,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
         wcscat(data, L"c:\\temp\\file.txt");
@@ -93,8 +77,6 @@ static void goodG2B1()
         /* FIX: Use a fixed, full path and file name */
         wcscat(data, L"/tmp/file.txt");
 #endif
-        break;
-    }
     {
         ofstream outputFile;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -109,9 +91,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
         wcscat(data, L"c:\\temp\\file.txt");
@@ -119,12 +98,6 @@ static void goodG2B2()
         /* FIX: Use a fixed, full path and file name */
         wcscat(data, L"/tmp/file.txt");
 #endif
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         ofstream outputFile;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */

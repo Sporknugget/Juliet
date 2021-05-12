@@ -46,7 +46,6 @@ static int staticTrue = 1; /* true */
 
 void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_05_bad()
 {
-    if(staticTrue)
     {
         {
 #ifdef _WIN32

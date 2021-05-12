@@ -46,8 +46,6 @@ void CWE400_Resource_Exhaustion__connect_socket_for_loop_18_bad()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -104,8 +102,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         size_t i = 0;
         /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */
@@ -126,8 +122,6 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -184,8 +178,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         size_t i = 0;
         /* FIX: Validate count before using it as the for loop variant */
@@ -205,12 +197,8 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     /* FIX: Use a relatively small number */
     count = 20;
-    goto sink;
-sink:
     {
         size_t i = 0;
         /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */

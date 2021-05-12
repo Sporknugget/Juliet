@@ -25,17 +25,14 @@ namespace CWE415_Double_Free__new_delete_struct_17
 
 void bad()
 {
-    int i,j;
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = new twoIntsStruct;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -49,17 +46,14 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = new twoIntsStruct;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    for(k = 0; k < 1; k++)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -70,16 +64,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         data = new twoIntsStruct;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

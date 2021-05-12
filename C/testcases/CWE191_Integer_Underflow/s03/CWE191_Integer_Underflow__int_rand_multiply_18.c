@@ -24,12 +24,8 @@ void CWE191_Integer_Underflow__int_rand_multiply_18_bad()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = RAND32();
-    goto sink;
-sink:
     if(data < 0) /* ensure we won't have an overflow */
     {
         /* POTENTIAL FLAW: if (data * 2) < INT_MIN, this will underflow */
@@ -48,12 +44,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = RAND32();
-    goto sink;
-sink:
     if(data < 0) /* ensure we won't have an overflow */
     {
         /* FIX: Add a check to prevent an underflow from occurring */
@@ -75,12 +67,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
     data = -2;
-    goto sink;
-sink:
     if(data < 0) /* ensure we won't have an overflow */
     {
         /* POTENTIAL FLAW: if (data * 2) < INT_MIN, this will underflow */

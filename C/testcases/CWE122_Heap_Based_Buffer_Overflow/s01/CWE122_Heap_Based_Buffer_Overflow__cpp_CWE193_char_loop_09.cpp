@@ -32,7 +32,6 @@ void bad()
 {
     char * data;
     data = NULL;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FLAW: Did not leave space for a null terminator */
         data = new char[10];
@@ -61,12 +60,6 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate space for a null terminator */
         data = new char[10+1];
@@ -91,7 +84,6 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Allocate space for a null terminator */
         data = new char[10+1];

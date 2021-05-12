@@ -43,8 +43,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE605_Multiple_Binds_Same_Port__basic_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char data[100] = "";
@@ -148,8 +146,6 @@ void CWE605_Multiple_Binds_Same_Port__basic_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char data[100] = "";

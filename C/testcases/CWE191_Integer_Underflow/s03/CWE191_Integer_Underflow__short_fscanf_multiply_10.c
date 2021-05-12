@@ -23,12 +23,10 @@ void CWE191_Integer_Underflow__short_fscanf_multiply_10_bad()
 {
     short data;
     data = 0;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%hd", &data);
     }
-    if(globalTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -48,17 +46,10 @@ static void goodB2G1()
 {
     short data;
     data = 0;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%hd", &data);
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -81,12 +72,10 @@ static void goodB2G2()
 {
     short data;
     data = 0;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%hd", &data);
     }
-    if(globalTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -109,17 +98,10 @@ static void goodG2B1()
 {
     short data;
     data = 0;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(globalTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -135,12 +117,10 @@ static void goodG2B2()
 {
     short data;
     data = 0;
-    if(globalTrue)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(globalTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

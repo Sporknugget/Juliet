@@ -26,17 +26,10 @@ void bad()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
-    else
-    {
-        /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
-        data = dataGoodBuffer;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -50,20 +43,6 @@ void bad()
             classTwo->intTwo = 10; /* POTENTIAL FLAW: If sizeof(data) < sizeof(TwoIntsClass) then this line will be a buffer overflow */
             printIntLine(classTwo->intOne);
             /* skip printing classTwo->intTwo since that could be a buffer overread */
-        }
-    }
-    else
-    {
-        {
-            /* The Visual C++ compiler generates a warning if you initialize the class with ().
-             * This will cause the compile to default-initialize the object.
-             * See http://msdn.microsoft.com/en-us/library/wewb47ee%28v=VS.100%29.aspx
-             */
-            /* FIX: data will at least be the sizeof(OneIntClass) */
-            OneIntClass * classOne = new(data) OneIntClass;
-            /* Initialize and make use of the class */
-            classOne->intOne = 5;
-            printIntLine(classOne->intOne);
         }
     }
 }
@@ -80,31 +59,10 @@ static void goodB2G()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
-        data = dataBadBuffer;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* The Visual C++ compiler generates a warning if you initialize the class with ().
-             * This will cause the compile to default-initialize the object.
-             * See http://msdn.microsoft.com/en-us/library/wewb47ee%28v=VS.100%29.aspx
-             */
-            /* FIX: data will at least be the sizeof(OneIntClass) */
-            OneIntClass * classOne = new(data) OneIntClass;
-            /* Initialize and make use of the class */
-            classOne->intOne = 5;
-            printIntLine(classOne->intOne);
-        }
-    }
-    else
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -128,33 +86,10 @@ static void goodG2B()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
-    else
-    {
-        /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
-        data = dataGoodBuffer;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* The Visual C++ compiler generates a warning if you initialize the class with ().
-             * This will cause the compile to default-initialize the object.
-             * See http://msdn.microsoft.com/en-us/library/wewb47ee%28v=VS.100%29.aspx
-             */
-            /* POTENTIAL FLAW: data may not be large enough to hold a TwoIntsClass */
-            TwoIntsClass * classTwo = new(data) TwoIntsClass;
-            /* Initialize and make use of the class */
-            classTwo->intOne = 5;
-            classTwo->intTwo = 10; /* POTENTIAL FLAW: If sizeof(data) < sizeof(TwoIntsClass) then this line will be a buffer overflow */
-            printIntLine(classTwo->intOne);
-            /* skip printing classTwo->intTwo since that could be a buffer overread */
-        }
-    }
-    else
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().

@@ -22,8 +22,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: ImpersonateSelf() could fail and would return 0 (false), but we are checking to see
          * if the return value is greater than zero (true) */
@@ -41,8 +39,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_17_bad
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: check for the correct return value */
         if (!ImpersonateSelf(SecurityImpersonation))

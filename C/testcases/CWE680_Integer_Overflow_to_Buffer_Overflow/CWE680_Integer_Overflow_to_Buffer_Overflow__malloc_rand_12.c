@@ -23,15 +23,9 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_rand_12_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
-    }
-    else
-    {
-        /* FIX: Set data to a relatively small number greater than zero */
-        data = 20;
     }
     {
         size_t i;
@@ -60,12 +54,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Set data to a relatively small number greater than zero */
-        data = 20;
-    }
-    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

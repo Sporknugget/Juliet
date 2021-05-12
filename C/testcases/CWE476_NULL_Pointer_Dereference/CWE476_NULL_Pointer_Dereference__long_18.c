@@ -24,12 +24,8 @@ Template File: sources-sinks-18.tmpl.c
 void CWE476_NULL_Pointer_Dereference__long_18_bad()
 {
     long * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to NULL */
     data = NULL;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
     printLongLine(*data);
 }
@@ -42,12 +38,8 @@ sink:
 static void goodB2G()
 {
     long * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to NULL */
     data = NULL;
-    goto sink;
-sink:
     /* FIX: Check for NULL before attempting to print data */
     if (data != NULL)
     {
@@ -64,14 +56,10 @@ static void goodG2B()
 {
     long * data;
     long tmpData = 5L;
-    goto source;
-source:
     /* FIX: Initialize data */
     {
         data = &tmpData;
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
     printLongLine(*data);
 }

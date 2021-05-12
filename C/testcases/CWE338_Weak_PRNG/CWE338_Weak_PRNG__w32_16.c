@@ -23,14 +23,12 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE338_Weak_PRNG__w32_16_bad()
 {
-    while(1)
     {
         {
             /* FLAW: Use of rand() as a PRNG */
             int data = rand();
             printIntLine(data);
         }
-        break;
     }
 }
 
@@ -41,7 +39,6 @@ void CWE338_Weak_PRNG__w32_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             HCRYPTPROV hCryptProv;
@@ -62,7 +59,6 @@ static void good1()
             }
             printIntLine(data);
         }
-        break;
     }
 }
 

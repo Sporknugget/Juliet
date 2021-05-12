@@ -23,8 +23,6 @@ Template File: point-flaw-badonly-17.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

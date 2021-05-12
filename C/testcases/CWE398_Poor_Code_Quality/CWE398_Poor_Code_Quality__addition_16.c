@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE398_Poor_Code_Quality__addition_16_bad()
 {
-    while(1)
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;
@@ -28,7 +27,6 @@ void CWE398_Poor_Code_Quality__addition_16_bad()
             intOne + intTwo; /* This generates a compiler warning, but we expect it to */
             printIntLine(intSum);
         }
-        break;
     }
 }
 
@@ -39,7 +37,6 @@ void CWE398_Poor_Code_Quality__addition_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;
@@ -48,7 +45,6 @@ static void good1()
             intSum = intOne + intTwo;
             printIntLine(intSum);
         }
-        break;
     }
 }
 

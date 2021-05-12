@@ -36,12 +36,10 @@ void CWE190_Integer_Overflow__short_max_postinc_08_bad()
 {
     short data;
     data = 0;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -61,17 +59,10 @@ static void goodB2G1()
 {
     short data;
     data = 0;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < SHRT_MAX)
@@ -92,12 +83,10 @@ static void goodB2G2()
 {
     short data;
     data = 0;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < SHRT_MAX)
@@ -118,17 +107,10 @@ static void goodG2B1()
 {
     short data;
     data = 0;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -144,12 +126,10 @@ static void goodG2B2()
 {
     short data;
     data = 0;
-    if(staticReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

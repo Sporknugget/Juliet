@@ -52,7 +52,6 @@ void CWE400_Resource_Exhaustion__connect_socket_sleep_03_bad()
     int count;
     /* Initialize count */
     count = -1;
-    if(5==5)
     {
         {
 #ifdef _WIN32
@@ -111,7 +110,6 @@ void CWE400_Resource_Exhaustion__connect_socket_sleep_03_bad()
 #endif
         }
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
@@ -129,7 +127,6 @@ static void goodB2G1()
     int count;
     /* Initialize count */
     count = -1;
-    if(5==5)
     {
         {
 #ifdef _WIN32
@@ -188,12 +185,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -214,7 +205,6 @@ static void goodB2G2()
     int count;
     /* Initialize count */
     count = -1;
-    if(5==5)
     {
         {
 #ifdef _WIN32
@@ -273,7 +263,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(5==5)
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -294,17 +283,10 @@ static void goodG2B1()
     int count;
     /* Initialize count */
     count = -1;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
@@ -318,12 +300,10 @@ static void goodG2B2()
     int count;
     /* Initialize count */
     count = -1;
-    if(5==5)
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);

@@ -19,19 +19,10 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* FLAW: Assigning fixed address to pointer */
         char *charPointer = (char*)0x400000;
         printHexCharLine(*charPointer);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -42,40 +33,22 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* FIX: Assign the pointer to a stack variable */
         char charStack = 'a';
         char *charPointer = &charStack;
         printHexCharLine(*charPointer);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* FIX: Assign the pointer to a stack variable */
         char charStack = 'a';
         char *charPointer = &charStack;
         printHexCharLine(*charPointer);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

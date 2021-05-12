@@ -26,8 +26,6 @@ void CWE369_Divide_by_Zero__int_fgets_modulo_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -41,8 +39,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly divide by zero */
     printIntLine(100 % data);
 }
@@ -57,8 +53,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -72,8 +66,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     /* FIX: test for a zero denominator */
     if( data != 0 )
     {
@@ -91,12 +83,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a value not equal to zero */
     data = 7;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly divide by zero */
     printIntLine(100 % data);
 }

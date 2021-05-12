@@ -22,7 +22,6 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memcpy_10_bad()
 {
     int64_t * data;
     data = NULL;
-    if(globalTrue)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (int64_t *)malloc(50*sizeof(int64_t));
@@ -46,12 +45,6 @@ static void goodG2B1()
 {
     int64_t * data;
     data = NULL;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -71,7 +64,6 @@ static void goodG2B2()
 {
     int64_t * data;
     data = NULL;
-    if(globalTrue)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (int64_t *)malloc(100*sizeof(int64_t));

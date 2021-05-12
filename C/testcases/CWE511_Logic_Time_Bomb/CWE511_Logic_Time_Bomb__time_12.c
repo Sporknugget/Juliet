@@ -30,7 +30,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE511_Logic_Time_Bomb__time_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             time_t currentTime;
@@ -39,18 +38,6 @@ void CWE511_Logic_Time_Bomb__time_12_bad()
             if (currentTime > TIME_CHECK)
             {
                 UNLINK("important_file.txt");
-            }
-        }
-    }
-    else
-    {
-        {
-            time_t currentTime;
-            /* FIX: After a certain date, print to the console */
-            time(&currentTime);
-            if (currentTime > TIME_CHECK)
-            {
-                printLine("Happy New Year!");
             }
         }
     }
@@ -63,19 +50,6 @@ void CWE511_Logic_Time_Bomb__time_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            time_t currentTime;
-            /* FIX: After a certain date, print to the console */
-            time(&currentTime);
-            if (currentTime > TIME_CHECK)
-            {
-                printLine("Happy New Year!");
-            }
-        }
-    }
-    else
     {
         {
             time_t currentTime;

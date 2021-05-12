@@ -24,8 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_18_bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         twoIntsStruct dataBuffer[100];
@@ -53,8 +51,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));

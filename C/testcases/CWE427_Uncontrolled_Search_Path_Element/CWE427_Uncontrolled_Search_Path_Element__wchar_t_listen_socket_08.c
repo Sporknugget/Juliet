@@ -67,7 +67,6 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_listen_socket_08_bad()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -163,12 +162,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);
@@ -183,7 +176,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);

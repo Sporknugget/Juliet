@@ -34,7 +34,6 @@ void CWE134_Uncontrolled_Format_String__char_console_snprintf_03_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(5==5)
     {
         {
             /* Read input from the console */
@@ -62,7 +61,6 @@ void CWE134_Uncontrolled_Format_String__char_console_snprintf_03_bad()
             }
         }
     }
-    if(5==5)
     {
         {
             char dest[100] = "";
@@ -83,7 +81,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(5==5)
     {
         {
             /* Read input from the console */
@@ -111,12 +108,6 @@ static void goodB2G1()
             }
         }
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char dest[100] = "";
@@ -133,7 +124,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(5==5)
     {
         {
             /* Read input from the console */
@@ -161,7 +151,6 @@ static void goodB2G2()
             }
         }
     }
-    if(5==5)
     {
         {
             char dest[100] = "";
@@ -178,17 +167,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(5==5)
     {
         {
             char dest[100] = "";
@@ -205,12 +187,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(5==5)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(5==5)
     {
         {
             char dest[100] = "";

@@ -23,7 +23,6 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_02_bad()
 {
-    if(1)
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -70,15 +69,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_0
 
 #ifndef OMITGOOD
 
-/* good1() uses if(0) instead of if(1) */
-static void good1()
-{
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -126,7 +116,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(1)
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));

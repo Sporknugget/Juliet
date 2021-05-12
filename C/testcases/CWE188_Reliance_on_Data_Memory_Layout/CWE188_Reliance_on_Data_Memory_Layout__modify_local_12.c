@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__modify_local_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             struct
@@ -37,22 +36,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_12_bad()
             printIntLine(structCharInt.intSecond);
         }
     }
-    else
-    {
-        {
-            struct
-            {
-                char charFirst;
-                int intSecond;
-            } structCharInt;
-            structCharInt.charFirst = 1;
-            /* FIX: Do not make unwarranted assumptions about underlying data model
-             * Modify and access data appropriately */
-            structCharInt.intSecond = 5;
-            printIntLine(structCharInt.charFirst);
-            printIntLine(structCharInt.intSecond);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -62,23 +45,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            struct
-            {
-                char charFirst;
-                int intSecond;
-            } structCharInt;
-            structCharInt.charFirst = 1;
-            /* FIX: Do not make unwarranted assumptions about underlying data model
-             * Modify and access data appropriately */
-            structCharInt.intSecond = 5;
-            printIntLine(structCharInt.charFirst);
-            printIntLine(structCharInt.intSecond);
-        }
-    }
-    else
     {
         {
             struct

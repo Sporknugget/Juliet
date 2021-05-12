@@ -19,7 +19,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE758_Undefined_Behavior__struct_alloca_use_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             twoIntsStruct * pointer = (twoIntsStruct *)ALLOCA(sizeof(twoIntsStruct));
@@ -34,15 +33,6 @@ void CWE758_Undefined_Behavior__struct_alloca_use_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             twoIntsStruct data;
@@ -62,7 +52,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             twoIntsStruct data;

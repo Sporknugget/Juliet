@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE483_Incorrect_Block_Delimitation__semicolon_16_bad()
 {
-    while(1)
     {
         {
             int x = (rand() % 3);
@@ -35,7 +34,6 @@ void CWE483_Incorrect_Block_Delimitation__semicolon_16_bad()
                 printLine("x was 0\n");
             }
         }
-        break;
     }
 }
 
@@ -46,7 +44,6 @@ void CWE483_Incorrect_Block_Delimitation__semicolon_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             int x = (rand() % 3);
@@ -62,7 +59,6 @@ static void good1()
                 printLine("x was 0\n");
             }
         }
-        break;
     }
 }
 

@@ -28,8 +28,6 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_17
 
 void bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -49,8 +47,6 @@ void bad()
 /* good1() changes the conditions on the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];

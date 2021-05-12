@@ -21,21 +21,12 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char dest[DEST_SIZE];
         int intFive = 5;
         /* FLAW: int argument passed, expecting string argument */
         sprintf(dest, "%s", intFive);
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -46,42 +37,24 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char dest[DEST_SIZE];
         int intFive = 5;
         /* FIX: use the correct format string */
         sprintf(dest, "%d", intFive);
         printLine(dest);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char dest[DEST_SIZE];
         int intFive = 5;
         /* FIX: use the correct format string */
         sprintf(dest, "%d", intFive);
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

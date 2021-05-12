@@ -28,7 +28,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE325_Missing_Required_Cryptographic_Step__w32_CryptHashData_16_bad()
 {
-    while(1)
     {
         {
             BYTE payload[100];
@@ -79,7 +78,6 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptHashData_16_bad()
             /* Do something with the encrypted data */
             printBytesLine(payload, payloadLen);
         }
-        break;
     }
 }
 
@@ -90,7 +88,6 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptHashData_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             BYTE payload[100];
@@ -146,7 +143,6 @@ static void good1()
             /* Do something with the encrypted data */
             printBytesLine(payload, payloadLen);
         }
-        break;
     }
 }
 

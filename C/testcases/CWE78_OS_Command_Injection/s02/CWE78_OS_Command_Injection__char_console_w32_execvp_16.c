@@ -43,7 +43,6 @@ void CWE78_OS_Command_Injection__char_console_w32_execvp_16_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -70,7 +69,6 @@ void CWE78_OS_Command_Injection__char_console_w32_execvp_16_bad()
                 }
             }
         }
-        break;
     }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
@@ -91,11 +89,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
     }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};

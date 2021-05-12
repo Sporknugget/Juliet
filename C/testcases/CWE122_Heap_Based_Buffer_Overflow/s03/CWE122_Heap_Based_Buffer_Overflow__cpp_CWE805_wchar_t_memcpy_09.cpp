@@ -27,7 +27,6 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FLAW: Allocate using new[] and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = new wchar_t[50];
@@ -54,12 +53,6 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new wchar_t[100];
@@ -82,7 +75,6 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new wchar_t[100];

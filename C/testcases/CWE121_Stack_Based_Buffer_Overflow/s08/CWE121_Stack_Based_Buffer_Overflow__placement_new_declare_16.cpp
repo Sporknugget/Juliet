@@ -26,13 +26,10 @@ void bad()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
-    while(1)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
-        break;
     }
-    while(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -47,7 +44,6 @@ void bad()
             printIntLine(classTwo->intOne);
             /* skip printing classTwo->intTwo since that could be a buffer overread */
         }
-        break;
     }
 }
 
@@ -61,13 +57,10 @@ static void goodB2G()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
-    while(1)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
-        break;
     }
-    while(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -80,7 +73,6 @@ static void goodB2G()
             classOne->intOne = 5;
             printIntLine(classOne->intOne);
         }
-        break;
     }
 }
 
@@ -90,13 +82,10 @@ static void goodG2B()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
-    while(1)
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
-        break;
     }
-    while(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -111,7 +100,6 @@ static void goodG2B()
             printIntLine(classTwo->intOne);
             /* skip printing classTwo->intTwo since that could be a buffer overread */
         }
-        break;
     }
 }
 

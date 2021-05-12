@@ -29,7 +29,6 @@ static int staticFalse = 0; /* false */
 
 void CWE284_Improper_Access_Control__w32_wchar_t_SHRegCreateUSKey_05_bad()
 {
-    if(staticTrue)
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";
@@ -57,15 +56,6 @@ void CWE284_Improper_Access_Control__w32_wchar_t_SHRegCreateUSKey_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";
@@ -92,7 +82,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";

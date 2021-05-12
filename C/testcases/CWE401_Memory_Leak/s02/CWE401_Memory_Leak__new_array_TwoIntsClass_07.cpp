@@ -35,7 +35,6 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
@@ -45,7 +44,6 @@ void bad()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -61,7 +59,6 @@ static void goodB2G1()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
@@ -71,12 +68,6 @@ static void goodB2G1()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -88,7 +79,6 @@ static void goodB2G2()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
@@ -98,7 +88,6 @@ static void goodB2G2()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    if(staticFive==5)
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -110,12 +99,6 @@ static void goodG2B1()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer[100];
@@ -126,7 +109,6 @@ static void goodG2B1()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -138,7 +120,6 @@ static void goodG2B2()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer[100];
@@ -149,7 +130,6 @@ static void goodG2B2()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

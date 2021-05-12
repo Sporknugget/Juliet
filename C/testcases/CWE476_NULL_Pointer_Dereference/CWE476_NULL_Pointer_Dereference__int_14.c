@@ -24,12 +24,10 @@ Template File: sources-sinks-14.tmpl.c
 void CWE476_NULL_Pointer_Dereference__int_14_bad()
 {
     int * data;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
@@ -44,17 +42,10 @@ void CWE476_NULL_Pointer_Dereference__int_14_bad()
 static void goodB2G1()
 {
     int * data;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -72,12 +63,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int * data;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(globalFive==5)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -96,19 +85,12 @@ static void goodG2B1()
 {
     int * data;
     int tmpData = 5;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
@@ -120,14 +102,12 @@ static void goodG2B2()
 {
     int * data;
     int tmpData = 5;
-    if(globalFive==5)
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);

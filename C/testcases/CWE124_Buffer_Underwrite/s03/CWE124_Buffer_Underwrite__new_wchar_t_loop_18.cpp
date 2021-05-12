@@ -27,8 +27,6 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     {
         wchar_t * dataBuffer = new wchar_t[100];
         wmemset(dataBuffer, L'A', 100-1);
@@ -63,8 +61,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     {
         wchar_t * dataBuffer = new wchar_t[100];
         wmemset(dataBuffer, L'A', 100-1);

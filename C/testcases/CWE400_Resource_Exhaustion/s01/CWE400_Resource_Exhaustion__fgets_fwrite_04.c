@@ -34,7 +34,6 @@ void CWE400_Resource_Exhaustion__fgets_fwrite_04_bad()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -50,7 +49,6 @@ void CWE400_Resource_Exhaustion__fgets_fwrite_04_bad()
             }
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;
@@ -88,7 +86,6 @@ static void goodB2G1()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -104,12 +101,6 @@ static void goodB2G1()
             }
         }
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t i = 0;
@@ -142,7 +133,6 @@ static void goodB2G2()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -158,7 +148,6 @@ static void goodB2G2()
             }
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;
@@ -191,17 +180,10 @@ static void goodG2B1()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;
@@ -235,12 +217,10 @@ static void goodG2B2()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;

@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE758_Undefined_Behavior__long_malloc_use_18_bad()
 {
-    goto sink;
-sink:
     {
         long * pointer = (long *)malloc(sizeof(long));
         if (pointer == NULL) {exit(-1);}
@@ -37,8 +35,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         long data;
         long * pointer = (long *)malloc(sizeof(long));

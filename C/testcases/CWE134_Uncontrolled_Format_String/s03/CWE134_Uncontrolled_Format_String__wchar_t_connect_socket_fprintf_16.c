@@ -49,7 +49,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_connect_socket_fprintf_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -118,13 +117,10 @@ void CWE134_Uncontrolled_Format_String__wchar_t_connect_socket_fprintf_16_bad()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fwprintf(stdout, data);
-        break;
     }
 }
 
@@ -138,7 +134,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -207,13 +202,10 @@ static void goodB2G()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         fwprintf(stdout, L"%s\n", data);
-        break;
     }
 }
 
@@ -223,17 +215,13 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fwprintf(stdout, data);
-        break;
     }
 }
 

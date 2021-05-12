@@ -30,7 +30,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE222_Truncation_of_Security_Relevant_Information__w32_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             WSADATA wsaData;
@@ -122,15 +121,6 @@ void CWE222_Truncation_of_Security_Relevant_Information__w32_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             WSADATA wsaData;
@@ -218,7 +208,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             WSADATA wsaData;

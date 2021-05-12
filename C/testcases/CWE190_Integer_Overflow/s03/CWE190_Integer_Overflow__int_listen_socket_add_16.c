@@ -46,7 +46,6 @@ void CWE190_Integer_Overflow__int_listen_socket_add_16_bad()
     int data;
     /* Initialize data */
     data = 0;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -117,16 +116,13 @@ void CWE190_Integer_Overflow__int_listen_socket_add_16_bad()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             int result = data + 1;
             printIntLine(result);
         }
-        break;
     }
 }
 
@@ -140,7 +136,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -211,9 +206,7 @@ static void goodB2G()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < INT_MAX)
@@ -225,7 +218,6 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
-        break;
     }
 }
 
@@ -235,20 +227,16 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             int result = data + 1;
             printIntLine(result);
         }
-        break;
     }
 }
 

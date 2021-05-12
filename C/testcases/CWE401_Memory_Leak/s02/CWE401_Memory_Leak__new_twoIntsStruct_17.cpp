@@ -27,10 +27,8 @@ namespace CWE401_Memory_Leak__new_twoIntsStruct_17
 
 void bad()
 {
-    int i,j;
     twoIntsStruct * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct;
@@ -39,7 +37,6 @@ void bad()
         data->intTwo = 0;
         printStructLine(data);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -53,10 +50,8 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     twoIntsStruct * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct;
@@ -65,7 +60,6 @@ static void goodB2G()
         data->intTwo = 0;
         printStructLine(data);
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -75,10 +69,8 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     twoIntsStruct * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use memory allocated on the stack */
         twoIntsStruct dataGoodBuffer;
@@ -88,7 +80,6 @@ static void goodG2B()
         data->intTwo = 0;
         printStructLine(data);
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

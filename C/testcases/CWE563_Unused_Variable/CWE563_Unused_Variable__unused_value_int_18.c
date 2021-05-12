@@ -24,12 +24,8 @@ Template File: sources-sinks-18.tmpl.c
 void CWE563_Unused_Variable__unused_value_int_18_bad()
 {
     int data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
     data = 10;
     printIntLine(data);
@@ -43,12 +39,8 @@ sink:
 static void goodB2G()
 {
     int data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
-    goto sink;
-sink:
     /* FIX: Use data without over-writing its value */
     printIntLine(data);
 }
@@ -57,13 +49,9 @@ sink:
 static void goodG2B()
 {
     int data;
-    goto source;
-source:
     /* FIX: Initialize and use data before it is overwritten */
     data = 5;
     printIntLine(data);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
     data = 10;
     printIntLine(data);

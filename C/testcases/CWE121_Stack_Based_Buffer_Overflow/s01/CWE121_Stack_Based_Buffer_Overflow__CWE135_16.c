@@ -28,13 +28,10 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_16_bad()
 {
     void * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -43,7 +40,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_16_bad()
             (void)wcscpy(dest, data);
             printLine((char *)dest);
         }
-        break;
     }
 }
 
@@ -56,13 +52,10 @@ static void goodB2G()
 {
     void * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
-        break;
     }
-    while(1)
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -71,7 +64,6 @@ static void goodB2G()
             (void)wcscpy(dest, data);
             printWLine((wchar_t *)dest);
         }
-        break;
     }
 }
 
@@ -80,13 +72,10 @@ static void goodG2B()
 {
     void * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -95,7 +84,6 @@ static void goodG2B()
             (void)strcpy(dest, data);
             printLine((char *)dest);
         }
-        break;
     }
 }
 

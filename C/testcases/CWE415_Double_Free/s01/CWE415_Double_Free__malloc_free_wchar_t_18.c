@@ -26,14 +26,10 @@ void CWE415_Double_Free__malloc_free_wchar_t_18_bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly freeing memory twice */
     free(data);
 }
@@ -48,14 +44,10 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
-    goto sink;
-sink:
     /* do nothing */
     /* FIX: Don't attempt to free the memory */
     ; /* empty statement needed for some flow variants */
@@ -67,13 +59,9 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly freeing memory twice */
     free(data);
 }

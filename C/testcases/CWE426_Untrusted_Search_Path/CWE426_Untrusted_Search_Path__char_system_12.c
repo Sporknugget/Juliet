@@ -45,15 +45,9 @@ void CWE426_Untrusted_Search_Path__char_system_12_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: the full path is not specified */
         strcpy(data, BAD_OS_COMMAND);
-    }
-    else
-    {
-        /* FIX: full path is specified */
-        strcpy(data, GOOD_OS_COMMAND);
     }
     /* POTENTIAL FLAW: Executing the system() function without specifying the full path to the executable
      * can allow an attacker to run their own program */
@@ -75,12 +69,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: full path is specified */
-        strcpy(data, GOOD_OS_COMMAND);
-    }
-    else
     {
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);

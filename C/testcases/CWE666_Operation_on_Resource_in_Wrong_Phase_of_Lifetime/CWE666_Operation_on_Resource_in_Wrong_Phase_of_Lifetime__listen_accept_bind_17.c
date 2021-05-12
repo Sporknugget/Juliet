@@ -43,8 +43,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__listen_accept_bind_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char data[100] = "";
@@ -137,8 +135,6 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__listen_accept_bind
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char data[100] = "";

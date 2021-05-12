@@ -41,13 +41,10 @@ Template File: sources-sinks-17.tmpl.c
 
 #ifndef OMITBAD
 
-void CWE191_Integer_Underflow__int_connect_socket_multiply_17_bad()
 {
-    int i,j;
     int data;
     /* Initialize data */
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -106,7 +103,6 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_17_bad()
 #endif
         }
     }
-    for(j = 0; j < 1; j++)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -124,11 +120,9 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     int data;
     /* Initialize data */
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -187,7 +181,6 @@ static void goodB2G()
 #endif
         }
     }
-    for(k = 0; k < 1; k++)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -208,16 +201,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     int data;
     /* Initialize data */
     data = 0;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
-    for(j = 0; j < 1; j++)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

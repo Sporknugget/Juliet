@@ -27,19 +27,10 @@ void bad()
 {
     char * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Use a small buffer */
         data = new char[50];
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char dest[100];
         memset(dest, 'C', 100-1);
@@ -62,19 +53,10 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a large buffer */
         data = new char[100];
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
-        break;
-    }
     {
         char dest[100];
         memset(dest, 'C', 100-1);
@@ -93,19 +75,10 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a large buffer */
         data = new char[100];
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char dest[100];
         memset(dest, 'C', 100-1);

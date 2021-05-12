@@ -33,8 +33,6 @@ typedef struct _charVoid
 
 void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             charVoid structCharVoid;
@@ -57,8 +55,6 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             charVoid structCharVoid;

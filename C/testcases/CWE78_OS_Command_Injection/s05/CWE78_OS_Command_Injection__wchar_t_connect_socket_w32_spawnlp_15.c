@@ -62,9 +62,6 @@ void CWE78_OS_Command_Injection__wchar_t_connect_socket_w32_spawnlp_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -132,12 +129,6 @@ void CWE78_OS_Command_Injection__wchar_t_connect_socket_w32_spawnlp_15_bad()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* wspawnlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -154,17 +145,8 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
-        break;
-    }
     /* wspawnlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -177,17 +159,8 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* wspawnlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */

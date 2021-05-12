@@ -19,7 +19,6 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE758_Undefined_Behavior__int_pointer_malloc_use_14_bad()
 {
-    if(globalFive==5)
     {
         {
             int * * pointer = (int * *)malloc(sizeof(int *));
@@ -35,15 +34,6 @@ void CWE758_Undefined_Behavior__int_pointer_malloc_use_14_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
-static void good1()
-{
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int * data;
@@ -66,7 +56,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalFive==5)
     {
         {
             int * data;

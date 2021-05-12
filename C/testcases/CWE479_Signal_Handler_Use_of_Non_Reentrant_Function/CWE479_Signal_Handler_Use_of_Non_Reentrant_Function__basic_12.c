@@ -45,13 +45,8 @@ static void helperGood(int sig)
 
 void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         signal(SIGINT, helperBad);
-    }
-    else
-    {
-        signal(SIGINT, helperGood);
     }
 }
 
@@ -62,11 +57,6 @@ void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        signal(SIGINT, helperGood);
-    }
-    else
     {
         signal(SIGINT, helperGood);
     }

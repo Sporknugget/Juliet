@@ -25,13 +25,10 @@ void bad()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
-    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -44,7 +41,6 @@ void bad()
         }
         /* deallocate the memory */
         delete [] data;
-        break;
     }
 }
 
@@ -57,13 +53,10 @@ static void goodB2G()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
-    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
-        break;
     }
-    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -84,7 +77,6 @@ static void goodB2G()
         }
         /* deallocate the memory */
         delete [] data;
-        break;
     }
 }
 
@@ -93,7 +85,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
-    while(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -104,9 +95,7 @@ static void goodG2B()
                 data[i].intTwo = i;
             }
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -119,7 +108,6 @@ static void goodG2B()
         }
         /* deallocate the memory */
         delete [] data;
-        break;
     }
 }
 

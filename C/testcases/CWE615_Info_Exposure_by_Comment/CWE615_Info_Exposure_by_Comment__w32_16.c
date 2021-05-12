@@ -25,7 +25,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE615_Info_Exposure_by_Comment__w32_16_bad()
 {
-    while(1)
     {
         {
             size_t passwordLen = 0;
@@ -50,7 +49,6 @@ void CWE615_Info_Exposure_by_Comment__w32_16_bad()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 
@@ -61,7 +59,6 @@ void CWE615_Info_Exposure_by_Comment__w32_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             size_t passwordLen = 0;
@@ -86,7 +83,6 @@ static void good1()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 

@@ -25,7 +25,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE327_Use_Broken_Crypto__w32_RC5_16_bad()
 {
-    while(1)
     {
         {
             FILE *pFile;
@@ -117,7 +116,6 @@ void CWE327_Use_Broken_Crypto__w32_RC5_16_bad()
                 fclose(pFile);
             }
         }
-        break;
     }
 }
 
@@ -128,7 +126,6 @@ void CWE327_Use_Broken_Crypto__w32_RC5_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             FILE *pFile;
@@ -220,7 +217,6 @@ static void good1()
                 fclose(pFile);
             }
         }
-        break;
     }
 }
 

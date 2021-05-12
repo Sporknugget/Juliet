@@ -38,7 +38,6 @@ void CWE401_Memory_Leak__char_realloc_08_bad()
 {
     char * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (char *)realloc(data, 100*sizeof(char));
@@ -47,7 +46,6 @@ void CWE401_Memory_Leak__char_realloc_08_bad()
         strcpy(data, "A String");
         printLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -63,7 +61,6 @@ static void goodB2G1()
 {
     char * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (char *)realloc(data, 100*sizeof(char));
@@ -72,12 +69,6 @@ static void goodB2G1()
         strcpy(data, "A String");
         printLine(data);
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -89,7 +80,6 @@ static void goodB2G2()
 {
     char * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (char *)realloc(data, 100*sizeof(char));
@@ -98,7 +88,6 @@ static void goodB2G2()
         strcpy(data, "A String");
         printLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -110,12 +99,6 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
@@ -123,7 +106,6 @@ static void goodG2B1()
         strcpy(data, "A String");
         printLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -135,7 +117,6 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
@@ -143,7 +124,6 @@ static void goodG2B2()
         strcpy(data, "A String");
         printLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

@@ -26,9 +26,6 @@ Template File: point-flaw-badonly-15.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_email_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;
@@ -139,12 +136,6 @@ void CWE506_Embedded_Malicious_Code__w32_email_15_bad()
         {
             WSACleanup();
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

@@ -20,10 +20,8 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_17_bad()
 {
-    int i;
     int * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Allocate memory without using sizeof(int) */
         data = (int *)malloc(10);
@@ -45,10 +43,8 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     int * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Allocate memory using sizeof(int) */
         data = (int *)malloc(10*sizeof(int));

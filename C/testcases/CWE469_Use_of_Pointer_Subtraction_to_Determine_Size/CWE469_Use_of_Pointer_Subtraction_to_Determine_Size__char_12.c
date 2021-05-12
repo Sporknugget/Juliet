@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__char_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             char string1[] = SOURCE_STRING;
@@ -41,23 +40,6 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__char_12_bad()
             printUnsignedLine(indexOfSlashInString1);
         }
     }
-    else
-    {
-        {
-            char string1[] = SOURCE_STRING;
-            char * slashInString1;
-            size_t indexOfSlashInString1;
-            slashInString1 = strchr(string1, '/');
-            if (slashInString1 == NULL)
-            {
-                exit(1);
-            }
-            /* FIX: subtract the ending pointer from the actual string it originated from (string1) */
-            indexOfSlashInString1 = (size_t)(slashInString1 - string1);
-            /* print the index of where the slash was found */
-            printUnsignedLine(indexOfSlashInString1);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -67,24 +49,6 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__char_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            char string1[] = SOURCE_STRING;
-            char * slashInString1;
-            size_t indexOfSlashInString1;
-            slashInString1 = strchr(string1, '/');
-            if (slashInString1 == NULL)
-            {
-                exit(1);
-            }
-            /* FIX: subtract the ending pointer from the actual string it originated from (string1) */
-            indexOfSlashInString1 = (size_t)(slashInString1 - string1);
-            /* print the index of where the slash was found */
-            printUnsignedLine(indexOfSlashInString1);
-        }
-    }
-    else
     {
         {
             char string1[] = SOURCE_STRING;

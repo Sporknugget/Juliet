@@ -47,11 +47,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE78_OS_Command_Injection__char_environment_w32_spawnv_17_bad()
 {
-    int i;
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
             /* Append input from an environment variable to data */
@@ -80,11 +78,9 @@ void CWE78_OS_Command_Injection__char_environment_w32_spawnv_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

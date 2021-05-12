@@ -23,8 +23,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_wchar_t_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             wchar_t * data = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -52,8 +50,6 @@ void CWE401_Memory_Leak__malloc_realloc_wchar_t_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             wchar_t * data = (wchar_t *)malloc(100*sizeof(wchar_t));

@@ -29,7 +29,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_16_bad()
 {
-    while(1)
     {
         {
             FILETIME ftModified;
@@ -73,7 +72,6 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_16_bad()
                 CloseHandle(hFile);
             }
         }
-        break;
     }
 }
 
@@ -84,7 +82,6 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
@@ -99,7 +96,6 @@ static void good1()
                 CloseHandle(hFile);
             }
         }
-        break;
     }
 }
 

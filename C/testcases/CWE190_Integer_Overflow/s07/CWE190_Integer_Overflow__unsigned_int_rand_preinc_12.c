@@ -23,37 +23,16 @@ void CWE190_Integer_Overflow__unsigned_int_rand_preinc_12_bad()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (unsigned int)RAND32();
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
-        data = 2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
             ++data;
             unsigned int result = data;
             printUnsignedLine(result);
-        }
-    }
-    else
-    {
-        /* FIX: Add a check to prevent an overflow from occurring */
-        if (data < UINT_MAX)
-        {
-            ++data;
-            unsigned int result = data;
-            printUnsignedLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -69,31 +48,10 @@ static void goodB2G()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (unsigned int)RAND32();
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use a random value */
-        data = (unsigned int)RAND32();
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Add a check to prevent an overflow from occurring */
-        if (data < UINT_MAX)
-        {
-            ++data;
-            unsigned int result = data;
-            printUnsignedLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform arithmetic safely.");
-        }
-    }
-    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -116,26 +74,10 @@ static void goodG2B()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
-        data = 2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: Incrementing data could cause an overflow */
-            ++data;
-            unsigned int result = data;
-            printUnsignedLine(result);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

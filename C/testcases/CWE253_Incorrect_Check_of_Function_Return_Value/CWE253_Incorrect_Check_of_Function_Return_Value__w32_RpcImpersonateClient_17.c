@@ -23,8 +23,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: RpcImpersonateClient() could fail and would not return RPC_S_OK, but we
          * are failing if the return value is RPC_S_OK */
@@ -44,8 +42,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)

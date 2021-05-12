@@ -28,14 +28,12 @@ void bad()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    if(globalFive==5)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);
@@ -53,19 +51,12 @@ static void goodB2G1()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    if(globalFive==5)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -80,14 +71,12 @@ static void goodB2G2()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    if(globalFive==5)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(globalFive==5)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -102,18 +91,11 @@ static void goodG2B1()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = new int64_t;
         *data = 5LL;
         /* FIX: Do not delete data in the source */
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);
@@ -127,13 +109,11 @@ static void goodG2B2()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    if(globalFive==5)
     {
         data = new int64_t;
         *data = 5LL;
         /* FIX: Do not delete data in the source */
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);

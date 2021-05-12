@@ -45,7 +45,6 @@ static void helperGood(int sig)
 
 void CWE364_Signal_Handler_Race_Condition__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;
@@ -83,42 +82,6 @@ void CWE364_Signal_Handler_Race_Condition__basic_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            structSigAtomic *gStructSigAtomic = NULL;
-            signal(SIGINT, SIG_DFL);
-            if (CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood != NULL)
-            {
-                free(CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood);
-                CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood = 0;
-            }
-            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
-            if (gStructSigAtomic == NULL) {exit(-1);}
-            CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood = gStructSigAtomic;
-            CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood->val = 1;
-            /* Assign CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood BEFORE
-             * calling 'signal', because pointer types are not (according to spec), atomic
-             * with respect to signals.
-             *
-             * In practice they are on most (all?) POSIX-y computers, but thems the
-             * rules
-             */
-            signal(SIGINT, helperGood);
-            /* FIX: In this instance, the fix is to temporarily disable the signal
-             * handler while performing non-atomic operations.  Another way would
-             * be to use sigprocmask or sigvec, or to restructure the signal handler
-             * to operate in a safe manner.
-             */
-            signal(SIGINT, SIG_DFL);
-            if (CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood != NULL)
-            {
-                free(CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood);
-                CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood = NULL;
-            }
-            signal(SIGINT, helperGood);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -128,43 +91,6 @@ void CWE364_Signal_Handler_Race_Condition__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            structSigAtomic *gStructSigAtomic = NULL;
-            signal(SIGINT, SIG_DFL);
-            if (CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood != NULL)
-            {
-                free(CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood);
-                CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood = 0;
-            }
-            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
-            if (gStructSigAtomic == NULL) {exit(-1);}
-            CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood = gStructSigAtomic;
-            CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood->val = 1;
-            /* Assign CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood BEFORE
-             * calling 'signal', because pointer types are not (according to spec), atomic
-             * with respect to signals.
-             *
-             * In practice they are on most (all?) POSIX-y computers, but thems the
-             * rules
-             */
-            signal(SIGINT, helperGood);
-            /* FIX: In this instance, the fix is to temporarily disable the signal
-             * handler while performing non-atomic operations.  Another way would
-             * be to use sigprocmask or sigvec, or to restructure the signal handler
-             * to operate in a safe manner.
-             */
-            signal(SIGINT, SIG_DFL);
-            if (CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood != NULL)
-            {
-                free(CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood);
-                CWE364_Signal_Handler_Race_Condition__basic_12StructSigAtomicGood = NULL;
-            }
-            signal(SIGINT, helperGood);
-        }
-    }
-    else
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;

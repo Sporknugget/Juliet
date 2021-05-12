@@ -36,7 +36,6 @@ static int staticReturnsFalse()
 
 void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -63,15 +62,6 @@ void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -100,7 +90,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));

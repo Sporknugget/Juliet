@@ -39,7 +39,6 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_08_bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(staticReturnsTrue())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -48,7 +47,6 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_08_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
@@ -66,7 +64,6 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(staticReturnsTrue())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -75,12 +72,6 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -95,7 +86,6 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(staticReturnsTrue())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -104,7 +94,6 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -119,12 +108,6 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -132,7 +115,6 @@ static void goodG2B1()
         data[100-1] = L'\0';
         /* FIX: Do not free data in the source */
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
@@ -146,7 +128,6 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(staticReturnsTrue())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -154,7 +135,6 @@ static void goodG2B2()
         data[100-1] = L'\0';
         /* FIX: Do not free data in the source */
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);

@@ -25,17 +25,8 @@ void CWE690_NULL_Deref_From_Return__fopen_15_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = fopen("file.txt", "w+");
-    switch(6)
-    {
-    case 6:
         /* FLAW: if the fopen failed, data will be NULL here */
         fclose(data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -50,20 +41,11 @@ static void goodB2G1()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = fopen("file.txt", "w+");
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: check the return value */
         if (data != NULL)
         {
             fclose(data);
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -74,20 +56,11 @@ static void goodB2G2()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = fopen("file.txt", "w+");
-    switch(6)
-    {
-    case 6:
         /* FIX: check the return value */
         if (data != NULL)
         {
             fclose(data);
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE690_NULL_Deref_From_Return__fopen_15_good()

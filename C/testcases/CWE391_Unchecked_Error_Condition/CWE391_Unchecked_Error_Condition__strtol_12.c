@@ -21,27 +21,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__strtol_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             long longNumber;
             longNumber = strtol("0xfffffffff", NULL, 0);
             /* FLAW: Do not check to see if strtol() failed */
-            printf("%li\n", longNumber);
-        }
-    }
-    else
-    {
-        {
-            long longNumber;
-            errno = 0; /* set errno to zero before calling strtol(), which can change its value */
-            longNumber = strtol("0xfffffffff", NULL, 0);
-            /* FIX: Check errno to see if strtol() failed */
-            if (errno == ERANGE)
-            {
-                printLine("strtol() failed");
-                exit(1);
-            }
             printf("%li\n", longNumber);
         }
     }
@@ -54,22 +38,6 @@ void CWE391_Unchecked_Error_Condition__strtol_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            long longNumber;
-            errno = 0; /* set errno to zero before calling strtol(), which can change its value */
-            longNumber = strtol("0xfffffffff", NULL, 0);
-            /* FIX: Check errno to see if strtol() failed */
-            if (errno == ERANGE)
-            {
-                printLine("strtol() failed");
-                exit(1);
-            }
-            printf("%li\n", longNumber);
-        }
-    }
-    else
     {
         {
             long longNumber;

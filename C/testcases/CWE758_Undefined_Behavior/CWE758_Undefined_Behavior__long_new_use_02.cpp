@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__long_new_use_02
 
 void bad()
 {
-    if(1)
     {
         {
             long * pointer = new long;
@@ -37,15 +36,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(0) instead of if(1) */
-static void good1()
-{
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             long data;
@@ -64,7 +54,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(1)
     {
         {
             long data;

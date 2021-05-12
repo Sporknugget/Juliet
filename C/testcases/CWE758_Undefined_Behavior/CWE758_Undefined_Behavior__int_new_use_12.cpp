@@ -22,27 +22,12 @@ namespace CWE758_Undefined_Behavior__int_new_use_12
 
 void bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int * pointer = new int;
             int data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             delete pointer;
             printIntLine(data);
-        }
-    }
-    else
-    {
-        {
-            int data;
-            data = 5;
-            int * pointer = new int;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int data = *pointer;
-                printIntLine(data);
-            }
-            delete pointer;
         }
     }
 }
@@ -54,21 +39,6 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int data;
-            data = 5;
-            int * pointer = new int;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int data = *pointer;
-                printIntLine(data);
-            }
-            delete pointer;
-        }
-    }
-    else
     {
         {
             int data;

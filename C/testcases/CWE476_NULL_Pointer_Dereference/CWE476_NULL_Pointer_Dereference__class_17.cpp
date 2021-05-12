@@ -23,18 +23,14 @@ namespace CWE476_NULL_Pointer_Dereference__class_17
 
 void bad()
 {
-    int i,j;
     TwoIntsClass * data;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
-        /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
         delete data;
     }
 }
@@ -46,14 +42,11 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     TwoIntsClass * data;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -71,9 +64,7 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     TwoIntsClass * data;
-    for(h = 0; h < 1; h++)
     {
         {
             TwoIntsClass * tmpData = new TwoIntsClass;
@@ -83,7 +74,6 @@ static void goodG2B()
             data = tmpData;
         }
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

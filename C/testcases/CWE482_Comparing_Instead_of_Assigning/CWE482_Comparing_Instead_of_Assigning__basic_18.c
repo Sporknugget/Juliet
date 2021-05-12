@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE482_Comparing_Instead_of_Assigning__basic_18_bad()
 {
-    goto sink;
-sink:
     {
         int intBadSink = 0;
         /* Print original value to avoid any unused variable incidentals */
@@ -38,8 +36,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int intGoodSink = 0;
         /* Print original value to avoid any unused variable incidentals */

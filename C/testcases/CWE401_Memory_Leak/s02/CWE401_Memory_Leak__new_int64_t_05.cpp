@@ -36,7 +36,6 @@ void bad()
 {
     int64_t * data;
     data = NULL;
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t;
@@ -44,7 +43,6 @@ void bad()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -60,7 +58,6 @@ static void goodB2G1()
 {
     int64_t * data;
     data = NULL;
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t;
@@ -68,12 +65,6 @@ static void goodB2G1()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -85,7 +76,6 @@ static void goodB2G2()
 {
     int64_t * data;
     data = NULL;
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t;
@@ -93,7 +83,6 @@ static void goodB2G2()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    if(staticTrue)
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -105,12 +94,6 @@ static void goodG2B1()
 {
     int64_t * data;
     data = NULL;
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack */
         int64_t dataGoodBuffer;
@@ -119,7 +102,6 @@ static void goodG2B1()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -131,7 +113,6 @@ static void goodG2B2()
 {
     int64_t * data;
     data = NULL;
-    if(staticTrue)
     {
         /* FIX: Use memory allocated on the stack */
         int64_t dataGoodBuffer;
@@ -140,7 +121,6 @@ static void goodG2B2()
         *data = 5LL;
         printLongLongLine(*data);
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

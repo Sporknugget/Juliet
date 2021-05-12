@@ -26,15 +26,9 @@ void CWE124_Buffer_Underwrite__char_alloca_ncpy_12_bad()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
-    }
-    else
-    {
-        /* FIX: Set data pointer to the allocated memory buffer */
-        data = dataBuffer;
     }
     {
         char source[100];
@@ -60,12 +54,6 @@ static void goodG2B()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Set data pointer to the allocated memory buffer */
-        data = dataBuffer;
-    }
-    else
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;

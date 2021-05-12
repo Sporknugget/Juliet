@@ -31,7 +31,6 @@ void CWE401_Memory_Leak__twoIntsStruct_calloc_04_bad()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (twoIntsStruct *)calloc(100, sizeof(twoIntsStruct));
@@ -41,7 +40,6 @@ void CWE401_Memory_Leak__twoIntsStruct_calloc_04_bad()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -57,7 +55,6 @@ static void goodB2G1()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (twoIntsStruct *)calloc(100, sizeof(twoIntsStruct));
@@ -67,12 +64,6 @@ static void goodB2G1()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -84,7 +75,6 @@ static void goodB2G2()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (twoIntsStruct *)calloc(100, sizeof(twoIntsStruct));
@@ -94,7 +84,6 @@ static void goodB2G2()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -106,12 +95,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
@@ -120,7 +103,6 @@ static void goodG2B1()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -132,7 +114,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
@@ -141,7 +122,6 @@ static void goodG2B2()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

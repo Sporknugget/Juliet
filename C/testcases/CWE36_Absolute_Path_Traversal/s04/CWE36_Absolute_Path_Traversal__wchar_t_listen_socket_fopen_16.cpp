@@ -57,7 +57,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -138,7 +137,6 @@ void bad()
             }
 #endif
         }
-        break;
     }
     {
         FILE *pFile = NULL;
@@ -161,7 +159,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    while(1)
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
@@ -170,7 +167,6 @@ static void goodG2B()
         /* FIX: Use a fixed, full path and file name */
         wcscat(data, L"/tmp/file.txt");
 #endif
-        break;
     }
     {
         FILE *pFile = NULL;

@@ -28,17 +28,10 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_12_bad()
 {
     void * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
-    else
-    {
-        /* FIX: Set data to point to a char string */
-        data = (void *)CHAR_STRING;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -46,16 +39,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_12_bad()
             void * dest = (void *)ALLOCA((dataLen+1) * sizeof(wchar_t));
             (void)wcscpy(dest, data);
             printLine((char *)dest);
-        }
-    }
-    else
-    {
-        {
-            /* FIX: treating pointer like a wchar_t*  */
-            size_t dataLen = wcslen((wchar_t *)data);
-            void * dest = (void *)ALLOCA((dataLen+1) * sizeof(wchar_t));
-            (void)wcscpy(dest, data);
-            printWLine((wchar_t *)dest);
         }
     }
 }
@@ -71,27 +54,10 @@ static void goodB2G()
 {
     void * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Set data to point to a wide string */
-        data = (void *)WIDE_STRING;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* FIX: treating pointer like a wchar_t*  */
-            size_t dataLen = wcslen((wchar_t *)data);
-            void * dest = (void *)ALLOCA((dataLen+1) * sizeof(wchar_t));
-            (void)wcscpy(dest, data);
-            printWLine((wchar_t *)dest);
-        }
-    }
-    else
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -110,27 +76,10 @@ static void goodG2B()
 {
     void * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
     }
-    else
-    {
-        /* FIX: Set data to point to a char string */
-        data = (void *)CHAR_STRING;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
-            size_t dataLen = strlen((char *)data);
-            void * dest = (void *)ALLOCA((dataLen+1) * 1);
-            (void)strcpy(dest, data);
-            printLine((char *)dest);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */

@@ -24,8 +24,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_18_bad()
 {
-    goto sink;
-sink:
     {
         HANDLE hPipe;
         char * pipeName = PIPE_NAME;
@@ -59,8 +57,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         HANDLE hPipe;
         char * pipeName = PIPE_NAME;

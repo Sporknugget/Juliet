@@ -55,7 +55,6 @@ void CWE90_LDAP_Injection__w32_char_connect_socket_04_bad()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -187,12 +186,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");
@@ -255,7 +248,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");

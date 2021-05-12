@@ -25,10 +25,8 @@ namespace CWE126_Buffer_Overread__new_char_memmove_17
 
 void bad()
 {
-    int i;
     char * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Use a small buffer */
         data = new char[50];
@@ -55,10 +53,8 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     char * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a large buffer */
         data = new char[100];

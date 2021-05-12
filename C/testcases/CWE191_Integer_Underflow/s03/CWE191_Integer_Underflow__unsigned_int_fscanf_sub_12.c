@@ -23,35 +23,15 @@ void CWE191_Integer_Underflow__unsigned_int_fscanf_sub_12_bad()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
             unsigned int result = data - 1;
             printUnsignedLine(result);
-        }
-    }
-    else
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > 0)
-        {
-            unsigned int result = data - 1;
-            printUnsignedLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform subtraction.");
         }
     }
 }
@@ -67,30 +47,10 @@ static void goodB2G()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use a value input from the console */
-        fscanf (stdin, "%u", &data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > 0)
-        {
-            unsigned int result = data - 1;
-            printUnsignedLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform subtraction.");
-        }
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > 0)
@@ -112,25 +72,10 @@ static void goodG2B()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
-            unsigned int result = data - 1;
-            printUnsignedLine(result);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

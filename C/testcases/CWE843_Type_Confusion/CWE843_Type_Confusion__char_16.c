@@ -23,14 +23,12 @@ void CWE843_Type_Confusion__char_16_bad()
     void * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         {
             /* FLAW: Point data to a char */
             char charBuffer = 'a';
             data = &charBuffer;
         }
-        break;
     }
     /* POTENTIAL FLAW: Attempt to access data as an int */
     printIntLine(*((int*)data));
@@ -46,14 +44,12 @@ static void goodG2B()
     void * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         {
             /* FIX: Point data to an int */
             int intBuffer = 8;
             data = &intBuffer;
         }
-        break;
     }
     /* POTENTIAL FLAW: Attempt to access data as an int */
     printIntLine(*((int*)data));

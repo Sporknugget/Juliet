@@ -41,7 +41,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -54,7 +53,6 @@ void bad()
                 strncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
             }
         }
-        break;
     }
     {
         ifstream inputFile;
@@ -74,7 +72,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    while(1)
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
@@ -83,7 +80,6 @@ static void goodG2B()
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "/tmp/file.txt");
 #endif
-        break;
     }
     {
         ifstream inputFile;

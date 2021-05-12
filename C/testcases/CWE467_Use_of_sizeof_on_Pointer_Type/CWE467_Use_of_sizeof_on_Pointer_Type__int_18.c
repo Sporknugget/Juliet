@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__int_18_bad()
 {
-    goto sink;
-sink:
     {
         int * badInt = NULL;
         /* FLAW: Using sizeof the pointer and not the data type in malloc() */
@@ -39,8 +37,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int * goodInt = NULL;
         /* FIX: Using sizeof the data type in malloc() */

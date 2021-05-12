@@ -39,7 +39,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE377_Insecure_Temporary_File__wchar_t_tempnam_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * filename;
@@ -60,28 +59,6 @@ void CWE377_Insecure_Temporary_File__wchar_t_tempnam_12_bad()
             free(filename);
         }
     }
-    else
-    {
-        {
-            wchar_t * filename;
-            int fileDesc;
-            filename = TEMPNAM(NULL, NULL);
-            if (filename == NULL)
-            {
-                exit(1);
-            }
-            printWLine(filename);
-            /* FIX: Open a temporary file using open() and the O_CREAT and O_EXCL flags
-             * NOTE: This is not a perfect solution, but it is the base case scenario */
-            fileDesc = OPEN(filename, O_RDWR|O_CREAT|O_EXCL, S_IREAD|S_IWRITE);
-            if (fileDesc != -1)
-            {
-                printLine("Temporary file was opened...now closing file");
-                CLOSE(fileDesc);
-            }
-            free(filename);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -91,29 +68,6 @@ void CWE377_Insecure_Temporary_File__wchar_t_tempnam_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t * filename;
-            int fileDesc;
-            filename = TEMPNAM(NULL, NULL);
-            if (filename == NULL)
-            {
-                exit(1);
-            }
-            printWLine(filename);
-            /* FIX: Open a temporary file using open() and the O_CREAT and O_EXCL flags
-             * NOTE: This is not a perfect solution, but it is the base case scenario */
-            fileDesc = OPEN(filename, O_RDWR|O_CREAT|O_EXCL, S_IREAD|S_IWRITE);
-            if (fileDesc != -1)
-            {
-                printLine("Temporary file was opened...now closing file");
-                CLOSE(fileDesc);
-            }
-            free(filename);
-        }
-    }
-    else
     {
         {
             wchar_t * filename;

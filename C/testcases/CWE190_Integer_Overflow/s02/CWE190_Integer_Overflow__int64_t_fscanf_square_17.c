@@ -24,15 +24,12 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE190_Integer_Overflow__int64_t_fscanf_square_17_bad()
 {
-    int i,j;
     int64_t data;
     data = 0LL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
@@ -49,15 +46,12 @@ void CWE190_Integer_Overflow__int64_t_fscanf_square_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     int64_t data;
     data = 0LL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
@@ -75,15 +69,12 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     int64_t data;
     data = 0LL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */

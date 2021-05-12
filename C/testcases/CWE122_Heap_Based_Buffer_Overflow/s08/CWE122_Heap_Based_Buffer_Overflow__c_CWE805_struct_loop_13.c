@@ -22,7 +22,6 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_13_bad()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (twoIntsStruct *)malloc(50*sizeof(twoIntsStruct));
@@ -61,12 +60,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
@@ -101,7 +94,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));

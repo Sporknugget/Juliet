@@ -22,11 +22,9 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE563_Unused_Variable__unused_init_variable_long_17_bad()
 {
-    int j;
     long data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5L;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -41,11 +39,9 @@ void CWE563_Unused_Variable__unused_init_variable_long_17_bad()
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
-    int k;
     long data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5L;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Use data */
         printLongLine(data);

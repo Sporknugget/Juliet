@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE390_Error_Without_Action__fopen_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             FILE * fileDesc = NULL;
@@ -28,20 +27,6 @@ void CWE390_Error_Without_Action__fopen_12_bad()
             if (fileDesc == NULL)
             {
                 /* do nothing */
-            }
-            fclose(fileDesc);
-        }
-    }
-    else
-    {
-        {
-            FILE * fileDesc = NULL;
-            fileDesc = fopen("file.txt", "w+");
-            /* FIX: Check to see if fopen failed and handle the error */
-            if (fileDesc == NULL)
-            {
-                printLine("fopen() failed");
-                exit(1);
             }
             fclose(fileDesc);
         }
@@ -55,21 +40,6 @@ void CWE390_Error_Without_Action__fopen_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            FILE * fileDesc = NULL;
-            fileDesc = fopen("file.txt", "w+");
-            /* FIX: Check to see if fopen failed and handle the error */
-            if (fileDesc == NULL)
-            {
-                printLine("fopen() failed");
-                exit(1);
-            }
-            fclose(fileDesc);
-        }
-    }
-    else
     {
         {
             FILE * fileDesc = NULL;

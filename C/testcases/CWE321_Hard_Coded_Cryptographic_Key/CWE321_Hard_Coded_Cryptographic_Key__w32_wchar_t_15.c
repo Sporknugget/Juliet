@@ -31,17 +31,8 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_wchar_t_15_bad()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
         wcscpy(cryptoKey, CRYPTO_KEY);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         HCRYPTPROV hCryptProv;
         HCRYPTKEY hKey;
@@ -112,13 +103,6 @@ static void goodG2B1()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         size_t cryptoKeyLen = wcslen(cryptoKey);
         /* if there is room in cryptoKey, read into it from the console */
@@ -139,8 +123,6 @@ static void goodG2B1()
                 cryptoKey[cryptoKeyLen-1] = L'\0';
             }
         }
-    }
-    break;
     }
     {
         HCRYPTPROV hCryptProv;
@@ -208,9 +190,6 @@ static void goodG2B2()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
-    switch(6)
-    {
-    case 6:
     {
         size_t cryptoKeyLen = wcslen(cryptoKey);
         /* if there is room in cryptoKey, read into it from the console */
@@ -231,12 +210,6 @@ static void goodG2B2()
                 cryptoKey[cryptoKeyLen-1] = L'\0';
             }
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         HCRYPTPROV hCryptProv;

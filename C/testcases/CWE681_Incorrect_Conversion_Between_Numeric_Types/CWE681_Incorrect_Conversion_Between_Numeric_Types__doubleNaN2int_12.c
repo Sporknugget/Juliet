@@ -22,7 +22,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -44,36 +43,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_12_bad()
             printIntLine((int)(sqrt(doubleNumber)));
         }
     }
-    else
-    {
-        {
-            char inputBuffer[CHAR_ARRAY_SIZE];
-            double doubleNumber = 0;
-            /*  * Enter: -2.0, result should be 0 (for bad case)
-             *
-             * Square root of a negative number is NaN. NaN when casted to int is 0.
-             */
-            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
-            {
-                /* Read a double */
-                doubleNumber = atof(inputBuffer);
-            }
-            else
-            {
-                printLine("fgets() failed.");
-            }
-            /* FIX: ensure number is non-negative and less thatn INT_MAX squared */
-            /* NOTE: The number could be really large, however we are testing NaN here */
-            if (doubleNumber < 0)
-            {
-                printLine("Value is negative");
-            }
-            else
-            {
-                printIntLine((int)(sqrt(doubleNumber)));
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -83,37 +52,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            char inputBuffer[CHAR_ARRAY_SIZE];
-            double doubleNumber = 0;
-            /*  * Enter: -2.0, result should be 0 (for bad case)
-             *
-             * Square root of a negative number is NaN. NaN when casted to int is 0.
-             */
-            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
-            {
-                /* Read a double */
-                doubleNumber = atof(inputBuffer);
-            }
-            else
-            {
-                printLine("fgets() failed.");
-            }
-            /* FIX: ensure number is non-negative and less thatn INT_MAX squared */
-            /* NOTE: The number could be really large, however we are testing NaN here */
-            if (doubleNumber < 0)
-            {
-                printLine("Value is negative");
-            }
-            else
-            {
-                printIntLine((int)(sqrt(doubleNumber)));
-            }
-        }
-    }
-    else
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];

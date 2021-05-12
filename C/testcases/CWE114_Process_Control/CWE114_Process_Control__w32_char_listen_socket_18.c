@@ -47,8 +47,6 @@ void CWE114_Process_Control__w32_char_listen_socket_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -155,8 +153,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Specify the full pathname for the library */
     strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
     {

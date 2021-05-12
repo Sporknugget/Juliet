@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__struct_pointer_new_use_16
 
 void bad()
 {
-    while(1)
     {
         {
             twoIntsStruct * * pointer = new twoIntsStruct *;
@@ -31,7 +30,6 @@ void bad()
             printIntLine(data->intOne);
             printIntLine(data->intTwo);
         }
-        break;
     }
 }
 
@@ -42,7 +40,6 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
-    while(1)
     {
         {
             twoIntsStruct * data;
@@ -59,7 +56,6 @@ static void good1()
             }
             delete pointer;
         }
-        break;
     }
 }
 

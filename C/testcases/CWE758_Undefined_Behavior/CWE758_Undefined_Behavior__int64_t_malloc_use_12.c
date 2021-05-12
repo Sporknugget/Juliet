@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__int64_t_malloc_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
@@ -27,21 +26,6 @@ void CWE758_Undefined_Behavior__int64_t_malloc_use_12_bad()
             int64_t data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             free(pointer);
             printLongLongLine(data);
-        }
-    }
-    else
-    {
-        {
-            int64_t data;
-            int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
-            if (pointer == NULL) {exit(-1);}
-            data = 5LL;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int64_t data = *pointer;
-                printLongLongLine(data);
-            }
-            free(pointer);
         }
     }
 }
@@ -53,22 +37,6 @@ void CWE758_Undefined_Behavior__int64_t_malloc_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int64_t data;
-            int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
-            if (pointer == NULL) {exit(-1);}
-            data = 5LL;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int64_t data = *pointer;
-                printLongLongLine(data);
-            }
-            free(pointer);
-        }
-    }
-    else
     {
         {
             int64_t data;

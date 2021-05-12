@@ -50,9 +50,6 @@ void CWE78_OS_Command_Injection__char_environment_w32_spawnv_15_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -63,12 +60,6 @@ void CWE78_OS_Command_Injection__char_environment_w32_spawnv_15_bad()
             /* POTENTIAL FLAW: Read data from an environment variable */
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
@@ -88,17 +79,8 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
-    }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
         /* spawnv - specify the path where the command is located */
@@ -113,17 +95,8 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
         /* spawnv - specify the path where the command is located */

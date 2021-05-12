@@ -23,13 +23,11 @@ void CWE675_Duplicate_Operations_on_Resource__fopen_03_bad()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(5==5)
     {
         data = fopen("BadSource_fopen.txt", "w+");
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
@@ -45,18 +43,11 @@ static void goodB2G1()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(5==5)
     {
         data = fopen("BadSource_fopen.txt", "w+");
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -69,13 +60,11 @@ static void goodB2G2()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(5==5)
     {
         data = fopen("BadSource_fopen.txt", "w+");
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
-    if(5==5)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -88,17 +77,10 @@ static void goodG2B1()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Open, but do not close the file in the source */
         data = fopen("GoodSource_fopen.txt", "w+");
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
@@ -110,12 +92,10 @@ static void goodG2B2()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(5==5)
     {
         /* FIX: Open, but do not close the file in the source */
         data = fopen("GoodSource_fopen.txt", "w+");
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);

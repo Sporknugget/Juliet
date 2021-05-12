@@ -24,12 +24,10 @@ Template File: sources-sinks-10.tmpl.c
 void CWE563_Unused_Variable__unused_value_long_10_bad()
 {
     long data;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;
@@ -45,17 +43,10 @@ void CWE563_Unused_Variable__unused_value_long_10_bad()
 static void goodB2G1()
 {
     long data;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use data without over-writing its value */
         printLongLine(data);
@@ -66,12 +57,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     long data;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
     }
-    if(globalTrue)
     {
         /* FIX: Use data without over-writing its value */
         printLongLine(data);
@@ -82,18 +71,11 @@ static void goodB2G2()
 static void goodG2B1()
 {
     long data;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5L;
         printLongLine(data);
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;
@@ -105,13 +87,11 @@ static void goodG2B1()
 static void goodG2B2()
 {
     long data;
-    if(globalTrue)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5L;
         printLongLine(data);
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;

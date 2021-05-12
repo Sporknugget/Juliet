@@ -19,30 +19,12 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE483_Incorrect_Block_Delimitation__semicolon_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int x = (rand() % 3);
             int y = 0;
             /* FLAW: Suspicious semicolon before the if statement brace */
             if (x == 0);
-            {
-                printLine("x == 0");
-                y = 1;
-            }
-            if (y)
-            {
-                printLine("x was 0\n");
-            }
-        }
-    }
-    else
-    {
-        {
-            int x = (rand() % 3);
-            int y = 0;
-            /* FIX: Removed suspicious semicolon before the if statement brace */
-            if (x == 0)
             {
                 printLine("x == 0");
                 y = 1;
@@ -62,24 +44,6 @@ void CWE483_Incorrect_Block_Delimitation__semicolon_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int x = (rand() % 3);
-            int y = 0;
-            /* FIX: Removed suspicious semicolon before the if statement brace */
-            if (x == 0)
-            {
-                printLine("x == 0");
-                y = 1;
-            }
-            if (y)
-            {
-                printLine("x was 0\n");
-            }
-        }
-    }
-    else
     {
         {
             int x = (rand() % 3);

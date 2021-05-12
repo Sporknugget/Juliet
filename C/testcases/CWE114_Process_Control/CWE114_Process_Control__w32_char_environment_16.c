@@ -35,7 +35,6 @@ void CWE114_Process_Control__w32_char_environment_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -48,7 +47,6 @@ void CWE114_Process_Control__w32_char_environment_16_bad()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
-        break;
     }
     {
         HMODULE hModule;
@@ -77,11 +75,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
-        break;
     }
     {
         HMODULE hModule;

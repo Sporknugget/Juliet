@@ -28,7 +28,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_fprintf_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -55,13 +54,10 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_fprintf_16_bad()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fwprintf(stdout, data);
-        break;
     }
 }
 
@@ -75,7 +71,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -102,13 +97,10 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         fwprintf(stdout, L"%s\n", data);
-        break;
     }
 }
 
@@ -118,17 +110,13 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fwprintf(stdout, data);
-        break;
     }
 }
 

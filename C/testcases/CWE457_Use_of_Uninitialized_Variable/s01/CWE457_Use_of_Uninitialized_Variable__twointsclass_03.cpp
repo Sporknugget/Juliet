@@ -25,12 +25,10 @@ namespace CWE457_Use_of_Uninitialized_Variable__twointsclass_03
 void bad()
 {
     TwoIntsClass data;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);
@@ -46,17 +44,10 @@ void bad()
 static void goodB2G1()
 {
     TwoIntsClass data;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         data.intOne = 1;
@@ -70,12 +61,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     TwoIntsClass data;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(5==5)
     {
         /* FIX: Ensure data is initialized before use */
         data.intOne = 1;
@@ -89,18 +78,11 @@ static void goodB2G2()
 static void goodG2B1()
 {
     TwoIntsClass data;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         data.intOne = 1;
         data.intTwo = 2;
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);
@@ -112,13 +94,11 @@ static void goodG2B1()
 static void goodG2B2()
 {
     TwoIntsClass data;
-    if(5==5)
     {
         /* FIX: Initialize data */
         data.intOne = 1;
         data.intTwo = 2;
     }
-    if(5==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);

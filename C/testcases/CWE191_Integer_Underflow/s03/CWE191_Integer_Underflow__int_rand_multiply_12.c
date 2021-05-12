@@ -24,39 +24,16 @@ void CWE191_Integer_Underflow__int_rand_multiply_12_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* POTENTIAL FLAW: if (data * 2) < INT_MIN, this will underflow */
             int result = data * 2;
             printIntLine(result);
-        }
-    }
-    else
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* FIX: Add a check to prevent an underflow from occurring */
-            if (data > (INT_MIN/2))
-            {
-                int result = data * 2;
-                printIntLine(result);
-            }
-            else
-            {
-                printLine("data value is too small to perform multiplication.");
-            }
         }
     }
 }
@@ -73,33 +50,10 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    else
-    {
-        /* POTENTIAL FLAW: Set data to a random value */
-        data = RAND32();
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* FIX: Add a check to prevent an underflow from occurring */
-            if (data > (INT_MIN/2))
-            {
-                int result = data * 2;
-                printIntLine(result);
-            }
-            else
-            {
-                printLine("data value is too small to perform multiplication.");
-            }
-        }
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -125,26 +79,10 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* POTENTIAL FLAW: if (data * 2) < INT_MIN, this will underflow */
-            int result = data * 2;
-            printIntLine(result);
-        }
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

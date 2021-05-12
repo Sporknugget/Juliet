@@ -21,7 +21,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE475_Undefined_Behavior_for_Input_to_API__char_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             char dataBuffer[100] = "";
@@ -29,17 +28,6 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_12_bad()
             strcpy(data, "abcdefghijklmnopqrstuvwxyz");
             /* FLAW: Copy overlapping memory regions using memcpy() for which the result is undefined */
             memcpy(data + 6, data + 4, 10*sizeof(char));
-            printLine(data);
-        }
-    }
-    else
-    {
-        {
-            char dataBuffer[100] = "";
-            char * data = dataBuffer;
-            strcpy(data, "abcdefghijklmnopqrstuvwxyz");
-            /* FIX: Copy overlapping memory regions using memmove() */
-            memmove(data + 6, data + 4, 10*sizeof(char));
             printLine(data);
         }
     }
@@ -52,18 +40,6 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            char dataBuffer[100] = "";
-            char * data = dataBuffer;
-            strcpy(data, "abcdefghijklmnopqrstuvwxyz");
-            /* FIX: Copy overlapping memory regions using memmove() */
-            memmove(data + 6, data + 4, 10*sizeof(char));
-            printLine(data);
-        }
-    }
-    else
     {
         {
             char dataBuffer[100] = "";

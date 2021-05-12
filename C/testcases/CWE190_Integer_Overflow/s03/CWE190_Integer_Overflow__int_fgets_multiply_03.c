@@ -26,7 +26,6 @@ void CWE190_Integer_Overflow__int_fgets_multiply_03_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -42,7 +41,6 @@ void CWE190_Integer_Overflow__int_fgets_multiply_03_bad()
             }
         }
     }
-    if(5==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -63,7 +61,6 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -79,12 +76,6 @@ static void goodB2G1()
             }
         }
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -108,7 +99,6 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -124,7 +114,6 @@ static void goodB2G2()
             }
         }
     }
-    if(5==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -148,17 +137,10 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    if(5==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -175,12 +157,10 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    if(5==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

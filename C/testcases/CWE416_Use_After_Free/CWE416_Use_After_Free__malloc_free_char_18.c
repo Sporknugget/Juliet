@@ -26,16 +26,12 @@ void CWE416_Use_After_Free__malloc_free_char_18_bad()
     char * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 100-1);
     data[100-1] = '\0';
     /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
     free(data);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use of data that may have been freed */
     printLine(data);
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -51,16 +47,12 @@ static void goodB2G()
     char * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 100-1);
     data[100-1] = '\0';
     /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
     free(data);
-    goto sink;
-sink:
     /* FIX: Don't use data that may have been freed already */
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
     /* do nothing */
@@ -73,15 +65,11 @@ static void goodG2B()
     char * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 100-1);
     data[100-1] = '\0';
     /* FIX: Do not free data in the source */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use of data that may have been freed */
     printLine(data);
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */

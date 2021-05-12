@@ -21,8 +21,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE617_Reachable_Assertion__zero_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: this assertion can be reached, and will always trigger */
         assert(0); /* INCIDENTAL: CWE 571 - expression is always true - it's "true" because assert(e) basically does if (!(e)) */
@@ -36,8 +34,6 @@ void CWE617_Reachable_Assertion__zero_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
         * function, assert(1)

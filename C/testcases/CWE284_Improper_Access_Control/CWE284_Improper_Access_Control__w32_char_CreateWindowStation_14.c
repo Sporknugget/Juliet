@@ -22,7 +22,6 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateWindowStation_14_bad()
 {
-    if(globalFive==5)
     {
         {
             HWINSTA hWinStation;
@@ -50,15 +49,6 @@ void CWE284_Improper_Access_Control__w32_char_CreateWindowStation_14_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
-static void good1()
-{
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HWINSTA hWinStation;
@@ -85,7 +75,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalFive==5)
     {
         {
             HWINSTA hWinStation;

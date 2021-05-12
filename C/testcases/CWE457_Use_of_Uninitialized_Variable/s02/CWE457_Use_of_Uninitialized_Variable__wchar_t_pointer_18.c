@@ -24,12 +24,8 @@ Template File: sources-sinks-18.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_18_bad()
 {
     wchar_t * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     printWLine(data);
 }
@@ -42,12 +38,8 @@ sink:
 static void goodB2G()
 {
     wchar_t * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* FIX: Ensure data is initialized before use */
     data = L"string";
     printWLine(data);
@@ -57,12 +49,8 @@ sink:
 static void goodG2B()
 {
     wchar_t * data;
-    goto source;
-source:
     /* FIX: Initialize data */
     data = L"string";
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     printWLine(data);
 }

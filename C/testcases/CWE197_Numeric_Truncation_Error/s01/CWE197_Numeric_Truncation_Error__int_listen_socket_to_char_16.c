@@ -45,7 +45,6 @@ void CWE197_Numeric_Truncation_Error__int_listen_socket_to_char_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -116,7 +115,6 @@ void CWE197_Numeric_Truncation_Error__int_listen_socket_to_char_16_bad()
             }
 #endif
         }
-        break;
     }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
@@ -135,11 +133,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
-        break;
     }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */

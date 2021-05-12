@@ -46,7 +46,6 @@ void CWE194_Unexpected_Sign_Extension__listen_socket_strncpy_16_bad()
     short data;
     /* Initialize data */
     data = 0;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -127,7 +126,6 @@ void CWE194_Unexpected_Sign_Extension__listen_socket_strncpy_16_bad()
             }
 #endif
         }
-        break;
     }
     {
         char source[100];
@@ -155,11 +153,9 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    while(1)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
-        break;
     }
     {
         char source[100];

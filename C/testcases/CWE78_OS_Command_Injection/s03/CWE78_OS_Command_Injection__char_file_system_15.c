@@ -44,9 +44,6 @@ void CWE78_OS_Command_Injection__char_file_system_15_bad()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    switch(6)
-    {
-    case 6:
     {
         /* Read input from a file */
         size_t dataLen = strlen(data);
@@ -68,12 +65,6 @@ void CWE78_OS_Command_Injection__char_file_system_15_bad()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)
     {
@@ -92,17 +83,8 @@ static void goodG2B1()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
-    }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)
     {
@@ -117,17 +99,8 @@ static void goodG2B2()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    switch(6)
-    {
-    case 6:
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)
     {

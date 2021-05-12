@@ -46,8 +46,6 @@ void CWE190_Integer_Overflow__int_connect_socket_preinc_18_bad()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -104,8 +102,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Incrementing data could cause an overflow */
         ++data;
@@ -124,8 +120,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -182,8 +176,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an overflow from occurring */
     if (data < INT_MAX)
     {
@@ -203,12 +195,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
     data = 2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Incrementing data could cause an overflow */
         ++data;

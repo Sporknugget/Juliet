@@ -30,12 +30,10 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_04_bad()
 {
     wchar_t * data;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printWLine(data);
@@ -50,17 +48,10 @@ void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_04_bad()
 static void goodB2G1()
 {
     wchar_t * data;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         data = L"string";
@@ -72,12 +63,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     wchar_t * data;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Ensure data is initialized before use */
         data = L"string";
@@ -89,17 +78,10 @@ static void goodB2G2()
 static void goodG2B1()
 {
     wchar_t * data;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         data = L"string";
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printWLine(data);
@@ -110,12 +92,10 @@ static void goodG2B1()
 static void goodG2B2()
 {
     wchar_t * data;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Initialize data */
         data = L"string";
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printWLine(data);

@@ -24,12 +24,8 @@ Template File: sources-sinks-18.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__int_18_bad()
 {
     int data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     printIntLine(data);
 }
@@ -42,12 +38,8 @@ sink:
 static void goodB2G()
 {
     int data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* FIX: Ensure data is initialized before use */
     data = 5;
     printIntLine(data);
@@ -57,12 +49,8 @@ sink:
 static void goodG2B()
 {
     int data;
-    goto source;
-source:
     /* FIX: Initialize data */
     data = 5;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     printIntLine(data);
 }

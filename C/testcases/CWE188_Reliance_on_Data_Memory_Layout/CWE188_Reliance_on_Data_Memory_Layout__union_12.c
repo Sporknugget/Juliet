@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__union_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             union
@@ -37,21 +36,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_12_bad()
             printIntLine(unionStructLong.longNumber);
         }
     }
-    else
-    {
-        {
-            long longNumber;
-            longNumber = 0x10203040;
-            /* FIX: Use mechanisms that are not dependent upon size, alignment/packing,
-             * or byte order to accomplish equivalent functionality
-             *
-             * Technically this 'fix' here still depends on twos-complement hardware,
-             * but everything nowadays is twos-complement
-             */
-            longNumber |= LONG_MIN;
-            printIntLine(longNumber);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -61,22 +45,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            long longNumber;
-            longNumber = 0x10203040;
-            /* FIX: Use mechanisms that are not dependent upon size, alignment/packing,
-             * or byte order to accomplish equivalent functionality
-             *
-             * Technically this 'fix' here still depends on twos-complement hardware,
-             * but everything nowadays is twos-complement
-             */
-            longNumber |= LONG_MIN;
-            printIntLine(longNumber);
-        }
-    }
-    else
     {
         {
             long longNumber;

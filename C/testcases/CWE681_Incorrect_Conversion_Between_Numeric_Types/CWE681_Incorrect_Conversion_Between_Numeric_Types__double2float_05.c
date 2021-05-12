@@ -28,7 +28,6 @@ static int staticFalse = 0; /* false */
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_05_bad()
 {
-    if(staticTrue)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -57,15 +56,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -100,7 +90,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];

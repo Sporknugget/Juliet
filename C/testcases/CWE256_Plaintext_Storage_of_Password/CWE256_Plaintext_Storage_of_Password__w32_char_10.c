@@ -32,7 +32,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_10_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalTrue)
     {
         {
             FILE *pFile;
@@ -52,7 +51,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_10_bad()
             }
         }
     }
-    if(globalTrue)
     {
         {
             HANDLE pHandle;
@@ -88,7 +86,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalTrue)
     {
         {
             FILE *pFile;
@@ -108,12 +105,6 @@ static void goodB2G1()
             }
         }
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HANDLE pHandle;
@@ -199,7 +190,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalTrue)
     {
         {
             FILE *pFile;
@@ -219,7 +209,6 @@ static void goodB2G2()
             }
         }
     }
-    if(globalTrue)
     {
         {
             HANDLE pHandle;
@@ -305,12 +294,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             FILE *pFile;
@@ -384,7 +367,6 @@ static void goodG2B1()
             }
         }
     }
-    if(globalTrue)
     {
         {
             HANDLE pHandle;
@@ -416,7 +398,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalTrue)
     {
         {
             FILE *pFile;
@@ -490,7 +471,6 @@ static void goodG2B2()
             }
         }
     }
-    if(globalTrue)
     {
         {
             HANDLE pHandle;

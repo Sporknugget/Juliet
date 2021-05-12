@@ -22,8 +22,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE131_memcpy_18_bad()
 {
     int * data;
     data = NULL;
-    goto source;
-source:
     /* FLAW: Allocate memory without using sizeof(int) */
     data = (int *)ALLOCA(10);
     {
@@ -43,8 +41,6 @@ static void goodG2B()
 {
     int * data;
     data = NULL;
-    goto source;
-source:
     /* FIX: Allocate memory using sizeof(int) */
     data = (int *)ALLOCA(10*sizeof(int));
     {

@@ -26,20 +26,16 @@ void bad()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    while(1)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
-        break;
     }
 }
 
@@ -53,19 +49,15 @@ static void goodB2G()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    while(1)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
-        break;
     }
-    while(1)
     {
         /* FIX: Free memory using free() */
         free(data);
-        break;
     }
 }
 
@@ -75,18 +67,14 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    while(1)
     {
         /* FIX: Allocate memory using new [] */
         data = new int64_t[100];
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
-        break;
     }
 }
 

@@ -23,37 +23,16 @@ void CWE191_Integer_Underflow__int64_t_min_predec_12_bad()
 {
     int64_t data;
     data = 0LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
             --data;
             int64_t result = data;
             printLongLongLine(result);
-        }
-    }
-    else
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > LLONG_MIN)
-        {
-            --data;
-            int64_t result = data;
-            printLongLongLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -69,31 +48,10 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use the minimum size of the data type */
-        data = LLONG_MIN;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > LLONG_MIN)
-        {
-            --data;
-            int64_t result = data;
-            printLongLongLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform arithmetic safely.");
-        }
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -116,26 +74,10 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: Decrementing data could cause an underflow */
-            --data;
-            int64_t result = data;
-            printLongLongLine(result);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */

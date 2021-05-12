@@ -23,27 +23,14 @@ void CWE675_Duplicate_Operations_on_Resource__freopen_12_bad()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
     {
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
-    else
-    {
-        /* FIX: Open, but do not close the file in the source */
-        data = fopen("GoodSource_fopen.txt", "w+");
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
-    }
-    else
-    {
-        /* Do nothing */
-        /* FIX: Don't close the file in the sink */
-        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -58,25 +45,11 @@ static void goodB2G()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
     {
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
-    else
-    {
-        data = freopen("BadSource_freopen.txt","w+",stdin);
-        /* POTENTIAL FLAW: Close the file in the source */
-        fclose(data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* Do nothing */
-        /* FIX: Don't close the file in the sink */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -91,22 +64,10 @@ static void goodG2B()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Open, but do not close the file in the source */
         data = fopen("GoodSource_fopen.txt", "w+");
     }
-    else
-    {
-        /* FIX: Open, but do not close the file in the source */
-        data = fopen("GoodSource_fopen.txt", "w+");
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
-        fclose(data);
-    }
-    else
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);

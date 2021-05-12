@@ -27,19 +27,11 @@ void bad()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a small buffer */
         data = new char[50];
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
-    }
-    else
-    {
-        /* FIX: Use a large buffer */
-        data = new char[100];
-        memset(data, 'A', 100-1); /* fill with 'A's */
-        data[100-1] = '\0'; /* null terminate */
     }
     {
         size_t i, destLen;
@@ -69,14 +61,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a large buffer */
-        data = new char[100];
-        memset(data, 'A', 100-1); /* fill with 'A's */
-        data[100-1] = '\0'; /* null terminate */
-    }
-    else
     {
         /* FIX: Use a large buffer */
         data = new char[100];

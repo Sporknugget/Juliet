@@ -22,7 +22,6 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE252_Unchecked_Return_Value__w32ImpersonateSelf_13_bad()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FLAW: Do not check if ImpersonateSelf() fails */
         ImpersonateSelf(SecurityImpersonation);
@@ -33,15 +32,6 @@ void CWE252_Unchecked_Return_Value__w32ImpersonateSelf_13_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
-static void good1()
-{
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check to see if ImpersonateSelf() fails */
         if (!ImpersonateSelf(SecurityImpersonation))
@@ -54,7 +44,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Check to see if ImpersonateSelf() fails */
         if (!ImpersonateSelf(SecurityImpersonation))

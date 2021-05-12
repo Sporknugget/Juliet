@@ -21,7 +21,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_loop_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             char src[150], dest[100];
@@ -43,15 +42,6 @@ void CWE126_Buffer_Overread__CWE170_char_loop_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char src[150], dest[100];
@@ -72,7 +62,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             char src[150], dest[100];

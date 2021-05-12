@@ -21,7 +21,6 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__wcstombs_13_bad()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
             size_t bytesTranslated = 0;
@@ -39,15 +38,6 @@ void CWE391_Unchecked_Error_Condition__wcstombs_13_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
-static void good1()
-{
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t bytesTranslated = 0;
@@ -70,7 +60,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
             size_t bytesTranslated = 0;

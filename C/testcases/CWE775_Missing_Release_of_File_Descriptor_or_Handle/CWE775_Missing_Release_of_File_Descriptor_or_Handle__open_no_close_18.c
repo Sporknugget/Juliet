@@ -34,8 +34,6 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__open_no_close_18_bad()
     data = -1;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    goto sink;
-sink:
     /* FLAW: No attempt to close the file */
     ; /* empty statement needed for some flow variants */
 }
@@ -52,8 +50,6 @@ static void goodB2G()
     data = -1;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    goto sink;
-sink:
     /* FIX: If the file is still opened, close it */
     if (data != -1)
     {

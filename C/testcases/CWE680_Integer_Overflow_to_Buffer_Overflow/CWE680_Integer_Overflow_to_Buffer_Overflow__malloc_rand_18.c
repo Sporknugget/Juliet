@@ -23,8 +23,6 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_rand_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = RAND32();
     {
@@ -53,8 +51,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Set data to a relatively small number greater than zero */
     data = 20;
     {

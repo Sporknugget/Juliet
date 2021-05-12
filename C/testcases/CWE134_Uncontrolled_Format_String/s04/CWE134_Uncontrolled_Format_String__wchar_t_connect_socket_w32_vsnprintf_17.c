@@ -60,11 +60,9 @@ static void badVaSinkB(wchar_t * data, ...)
 
 void CWE134_Uncontrolled_Format_String__wchar_t_connect_socket_w32_vsnprintf_17_bad()
 {
-    int i,j;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -134,7 +132,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_connect_socket_w32_vsnprintf_17_
 #endif
         }
     }
-    for(j = 0; j < 1; j++)
     {
         badVaSinkB(data, data);
     }
@@ -160,11 +157,9 @@ static void goodB2GVaSinkG(wchar_t * data, ...)
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -234,7 +229,6 @@ static void goodB2G()
 #endif
         }
     }
-    for(k = 0; k < 1; k++)
     {
         goodB2GVaSinkG(data, data);
     }
@@ -256,16 +250,13 @@ static void goodG2BVaSinkB(wchar_t * data, ...)
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    for(j = 0; j < 1; j++)
     {
         goodG2BVaSinkB(data, data);
     }

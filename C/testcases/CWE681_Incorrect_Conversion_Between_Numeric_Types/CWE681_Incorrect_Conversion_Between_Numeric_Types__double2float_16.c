@@ -22,7 +22,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_16_bad()
 {
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -44,7 +43,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_16_bad()
             /* FLAW: should not cast without checking if conversion is safe */
             printFloatLine((float)doubleNumber);
         }
-        break;
     }
 }
 
@@ -55,7 +53,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -84,7 +81,6 @@ static void good1()
                 printFloatLine((float)doubleNumber);
             }
         }
-        break;
     }
 }
 

@@ -28,7 +28,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -43,7 +42,6 @@ void bad()
                 printLine("fgets() failed.");
             }
         }
-        break;
     }
     {
         size_t dataBytes,i;
@@ -70,11 +68,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
-        break;
     }
     {
         size_t dataBytes,i;

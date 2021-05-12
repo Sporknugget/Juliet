@@ -42,7 +42,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_snprintf_12_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -56,26 +55,11 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_snprintf_12_bad()
             }
         }
     }
-    else
-    {
-        /* FIX: Use a fixed string that does not contain a format specifier */
-        wcscpy(data, L"fixedstringtest");
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t dest[100] = L"";
             /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
             SNPRINTF(dest, 100-1, data);
-            printWLine(dest);
-        }
-    }
-    else
-    {
-        {
-            wchar_t dest[100] = L"";
-            /* FIX: Specify the format disallowing a format string vulnerability */
-            SNPRINTF(dest, 100-1, L"%s", data);
             printWLine(dest);
         }
     }
@@ -93,7 +77,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -107,30 +90,6 @@ static void goodB2G()
             }
         }
     }
-    else
-    {
-        {
-            /* Append input from an environment variable to data */
-            size_t dataLen = wcslen(data);
-            wchar_t * environment = GETENV(ENV_VARIABLE);
-            /* If there is data in the environment variable */
-            if (environment != NULL)
-            {
-                /* POTENTIAL FLAW: Read data from an environment variable */
-                wcsncat(data+dataLen, environment, 100-dataLen-1);
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t dest[100] = L"";
-            /* FIX: Specify the format disallowing a format string vulnerability */
-            SNPRINTF(dest, 100-1, L"%s", data);
-            printWLine(dest);
-        }
-    }
-    else
     {
         {
             wchar_t dest[100] = L"";
@@ -149,26 +108,10 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    else
-    {
-        /* FIX: Use a fixed string that does not contain a format specifier */
-        wcscpy(data, L"fixedstringtest");
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t dest[100] = L"";
-            /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
-            SNPRINTF(dest, 100-1, data);
-            printWLine(dest);
-        }
-    }
-    else
     {
         {
             wchar_t dest[100] = L"";

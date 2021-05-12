@@ -28,9 +28,6 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_15
 
 void bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char charBuffer[CHAR_BUFFER_SIZE];
         /* FLAW: using cin in an inherently dangerous fashion */
@@ -38,12 +35,6 @@ void bad()
         cin >> charBuffer;
         charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
         printLine(charBuffer);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -54,13 +45,6 @@ void bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char charBuffer[CHAR_BUFFER_SIZE];
         /* FIX: Use cin after specifying the length of the input */
@@ -68,17 +52,12 @@ static void good1()
         cin >> charBuffer;
         charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
         printLine(charBuffer);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char charBuffer[CHAR_BUFFER_SIZE];
         /* FIX: Use cin after specifying the length of the input */
@@ -86,12 +65,6 @@ static void good2()
         cin >> charBuffer;
         charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
         printLine(charBuffer);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

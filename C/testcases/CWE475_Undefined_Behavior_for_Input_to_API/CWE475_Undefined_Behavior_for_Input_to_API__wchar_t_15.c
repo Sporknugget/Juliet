@@ -21,9 +21,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t dataBuffer[100] = L"";
         wchar_t * data = dataBuffer;
@@ -31,12 +28,6 @@ void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_15_bad()
         /* FLAW: Copy overlapping memory regions using memcpy() for which the result is undefined */
         memcpy(data + 6, data + 4, 10*sizeof(wchar_t));
         printWLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -47,13 +38,6 @@ void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         wchar_t dataBuffer[100] = L"";
         wchar_t * data = dataBuffer;
@@ -61,17 +45,12 @@ static void good1()
         /* FIX: Copy overlapping memory regions using memmove() */
         memmove(data + 6, data + 4, 10*sizeof(wchar_t));
         printWLine(data);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t dataBuffer[100] = L"";
         wchar_t * data = dataBuffer;
@@ -79,12 +58,6 @@ static void good2()
         /* FIX: Copy overlapping memory regions using memmove() */
         memmove(data + 6, data + 4, 10*sizeof(wchar_t));
         printWLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

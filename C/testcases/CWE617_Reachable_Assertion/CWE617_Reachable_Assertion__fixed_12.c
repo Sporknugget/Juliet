@@ -27,15 +27,9 @@ void CWE617_Reachable_Assertion__fixed_12_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a value less than the assert value */
         data = ASSERT_VALUE-1;
-    }
-    else
-    {
-        /* FIX: Use a value greater than the assert value */
-        data = ASSERT_VALUE+1;
     }
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
     assert(data > ASSERT_VALUE);
@@ -52,12 +46,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a value greater than the assert value */
-        data = ASSERT_VALUE+1;
-    }
-    else
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;

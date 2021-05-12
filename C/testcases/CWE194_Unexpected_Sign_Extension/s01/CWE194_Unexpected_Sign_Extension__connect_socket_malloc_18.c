@@ -46,8 +46,6 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_18_bad()
     short data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -139,8 +137,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     /* Assume we want to allocate a relatively small buffer */

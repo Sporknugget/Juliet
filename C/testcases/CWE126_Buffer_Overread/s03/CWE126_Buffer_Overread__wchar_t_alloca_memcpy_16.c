@@ -29,11 +29,9 @@ void CWE126_Buffer_Overread__wchar_t_alloca_memcpy_16_bad()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    while(1)
     {
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
-        break;
     }
     {
         wchar_t dest[100];
@@ -61,11 +59,9 @@ static void goodG2B()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    while(1)
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;
-        break;
     }
     {
         wchar_t dest[100];

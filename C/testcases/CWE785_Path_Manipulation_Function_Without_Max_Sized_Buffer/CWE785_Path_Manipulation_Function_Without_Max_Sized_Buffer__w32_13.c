@@ -26,7 +26,6 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_13_bad()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
             char path[BAD_PATH_SIZE];
@@ -54,15 +53,6 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_13_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
-static void good1()
-{
-    if(GLOBAL_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */
@@ -85,7 +75,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */

@@ -43,7 +43,6 @@ void bad()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct;
@@ -52,7 +51,6 @@ void bad()
         data->intTwo = 0;
         printStructLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -68,7 +66,6 @@ static void goodB2G1()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct;
@@ -77,12 +74,6 @@ static void goodB2G1()
         data->intTwo = 0;
         printStructLine(data);
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -94,7 +85,6 @@ static void goodB2G2()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct;
@@ -103,7 +93,6 @@ static void goodB2G2()
         data->intTwo = 0;
         printStructLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -115,12 +104,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack */
         twoIntsStruct dataGoodBuffer;
@@ -130,7 +113,6 @@ static void goodG2B1()
         data->intTwo = 0;
         printStructLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -142,7 +124,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(staticReturnsTrue())
     {
         /* FIX: Use memory allocated on the stack */
         twoIntsStruct dataGoodBuffer;
@@ -152,7 +133,6 @@ static void goodG2B2()
         data->intTwo = 0;
         printStructLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

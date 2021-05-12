@@ -53,7 +53,6 @@ void CWE427_Uncontrolled_Search_Path_Element__char_connect_socket_12_bad()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -123,11 +122,6 @@ void CWE427_Uncontrolled_Search_Path_Element__char_connect_socket_12_bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Set the path as the "system" path */
-        strcat(data, NEW_PATH);
-    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }
@@ -143,12 +137,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Set the path as the "system" path */
-        strcat(data, NEW_PATH);
-    }
-    else
     {
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);

@@ -38,12 +38,10 @@ namespace CWE457_Use_of_Uninitialized_Variable__twointsclass_08
 void bad()
 {
     TwoIntsClass data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);
@@ -59,17 +57,10 @@ void bad()
 static void goodB2G1()
 {
     TwoIntsClass data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         data.intOne = 1;
@@ -83,12 +74,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     TwoIntsClass data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Ensure data is initialized before use */
         data.intOne = 1;
@@ -102,18 +91,11 @@ static void goodB2G2()
 static void goodG2B1()
 {
     TwoIntsClass data;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         data.intOne = 1;
         data.intTwo = 2;
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);
@@ -125,13 +107,11 @@ static void goodG2B1()
 static void goodG2B2()
 {
     TwoIntsClass data;
-    if(staticReturnsTrue())
     {
         /* FIX: Initialize data */
         data.intOne = 1;
         data.intTwo = 2;
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);

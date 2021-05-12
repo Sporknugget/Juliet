@@ -26,27 +26,15 @@ void bad()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (int64_t *)malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
-    else
-    {
-        /* FIX: Allocate memory from the heap using new */
-        data = new int64_t;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
-    }
-    else
-    {
-        /* FIX: Deallocate the memory using free() */
-        free(data);
     }
 }
 
@@ -62,24 +50,11 @@ static void goodB2G()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (int64_t *)malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
-        data = (int64_t *)malloc(100*sizeof(int64_t));
-        if (data == NULL) {exit(-1);}
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate the memory using free() */
-        free(data);
-    }
-    else
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -94,23 +69,10 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate memory from the heap using new */
         data = new int64_t;
     }
-    else
-    {
-        /* FIX: Allocate memory from the heap using new */
-        data = new int64_t;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
-         * require a call to free() to deallocate the memory */
-        delete data;
-    }
-    else
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */

@@ -36,12 +36,10 @@ void CWE176_Improper_Handling_of_Unicode_Encoding__w32_04_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             char convertedText[10] = "";
@@ -63,17 +61,10 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char convertedText[10] = "";
@@ -98,12 +89,10 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             char convertedText[10] = "";
@@ -128,17 +117,10 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580");
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             char convertedText[10] = "";
@@ -156,12 +138,10 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580");
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             char convertedText[10] = "";

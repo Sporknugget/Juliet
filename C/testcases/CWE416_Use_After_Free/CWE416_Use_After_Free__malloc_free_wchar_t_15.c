@@ -26,33 +26,15 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_15_bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    switch(6)
-    {
-    case 6:
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -65,34 +47,16 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    switch(6)
-    {
-    case 6:
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -101,34 +65,16 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    switch(6)
-    {
-    case 6:
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -137,32 +83,14 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
         /* FIX: Do not free data in the source */
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -171,32 +99,14 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    switch(6)
-    {
-    case 6:
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
         /* FIX: Do not free data in the source */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE416_Use_After_Free__malloc_free_wchar_t_15_good()

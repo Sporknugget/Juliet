@@ -28,13 +28,9 @@ void bad()
     int * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = new int[100];
     /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
     delete [] data;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly deleting memory twice */
     delete [] data;
 }
@@ -49,13 +45,9 @@ static void goodB2G()
     int * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = new int[100];
     /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
     delete [] data;
-    goto sink;
-sink:
     /* do nothing */
     /* FIX: Don't attempt to delete the memory */
     ; /* empty statement needed for some flow variants */
@@ -67,12 +59,8 @@ static void goodG2B()
     int * data;
     /* Initialize data */
     data = NULL;
-    goto source;
-source:
     data = new int[100];
     /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Possibly deleting memory twice */
     delete [] data;
 }

@@ -26,7 +26,6 @@ namespace CWE396_Catch_Generic_Exception__exception_03
 
 void bad()
 {
-    if(5==5)
     {
         try
         {
@@ -52,15 +51,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(5!=5) instead of if(5==5) */
-static void good1()
-{
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         try
         {
@@ -90,7 +80,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(5==5)
     {
         try
         {

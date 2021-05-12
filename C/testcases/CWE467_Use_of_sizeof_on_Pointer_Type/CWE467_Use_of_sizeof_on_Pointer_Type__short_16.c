@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__short_16_bad()
 {
-    while(1)
     {
         {
             short * badShort = NULL;
@@ -30,7 +29,6 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__short_16_bad()
             printShortLine(*badShort);
             free(badShort);
         }
-        break;
     }
 }
 
@@ -41,7 +39,6 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__short_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             short * goodShort = NULL;
@@ -52,7 +49,6 @@ static void good1()
             printShortLine(*goodShort);
             free(goodShort);
         }
-        break;
     }
 }
 

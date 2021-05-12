@@ -48,7 +48,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Read input from a file */
@@ -93,12 +92,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
@@ -120,7 +113,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");

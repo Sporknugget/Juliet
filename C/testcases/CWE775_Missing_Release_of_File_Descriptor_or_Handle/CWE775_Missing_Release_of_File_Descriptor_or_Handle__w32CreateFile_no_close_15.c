@@ -33,17 +33,8 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    switch(6)
-    {
-    case 6:
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -64,20 +55,11 @@ static void goodB2G1()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: If the file is still opened, close it */
         if (data != INVALID_HANDLE_VALUE)
         {
             CloseHandle(data);
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -94,20 +76,11 @@ static void goodB2G2()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    switch(6)
-    {
-    case 6:
         /* FIX: If the file is still opened, close it */
         if (data != INVALID_HANDLE_VALUE)
         {
             CloseHandle(data);
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close_15_good()

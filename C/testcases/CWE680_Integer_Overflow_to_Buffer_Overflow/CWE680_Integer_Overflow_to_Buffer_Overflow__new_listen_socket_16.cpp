@@ -48,7 +48,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -119,7 +118,6 @@ void bad()
             }
 #endif
         }
-        break;
     }
     {
         size_t dataBytes,i;
@@ -146,11 +144,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
-        break;
     }
     {
         size_t dataBytes,i;

@@ -28,12 +28,10 @@ void CWE191_Integer_Underflow__char_min_sub_07_bad()
 {
     char data;
     data = ' ';
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
-    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -52,17 +50,10 @@ static void goodB2G1()
 {
     char data;
     data = ' ';
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > CHAR_MIN)
@@ -82,12 +73,10 @@ static void goodB2G2()
 {
     char data;
     data = ' ';
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
-    if(staticFive==5)
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > CHAR_MIN)
@@ -107,17 +96,10 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -132,12 +114,10 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
-    if(staticFive==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

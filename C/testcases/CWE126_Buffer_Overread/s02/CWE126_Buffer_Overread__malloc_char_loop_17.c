@@ -22,10 +22,8 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE126_Buffer_Overread__malloc_char_loop_17_bad()
 {
-    int i;
     char * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Use a small buffer */
         data = (char *)malloc(50*sizeof(char));
@@ -58,10 +56,8 @@ void CWE126_Buffer_Overread__malloc_char_loop_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     char * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a large buffer */
         data = (char *)malloc(100*sizeof(char));

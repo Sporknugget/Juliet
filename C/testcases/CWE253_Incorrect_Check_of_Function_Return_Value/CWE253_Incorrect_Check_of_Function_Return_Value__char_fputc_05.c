@@ -29,7 +29,6 @@ static int staticFalse = 0; /* false */
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_fputc_05_bad()
 {
-    if(staticTrue)
     {
         /* FLAW: fputc() might fail, in which case the return value will be EOF (-1), but
          * we are checking to see if the return value is 0 */
@@ -44,15 +43,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_fputc_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: check for the correct return value */
         if (fputc((int)'A', stdout) == EOF)
@@ -65,7 +55,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         /* FIX: check for the correct return value */
         if (fputc((int)'A', stdout) == EOF)

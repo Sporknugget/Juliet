@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
@@ -44,30 +43,6 @@ void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
-            if (data == NULL) {exit(-1);}
-            twoIntsStruct * tmpData;
-            /* Initialize and make use of data */
-            data[0].intOne = 0;
-            data[0].intTwo = 0;
-            printStructLine(&data[0]);
-            tmpData = (twoIntsStruct *)realloc(data, (130000)*sizeof(twoIntsStruct));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
-            if (tmpData != NULL)
-            {
-                data = tmpData;
-                /* Reinitialize and make use of data */
-                data[0].intOne = 1;
-                data[0].intTwo = 1;
-                printStructLine(&data[0]);
-            }
-            free(data);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -77,31 +52,6 @@ void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
-            if (data == NULL) {exit(-1);}
-            twoIntsStruct * tmpData;
-            /* Initialize and make use of data */
-            data[0].intOne = 0;
-            data[0].intTwo = 0;
-            printStructLine(&data[0]);
-            tmpData = (twoIntsStruct *)realloc(data, (130000)*sizeof(twoIntsStruct));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
-            if (tmpData != NULL)
-            {
-                data = tmpData;
-                /* Reinitialize and make use of data */
-                data[0].intOne = 1;
-                data[0].intTwo = 1;
-                printStructLine(&data[0]);
-            }
-            free(data);
-        }
-    }
-    else
     {
         {
             twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));

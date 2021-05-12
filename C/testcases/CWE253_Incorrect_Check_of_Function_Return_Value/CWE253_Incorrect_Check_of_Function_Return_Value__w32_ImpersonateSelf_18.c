@@ -22,8 +22,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_18_bad()
 {
-    goto sink;
-sink:
     /* FLAW: ImpersonateSelf() could fail and would return 0 (false), but we are checking to see
      * if the return value is greater than zero (true) */
     if (ImpersonateSelf(SecurityImpersonation) > 0)
@@ -39,8 +37,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     /* FIX: check for the correct return value */
     if (!ImpersonateSelf(SecurityImpersonation))
     {

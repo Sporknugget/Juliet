@@ -21,9 +21,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_loop_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char src[150], dest[100];
         int i;
@@ -37,12 +34,6 @@ void CWE126_Buffer_Overread__CWE170_char_loop_15_bad()
         /* FLAW: do not explicitly null terminate dest after the loop */
         printLine(dest);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -52,13 +43,6 @@ void CWE126_Buffer_Overread__CWE170_char_loop_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char src[150], dest[100];
         int i;
@@ -71,17 +55,12 @@ static void good1()
         }
         dest[99] = '\0'; /* FIX: null terminate dest */
         printLine(dest);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char src[150], dest[100];
         int i;
@@ -94,12 +73,6 @@ static void good2()
         }
         dest[99] = '\0'; /* FIX: null terminate dest */
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

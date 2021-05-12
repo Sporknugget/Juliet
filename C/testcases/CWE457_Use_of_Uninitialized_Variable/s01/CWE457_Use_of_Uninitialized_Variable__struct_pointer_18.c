@@ -24,12 +24,8 @@ Template File: sources-sinks-18.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__struct_pointer_18_bad()
 {
     twoIntsStruct * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     printIntLine(data->intOne);
     printIntLine(data->intTwo);
@@ -43,12 +39,8 @@ sink:
 static void goodB2G()
 {
     twoIntsStruct * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* FIX: Ensure data is initialized before use */
     /* initialize both the pointer and the data pointed to */
     data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
@@ -63,16 +55,12 @@ sink:
 static void goodG2B()
 {
     twoIntsStruct * data;
-    goto source;
-source:
     /* FIX: Initialize data */
     /* initialize both the pointer and the data pointed to */
     data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     data->intOne = 5;
     data->intTwo = 6;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     printIntLine(data->intOne);
     printIntLine(data->intTwo);

@@ -23,18 +23,9 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_struct_alloca_loop_15_bad()
     twoIntsStruct * data;
     twoIntsStruct * dataBadBuffer = (twoIntsStruct *)ALLOCA(50*sizeof(twoIntsStruct));
     twoIntsStruct * dataGoodBuffer = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
-    switch(6)
-    {
-    case 6:
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
         data = dataBadBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         twoIntsStruct source[100];
         {
@@ -68,17 +59,8 @@ static void goodG2B1()
     twoIntsStruct * data;
     twoIntsStruct * dataBadBuffer = (twoIntsStruct *)ALLOCA(50*sizeof(twoIntsStruct));
     twoIntsStruct * dataGoodBuffer = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
-        break;
-    }
     {
         twoIntsStruct source[100];
         {
@@ -108,17 +90,8 @@ static void goodG2B2()
     twoIntsStruct * data;
     twoIntsStruct * dataBadBuffer = (twoIntsStruct *)ALLOCA(50*sizeof(twoIntsStruct));
     twoIntsStruct * dataGoodBuffer = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
-    switch(6)
-    {
-    case 6:
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         twoIntsStruct source[100];
         {

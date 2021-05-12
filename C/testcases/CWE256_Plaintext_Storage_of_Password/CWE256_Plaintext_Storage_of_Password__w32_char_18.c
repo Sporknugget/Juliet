@@ -32,8 +32,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         FILE *pFile;
         pFile = fopen("passwords.txt", "r");
@@ -51,8 +49,6 @@ source:
             data[0] = '\0';
         }
     }
-    goto sink;
-sink:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -86,8 +82,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         FILE *pFile;
         pFile = fopen("passwords.txt", "r");
@@ -105,8 +99,6 @@ source:
             data[0] = '\0';
         }
     }
-    goto sink;
-sink:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -190,8 +182,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         FILE *pFile;
         HCRYPTPROV hCryptProv = 0;
@@ -263,8 +253,6 @@ source:
             CryptReleaseContext(hCryptProv, 0);
         }
     }
-    goto sink;
-sink:
     {
         HANDLE pHandle;
         char * username = "User";

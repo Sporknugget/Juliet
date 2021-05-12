@@ -41,8 +41,6 @@ Template File: point-flaw-badonly-18.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_18_bad()
 {
-    goto sink;
-sink:
     {
 #ifdef _WIN32
         WSADATA wsaData;

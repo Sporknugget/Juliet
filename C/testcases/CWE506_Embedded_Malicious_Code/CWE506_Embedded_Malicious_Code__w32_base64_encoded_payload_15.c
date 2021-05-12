@@ -25,9 +25,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* FLAW: encoded "calc.exe" */
         char * encodedPayload = "Y2FsYy5leGU=";
@@ -74,12 +71,6 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_15_bad()
         while (0);
         free(decodedPayload);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -89,13 +80,6 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* FIX: plaintext command */
         char * decodedPayload = "calc.exe";
@@ -104,17 +88,12 @@ static void good1()
             printLine("command execution failed!");
             exit(1);
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* FIX: plaintext command */
         char * decodedPayload = "calc.exe";
@@ -123,12 +102,6 @@ static void good2()
             printLine("command execution failed!");
             exit(1);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

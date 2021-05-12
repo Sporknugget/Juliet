@@ -63,7 +63,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_listen_socket_w32_vsnprintf_16_b
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -144,12 +143,9 @@ void CWE134_Uncontrolled_Format_String__wchar_t_listen_socket_w32_vsnprintf_16_b
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         badVaSinkB(data, data);
-        break;
     }
 }
 
@@ -176,7 +172,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -257,12 +252,9 @@ static void goodB2G()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         goodB2GVaSinkG(data, data);
-        break;
     }
 }
 
@@ -285,16 +277,12 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
-        break;
     }
-    while(1)
     {
         goodG2BVaSinkB(data, data);
-        break;
     }
 }
 

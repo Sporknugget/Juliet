@@ -23,12 +23,8 @@ void CWE191_Integer_Underflow__int64_t_rand_predec_18_bad()
 {
     int64_t data;
     data = 0LL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (int64_t)RAND64();
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         --data;
@@ -46,12 +42,8 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (int64_t)RAND64();
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > LLONG_MIN)
     {
@@ -70,12 +62,8 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
     data = -2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         --data;

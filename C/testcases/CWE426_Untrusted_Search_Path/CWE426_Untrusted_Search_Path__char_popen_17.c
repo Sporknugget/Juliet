@@ -44,11 +44,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE426_Untrusted_Search_Path__char_popen_17_bad()
 {
-    int i;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: the full path is not specified */
         strcpy(data, BAD_OS_COMMAND);
@@ -72,11 +70,9 @@ void CWE426_Untrusted_Search_Path__char_popen_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);

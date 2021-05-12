@@ -46,8 +46,6 @@ void CWE197_Numeric_Truncation_Error__short_connect_socket_18_bad()
     short data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -121,8 +119,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a positive integer less than CHAR_MAX*/
     data = CHAR_MAX-5;
     {

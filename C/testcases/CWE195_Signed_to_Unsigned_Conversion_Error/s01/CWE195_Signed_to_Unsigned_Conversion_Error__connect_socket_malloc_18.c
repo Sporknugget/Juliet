@@ -45,8 +45,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -128,8 +126,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     /* Assume we want to allocate a relatively small buffer */

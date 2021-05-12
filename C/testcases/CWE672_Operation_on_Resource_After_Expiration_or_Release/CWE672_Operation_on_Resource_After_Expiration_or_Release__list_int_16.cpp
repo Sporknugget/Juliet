@@ -30,14 +30,11 @@ namespace CWE672_Operation_on_Resource_After_Expiration_or_Release__list_int_16
 void bad()
 {
     list<int>  data;
-    while(1)
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
-        break;
     }
-    while(1)
     {
         {
             list<int> ::iterator i;
@@ -53,7 +50,6 @@ void bad()
             }
             cout << endl;
         }
-        break;
     }
 }
 
@@ -65,14 +61,11 @@ void bad()
 static void goodB2G()
 {
     list<int>  data;
-    while(1)
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
-        break;
     }
-    while(1)
     {
         {
             list<int> ::iterator i;
@@ -84,7 +77,6 @@ static void goodB2G()
             }
             cout << endl;
         }
-        break;
     }
 }
 
@@ -92,14 +84,11 @@ static void goodB2G()
 static void goodG2B()
 {
     list<int>  data;
-    while(1)
     {
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
-        break;
     }
-    while(1)
     {
         {
             list<int> ::iterator i;
@@ -115,7 +104,6 @@ static void goodG2B()
             }
             cout << endl;
         }
-        break;
     }
 }
 

@@ -24,12 +24,8 @@ void CWE124_Buffer_Underwrite__CWE839_fscanf_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
-    goto sink;
-sink:
     {
         int i;
         int buffer[10] = { 0 };
@@ -61,12 +57,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
-    goto sink;
-sink:
     {
         int i;
         int buffer[10] = { 0 };
@@ -93,13 +85,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
     * access an index of the array in the sink that is out-of-bounds */
     data = 7;
-    goto sink;
-sink:
     {
         int i;
         int buffer[10] = { 0 };

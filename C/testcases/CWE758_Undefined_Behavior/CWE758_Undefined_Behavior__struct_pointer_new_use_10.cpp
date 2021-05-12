@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__struct_pointer_new_use_10
 
 void bad()
 {
-    if(globalTrue)
     {
         {
             twoIntsStruct * * pointer = new twoIntsStruct *;
@@ -38,15 +37,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             twoIntsStruct * data;
@@ -69,7 +59,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             twoIntsStruct * data;

@@ -38,7 +38,6 @@ Template File: point-flaw-badonly-10.tmpl.c
 
 void CWE510_Trapdoor__network_listen_10_bad()
 {
-    if(globalTrue)
     {
         {
 #ifdef _WIN32

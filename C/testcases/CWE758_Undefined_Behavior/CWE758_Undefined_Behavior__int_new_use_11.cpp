@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__int_new_use_11
 
 void bad()
 {
-    if(globalReturnsTrue())
     {
         {
             int * pointer = new int;
@@ -37,15 +36,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int data;
@@ -64,7 +54,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             int data;

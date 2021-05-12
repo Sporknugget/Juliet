@@ -24,7 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_static_16_bad()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    while(1)
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -38,7 +37,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_static_16_bad()
             }
             data = dataBuffer;
         }
-        break;
     }
     printLongLongLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -54,7 +52,6 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    while(1)
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
@@ -73,7 +70,6 @@ static void goodG2B()
             }
             data = dataBuffer;
         }
-        break;
     }
     printLongLongLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

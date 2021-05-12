@@ -32,7 +32,6 @@ static int staticReturnsFalse()
 
 void CWE476_NULL_Pointer_Dereference__null_check_after_deref_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             int *intPointer = NULL;
@@ -53,15 +52,6 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int *intPointer = NULL;
@@ -78,7 +68,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             int *intPointer = NULL;

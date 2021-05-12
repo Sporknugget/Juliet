@@ -26,7 +26,6 @@ Template File: point-flaw-badonly-16.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_email_16_bad()
 {
-    while(1)
     {
         {
             WSADATA wsaData;
@@ -139,7 +138,6 @@ void CWE506_Embedded_Malicious_Code__w32_email_16_bad()
                 WSACleanup();
             }
         }
-        break;
     }
 }
 

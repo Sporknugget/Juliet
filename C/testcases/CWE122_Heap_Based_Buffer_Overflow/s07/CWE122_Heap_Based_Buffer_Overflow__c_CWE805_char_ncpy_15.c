@@ -24,19 +24,10 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_ncpy_15_bad()
 {
     char * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char source[100];
         memset(source, 'C', 100-1); /* fill with 'C's */
@@ -58,19 +49,10 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
-        break;
-    }
     {
         char source[100];
         memset(source, 'C', 100-1); /* fill with 'C's */
@@ -88,19 +70,10 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char source[100];
         memset(source, 'C', 100-1); /* fill with 'C's */

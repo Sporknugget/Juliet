@@ -55,7 +55,6 @@ void CWE134_Uncontrolled_Format_String__char_environment_snprintf_08_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -69,7 +68,6 @@ void CWE134_Uncontrolled_Format_String__char_environment_snprintf_08_bad()
             }
         }
     }
-    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -90,7 +88,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -104,12 +101,6 @@ static void goodB2G1()
             }
         }
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char dest[100] = "";
@@ -126,7 +117,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -140,7 +130,6 @@ static void goodB2G2()
             }
         }
     }
-    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -157,17 +146,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -184,12 +166,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";

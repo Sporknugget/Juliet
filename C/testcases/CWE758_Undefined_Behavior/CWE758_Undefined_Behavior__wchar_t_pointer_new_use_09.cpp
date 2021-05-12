@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__wchar_t_pointer_new_use_09
 
 void bad()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t * * pointer = new wchar_t *;
@@ -37,15 +36,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
-static void good1()
-{
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * data;
@@ -64,7 +54,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t * data;

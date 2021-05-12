@@ -25,7 +25,6 @@ void CWE401_Memory_Leak__strdup_wchar_t_12_bad()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t myString[] = L"myString";
@@ -35,24 +34,10 @@ void CWE401_Memory_Leak__strdup_wchar_t_12_bad()
             printWLine(data);
         }
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack with ALLOCA */
-        data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
-        /* Initialize then use data */
-        wcscpy(data, L"a string");
-        printWLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory initialized in the source */
-        free(data);
     }
 }
 
@@ -67,7 +52,6 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t myString[] = L"myString";
@@ -77,22 +61,6 @@ static void goodB2G()
             printWLine(data);
         }
     }
-    else
-    {
-        {
-            wchar_t myString[] = L"myString";
-            /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
-            data = wcsdup(myString);
-            /* Use data */
-            printWLine(data);
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory initialized in the source */
-        free(data);
-    }
-    else
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -106,7 +74,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -114,21 +81,6 @@ static void goodG2B()
         wcscpy(data, L"a string");
         printWLine(data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack with ALLOCA */
-        data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
-        /* Initialize then use data */
-        wcscpy(data, L"a string");
-        printWLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation of memory */
-        /* no deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */

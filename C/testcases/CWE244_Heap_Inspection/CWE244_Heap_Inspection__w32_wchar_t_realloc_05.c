@@ -29,7 +29,6 @@ static int staticFalse = 0; /* false */
 
 void CWE244_Heap_Inspection__w32_wchar_t_realloc_05_bad()
 {
-    if(staticTrue)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -86,15 +85,6 @@ void CWE244_Heap_Inspection__w32_wchar_t_realloc_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -148,7 +138,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));

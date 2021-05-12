@@ -47,7 +47,6 @@ void CWE114_Process_Control__w32_char_connect_socket_12_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -117,11 +116,6 @@ void CWE114_Process_Control__w32_char_connect_socket_12_bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Specify the full pathname for the library */
-        strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
-    }
     {
         HMODULE hModule;
         /* POTENTIAL FLAW: If the path to the library is not specified, an attacker may be able to
@@ -150,12 +144,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Specify the full pathname for the library */
-        strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
-    }
-    else
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");

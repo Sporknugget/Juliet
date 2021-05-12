@@ -27,8 +27,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_18_bad()
 {
-    goto sink;
-sink:
     {
         BYTE payload[200];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -99,8 +97,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         BYTE payload[200];
         DWORD payloadLen = strlen(PAYLOAD);

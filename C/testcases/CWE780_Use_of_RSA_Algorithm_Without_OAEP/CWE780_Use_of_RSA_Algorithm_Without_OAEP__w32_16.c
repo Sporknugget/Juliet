@@ -27,7 +27,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_16_bad()
 {
-    while(1)
     {
         {
             BYTE payload[200];
@@ -90,7 +89,6 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_16_bad()
             /* use encrypted block */
             printBytesLine((BYTE *) payload, payloadLen);
         }
-        break;
     }
 }
 
@@ -101,7 +99,6 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             BYTE payload[200];
@@ -164,7 +161,6 @@ static void good1()
             /* use encrypted block */
             printBytesLine((BYTE *) payload, payloadLen);
         }
-        break;
     }
 }
 

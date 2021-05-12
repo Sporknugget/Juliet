@@ -26,14 +26,12 @@ void bad()
     long * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -51,19 +49,12 @@ static void goodB2G1()
     long * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
     }
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Free memory using free() */
         free(data);
@@ -76,14 +67,12 @@ static void goodB2G2()
     long * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
     }
-    if(globalFive==5)
     {
         /* FIX: Free memory using free() */
         free(data);
@@ -96,17 +85,10 @@ static void goodG2B1()
     long * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate memory using new [] */
         data = new long[100];
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -120,12 +102,10 @@ static void goodG2B2()
     long * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         /* FIX: Allocate memory using new [] */
         data = new long[100];
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */

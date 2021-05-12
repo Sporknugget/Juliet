@@ -32,34 +32,14 @@ void CWE400_Resource_Exhaustion__rand_sleep_12_bad()
     int count;
     /* Initialize count */
     count = -1;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
-    else
-    {
-        /* FIX: Use a relatively small number */
-        count = 20;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
         printLine("Sleep time possibly too long");
-    }
-    else
-    {
-        /* FIX: Validate count before using it as a parameter in the sleep function */
-        if (count > 0 && count <= 2000)
-        {
-            SLEEP(count);
-            printLine("Sleep time OK");
-        }
-        else
-        {
-            printLine("Sleep time too long");
-        }
     }
 }
 
@@ -75,30 +55,10 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
-    else
-    {
-        /* POTENTIAL FLAW: Set count to a random value */
-        count = RAND32();
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Validate count before using it as a parameter in the sleep function */
-        if (count > 0 && count <= 2000)
-        {
-            SLEEP(count);
-            printLine("Sleep time OK");
-        }
-        else
-        {
-            printLine("Sleep time too long");
-        }
-    }
-    else
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -121,23 +81,10 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    else
-    {
-        /* FIX: Use a relatively small number */
-        count = 20;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
-        SLEEP(count);
-        printLine("Sleep time possibly too long");
-    }
-    else
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);

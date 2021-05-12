@@ -26,12 +26,8 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
     data = new wchar_t;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
      * require a call to delete to deallocate the memory */
     delete [] data;
@@ -47,12 +43,8 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
     data = new wchar_t;
-    goto sink;
-sink:
     /* FIX: Deallocate the memory using delete */
     delete data;
 }
@@ -63,12 +55,8 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     /* FIX: Allocate memory from the heap using new [] */
     data = new wchar_t[100];
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
      * require a call to delete to deallocate the memory */
     delete [] data;

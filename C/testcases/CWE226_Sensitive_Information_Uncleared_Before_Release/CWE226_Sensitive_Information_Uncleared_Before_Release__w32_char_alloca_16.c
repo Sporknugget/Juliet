@@ -23,7 +23,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_16_bad()
 {
-    while(1)
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -63,7 +62,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_16_b
             }
             /* FLAW: Release password from the stack without first clearing the buffer */
         }
-        break;
     }
 }
 
@@ -74,7 +72,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_16_b
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -116,7 +113,6 @@ static void good1()
             /* FIX: Clear password prior to release from stack */
             SecureZeroMemory(password, passwordLen * sizeof(char));
         }
-        break;
     }
 }
 

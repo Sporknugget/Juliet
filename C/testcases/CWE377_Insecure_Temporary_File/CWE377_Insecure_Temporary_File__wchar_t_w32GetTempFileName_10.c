@@ -34,7 +34,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE377_Insecure_Temporary_File__wchar_t_w32GetTempFileName_10_bad()
 {
-    if(globalTrue)
     {
         {
             wchar_t filename[MAX_PATH] = L"";
@@ -61,15 +60,6 @@ void CWE377_Insecure_Temporary_File__wchar_t_w32GetTempFileName_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t filename[MAX_PATH] = L"";
@@ -97,7 +87,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             wchar_t filename[MAX_PATH] = L"";

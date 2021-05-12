@@ -24,7 +24,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             HANDLE hPipe;
@@ -51,32 +50,6 @@ void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            HANDLE hPipe;
-            char * pipeName = PIPE_NAME;
-            /* FIX: Call CreateNamedPipeA() with PIPE_ACCESS_DUPLEX and FILE_FLAG_FIRST_PIPE_INSTANCE as the 2nd parameter */
-            hPipe = CreateNamedPipeA(
-                        pipeName,
-                        FILE_FLAG_FIRST_PIPE_INSTANCE | PIPE_ACCESS_DUPLEX,
-                        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
-                        PIPE_UNLIMITED_INSTANCES,
-                        BUFSIZE,
-                        BUFSIZE,
-                        0,
-                        NULL);
-            if (hPipe == INVALID_HANDLE_VALUE)
-            {
-                printLine("Windows pipe creation failed");
-            }
-            else
-            {
-                printLine("Windows pipe created successfully");
-                CloseHandle(hPipe);
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -86,33 +59,6 @@ void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            HANDLE hPipe;
-            char * pipeName = PIPE_NAME;
-            /* FIX: Call CreateNamedPipeA() with PIPE_ACCESS_DUPLEX and FILE_FLAG_FIRST_PIPE_INSTANCE as the 2nd parameter */
-            hPipe = CreateNamedPipeA(
-                        pipeName,
-                        FILE_FLAG_FIRST_PIPE_INSTANCE | PIPE_ACCESS_DUPLEX,
-                        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
-                        PIPE_UNLIMITED_INSTANCES,
-                        BUFSIZE,
-                        BUFSIZE,
-                        0,
-                        NULL);
-            if (hPipe == INVALID_HANDLE_VALUE)
-            {
-                printLine("Windows pipe creation failed");
-            }
-            else
-            {
-                printLine("Windows pipe created successfully");
-                CloseHandle(hPipe);
-            }
-        }
-    }
-    else
     {
         {
             HANDLE hPipe;

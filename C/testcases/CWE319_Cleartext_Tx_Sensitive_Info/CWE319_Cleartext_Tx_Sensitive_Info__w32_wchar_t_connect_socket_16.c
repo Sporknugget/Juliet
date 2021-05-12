@@ -36,7 +36,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_connect_socket_16_bad()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    while(1)
     {
         {
             WSADATA wsaData;
@@ -98,9 +97,7 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_connect_socket_16_bad()
                 WSACleanup();
             }
         }
-        break;
     }
-    while(1)
     {
         {
             HANDLE pHandle;
@@ -124,7 +121,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_connect_socket_16_bad()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 
@@ -138,7 +134,6 @@ static void goodB2G()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    while(1)
     {
         {
             WSADATA wsaData;
@@ -200,9 +195,7 @@ static void goodB2G()
                 WSACleanup();
             }
         }
-        break;
     }
-    while(1)
     {
         {
             HCRYPTPROV hCryptProv = 0;
@@ -280,7 +273,6 @@ static void goodB2G()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 
@@ -290,14 +282,11 @@ static void goodG2B()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    while(1)
     {
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         wcscpy(password, L"Password1234!");
-        break;
     }
-    while(1)
     {
         {
             HANDLE pHandle;
@@ -321,7 +310,6 @@ static void goodG2B()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 

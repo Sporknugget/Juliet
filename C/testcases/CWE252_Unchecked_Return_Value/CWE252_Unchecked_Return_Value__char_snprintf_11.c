@@ -31,7 +31,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_snprintf_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -48,15 +47,6 @@ void CWE252_Unchecked_Return_Value__char_snprintf_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -75,7 +65,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the

@@ -23,7 +23,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__sqrt_10_bad()
 {
-    if(globalTrue)
     {
         {
             double doubleNumber;
@@ -38,15 +37,6 @@ void CWE391_Unchecked_Error_Condition__sqrt_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             double doubleNumber;
@@ -66,7 +56,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             double doubleNumber;

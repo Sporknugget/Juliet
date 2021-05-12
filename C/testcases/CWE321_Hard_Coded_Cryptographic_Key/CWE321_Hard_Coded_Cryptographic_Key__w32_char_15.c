@@ -31,17 +31,8 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_char_15_bad()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
         strcpy(cryptoKey, CRYPTO_KEY);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         HCRYPTPROV hCryptProv;
         HCRYPTKEY hKey;
@@ -112,13 +103,6 @@ static void goodG2B1()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         size_t cryptoKeyLen = strlen(cryptoKey);
         /* if there is room in cryptoKey, read into it from the console */
@@ -139,8 +123,6 @@ static void goodG2B1()
                 cryptoKey[cryptoKeyLen-1] = '\0';
             }
         }
-    }
-    break;
     }
     {
         HCRYPTPROV hCryptProv;
@@ -208,9 +190,6 @@ static void goodG2B2()
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
-    switch(6)
-    {
-    case 6:
     {
         size_t cryptoKeyLen = strlen(cryptoKey);
         /* if there is room in cryptoKey, read into it from the console */
@@ -231,12 +210,6 @@ static void goodG2B2()
                 cryptoKey[cryptoKeyLen-1] = '\0';
             }
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         HCRYPTPROV hCryptProv;

@@ -27,21 +27,11 @@ void bad()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
             char buffer[sizeof(wchar_t)];
             wchar_t * dataBuffer = new(buffer) wchar_t;
-            *dataBuffer = L'A';
-            data = dataBuffer;
-        }
-    }
-    else
-    {
-        {
-            /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            wchar_t * dataBuffer = new wchar_t;
             *dataBuffer = L'A';
             data = dataBuffer;
         }
@@ -61,16 +51,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            wchar_t * dataBuffer = new wchar_t;
-            *dataBuffer = L'A';
-            data = dataBuffer;
-        }
-    }
-    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

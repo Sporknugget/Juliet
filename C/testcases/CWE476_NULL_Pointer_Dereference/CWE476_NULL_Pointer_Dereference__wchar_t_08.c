@@ -37,12 +37,10 @@ static int staticReturnsFalse()
 void CWE476_NULL_Pointer_Dereference__wchar_t_08_bad()
 {
     wchar_t * data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printWLine() checks for NULL, so we cannot use it here */
@@ -58,17 +56,10 @@ void CWE476_NULL_Pointer_Dereference__wchar_t_08_bad()
 static void goodB2G1()
 {
     wchar_t * data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -87,12 +78,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     wchar_t * data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -111,17 +100,10 @@ static void goodB2G2()
 static void goodG2B1()
 {
     wchar_t * data;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         data = L"Good";
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printWLine() checks for NULL, so we cannot use it here */
@@ -133,12 +115,10 @@ static void goodG2B1()
 static void goodG2B2()
 {
     wchar_t * data;
-    if(staticReturnsTrue())
     {
         /* FIX: Initialize data */
         data = L"Good";
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printWLine() checks for NULL, so we cannot use it here */

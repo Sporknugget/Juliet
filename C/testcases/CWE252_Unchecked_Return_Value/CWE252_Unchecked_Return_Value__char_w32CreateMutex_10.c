@@ -26,7 +26,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_w32CreateMutex_10_bad()
 {
-    if(globalTrue)
     {
         {
             HANDLE hMutex = NULL;
@@ -43,15 +42,6 @@ void CWE252_Unchecked_Return_Value__char_w32CreateMutex_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HANDLE hMutex = NULL;
@@ -71,7 +61,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             HANDLE hMutex = NULL;

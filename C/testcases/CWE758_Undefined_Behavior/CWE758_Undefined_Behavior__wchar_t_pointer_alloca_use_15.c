@@ -19,19 +19,10 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
         wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         printWLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -42,13 +33,6 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         wchar_t * data;
         wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
@@ -58,17 +42,12 @@ static void good1()
             wchar_t * data = *pointer;
             printWLine(data);
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t * data;
         wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
@@ -78,12 +57,6 @@ static void good2()
             wchar_t * data = *pointer;
             printWLine(data);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

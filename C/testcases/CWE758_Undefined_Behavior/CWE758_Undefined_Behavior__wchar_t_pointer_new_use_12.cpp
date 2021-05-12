@@ -22,27 +22,12 @@ namespace CWE758_Undefined_Behavior__wchar_t_pointer_new_use_12
 
 void bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * * pointer = new wchar_t *;
             wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             delete pointer;
             printWLine(data);
-        }
-    }
-    else
-    {
-        {
-            wchar_t * data;
-            data = L"string";
-            wchar_t * * pointer = new wchar_t *;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                wchar_t * data = *pointer;
-                printWLine(data);
-            }
-            delete pointer;
         }
     }
 }
@@ -54,21 +39,6 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t * data;
-            data = L"string";
-            wchar_t * * pointer = new wchar_t *;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                wchar_t * data = *pointer;
-                printWLine(data);
-            }
-            delete pointer;
-        }
-    }
-    else
     {
         {
             wchar_t * data;

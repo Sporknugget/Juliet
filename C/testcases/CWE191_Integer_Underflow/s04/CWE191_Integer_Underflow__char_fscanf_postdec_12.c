@@ -23,37 +23,16 @@ void CWE191_Integer_Underflow__char_fscanf_postdec_12_bad()
 {
     char data;
     data = ' ';
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
             data--;
             char result = data;
             printHexCharLine(result);
-        }
-    }
-    else
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > CHAR_MIN)
-        {
-            data--;
-            char result = data;
-            printHexCharLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -69,31 +48,10 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use a value input from the console */
-        fscanf (stdin, "%c", &data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > CHAR_MIN)
-        {
-            data--;
-            char result = data;
-            printHexCharLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform arithmetic safely.");
-        }
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > CHAR_MIN)
@@ -116,26 +74,10 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: Decrementing data could cause an underflow */
-            data--;
-            char result = data;
-            printHexCharLine(result);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */

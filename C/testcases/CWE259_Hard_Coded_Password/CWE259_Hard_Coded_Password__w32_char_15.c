@@ -30,17 +30,8 @@ void CWE259_Hard_Coded_Password__w32_char_15_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Use a hardcoded password */
         strcpy(password, PASSWORD);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         HANDLE pHandle;
         char * username = "User";
@@ -74,13 +65,6 @@ static void goodG2B1()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         size_t passwordLen = 0;
         /* FIX: Read the password from the console */
@@ -96,8 +80,6 @@ static void goodG2B1()
         {
             password[passwordLen-1] = '\0';
         }
-    }
-    break;
     }
     {
         HANDLE pHandle;
@@ -128,9 +110,6 @@ static void goodG2B2()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    switch(6)
-    {
-    case 6:
     {
         size_t passwordLen = 0;
         /* FIX: Read the password from the console */
@@ -146,12 +125,6 @@ static void goodG2B2()
         {
             password[passwordLen-1] = '\0';
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         HANDLE pHandle;

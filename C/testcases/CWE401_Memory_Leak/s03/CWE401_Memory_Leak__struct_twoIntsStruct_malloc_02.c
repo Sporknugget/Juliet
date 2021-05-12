@@ -25,7 +25,6 @@ void CWE401_Memory_Leak__struct_twoIntsStruct_malloc_02_bad()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    if(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -35,7 +34,6 @@ void CWE401_Memory_Leak__struct_twoIntsStruct_malloc_02_bad()
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
     }
-    if(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -51,7 +49,6 @@ static void goodB2G1()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    if(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -61,12 +58,6 @@ static void goodB2G1()
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -78,7 +69,6 @@ static void goodB2G2()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    if(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -88,7 +78,6 @@ static void goodB2G2()
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
     }
-    if(1)
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -100,12 +89,6 @@ static void goodG2B1()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (struct _twoIntsStruct *)ALLOCA(100*sizeof(struct _twoIntsStruct));
@@ -114,7 +97,6 @@ static void goodG2B1()
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
     }
-    if(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -126,7 +108,6 @@ static void goodG2B2()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    if(1)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (struct _twoIntsStruct *)ALLOCA(100*sizeof(struct _twoIntsStruct));
@@ -135,7 +116,6 @@ static void goodG2B2()
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
     }
-    if(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

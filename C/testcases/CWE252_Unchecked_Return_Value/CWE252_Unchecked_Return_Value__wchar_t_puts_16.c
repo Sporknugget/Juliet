@@ -29,11 +29,9 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_puts_16_bad()
 {
-    while(1)
     {
         /* FLAW: Do not check the return value */
         PUTS(L"string");
-        break;
     }
 }
 
@@ -44,14 +42,12 @@ void CWE252_Unchecked_Return_Value__wchar_t_puts_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: check the return value */
         if (PUTS(L"string") == WEOF)
         {
             printLine("puts failed!");
         }
-        break;
     }
 }
 

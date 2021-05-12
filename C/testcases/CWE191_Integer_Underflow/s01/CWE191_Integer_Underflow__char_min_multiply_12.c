@@ -23,39 +23,16 @@ void CWE191_Integer_Underflow__char_min_multiply_12_bad()
 {
     char data;
     data = ' ';
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* POTENTIAL FLAW: if (data * 2) < CHAR_MIN, this will underflow */
             char result = data * 2;
             printHexCharLine(result);
-        }
-    }
-    else
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* FIX: Add a check to prevent an underflow from occurring */
-            if (data > (CHAR_MIN/2))
-            {
-                char result = data * 2;
-                printHexCharLine(result);
-            }
-            else
-            {
-                printLine("data value is too small to perform multiplication.");
-            }
         }
     }
 }
@@ -71,33 +48,10 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use the minimum size of the data type */
-        data = CHAR_MIN;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* FIX: Add a check to prevent an underflow from occurring */
-            if (data > (CHAR_MIN/2))
-            {
-                char result = data * 2;
-                printHexCharLine(result);
-            }
-            else
-            {
-                printLine("data value is too small to perform multiplication.");
-            }
-        }
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -122,26 +76,10 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* POTENTIAL FLAW: if (data * 2) < CHAR_MIN, this will underflow */
-            char result = data * 2;
-            printHexCharLine(result);
-        }
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

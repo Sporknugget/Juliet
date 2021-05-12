@@ -21,15 +21,12 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE190_Integer_Overflow__int64_t_max_preinc_17_bad()
 {
-    int i,j;
     int64_t data;
     data = 0LL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -47,15 +44,12 @@ void CWE190_Integer_Overflow__int64_t_max_preinc_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     int64_t data;
     data = 0LL;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < LLONG_MAX)
@@ -74,15 +68,12 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     int64_t data;
     data = 0LL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

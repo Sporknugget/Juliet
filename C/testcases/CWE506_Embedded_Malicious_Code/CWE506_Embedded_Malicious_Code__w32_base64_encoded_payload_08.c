@@ -38,7 +38,6 @@ static int staticReturnsFalse()
 
 void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             /* FLAW: encoded "calc.exe" */
@@ -93,15 +92,6 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: plaintext command */
@@ -118,7 +108,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             /* FIX: plaintext command */

@@ -50,7 +50,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -63,7 +62,6 @@ void bad()
                 wcsncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
             }
         }
-        break;
     }
     {
         int fileDesc;
@@ -86,11 +84,9 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");
-        break;
     }
     {
         int fileDesc;

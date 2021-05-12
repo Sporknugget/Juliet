@@ -24,8 +24,6 @@ void CWE127_Buffer_Underread__malloc_char_memcpy_18_bad()
 {
     char * data;
     data = NULL;
-    goto source;
-source:
     {
         char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
@@ -57,8 +55,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    goto source;
-source:
     {
         char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}

@@ -22,21 +22,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             char dest[DEST_SIZE];
             /* FLAW: Incorrect number of arguments */
             sprintf(dest, "%s %s", SOURCE_STRING);
-            printLine(dest);
-        }
-    }
-    else
-    {
-        {
-            char dest[DEST_SIZE];
-            /* FIX: Use the correct number of arguments */
-            sprintf(dest, "%s %s", SOURCE_STRING, SOURCE_STRING);
             printLine(dest);
         }
     }
@@ -49,16 +39,6 @@ void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            char dest[DEST_SIZE];
-            /* FIX: Use the correct number of arguments */
-            sprintf(dest, "%s %s", SOURCE_STRING, SOURCE_STRING);
-            printLine(dest);
-        }
-    }
-    else
     {
         {
             char dest[DEST_SIZE];

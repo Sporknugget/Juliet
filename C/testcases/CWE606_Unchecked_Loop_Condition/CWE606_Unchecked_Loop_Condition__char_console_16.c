@@ -30,7 +30,6 @@ void CWE606_Unchecked_Loop_Condition__char_console_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -57,9 +56,7 @@ void CWE606_Unchecked_Loop_Condition__char_console_16_bad()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -75,7 +72,6 @@ void CWE606_Unchecked_Loop_Condition__char_console_16_bad()
                 printIntLine(intVariable);
             }
         }
-        break;
     }
 }
 
@@ -89,7 +85,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -116,9 +111,7 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -137,7 +130,6 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
 }
 
@@ -147,13 +139,10 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
-        break;
     }
-    while(1)
     {
         {
             int i, n, intVariable;
@@ -169,7 +158,6 @@ static void goodG2B()
                 printIntLine(intVariable);
             }
         }
-        break;
     }
 }
 

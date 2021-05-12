@@ -24,7 +24,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -61,46 +60,6 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClien
             CloseHandle(hPipe);
         }
     }
-    else
-    {
-        {
-            HANDLE hPipe = INVALID_HANDLE_VALUE;
-            hPipe = CreateNamedPipeA(
-                        "\\\\.\\pipe\\test_pipe",
-                        PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE,
-                        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
-                        PIPE_UNLIMITED_INSTANCES,
-                        BUFSIZE,
-                        BUFSIZE,
-                        NMPWAIT_USE_DEFAULT_WAIT,
-                        NULL);
-            if (hPipe == INVALID_HANDLE_VALUE)
-            {
-                exit(1);
-            }
-            /* ConnectNamedPipe returns failure if a client connected between CreateNamedPipe and now,
-             * which isn't actually an error in terms of waiting for a client. */
-            if (!ConnectNamedPipe(hPipe, NULL) && GetLastError() != ERROR_PIPE_CONNECTED)
-            {
-                CloseHandle(hPipe);
-                exit(1);
-            }
-            /* FIX: Check if "ImpersonateNamedPipeClient" succeeded or not */
-            if (!ImpersonateNamedPipeClient(hPipe))
-            {
-                printLine("Failed to impersonate");
-            }
-            else
-            {
-                printLine("Impersonated");
-                if (!RevertToSelf())
-                {
-                    exit(1);
-                }
-            }
-            CloseHandle(hPipe);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -110,47 +69,6 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClien
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            HANDLE hPipe = INVALID_HANDLE_VALUE;
-            hPipe = CreateNamedPipeA(
-                        "\\\\.\\pipe\\test_pipe",
-                        PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE,
-                        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
-                        PIPE_UNLIMITED_INSTANCES,
-                        BUFSIZE,
-                        BUFSIZE,
-                        NMPWAIT_USE_DEFAULT_WAIT,
-                        NULL);
-            if (hPipe == INVALID_HANDLE_VALUE)
-            {
-                exit(1);
-            }
-            /* ConnectNamedPipe returns failure if a client connected between CreateNamedPipe and now,
-             * which isn't actually an error in terms of waiting for a client. */
-            if (!ConnectNamedPipe(hPipe, NULL) && GetLastError() != ERROR_PIPE_CONNECTED)
-            {
-                CloseHandle(hPipe);
-                exit(1);
-            }
-            /* FIX: Check if "ImpersonateNamedPipeClient" succeeded or not */
-            if (!ImpersonateNamedPipeClient(hPipe))
-            {
-                printLine("Failed to impersonate");
-            }
-            else
-            {
-                printLine("Impersonated");
-                if (!RevertToSelf())
-                {
-                    exit(1);
-                }
-            }
-            CloseHandle(hPipe);
-        }
-    }
-    else
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;

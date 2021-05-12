@@ -24,7 +24,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE620_Unverified_Password_Change__w32_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t newPassword[256];
@@ -48,34 +47,6 @@ void CWE620_Unverified_Password_Change__w32_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            wchar_t oldPassword[256];
-            wchar_t newPassword[256];
-            NET_API_STATUS status;
-            printWLine(L"Enter old password: ");
-            if (fwscanf(stdin, L"%255s", oldPassword) != 1)
-            {
-                oldPassword[0] = L'\0';
-            }
-            printWLine(L"Enter new password: ");
-            if (fwscanf(stdin, L"%255s", newPassword) != 1)
-            {
-                newPassword[0] = L'\0';
-            }
-            /* FIX: Verify the old password when setting the new password */
-            status = NetUserChangePassword(NULL, USERNAME, oldPassword, newPassword);
-            if(status == NERR_Success)
-            {
-                printWLine(L"Success!");
-            }
-            else
-            {
-                wprintf(L"NetUserChangePassword failed.  Status = %u = 0x%x\n", status, status);
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -85,35 +56,6 @@ void CWE620_Unverified_Password_Change__w32_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t oldPassword[256];
-            wchar_t newPassword[256];
-            NET_API_STATUS status;
-            printWLine(L"Enter old password: ");
-            if (fwscanf(stdin, L"%255s", oldPassword) != 1)
-            {
-                oldPassword[0] = L'\0';
-            }
-            printWLine(L"Enter new password: ");
-            if (fwscanf(stdin, L"%255s", newPassword) != 1)
-            {
-                newPassword[0] = L'\0';
-            }
-            /* FIX: Verify the old password when setting the new password */
-            status = NetUserChangePassword(NULL, USERNAME, oldPassword, newPassword);
-            if(status == NERR_Success)
-            {
-                printWLine(L"Success!");
-            }
-            else
-            {
-                wprintf(L"NetUserChangePassword failed.  Status = %u = 0x%x\n", status, status);
-            }
-        }
-    }
-    else
     {
         {
             wchar_t oldPassword[256];

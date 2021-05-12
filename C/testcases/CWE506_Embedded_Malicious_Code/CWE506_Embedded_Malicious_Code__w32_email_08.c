@@ -34,7 +34,6 @@ static int staticReturnsTrue()
 
 void CWE506_Embedded_Malicious_Code__w32_email_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             WSADATA wsaData;

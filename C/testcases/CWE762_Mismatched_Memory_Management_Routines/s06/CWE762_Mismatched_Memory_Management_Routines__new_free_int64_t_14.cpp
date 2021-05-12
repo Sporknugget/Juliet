@@ -26,12 +26,10 @@ void bad()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new int64_t;
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -49,17 +47,10 @@ static void goodB2G1()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new int64_t;
     }
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -72,12 +63,10 @@ static void goodB2G2()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new int64_t;
     }
-    if(globalFive==5)
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -90,18 +79,11 @@ static void goodG2B1()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (int64_t *)malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -115,13 +97,11 @@ static void goodG2B2()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    if(globalFive==5)
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (int64_t *)malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */

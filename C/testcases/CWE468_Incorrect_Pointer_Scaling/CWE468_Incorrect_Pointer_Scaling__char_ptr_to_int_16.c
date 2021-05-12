@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_16_bad()
 {
-    while(1)
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -29,7 +28,6 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_16_bad()
             int toPrint = (int) (*(charPointer+2));
             printIntLine(toPrint);
         }
-        break;
     }
 }
 
@@ -40,7 +38,6 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -50,7 +47,6 @@ static void good1()
             int toPrint = (int) (*(charPointer+(2*sizeof(int))));
             printIntLine(toPrint);
         }
-        break;
     }
 }
 

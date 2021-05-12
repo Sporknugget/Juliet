@@ -23,8 +23,6 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_alloca_partial_init_18_b
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    goto source;
-source:
     /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -34,8 +32,6 @@ source:
             data[i].intTwo = i;
         }
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -56,8 +52,6 @@ static void goodB2G()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    goto source;
-source:
     /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -67,8 +61,6 @@ source:
             data[i].intTwo = i;
         }
     }
-    goto sink;
-sink:
     /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -93,8 +85,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    goto source;
-source:
     /* FIX: Completely initialize data */
     {
         int i;
@@ -104,8 +94,6 @@ source:
             data[i].intTwo = i;
         }
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;

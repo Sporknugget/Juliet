@@ -43,8 +43,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__bind_accept_listen_18_bad()
 {
-    goto sink;
-sink:
     {
         char data[100] = "";
 #ifdef _WIN32
@@ -135,8 +133,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         char data[100] = "";
 #ifdef _WIN32

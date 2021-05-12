@@ -37,7 +37,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_wchar_t_alloca_memcpy_04_bad()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
-    if(STATIC_CONST_TRUE)
     {
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -63,12 +62,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -90,7 +83,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */

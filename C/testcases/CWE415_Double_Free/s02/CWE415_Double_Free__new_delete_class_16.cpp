@@ -28,18 +28,14 @@ void bad()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
-        break;
     }
 }
 
@@ -53,19 +49,15 @@ static void goodB2G()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
-        break;
     }
-    while(1)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -75,17 +67,13 @@ static void goodG2B()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new TwoIntsClass;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
-        break;
     }
 }
 

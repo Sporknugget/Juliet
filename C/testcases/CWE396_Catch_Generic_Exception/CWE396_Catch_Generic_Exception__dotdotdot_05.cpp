@@ -32,7 +32,6 @@ namespace CWE396_Catch_Generic_Exception__dotdotdot_05
 
 void bad()
 {
-    if(staticTrue)
     {
         try
         {
@@ -58,15 +57,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         try
         {
@@ -96,7 +86,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         try
         {

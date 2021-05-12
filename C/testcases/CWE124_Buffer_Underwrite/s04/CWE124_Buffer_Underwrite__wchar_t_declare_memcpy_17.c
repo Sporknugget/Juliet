@@ -22,12 +22,10 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE124_Buffer_Underwrite__wchar_t_declare_memcpy_17_bad()
 {
-    int i;
     wchar_t * data;
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
@@ -51,12 +49,10 @@ void CWE124_Buffer_Underwrite__wchar_t_declare_memcpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     wchar_t * data;
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;

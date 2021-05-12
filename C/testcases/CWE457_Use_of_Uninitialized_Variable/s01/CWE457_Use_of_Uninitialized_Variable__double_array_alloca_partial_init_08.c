@@ -36,7 +36,6 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_alloca_partial_init_08_b
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -47,7 +46,6 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_alloca_partial_init_08_b
             }
         }
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -69,7 +67,6 @@ static void goodB2G1()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -80,12 +77,6 @@ static void goodB2G1()
             }
         }
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -110,7 +101,6 @@ static void goodB2G2()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -121,7 +111,6 @@ static void goodB2G2()
             }
         }
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -146,12 +135,6 @@ static void goodG2B1()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Completely initialize data */
         {
@@ -162,7 +145,6 @@ static void goodG2B1()
             }
         }
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -180,7 +162,6 @@ static void goodG2B2()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(staticReturnsTrue())
     {
         /* FIX: Completely initialize data */
         {
@@ -191,7 +172,6 @@ static void goodG2B2()
             }
         }
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

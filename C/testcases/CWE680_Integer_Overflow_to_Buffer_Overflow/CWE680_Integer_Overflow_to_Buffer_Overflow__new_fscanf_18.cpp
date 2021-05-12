@@ -26,8 +26,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
     {
@@ -55,8 +53,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Set data to a relatively small number greater than zero */
     data = 20;
     {

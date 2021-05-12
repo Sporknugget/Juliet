@@ -28,9 +28,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_15_b
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    switch(6)
-    {
-    case 6:
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
@@ -40,12 +37,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_15_b
         /* FLAW: Do not lock the memory */
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         wcscpy(password, L"Password1234!");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         HANDLE pHandle;
         wchar_t * username = L"User";
@@ -81,13 +72,6 @@ static void goodG2B1()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
@@ -102,8 +86,6 @@ static void goodG2B1()
         }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         wcscpy(password, L"Password1234!");
-        break;
-    }
     {
         HANDLE pHandle;
         wchar_t * username = L"User";
@@ -135,9 +117,6 @@ static void goodG2B2()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    switch(6)
-    {
-    case 6:
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
@@ -152,12 +131,6 @@ static void goodG2B2()
         }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         wcscpy(password, L"Password1234!");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         HANDLE pHandle;
         wchar_t * username = L"User";

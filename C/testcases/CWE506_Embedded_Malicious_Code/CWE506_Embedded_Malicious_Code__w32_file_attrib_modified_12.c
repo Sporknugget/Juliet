@@ -29,7 +29,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             FILETIME ftModified;
@@ -74,22 +73,6 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_12_bad()
             }
         }
     }
-    else
-    {
-        {
-            HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
-                                      GENERIC_READ | GENERIC_WRITE,
-                                      0,
-                                      NULL,
-                                      CREATE_ALWAYS,
-                                      FILE_ATTRIBUTE_NORMAL, NULL);
-            /* FIX: Do not modify the file's attributes */
-            if (hFile != INVALID_HANDLE_VALUE)
-            {
-                CloseHandle(hFile);
-            }
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -99,23 +82,6 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
-                                      GENERIC_READ | GENERIC_WRITE,
-                                      0,
-                                      NULL,
-                                      CREATE_ALWAYS,
-                                      FILE_ATTRIBUTE_NORMAL, NULL);
-            /* FIX: Do not modify the file's attributes */
-            if (hFile != INVALID_HANDLE_VALUE)
-            {
-                CloseHandle(hFile);
-            }
-        }
-    }
-    else
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),

@@ -43,9 +43,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__bind_accept_listen_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char data[100] = "";
 #ifdef _WIN32
@@ -127,12 +124,6 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__bind_accept_listen
 #endif
         printLine(data);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -142,13 +133,6 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__bind_accept_listen
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char data[100] = "";
 #ifdef _WIN32
@@ -229,17 +213,12 @@ static void good1()
         }
 #endif
         printLine(data);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char data[100] = "";
 #ifdef _WIN32
@@ -320,12 +299,6 @@ static void good2()
         }
 #endif
         printLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

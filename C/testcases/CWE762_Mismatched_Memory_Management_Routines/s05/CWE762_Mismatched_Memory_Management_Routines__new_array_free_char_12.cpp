@@ -26,27 +26,14 @@ void bad()
     char * data;
     /* Initialize data*/
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new char[100];
     }
-    else
-    {
-        /* FIX: Allocate memory from the heap using malloc() */
-        data = (char *)malloc(100*sizeof(char));
-        if (data == NULL) {exit(-1);}
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
         free(data);
-    }
-    else
-    {
-        /* FIX: Deallocate the memory using delete [] */
-        delete [] data;
     }
 }
 
@@ -62,22 +49,10 @@ static void goodB2G()
     char * data;
     /* Initialize data*/
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new char[100];
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
-        data = new char[100];
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate the memory using delete [] */
-        delete [] data;
-    }
-    else
     {
         /* FIX: Deallocate the memory using delete [] */
         delete [] data;
@@ -92,25 +67,11 @@ static void goodG2B()
     char * data;
     /* Initialize data*/
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
-    else
-    {
-        /* FIX: Allocate memory from the heap using malloc() */
-        data = (char *)malloc(100*sizeof(char));
-        if (data == NULL) {exit(-1);}
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
-         * require a call to delete [] to deallocate the memory */
-        free(data);
-    }
-    else
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */

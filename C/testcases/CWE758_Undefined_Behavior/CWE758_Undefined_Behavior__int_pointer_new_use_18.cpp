@@ -22,8 +22,6 @@ namespace CWE758_Undefined_Behavior__int_pointer_new_use_18
 
 void bad()
 {
-    goto sink;
-sink:
     {
         int * * pointer = new int *;
         int * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
@@ -39,8 +37,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int * data;
         /* initialize both the pointer and the data pointed to */

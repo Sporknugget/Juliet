@@ -19,8 +19,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__int_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -40,8 +38,6 @@ void CWE468_Incorrect_Pointer_Scaling__int_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

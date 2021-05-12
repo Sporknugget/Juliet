@@ -25,7 +25,6 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalTrue)
     {
         /* FLAW: Allocate using new[] and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = new TwoIntsClass[50];
@@ -63,12 +62,6 @@ static void goodG2B1()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new TwoIntsClass[100];
@@ -102,7 +95,6 @@ static void goodG2B2()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalTrue)
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new TwoIntsClass[100];

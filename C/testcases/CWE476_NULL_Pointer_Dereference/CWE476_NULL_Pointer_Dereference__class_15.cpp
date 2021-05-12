@@ -24,30 +24,12 @@ namespace CWE476_NULL_Pointer_Dereference__class_15
 void bad()
 {
     TwoIntsClass * data;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
         /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
         delete data;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -58,24 +40,8 @@ void bad()
 static void goodB2G1()
 {
     TwoIntsClass * data;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
         {
@@ -86,28 +52,14 @@ static void goodB2G1()
         {
             printLine("data is NULL");
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
 static void goodB2G2()
 {
     TwoIntsClass * data;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
         {
@@ -118,25 +70,12 @@ static void goodB2G2()
         {
             printLine("data is NULL");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
 static void goodG2B1()
 {
     TwoIntsClass * data;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         TwoIntsClass * tmpData = new TwoIntsClass;
         tmpData->intOne = 0;
@@ -144,30 +83,16 @@ static void goodG2B1()
         /* FIX: Initialize data */
         data = tmpData;
     }
-    break;
-    }
-    switch(7)
-    {
-    case 7:
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
         /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
         delete data;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
 static void goodG2B2()
 {
     TwoIntsClass * data;
-    switch(6)
-    {
-    case 6:
     {
         TwoIntsClass * tmpData = new TwoIntsClass;
         tmpData->intOne = 0;
@@ -175,25 +100,10 @@ static void goodG2B2()
         /* FIX: Initialize data */
         data = tmpData;
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
         /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
         delete data;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void good()

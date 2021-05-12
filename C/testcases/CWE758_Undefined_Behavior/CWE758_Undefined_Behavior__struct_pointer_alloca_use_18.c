@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE758_Undefined_Behavior__struct_pointer_alloca_use_18_bad()
 {
-    goto sink;
-sink:
     {
         twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));
         twoIntsStruct * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
@@ -36,8 +34,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         twoIntsStruct * data;
         twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));

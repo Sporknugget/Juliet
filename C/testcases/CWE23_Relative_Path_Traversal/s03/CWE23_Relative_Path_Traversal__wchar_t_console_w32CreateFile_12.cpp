@@ -35,7 +35,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from the console */
@@ -62,11 +61,6 @@ void bad()
                 }
             }
         }
-    }
-    else
-    {
-        /* FIX: Use a fixed file name */
-        wcscat(data, L"file.txt");
     }
     {
         HANDLE hFile;
@@ -96,12 +90,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a fixed file name */
-        wcscat(data, L"file.txt");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");

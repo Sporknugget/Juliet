@@ -22,7 +22,6 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_16_bad()
 {
     char data;
     data = ' ';
-    while(1)
     {
         {
             char charArraySource[2];
@@ -32,7 +31,6 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_16_bad()
              * a null value will be returned */
             data = (char)atoi(charArraySource);
         }
-        break;
     }
     {
         char charArraySink[4];
@@ -54,11 +52,9 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    while(1)
     {
         /* FIX: Set data to be a char */
         data = 'a';
-        break;
     }
     {
         char charArraySink[4];

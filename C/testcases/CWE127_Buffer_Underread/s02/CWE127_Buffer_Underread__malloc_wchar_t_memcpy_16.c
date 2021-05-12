@@ -24,7 +24,6 @@ void CWE127_Buffer_Underread__malloc_wchar_t_memcpy_16_bad()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -34,7 +33,6 @@ void CWE127_Buffer_Underread__malloc_wchar_t_memcpy_16_bad()
             /* FLAW: Set data pointer to before the allocated memory buffer */
             data = dataBuffer - 8;
         }
-        break;
     }
     {
         wchar_t dest[100];
@@ -59,7 +57,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -69,7 +66,6 @@ static void goodG2B()
             /* FIX: Set data pointer to the allocated memory buffer */
             data = dataBuffer;
         }
-        break;
     }
     {
         wchar_t dest[100];

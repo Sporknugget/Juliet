@@ -34,7 +34,6 @@ void CWE90_LDAP_Injection__w32_wchar_t_file_12_bad()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from a file */
@@ -57,11 +56,6 @@ void CWE90_LDAP_Injection__w32_wchar_t_file_12_bad()
                 }
             }
         }
-    }
-    else
-    {
-        /* FIX: Use a fixed file name */
-        wcscat(data, L"Doe, XXXXX");
     }
     {
         LDAP* pLdapConnection = NULL;
@@ -126,12 +120,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a fixed file name */
-        wcscat(data, L"Doe, XXXXX");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"Doe, XXXXX");

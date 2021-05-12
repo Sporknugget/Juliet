@@ -46,7 +46,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_file_vprintf_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from a file */
@@ -69,12 +68,9 @@ void CWE134_Uncontrolled_Format_String__wchar_t_file_vprintf_16_bad()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         badVaSinkB(data, data);
-        break;
     }
 }
 
@@ -99,7 +95,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from a file */
@@ -122,12 +117,9 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         goodB2GVaSinkG(data, data);
-        break;
     }
 }
 
@@ -148,16 +140,12 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
-        break;
     }
-    while(1)
     {
         goodG2BVaSinkB(data, data);
-        break;
     }
 }
 

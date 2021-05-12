@@ -32,7 +32,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             FILE *pFile;
@@ -51,9 +50,7 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_16_bad()
                 data[0] = L'\0';
             }
         }
-        break;
     }
-    while(1)
     {
         {
             HANDLE pHandle;
@@ -76,7 +73,6 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_16_bad()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 
@@ -90,7 +86,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             FILE *pFile;
@@ -109,9 +104,7 @@ static void goodB2G()
                 data[0] = L'\0';
             }
         }
-        break;
     }
-    while(1)
     {
         {
             HANDLE pHandle;
@@ -188,7 +181,6 @@ static void goodB2G()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 
@@ -198,7 +190,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    while(1)
     {
         {
             FILE *pFile;
@@ -271,9 +262,7 @@ static void goodG2B()
                 CryptReleaseContext(hCryptProv, 0);
             }
         }
-        break;
     }
-    while(1)
     {
         {
             HANDLE pHandle;
@@ -296,7 +285,6 @@ static void goodG2B()
                 printLine("Unable to login.");
             }
         }
-        break;
     }
 }
 

@@ -25,7 +25,6 @@ void CWE665_Improper_Initialization__wchar_t_cat_03_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(5==5)
     {
         /* FLAW: Do not initialize data */
         ; /* empty statement needed for some flow variants */
@@ -50,12 +49,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Properly initialize data */
         data[0] = L'\0'; /* null terminate */
@@ -76,7 +69,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    if(5==5)
     {
         /* FIX: Properly initialize data */
         data[0] = L'\0'; /* null terminate */

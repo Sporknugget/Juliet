@@ -37,12 +37,10 @@ static int staticReturnsFalse()
 void CWE563_Unused_Variable__unused_value_int_08_bad()
 {
     int data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5;
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10;
@@ -58,17 +56,10 @@ void CWE563_Unused_Variable__unused_value_int_08_bad()
 static void goodB2G1()
 {
     int data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5;
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use data without over-writing its value */
         printIntLine(data);
@@ -79,12 +70,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int data;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5;
     }
-    if(staticReturnsTrue())
     {
         /* FIX: Use data without over-writing its value */
         printIntLine(data);
@@ -95,18 +84,11 @@ static void goodB2G2()
 static void goodG2B1()
 {
     int data;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5;
         printIntLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10;
@@ -118,13 +100,11 @@ static void goodG2B1()
 static void goodG2B2()
 {
     int data;
-    if(staticReturnsTrue())
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5;
         printIntLine(data);
     }
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10;

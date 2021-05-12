@@ -52,8 +52,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -148,8 +146,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    goto source;
-source:
 #ifdef _WIN32
     /* FIX: Use a fixed, full path and file name */
     strcat(data, "c:\\temp\\file.txt");

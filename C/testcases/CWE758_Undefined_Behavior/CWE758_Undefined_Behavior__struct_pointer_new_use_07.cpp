@@ -27,7 +27,6 @@ namespace CWE758_Undefined_Behavior__struct_pointer_new_use_07
 
 void bad()
 {
-    if(staticFive==5)
     {
         {
             twoIntsStruct * * pointer = new twoIntsStruct *;
@@ -43,15 +42,6 @@ void bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             twoIntsStruct * data;
@@ -74,7 +64,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             twoIntsStruct * data;

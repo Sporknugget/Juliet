@@ -27,7 +27,6 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_04_bad()
 {
-    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t dataBuffer[100] = L"";
@@ -44,15 +43,6 @@ void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_04_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
-static void good1()
-{
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t dataBuffer[100] = L"";
@@ -68,7 +58,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t dataBuffer[100] = L"";

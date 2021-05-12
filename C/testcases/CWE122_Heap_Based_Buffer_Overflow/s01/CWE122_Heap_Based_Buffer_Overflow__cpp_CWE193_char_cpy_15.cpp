@@ -32,17 +32,8 @@ void bad()
 {
     char * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Did not leave space for a null terminator */
         data = new char[10];
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char source[10+1] = SRC_STRING;
         /* POTENTIAL FLAW: data may not have enough space to hold source */
@@ -61,17 +52,8 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Allocate space for a null terminator */
         data = new char[10+1];
-        break;
-    }
     {
         char source[10+1] = SRC_STRING;
         /* POTENTIAL FLAW: data may not have enough space to hold source */
@@ -86,17 +68,8 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FIX: Allocate space for a null terminator */
         data = new char[10+1];
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char source[10+1] = SRC_STRING;
         /* POTENTIAL FLAW: data may not have enough space to hold source */

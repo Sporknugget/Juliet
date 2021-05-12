@@ -28,20 +28,16 @@ void bad()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
-        break;
     }
 }
 
@@ -55,21 +51,17 @@ static void goodB2G()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
-        break;
     }
-    while(1)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -79,19 +71,15 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    while(1)
     {
         data = new int64_t;
         *data = 5LL;
         /* FIX: Do not delete data in the source */
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
-        break;
     }
 }
 

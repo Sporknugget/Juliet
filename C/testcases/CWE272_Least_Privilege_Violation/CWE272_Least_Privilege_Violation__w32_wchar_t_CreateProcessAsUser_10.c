@@ -22,7 +22,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcessAsUser_10_bad()
 {
-    if(globalTrue)
     {
         {
             STARTUPINFOW si;
@@ -67,15 +66,6 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcessAsUser_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             STARTUPINFOW si;
@@ -117,7 +107,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             STARTUPINFOW si;

@@ -30,12 +30,8 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_rand_18_bad()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = rand();
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -67,12 +63,8 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = rand();
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -100,12 +92,8 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a relatively small number for memory allocation */
     data = 20;
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough

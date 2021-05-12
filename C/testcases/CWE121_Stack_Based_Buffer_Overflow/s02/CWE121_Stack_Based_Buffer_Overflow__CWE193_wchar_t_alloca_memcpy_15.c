@@ -30,19 +30,10 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_wchar_t_alloca_memcpy_15_bad()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
-    switch(6)
-    {
-    case 6:
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
         data = dataBadBuffer;
         data[0] = L'\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         wchar_t source[10+1] = SRC_STRING;
         /* Copy length + 1 to include NUL terminator from source */
@@ -62,19 +53,10 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
         data = dataGoodBuffer;
         data[0] = L'\0'; /* null terminate */
-        break;
-    }
     {
         wchar_t source[10+1] = SRC_STRING;
         /* Copy length + 1 to include NUL terminator from source */
@@ -90,19 +72,10 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
-    switch(6)
-    {
-    case 6:
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
         data = dataGoodBuffer;
         data[0] = L'\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         wchar_t source[10+1] = SRC_STRING;
         /* Copy length + 1 to include NUL terminator from source */

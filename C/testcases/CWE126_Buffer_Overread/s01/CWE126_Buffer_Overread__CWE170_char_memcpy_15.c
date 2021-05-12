@@ -21,9 +21,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_memcpy_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char data[150], dest[100];
         /* Initialize data */
@@ -32,12 +29,6 @@ void CWE126_Buffer_Overread__CWE170_char_memcpy_15_bad()
         memcpy(dest, data, 99*sizeof(char));
         /* FLAW: do not explicitly null terminate dest after the use of memcpy */
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -48,13 +39,6 @@ void CWE126_Buffer_Overread__CWE170_char_memcpy_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char data[150], dest[100];
         /* Initialize data */
@@ -63,17 +47,12 @@ static void good1()
         memcpy(dest, data, 99*sizeof(char));
         dest[99] = '\0'; /* FIX: null terminate dest */
         printLine(dest);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char data[150], dest[100];
         /* Initialize data */
@@ -82,12 +61,6 @@ static void good2()
         memcpy(dest, data, 99*sizeof(char));
         dest[99] = '\0'; /* FIX: null terminate dest */
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

@@ -21,7 +21,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             HANDLE hFile;
@@ -30,31 +29,6 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_12_bad()
             hFile = CreateFileW(
                         fileName,
                         FILE_ALL_ACCESS,
-                        FILE_SHARE_READ,
-                        NULL,
-                        CREATE_NEW,
-                        FILE_ATTRIBUTE_NORMAL,
-                        NULL);
-            if (hFile == INVALID_HANDLE_VALUE)
-            {
-                printLine("File could not be created");
-            }
-            else
-            {
-                printLine("File created successfully");
-                CloseHandle(hFile);
-            }
-        }
-    }
-    else
-    {
-        {
-            HANDLE hFile;
-            wchar_t * fileName = L"C:\\temp\\file.txt";
-            /* FIX: Call CreateFileW() without FILE_ALL_ACCESS as the 2nd parameter to limit access */
-            hFile = CreateFileW(
-                        fileName,
-                        GENERIC_READ,
                         FILE_SHARE_READ,
                         NULL,
                         CREATE_NEW,
@@ -80,32 +54,6 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            HANDLE hFile;
-            wchar_t * fileName = L"C:\\temp\\file.txt";
-            /* FIX: Call CreateFileW() without FILE_ALL_ACCESS as the 2nd parameter to limit access */
-            hFile = CreateFileW(
-                        fileName,
-                        GENERIC_READ,
-                        FILE_SHARE_READ,
-                        NULL,
-                        CREATE_NEW,
-                        FILE_ATTRIBUTE_NORMAL,
-                        NULL);
-            if (hFile == INVALID_HANDLE_VALUE)
-            {
-                printLine("File could not be created");
-            }
-            else
-            {
-                printLine("File created successfully");
-                CloseHandle(hFile);
-            }
-        }
-    }
-    else
     {
         {
             HANDLE hFile;

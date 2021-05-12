@@ -57,7 +57,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -92,12 +91,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
@@ -124,7 +117,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */

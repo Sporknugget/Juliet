@@ -31,7 +31,6 @@ static int staticReturnsTrue()
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

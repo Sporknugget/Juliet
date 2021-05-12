@@ -22,9 +22,6 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_15_bad()
 {
     char data;
     data = ' ';
-    switch(6)
-    {
-    case 6:
     {
         char charArraySource[2];
         charArraySource[0] = (char)getc(stdin);
@@ -32,12 +29,6 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_15_bad()
         /* FLAW: If the character entered on the command line is not an int,
          * a null value will be returned */
         data = (char)atoi(charArraySource);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         char charArraySink[4];
@@ -59,17 +50,8 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Set data to be a char */
         data = 'a';
-        break;
-    }
     {
         char charArraySink[4];
         charArraySink[0] = 'x';
@@ -86,17 +68,8 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
-    switch(6)
-    {
-    case 6:
         /* FIX: Set data to be a char */
         data = 'a';
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         char charArraySink[4];
         charArraySink[0] = 'x';

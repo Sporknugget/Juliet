@@ -48,7 +48,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -107,11 +106,6 @@ void bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Set data to a relatively small number greater than zero */
-        data = 20;
-    }
     {
         size_t dataBytes,i;
         int *intPointer;
@@ -138,12 +132,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Set data to a relatively small number greater than zero */
-        data = 20;
-    }
-    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

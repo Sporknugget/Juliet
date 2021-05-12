@@ -46,7 +46,6 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_12_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -105,34 +104,12 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_12_bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* POTENTIAL FLAW: if (data * 2) < INT_MIN, this will underflow */
             int result = data * 2;
             printIntLine(result);
-        }
-    }
-    else
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* FIX: Add a check to prevent an underflow from occurring */
-            if (data > (INT_MIN/2))
-            {
-                int result = data * 2;
-                printIntLine(result);
-            }
-            else
-            {
-                printLine("data value is too small to perform multiplication.");
-            }
         }
     }
 }
@@ -149,7 +126,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -208,82 +184,6 @@ static void goodB2G()
 #endif
         }
     }
-    else
-    {
-        {
-#ifdef _WIN32
-            WSADATA wsaData;
-            int wsaDataInit = 0;
-#endif
-            int recvResult;
-            struct sockaddr_in service;
-            SOCKET connectSocket = INVALID_SOCKET;
-            char inputBuffer[CHAR_ARRAY_SIZE];
-            do
-            {
-#ifdef _WIN32
-                if (WSAStartup(MAKEWORD(2,2), &wsaData) != NO_ERROR)
-                {
-                    break;
-                }
-                wsaDataInit = 1;
-#endif
-                /* POTENTIAL FLAW: Read data using a connect socket */
-                connectSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-                if (connectSocket == INVALID_SOCKET)
-                {
-                    break;
-                }
-                memset(&service, 0, sizeof(service));
-                service.sin_family = AF_INET;
-                service.sin_addr.s_addr = inet_addr(IP_ADDRESS);
-                service.sin_port = htons(TCP_PORT);
-                if (connect(connectSocket, (struct sockaddr*)&service, sizeof(service)) == SOCKET_ERROR)
-                {
-                    break;
-                }
-                /* Abort on error or the connection was closed, make sure to recv one
-                 * less char than is in the recv_buf in order to append a terminator */
-                recvResult = recv(connectSocket, inputBuffer, CHAR_ARRAY_SIZE - 1, 0);
-                if (recvResult == SOCKET_ERROR || recvResult == 0)
-                {
-                    break;
-                }
-                /* NUL-terminate the string */
-                inputBuffer[recvResult] = '\0';
-                /* Convert to int */
-                data = atoi(inputBuffer);
-            }
-            while (0);
-            if (connectSocket != INVALID_SOCKET)
-            {
-                CLOSE_SOCKET(connectSocket);
-            }
-#ifdef _WIN32
-            if (wsaDataInit)
-            {
-                WSACleanup();
-            }
-#endif
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* FIX: Add a check to prevent an underflow from occurring */
-            if (data > (INT_MIN/2))
-            {
-                int result = data * 2;
-                printIntLine(result);
-            }
-            else
-            {
-                printLine("data value is too small to perform multiplication.");
-            }
-        }
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -309,26 +209,10 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data < 0) /* ensure we won't have an overflow */
-        {
-            /* POTENTIAL FLAW: if (data * 2) < INT_MIN, this will underflow */
-            int result = data * 2;
-            printIntLine(result);
-        }
-    }
-    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

@@ -31,8 +31,6 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_wchar_t_18_bad()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
-    goto source;
-source:
     /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
     wcscpy(cryptoKey, CRYPTO_KEY);
     {
@@ -105,8 +103,6 @@ static void goodG2B()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
-    goto source;
-source:
     {
         size_t cryptoKeyLen = wcslen(cryptoKey);
         /* if there is room in cryptoKey, read into it from the console */

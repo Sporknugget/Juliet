@@ -24,25 +24,12 @@ Template File: sources-sinks-12.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_12_bad()
 {
     wchar_t * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    else
-    {
-        /* FIX: Initialize data */
-        data = L"string";
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
-        printWLine(data);
-    }
-    else
-    {
-        /* FIX: Ensure data is initialized before use */
-        data = L"string";
         printWLine(data);
     }
 }
@@ -57,23 +44,10 @@ void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_12_bad()
 static void goodB2G()
 {
     wchar_t * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    else
-    {
-        /* POTENTIAL FLAW: Don't initialize data */
-        ; /* empty statement needed for some flow variants */
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Ensure data is initialized before use */
-        data = L"string";
-        printWLine(data);
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         data = L"string";
@@ -87,22 +61,10 @@ static void goodB2G()
 static void goodG2B()
 {
     wchar_t * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         data = L"string";
     }
-    else
-    {
-        /* FIX: Initialize data */
-        data = L"string";
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Use data without initializing it */
-        printWLine(data);
-    }
-    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printWLine(data);

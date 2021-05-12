@@ -24,34 +24,14 @@ Template File: sources-sinks-12.tmpl.c
 void CWE476_NULL_Pointer_Dereference__char_12_bad()
 {
     char * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    else
-    {
-        /* FIX: Initialize data */
-        data = "Good";
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
         printHexCharLine(data[0]);
-    }
-    else
-    {
-        /* FIX: Check for NULL before attempting to print data */
-        if (data != NULL)
-        {
-            /* printLine() checks for NULL, so we cannot use it here */
-            printHexCharLine(data[0]);
-        }
-        else
-        {
-            printLine("data is NULL");
-        }
     }
 }
 
@@ -65,30 +45,10 @@ void CWE476_NULL_Pointer_Dereference__char_12_bad()
 static void goodB2G()
 {
     char * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Set data to NULL */
-        data = NULL;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Check for NULL before attempting to print data */
-        if (data != NULL)
-        {
-            /* printLine() checks for NULL, so we cannot use it here */
-            printHexCharLine(data[0]);
-        }
-        else
-        {
-            printLine("data is NULL");
-        }
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -109,23 +69,10 @@ static void goodB2G()
 static void goodG2B()
 {
     char * data;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         data = "Good";
     }
-    else
-    {
-        /* FIX: Initialize data */
-        data = "Good";
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
-        /* printLine() checks for NULL, so we cannot use it here */
-        printHexCharLine(data[0]);
-    }
-    else
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */

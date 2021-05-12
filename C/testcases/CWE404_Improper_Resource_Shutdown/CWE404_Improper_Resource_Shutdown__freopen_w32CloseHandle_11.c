@@ -27,7 +27,6 @@ void CWE404_Improper_Resource_Shutdown__freopen_w32CloseHandle_11_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
-    if(globalReturnsTrue())
     {
         if (data != NULL)
         {
@@ -49,12 +48,6 @@ static void goodB2G1()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         if (data != NULL)
         {
@@ -72,7 +65,6 @@ static void goodB2G2()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
-    if(globalReturnsTrue())
     {
         if (data != NULL)
         {

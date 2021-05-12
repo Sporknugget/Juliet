@@ -46,8 +46,6 @@ void CWE191_Integer_Underflow__int_listen_socket_sub_18_bad()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -117,8 +115,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         int result = data - 1;
@@ -136,8 +132,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -207,8 +201,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > INT_MIN)
     {
@@ -227,12 +219,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
     data = -2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         int result = data - 1;

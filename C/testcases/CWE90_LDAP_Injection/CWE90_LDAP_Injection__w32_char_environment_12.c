@@ -36,7 +36,6 @@ void CWE90_LDAP_Injection__w32_char_environment_12_bad()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -49,11 +48,6 @@ void CWE90_LDAP_Injection__w32_char_environment_12_bad()
                 strncat(data+dataLen, environment, 256-dataLen-1);
             }
         }
-    }
-    else
-    {
-        /* FIX: Use a fixed file name */
-        strcat(data, "Doe, XXXXX");
     }
     {
         LDAP* pLdapConnection = NULL;
@@ -118,12 +112,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a fixed file name */
-        strcat(data, "Doe, XXXXX");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");

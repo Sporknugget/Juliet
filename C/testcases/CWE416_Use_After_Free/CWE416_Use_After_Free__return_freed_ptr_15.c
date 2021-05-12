@@ -68,9 +68,6 @@ static char * helperGood(char * aString)
 
 void CWE416_Use_After_Free__return_freed_ptr_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* Call the bad helper function */
         char * reversedString = helperBad("BadSink");
@@ -79,12 +76,6 @@ void CWE416_Use_After_Free__return_freed_ptr_15_bad()
          * This call to free() was removed because we want the tool to detect the use after free,
          * but we don't want that function to be free(). Essentially we want to avoid a double free
          */
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -95,13 +86,6 @@ void CWE416_Use_After_Free__return_freed_ptr_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* Call the good helper function */
         char * reversedString = helperGood("GoodSink");
@@ -110,17 +94,12 @@ static void good1()
          * This call to free() was removed because we want the tool to detect the use after free,
          * but we don't want that function to be free(). Essentially we want to avoid a double free
          */
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         /* Call the good helper function */
         char * reversedString = helperGood("GoodSink");
@@ -129,12 +108,6 @@ static void good2()
          * This call to free() was removed because we want the tool to detect the use after free,
          * but we don't want that function to be free(). Essentially we want to avoid a double free
          */
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

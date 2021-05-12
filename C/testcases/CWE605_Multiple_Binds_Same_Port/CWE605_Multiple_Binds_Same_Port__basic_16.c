@@ -43,7 +43,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE605_Multiple_Binds_Same_Port__basic_16_bad()
 {
-    while(1)
     {
         {
             char data[100] = "";
@@ -137,7 +136,6 @@ void CWE605_Multiple_Binds_Same_Port__basic_16_bad()
 #endif
             printLine(data);
         }
-        break;
     }
 }
 
@@ -148,7 +146,6 @@ void CWE605_Multiple_Binds_Same_Port__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             char data[100] = "";
@@ -231,7 +228,6 @@ static void good1()
 #endif
             printLine(data);
         }
-        break;
     }
 }
 

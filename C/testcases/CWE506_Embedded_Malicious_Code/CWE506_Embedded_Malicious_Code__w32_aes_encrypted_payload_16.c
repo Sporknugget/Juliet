@@ -27,7 +27,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_16_bad()
 {
-    while(1)
     {
         {
             /* FLAW: encrytped "calc.exe" */
@@ -86,7 +85,6 @@ void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_16_bad()
                 CryptReleaseContext(hCryptProv, 0);
             }
         }
-        break;
     }
 }
 
@@ -97,7 +95,6 @@ void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             /* FIX: plaintext command */
@@ -108,7 +105,6 @@ static void good1()
                 exit(1);
             }
         }
-        break;
     }
 }
 

@@ -19,7 +19,6 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE546_Suspicious_Comment__LATER_14_bad()
 {
-    if(globalFive==5)
     {
         /* FLAW: The following comment has the letters 'LATER' in it*/
         /* LATER: This comment has the letters 'LATER' in it, which is certainly
@@ -33,15 +32,6 @@ void CWE546_Suspicious_Comment__LATER_14_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
-static void good1()
-{
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -51,7 +41,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalFive==5)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

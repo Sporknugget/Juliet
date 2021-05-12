@@ -68,8 +68,6 @@ static char * helperGood(char * aString)
 
 void CWE416_Use_After_Free__return_freed_ptr_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             /* Call the bad helper function */
@@ -90,8 +88,6 @@ void CWE416_Use_After_Free__return_freed_ptr_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             /* Call the good helper function */

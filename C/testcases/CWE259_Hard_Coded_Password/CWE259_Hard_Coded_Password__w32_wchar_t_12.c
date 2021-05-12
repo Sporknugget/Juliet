@@ -30,29 +30,9 @@ void CWE259_Hard_Coded_Password__w32_wchar_t_12_bad()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a hardcoded password */
         wcscpy(password, PASSWORD);
-    }
-    else
-    {
-        {
-            size_t passwordLen = 0;
-            /* FIX: Read the password from the console */
-            if (fgetws(password, 100, stdin) == NULL)
-            {
-                printLine("fgetws() failed");
-                /* Restore NUL terminator if fgetws fails */
-                password[0] = L'\0';
-            }
-            /* Remove the carriage return from the string that is inserted by fgetws() */
-            passwordLen = wcslen(password);
-            if (passwordLen > 0)
-            {
-                password[passwordLen-1] = L'\0';
-            }
-        }
     }
     {
         HANDLE pHandle;
@@ -88,26 +68,6 @@ static void goodG2B()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            size_t passwordLen = 0;
-            /* FIX: Read the password from the console */
-            if (fgetws(password, 100, stdin) == NULL)
-            {
-                printLine("fgetws() failed");
-                /* Restore NUL terminator if fgetws fails */
-                password[0] = L'\0';
-            }
-            /* Remove the carriage return from the string that is inserted by fgetws() */
-            passwordLen = wcslen(password);
-            if (passwordLen > 0)
-            {
-                password[passwordLen-1] = L'\0';
-            }
-        }
-    }
-    else
     {
         {
             size_t passwordLen = 0;

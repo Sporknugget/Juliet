@@ -26,7 +26,6 @@ static int staticFive = 5;
 
 void CWE391_Unchecked_Error_Condition__wcstombs_07_bad()
 {
-    if(staticFive==5)
     {
         {
             size_t bytesTranslated = 0;
@@ -44,15 +43,6 @@ void CWE391_Unchecked_Error_Condition__wcstombs_07_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t bytesTranslated = 0;
@@ -75,7 +65,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             size_t bytesTranslated = 0;

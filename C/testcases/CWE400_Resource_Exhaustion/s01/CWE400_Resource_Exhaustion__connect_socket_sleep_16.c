@@ -52,7 +52,6 @@ void CWE400_Resource_Exhaustion__connect_socket_sleep_16_bad()
     int count;
     /* Initialize count */
     count = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -110,14 +109,11 @@ void CWE400_Resource_Exhaustion__connect_socket_sleep_16_bad()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
         printLine("Sleep time possibly too long");
-        break;
     }
 }
 
@@ -131,7 +127,6 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -189,9 +184,7 @@ static void goodB2G()
             }
 #endif
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -203,7 +196,6 @@ static void goodB2G()
         {
             printLine("Sleep time too long");
         }
-        break;
     }
 }
 
@@ -213,18 +205,14 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    while(1)
     {
         /* FIX: Use a relatively small number */
         count = 20;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
         printLine("Sleep time possibly too long");
-        break;
     }
 }
 

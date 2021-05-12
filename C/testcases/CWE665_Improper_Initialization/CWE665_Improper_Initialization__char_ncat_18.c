@@ -25,8 +25,6 @@ void CWE665_Improper_Initialization__char_ncat_18_bad()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
-    goto source;
-source:
     /* FLAW: Do not initialize data */
     ; /* empty statement needed for some flow variants */
     {
@@ -51,8 +49,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Properly initialize data */
     data[0] = '\0'; /* null terminate */
     {

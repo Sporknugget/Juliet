@@ -25,10 +25,8 @@ namespace CWE590_Free_Memory_Not_on_Heap__delete_array_struct_declare_17
 
 void bad()
 {
-    int i;
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    for(i = 0; i < 1; i++)
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -56,10 +54,8 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    for(h = 0; h < 1; h++)
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

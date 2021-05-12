@@ -24,7 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_declare_11_bad()
 {
     int * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrue())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -53,12 +52,6 @@ static void goodG2B1()
 {
     int * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
@@ -88,7 +81,6 @@ static void goodG2B2()
 {
     int * data;
     data = NULL; /* Initialize data */
-    if(globalReturnsTrue())
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

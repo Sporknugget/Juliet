@@ -29,7 +29,6 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_puts_14_bad()
 {
-    if(globalFive==5)
     {
         /* FLAW: Do not check the return value */
         PUTS(L"string");
@@ -40,15 +39,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_puts_14_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
-static void good1()
-{
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: check the return value */
         if (PUTS(L"string") == WEOF)
@@ -61,7 +51,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalFive==5)
     {
         /* FIX: check the return value */
         if (PUTS(L"string") == WEOF)

@@ -57,7 +57,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -139,11 +138,6 @@ void bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Use a fixed file name */
-        strcat(data, "file.txt");
-    }
     {
         ofstream outputFile;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -163,12 +157,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a fixed file name */
-        strcat(data, "file.txt");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");

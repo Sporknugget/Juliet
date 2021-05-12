@@ -28,8 +28,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_18_b
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    goto source;
-source:
     password = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
@@ -74,8 +72,6 @@ static void goodG2B()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    goto source;
-source:
     password = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {

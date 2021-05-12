@@ -45,7 +45,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_file_snprintf_06_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -69,7 +68,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_file_snprintf_06_bad()
             }
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             wchar_t dest[100] = L"";
@@ -90,7 +88,6 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -114,12 +111,6 @@ static void goodB2G1()
             }
         }
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t dest[100] = L"";
@@ -136,7 +127,6 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -160,7 +150,6 @@ static void goodB2G2()
             }
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             wchar_t dest[100] = L"";
@@ -177,17 +166,10 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             wchar_t dest[100] = L"";
@@ -204,12 +186,10 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(STATIC_CONST_FIVE==5)
     {
         {
             wchar_t dest[100] = L"";

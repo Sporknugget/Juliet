@@ -19,17 +19,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE546_Suspicious_Comment__TODO_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: The following comment has the letters 'TODO' in it*/
         /* TODO: This comment has the letters 'TODO' in it, which is certainly
          * suspicious, because it could indicate this code is not finished.
          */
-        printLine("Hello");
-    }
-    else
-    {
-        /* FIX: Removed the suspicious comments */
         printLine("Hello");
     }
 }
@@ -41,12 +35,6 @@ void CWE546_Suspicious_Comment__TODO_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Removed the suspicious comments */
-        printLine("Hello");
-    }
-    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

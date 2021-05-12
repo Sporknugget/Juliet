@@ -29,16 +29,12 @@ void bad()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new struct _twoIntsStruct[100];
     /* Initialize and make use of data */
     data[0].intOne = 0;
     data[0].intTwo = 0;
     printStructLine((twoIntsStruct *)&data[0]);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
@@ -52,16 +48,12 @@ static void goodB2G()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new struct _twoIntsStruct[100];
     /* Initialize and make use of data */
     data[0].intOne = 0;
     data[0].intTwo = 0;
     printStructLine((twoIntsStruct *)&data[0]);
-    goto sink;
-sink:
     /* FIX: Deallocate memory */
     delete[] data;
 }
@@ -71,8 +63,6 @@ static void goodG2B()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    goto source;
-source:
     /* FIX: Use memory allocated on the stack */
     struct _twoIntsStruct dataGoodBuffer[100];
     data = dataGoodBuffer;
@@ -80,8 +70,6 @@ source:
     data[0].intOne = 0;
     data[0].intTwo = 0;
     printStructLine((twoIntsStruct *)&data[0]);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }

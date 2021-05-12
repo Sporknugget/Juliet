@@ -29,8 +29,6 @@ void CWE617_Reachable_Assertion__fgets_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -58,8 +56,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a value greater than the assert value */
     data = ASSERT_VALUE+1;
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */

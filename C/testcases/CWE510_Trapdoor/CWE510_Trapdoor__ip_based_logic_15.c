@@ -40,9 +40,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE510_Trapdoor__ip_based_logic_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -120,12 +117,6 @@ void CWE510_Trapdoor__ip_based_logic_15_bad()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -135,13 +126,6 @@ void CWE510_Trapdoor__ip_based_logic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -202,17 +186,12 @@ static void good1()
             WSACleanup();
         }
 #endif
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -273,12 +252,6 @@ static void good2()
             WSACleanup();
         }
 #endif
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

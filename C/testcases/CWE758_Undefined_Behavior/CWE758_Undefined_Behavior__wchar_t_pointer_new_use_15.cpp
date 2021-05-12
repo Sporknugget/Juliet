@@ -22,20 +22,11 @@ namespace CWE758_Undefined_Behavior__wchar_t_pointer_new_use_15
 
 void bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t * * pointer = new wchar_t *;
         wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         delete pointer;
         printWLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -46,13 +37,6 @@ void bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         wchar_t * data;
         data = L"string";
@@ -63,17 +47,12 @@ static void good1()
             printWLine(data);
         }
         delete pointer;
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t * data;
         data = L"string";
@@ -84,12 +63,6 @@ static void good2()
             printWLine(data);
         }
         delete pointer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

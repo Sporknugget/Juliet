@@ -25,10 +25,8 @@ namespace CWE122_Heap_Based_Buffer_Overflow__cpp_src_wchar_t_cpy_17
 
 void bad()
 {
-    int i;
     wchar_t * data;
     data = new wchar_t[100];
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         wmemset(data, L'A', 100-1); /* fill with L'A's */
@@ -50,10 +48,8 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     wchar_t * data;
     data = new wchar_t[100];
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */

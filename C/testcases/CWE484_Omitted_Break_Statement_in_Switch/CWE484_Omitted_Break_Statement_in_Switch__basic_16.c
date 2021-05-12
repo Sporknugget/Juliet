@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE484_Omitted_Break_Statement_in_Switch__basic_16_bad()
 {
-    while(1)
     {
         {
             int x = (rand() % 3);
@@ -39,7 +38,6 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_16_bad()
                 break;
             }
         }
-        break;
     }
 }
 
@@ -50,7 +48,6 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             int x = (rand() % 3);
@@ -72,7 +69,6 @@ static void good1()
                 break;
             }
         }
-        break;
     }
 }
 

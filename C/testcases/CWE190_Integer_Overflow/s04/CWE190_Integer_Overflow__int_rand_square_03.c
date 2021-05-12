@@ -26,12 +26,10 @@ void CWE190_Integer_Overflow__int_rand_square_03_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    if(5==5)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
@@ -51,17 +49,10 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data > INT_MIN && abs(data) < (long)sqrt((double)INT_MAX))
@@ -82,12 +73,10 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    if(5==5)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data > INT_MIN && abs(data) < (long)sqrt((double)INT_MAX))
@@ -108,17 +97,10 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    if(5==5)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
@@ -134,12 +116,10 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    if(5==5)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */

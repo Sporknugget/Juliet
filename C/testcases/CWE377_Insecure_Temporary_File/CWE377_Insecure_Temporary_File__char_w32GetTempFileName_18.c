@@ -34,8 +34,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_18_bad()
 {
-    goto sink;
-sink:
     {
         char filename[MAX_PATH] = "";
         int fileDesc;
@@ -63,8 +61,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         char filename[MAX_PATH] = "";
         int fileDesc;

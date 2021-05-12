@@ -49,7 +49,6 @@ static int staticReturnsFalse()
 
 void CWE367_TOC_TOU__stat_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             char filename[100] = "";
@@ -91,15 +90,6 @@ void CWE367_TOC_TOU__stat_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char filename[100] = "";
@@ -135,7 +125,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             char filename[100] = "";

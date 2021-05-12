@@ -23,20 +23,16 @@ void CWE190_Integer_Overflow__char_fscanf_add_16_bad()
 {
     char data;
     data = ' ';
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             char result = data + 1;
             printHexCharLine(result);
         }
-        break;
     }
 }
 
@@ -49,13 +45,10 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
-        break;
     }
-    while(1)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < CHAR_MAX)
@@ -67,7 +60,6 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
-        break;
     }
 }
 
@@ -76,20 +68,16 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             char result = data + 1;
             printHexCharLine(result);
         }
-        break;
     }
 }
 

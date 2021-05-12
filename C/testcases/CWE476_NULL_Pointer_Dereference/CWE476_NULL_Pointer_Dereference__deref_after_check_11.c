@@ -19,7 +19,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__deref_after_check_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             /* FLAW: Check for NULL, but still dereference the pointer */
@@ -36,15 +35,6 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
@@ -60,7 +50,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             /* FIX: Check for NULL and do not dereference the pointer if it is NULL */

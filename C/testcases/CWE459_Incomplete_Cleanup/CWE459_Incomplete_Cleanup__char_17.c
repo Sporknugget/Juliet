@@ -38,8 +38,6 @@ static int _mkstemp(const char * t){
 
 void CWE459_Incomplete_Cleanup__char_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char filename[] = "badXXXXXX";
@@ -67,8 +65,6 @@ void CWE459_Incomplete_Cleanup__char_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char filename[] = "goodXXXXXX";

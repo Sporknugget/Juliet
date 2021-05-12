@@ -24,8 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_wchar_t_alloca_18_bad()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         wchar_t * dataBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -47,8 +45,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));

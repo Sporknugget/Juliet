@@ -23,12 +23,8 @@ void CWE190_Integer_Overflow__char_fscanf_preinc_18_bad()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a value input from the console */
     fscanf (stdin, "%c", &data);
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Incrementing data could cause an overflow */
         ++data;
@@ -46,12 +42,8 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a value input from the console */
     fscanf (stdin, "%c", &data);
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an overflow from occurring */
     if (data < CHAR_MAX)
     {
@@ -70,12 +62,8 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
     data = 2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Incrementing data could cause an overflow */
         ++data;

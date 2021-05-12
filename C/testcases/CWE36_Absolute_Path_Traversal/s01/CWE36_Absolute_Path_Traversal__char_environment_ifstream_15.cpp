@@ -41,9 +41,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -54,12 +51,6 @@ void bad()
             /* POTENTIAL FLAW: Read data from an environment variable */
             strncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         ifstream inputFile;
@@ -79,13 +70,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "c:\\temp\\file.txt");
@@ -93,8 +77,6 @@ static void goodG2B1()
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "/tmp/file.txt");
 #endif
-        break;
-    }
     {
         ifstream inputFile;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -109,9 +91,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "c:\\temp\\file.txt");
@@ -119,12 +98,6 @@ static void goodG2B2()
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "/tmp/file.txt");
 #endif
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         ifstream inputFile;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */

@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE758_Undefined_Behavior__int64_t_malloc_use_18_bad()
 {
-    goto sink;
-sink:
     {
         int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
         if (pointer == NULL) {exit(-1);}
@@ -37,8 +35,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int64_t data;
         int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));

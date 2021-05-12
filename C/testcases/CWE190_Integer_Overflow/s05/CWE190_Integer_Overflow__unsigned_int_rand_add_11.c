@@ -23,12 +23,10 @@ void CWE190_Integer_Overflow__unsigned_int_rand_add_11_bad()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (unsigned int)RAND32();
     }
-    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
@@ -47,17 +45,10 @@ static void goodB2G1()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (unsigned int)RAND32();
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -77,12 +68,10 @@ static void goodB2G2()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (unsigned int)RAND32();
     }
-    if(globalReturnsTrue())
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -102,17 +91,10 @@ static void goodG2B1()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
@@ -127,12 +109,10 @@ static void goodG2B2()
 {
     unsigned int data;
     data = 0;
-    if(globalReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */

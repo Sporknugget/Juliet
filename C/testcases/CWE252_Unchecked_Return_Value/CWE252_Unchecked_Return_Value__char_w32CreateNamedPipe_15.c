@@ -26,9 +26,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -50,12 +47,6 @@ void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_15_bad()
          * and since the checkers are looking for certain function calls anyway */
         CloseHandle(hPipe);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -65,13 +56,6 @@ void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -96,17 +80,12 @@ static void good1()
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
         CloseHandle(hPipe);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -131,12 +110,6 @@ static void good2()
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
         CloseHandle(hPipe);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

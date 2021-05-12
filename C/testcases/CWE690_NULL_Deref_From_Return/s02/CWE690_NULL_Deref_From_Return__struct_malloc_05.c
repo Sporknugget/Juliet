@@ -32,7 +32,6 @@ void CWE690_NULL_Deref_From_Return__struct_malloc_05_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
-    if(staticTrue)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0].intOne = 1;
@@ -53,12 +52,6 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
@@ -78,7 +71,6 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
-    if(staticTrue)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)

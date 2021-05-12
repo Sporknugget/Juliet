@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE758_Undefined_Behavior__int64_t_malloc_use_16_bad()
 {
-    while(1)
     {
         {
             int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
@@ -28,7 +27,6 @@ void CWE758_Undefined_Behavior__int64_t_malloc_use_16_bad()
             free(pointer);
             printLongLongLine(data);
         }
-        break;
     }
 }
 
@@ -39,7 +37,6 @@ void CWE758_Undefined_Behavior__int64_t_malloc_use_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             int64_t data;
@@ -53,7 +50,6 @@ static void good1()
             }
             free(pointer);
         }
-        break;
     }
 }
 

@@ -38,7 +38,6 @@ static int staticFalse = 0; /* false */
 
 void CWE252_Unchecked_Return_Value__char_rename_05_bad()
 {
-    if(staticTrue)
     {
         /* FLAW: Do not check the return value */
         RENAME(OLD_BAD_FILE_NAME, "newbadfilename.txt");
@@ -49,15 +48,6 @@ void CWE252_Unchecked_Return_Value__char_rename_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, "newgoodfilename.txt") != 0)
@@ -70,7 +60,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, "newgoodfilename.txt") != 0)

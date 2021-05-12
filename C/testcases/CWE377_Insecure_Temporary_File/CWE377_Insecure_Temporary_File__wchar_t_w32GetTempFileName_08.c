@@ -47,7 +47,6 @@ static int staticReturnsFalse()
 
 void CWE377_Insecure_Temporary_File__wchar_t_w32GetTempFileName_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             wchar_t filename[MAX_PATH] = L"";
@@ -74,15 +73,6 @@ void CWE377_Insecure_Temporary_File__wchar_t_w32GetTempFileName_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t filename[MAX_PATH] = L"";
@@ -110,7 +100,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             wchar_t filename[MAX_PATH] = L"";

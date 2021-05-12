@@ -30,7 +30,6 @@ void CWE259_Hard_Coded_Password__w32_wchar_t_11_bad()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(globalReturnsTrue())
     {
         /* FLAW: Use a hardcoded password */
         wcscpy(password, PASSWORD);
@@ -68,12 +67,6 @@ static void goodG2B1()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t passwordLen = 0;
@@ -121,7 +114,6 @@ static void goodG2B2()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(globalReturnsTrue())
     {
         {
             size_t passwordLen = 0;

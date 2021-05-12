@@ -52,7 +52,6 @@ void CWE400_Resource_Exhaustion__listen_socket_for_loop_04_bad()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -124,7 +123,6 @@ void CWE400_Resource_Exhaustion__listen_socket_for_loop_04_bad()
 #endif
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;
@@ -147,7 +145,6 @@ static void goodB2G1()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -219,12 +216,6 @@ static void goodB2G1()
 #endif
         }
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t i = 0;
@@ -246,7 +237,6 @@ static void goodB2G2()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -318,7 +308,6 @@ static void goodB2G2()
 #endif
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;
@@ -340,17 +329,10 @@ static void goodG2B1()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;
@@ -369,12 +351,10 @@ static void goodG2B2()
     int count;
     /* Initialize count */
     count = -1;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(STATIC_CONST_TRUE)
     {
         {
             size_t i = 0;

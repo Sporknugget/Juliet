@@ -68,8 +68,6 @@ static char * helperGood(char * aString)
 
 void CWE416_Use_After_Free__return_freed_ptr_18_bad()
 {
-    goto sink;
-sink:
     {
         /* Call the bad helper function */
         char * reversedString = helperBad("BadSink");
@@ -88,8 +86,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         /* Call the good helper function */
         char * reversedString = helperGood("GoodSink");

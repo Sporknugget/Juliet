@@ -23,13 +23,9 @@ void CWE675_Duplicate_Operations_on_Resource__fopen_18_bad()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     data = fopen("BadSource_fopen.txt", "w+");
     /* POTENTIAL FLAW: Close the file in the source */
     fclose(data);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
     fclose(data);
 }
@@ -43,13 +39,9 @@ static void goodB2G()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     data = fopen("BadSource_fopen.txt", "w+");
     /* POTENTIAL FLAW: Close the file in the source */
     fclose(data);
-    goto sink;
-sink:
     /* Do nothing */
     /* FIX: Don't close the file in the sink */
     ; /* empty statement needed for some flow variants */
@@ -60,12 +52,8 @@ static void goodG2B()
 {
     FILE * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     /* FIX: Open, but do not close the file in the source */
     data = fopen("GoodSource_fopen.txt", "w+");
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
     fclose(data);
 }

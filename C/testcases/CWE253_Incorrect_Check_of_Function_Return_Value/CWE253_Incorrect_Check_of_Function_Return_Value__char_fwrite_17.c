@@ -23,8 +23,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_fwrite_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: fwrite() might fail, in which case the return value will not be equal to strlen(data),
          * but we are checking to see if the return value is less than 0 */
@@ -42,8 +40,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_fwrite_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: check for the correct return value */
         if (fwrite((char *)"string", sizeof(char), strlen("string"), stdout) != strlen("string"))

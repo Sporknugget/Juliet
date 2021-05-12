@@ -50,7 +50,6 @@ void CWE134_Uncontrolled_Format_String__char_environment_w32_vsnprintf_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -63,12 +62,9 @@ void CWE134_Uncontrolled_Format_String__char_environment_w32_vsnprintf_16_bad()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
-        break;
     }
-    while(1)
     {
         badVaSinkB(data, data);
-        break;
     }
 }
 
@@ -95,7 +91,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -108,12 +103,9 @@ static void goodB2G()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
-        break;
     }
-    while(1)
     {
         goodB2GVaSinkG(data, data);
-        break;
     }
 }
 
@@ -136,16 +128,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
-        break;
     }
-    while(1)
     {
         goodG2BVaSinkB(data, data);
-        break;
     }
 }
 

@@ -41,7 +41,6 @@ Template File: point-flaw-badonly-03.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_03_bad()
 {
-    if(5==5)
     {
         {
 #ifdef _WIN32

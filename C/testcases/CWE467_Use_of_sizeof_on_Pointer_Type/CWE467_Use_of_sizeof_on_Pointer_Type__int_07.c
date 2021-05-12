@@ -24,7 +24,6 @@ static int staticFive = 5;
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__int_07_bad()
 {
-    if(staticFive==5)
     {
         {
             int * badInt = NULL;
@@ -42,15 +41,6 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__int_07_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int * goodInt = NULL;
@@ -67,7 +57,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             int * goodInt = NULL;

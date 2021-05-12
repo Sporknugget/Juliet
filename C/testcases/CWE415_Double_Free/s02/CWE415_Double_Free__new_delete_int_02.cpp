@@ -29,13 +29,11 @@ void bad()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -52,18 +50,11 @@ static void goodB2G1()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -77,13 +68,11 @@ static void goodB2G2()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    if(1)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -97,17 +86,10 @@ static void goodG2B1()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = new int;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -120,12 +102,10 @@ static void goodG2B2()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = new int;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

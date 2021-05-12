@@ -24,7 +24,6 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_partial_init_12_
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -35,38 +34,8 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_partial_init_12_
             }
         }
     }
-    else
-    {
-        /* FIX: Completely initialize data */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-    }
-    else
-    {
-        /* FIX: Ensure data is initialized before use */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
         {
             int i;
             for(i=0; i<10; i++)
@@ -89,7 +58,6 @@ static void goodB2G()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -100,36 +68,6 @@ static void goodB2G()
             }
         }
     }
-    else
-    {
-        /* POTENTIAL FLAW: Partially initialize data */
-        {
-            int i;
-            for(i=0; i<(10/2); i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Ensure data is initialized before use */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -157,7 +95,6 @@ static void goodG2B()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Completely initialize data */
         {
@@ -168,29 +105,6 @@ static void goodG2B()
             }
         }
     }
-    else
-    {
-        /* FIX: Completely initialize data */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Use data without initializing it */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-    }
-    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

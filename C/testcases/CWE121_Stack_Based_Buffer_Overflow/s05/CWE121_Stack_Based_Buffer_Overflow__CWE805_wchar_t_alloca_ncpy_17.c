@@ -22,11 +22,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE121_Stack_Based_Buffer_Overflow__CWE805_wchar_t_alloca_ncpy_17_bad()
 {
-    int i;
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA(50*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
@@ -51,11 +49,9 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_wchar_t_alloca_ncpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA(50*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;

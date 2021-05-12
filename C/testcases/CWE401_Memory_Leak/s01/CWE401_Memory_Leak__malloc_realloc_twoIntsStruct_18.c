@@ -23,8 +23,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_18_bad()
 {
-    goto sink;
-sink:
     {
         twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -52,8 +50,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}

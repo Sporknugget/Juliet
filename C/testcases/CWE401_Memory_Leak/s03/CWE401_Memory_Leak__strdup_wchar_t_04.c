@@ -31,7 +31,6 @@ void CWE401_Memory_Leak__strdup_wchar_t_04_bad()
 {
     wchar_t * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t myString[] = L"myString";
@@ -41,7 +40,6 @@ void CWE401_Memory_Leak__strdup_wchar_t_04_bad()
             printWLine(data);
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
@@ -58,7 +56,6 @@ static void goodB2G1()
 {
     wchar_t * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t myString[] = L"myString";
@@ -68,12 +65,6 @@ static void goodB2G1()
             printWLine(data);
         }
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -85,7 +76,6 @@ static void goodB2G2()
 {
     wchar_t * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t myString[] = L"myString";
@@ -95,7 +85,6 @@ static void goodB2G2()
             printWLine(data);
         }
     }
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -107,12 +96,6 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -120,7 +103,6 @@ static void goodG2B1()
         wcscpy(data, L"a string");
         printWLine(data);
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
@@ -133,7 +115,6 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -141,7 +122,6 @@ static void goodG2B2()
         wcscpy(data, L"a string");
         printWLine(data);
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */

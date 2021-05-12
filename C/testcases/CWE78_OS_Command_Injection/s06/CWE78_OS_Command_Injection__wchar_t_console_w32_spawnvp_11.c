@@ -42,7 +42,6 @@ void CWE78_OS_Command_Injection__wchar_t_console_w32_spawnvp_11_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Read input from the console */
@@ -89,12 +88,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
@@ -114,7 +107,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");

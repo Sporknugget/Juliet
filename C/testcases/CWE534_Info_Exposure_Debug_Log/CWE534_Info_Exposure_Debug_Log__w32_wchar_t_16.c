@@ -24,7 +24,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_16_bad()
 {
-    while(1)
     {
         {
             wchar_t password[100] = L"";
@@ -68,7 +67,6 @@ void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_16_bad()
                 fclose(pFile);
             }
         }
-        break;
     }
 }
 
@@ -79,7 +77,6 @@ void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             wchar_t password[100] = L"";
@@ -123,7 +120,6 @@ static void good1()
                 fclose(pFile);
             }
         }
-        break;
     }
 }
 

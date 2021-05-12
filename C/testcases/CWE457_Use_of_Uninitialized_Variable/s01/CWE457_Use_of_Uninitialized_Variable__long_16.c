@@ -24,17 +24,13 @@ Template File: sources-sinks-16.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__long_16_bad()
 {
     long data;
-    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
-        break;
     }
 }
 
@@ -46,18 +42,14 @@ void CWE457_Use_of_Uninitialized_Variable__long_16_bad()
 static void goodB2G()
 {
     long data;
-    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
-        break;
     }
-    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         data = 5L;
         printLongLine(data);
-        break;
     }
 }
 
@@ -65,17 +57,13 @@ static void goodB2G()
 static void goodG2B()
 {
     long data;
-    while(1)
     {
         /* FIX: Initialize data */
         data = 5L;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
-        break;
     }
 }
 

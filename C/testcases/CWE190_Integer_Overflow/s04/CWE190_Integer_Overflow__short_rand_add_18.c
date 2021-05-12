@@ -23,12 +23,8 @@ void CWE190_Integer_Overflow__short_rand_add_18_bad()
 {
     short data;
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (short)RAND32();
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         short result = data + 1;
@@ -45,12 +41,8 @@ static void goodB2G()
 {
     short data;
     data = 0;
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (short)RAND32();
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an overflow from occurring */
     if (data < SHRT_MAX)
     {
@@ -68,12 +60,8 @@ static void goodG2B()
 {
     short data;
     data = 0;
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
     data = 2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         short result = data + 1;

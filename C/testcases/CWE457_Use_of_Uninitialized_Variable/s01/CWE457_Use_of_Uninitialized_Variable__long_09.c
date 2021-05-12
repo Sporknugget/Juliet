@@ -24,12 +24,10 @@ Template File: sources-sinks-09.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__long_09_bad()
 {
     long data;
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
@@ -44,17 +42,10 @@ void CWE457_Use_of_Uninitialized_Variable__long_09_bad()
 static void goodB2G1()
 {
     long data;
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         data = 5L;
@@ -66,12 +57,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     long data;
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Ensure data is initialized before use */
         data = 5L;
@@ -83,17 +72,10 @@ static void goodB2G2()
 static void goodG2B1()
 {
     long data;
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         data = 5L;
     }
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
@@ -104,12 +86,10 @@ static void goodG2B1()
 static void goodG2B2()
 {
     long data;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Initialize data */
         data = 5L;
     }
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);

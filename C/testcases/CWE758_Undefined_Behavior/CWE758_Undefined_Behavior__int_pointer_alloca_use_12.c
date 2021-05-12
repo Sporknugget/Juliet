@@ -19,28 +19,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__int_pointer_alloca_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int * * pointer = (int * *)ALLOCA(sizeof(int *));
             int * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printIntLine(*data);
-        }
-    }
-    else
-    {
-        {
-            int * data;
-            int * * pointer = (int * *)ALLOCA(sizeof(int *));
-            /* initialize both the pointer and the data pointed to */
-            data = (int *)malloc(sizeof(int));
-            if (data == NULL) {exit(-1);}
-            *data = 5;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int * data = *pointer;
-                printIntLine(*data);
-            }
         }
     }
 }
@@ -52,23 +35,6 @@ void CWE758_Undefined_Behavior__int_pointer_alloca_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int * data;
-            int * * pointer = (int * *)ALLOCA(sizeof(int *));
-            /* initialize both the pointer and the data pointed to */
-            data = (int *)malloc(sizeof(int));
-            if (data == NULL) {exit(-1);}
-            *data = 5;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                int * data = *pointer;
-                printIntLine(*data);
-            }
-        }
-    }
-    else
     {
         {
             int * data;

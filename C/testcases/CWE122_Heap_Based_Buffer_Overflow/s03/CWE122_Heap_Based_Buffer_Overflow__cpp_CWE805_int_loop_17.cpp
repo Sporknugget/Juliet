@@ -23,10 +23,8 @@ namespace CWE122_Heap_Based_Buffer_Overflow__cpp_CWE805_int_loop_17
 
 void bad()
 {
-    int i;
     int * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Allocate using new[] and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = new int[50];
@@ -53,10 +51,8 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     int * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new int[100];

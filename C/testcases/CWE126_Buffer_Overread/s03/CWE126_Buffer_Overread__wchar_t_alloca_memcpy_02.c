@@ -29,7 +29,6 @@ void CWE126_Buffer_Overread__wchar_t_alloca_memcpy_02_bad()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    if(1)
     {
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
@@ -60,12 +59,6 @@ static void goodG2B1()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;
@@ -92,7 +85,6 @@ static void goodG2B2()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    if(1)
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;

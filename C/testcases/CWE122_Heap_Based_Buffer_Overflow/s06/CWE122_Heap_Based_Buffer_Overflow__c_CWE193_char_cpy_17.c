@@ -27,10 +27,8 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_17_bad()
 {
-    int i;
     char * data;
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Did not leave space for a null terminator */
         data = (char *)malloc(10*sizeof(char));
@@ -52,10 +50,8 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     char * data;
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Allocate space for a null terminator */
         data = (char *)malloc((10+1)*sizeof(char));

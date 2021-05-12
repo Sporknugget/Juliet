@@ -43,11 +43,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_17_bad()
 {
-    int i;
     short data;
     /* Initialize data */
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -138,11 +136,9 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     short data;
     /* Initialize data */
     data = 0;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

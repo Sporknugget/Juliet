@@ -47,11 +47,9 @@ void CWE426_Untrusted_Search_Path__char_popen_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FLAW: the full path is not specified */
         strcpy(data, BAD_OS_COMMAND);
-        break;
     }
     {
         FILE *pipe;
@@ -75,11 +73,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);
-        break;
     }
     {
         FILE *pipe;

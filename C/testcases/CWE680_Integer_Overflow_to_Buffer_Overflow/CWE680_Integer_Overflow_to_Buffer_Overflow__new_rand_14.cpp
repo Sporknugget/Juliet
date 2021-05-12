@@ -26,7 +26,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
@@ -56,12 +55,6 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
@@ -87,7 +80,6 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalFive==5)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

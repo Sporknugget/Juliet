@@ -27,7 +27,6 @@ void CWE617_Reachable_Assertion__rand_09_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
@@ -46,12 +45,6 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(GLOBAL_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;
@@ -66,7 +59,6 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;

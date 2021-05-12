@@ -23,10 +23,8 @@ namespace CWE457_Use_of_Uninitialized_Variable__new_struct_array_partial_init_17
 
 void bad()
 {
-    int i,j;
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -38,7 +36,6 @@ void bad()
             }
         }
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -61,10 +58,8 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -76,7 +71,6 @@ static void goodB2G()
             }
         }
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -103,10 +97,8 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Completely initialize data */
         {
@@ -118,7 +110,6 @@ static void goodG2B()
             }
         }
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

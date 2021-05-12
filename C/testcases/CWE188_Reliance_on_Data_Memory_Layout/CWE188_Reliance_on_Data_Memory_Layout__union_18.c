@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__union_18_bad()
 {
-    goto sink;
-sink:
     {
         union
         {
@@ -45,8 +43,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         long longNumber;
         longNumber = 0x10203040;

@@ -30,7 +30,6 @@ void CWE126_Buffer_Overread__malloc_wchar_t_loop_07_bad()
 {
     wchar_t * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* FLAW: Use a small buffer */
         data = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -65,12 +64,6 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a large buffer */
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -101,7 +94,6 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
-    if(staticFive==5)
     {
         /* FIX: Use a large buffer */
         data = (wchar_t *)malloc(100*sizeof(wchar_t));

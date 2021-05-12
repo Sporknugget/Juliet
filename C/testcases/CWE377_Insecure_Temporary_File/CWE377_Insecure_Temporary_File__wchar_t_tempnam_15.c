@@ -39,9 +39,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE377_Insecure_Temporary_File__wchar_t_tempnam_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t * filename;
         int fileDesc;
@@ -60,12 +57,6 @@ void CWE377_Insecure_Temporary_File__wchar_t_tempnam_15_bad()
         }
         free(filename);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -75,13 +66,6 @@ void CWE377_Insecure_Temporary_File__wchar_t_tempnam_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         wchar_t * filename;
         int fileDesc;
@@ -100,17 +84,12 @@ static void good1()
             CLOSE(fileDesc);
         }
         free(filename);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         wchar_t * filename;
         int fileDesc;
@@ -129,12 +108,6 @@ static void good2()
             CLOSE(fileDesc);
         }
         free(filename);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

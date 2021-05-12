@@ -28,14 +28,12 @@ void bad()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = new long;
         *data = 5L;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLine(*data);
@@ -53,19 +51,12 @@ static void goodB2G1()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = new long;
         *data = 5L;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -80,14 +71,12 @@ static void goodB2G2()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = new long;
         *data = 5L;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(globalReturnsTrue())
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -102,18 +91,11 @@ static void goodG2B1()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = new long;
         *data = 5L;
         /* FIX: Do not delete data in the source */
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLine(*data);
@@ -127,13 +109,11 @@ static void goodG2B2()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrue())
     {
         data = new long;
         *data = 5L;
         /* FIX: Do not delete data in the source */
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLine(*data);

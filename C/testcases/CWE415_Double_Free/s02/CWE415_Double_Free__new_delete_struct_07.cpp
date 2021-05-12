@@ -34,13 +34,11 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    if(staticFive==5)
     {
         data = new twoIntsStruct;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -57,18 +55,11 @@ static void goodB2G1()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    if(staticFive==5)
     {
         data = new twoIntsStruct;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -82,13 +73,11 @@ static void goodB2G2()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    if(staticFive==5)
     {
         data = new twoIntsStruct;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
-    if(staticFive==5)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -102,17 +91,10 @@ static void goodG2B1()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = new twoIntsStruct;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -125,12 +107,10 @@ static void goodG2B2()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    if(staticFive==5)
     {
         data = new twoIntsStruct;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
-    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

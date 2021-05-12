@@ -33,7 +33,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from the console */
@@ -61,16 +60,6 @@ void bad()
             }
         }
     }
-    else
-    {
-#ifdef _WIN32
-        /* FIX: Use a fixed, full path and file name */
-        wcscat(data, L"c:\\temp\\file.txt");
-#else
-        /* FIX: Use a fixed, full path and file name */
-        wcscat(data, L"/tmp/file.txt");
-#endif
-    }
     {
         ifstream inputFile;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -90,17 +79,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    if(globalReturnsTrueOrFalse())
-    {
-#ifdef _WIN32
-        /* FIX: Use a fixed, full path and file name */
-        wcscat(data, L"c:\\temp\\file.txt");
-#else
-        /* FIX: Use a fixed, full path and file name */
-        wcscat(data, L"/tmp/file.txt");
-#endif
-    }
-    else
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */

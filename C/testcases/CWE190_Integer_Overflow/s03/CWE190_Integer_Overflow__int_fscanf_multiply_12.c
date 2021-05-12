@@ -24,39 +24,16 @@ void CWE190_Integer_Overflow__int_fscanf_multiply_12_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
-        data = 2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
             /* POTENTIAL FLAW: if (data*2) > INT_MAX, this will overflow */
             int result = data * 2;
             printIntLine(result);
-        }
-    }
-    else
-    {
-        if(data > 0) /* ensure we won't have an underflow */
-        {
-            /* FIX: Add a check to prevent an overflow from occurring */
-            if (data < (INT_MAX/2))
-            {
-                int result = data * 2;
-                printIntLine(result);
-            }
-            else
-            {
-                printLine("data value is too large to perform arithmetic safely.");
-            }
         }
     }
 }
@@ -73,33 +50,10 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Read data from the console using fscanf() */
-        fscanf(stdin, "%d", &data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data > 0) /* ensure we won't have an underflow */
-        {
-            /* FIX: Add a check to prevent an overflow from occurring */
-            if (data < (INT_MAX/2))
-            {
-                int result = data * 2;
-                printIntLine(result);
-            }
-            else
-            {
-                printLine("data value is too large to perform arithmetic safely.");
-            }
-        }
-    }
-    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -125,26 +79,10 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
-        data = 2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data > 0) /* ensure we won't have an underflow */
-        {
-            /* POTENTIAL FLAW: if (data*2) > INT_MAX, this will overflow */
-            int result = data * 2;
-            printIntLine(result);
-        }
-    }
-    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

@@ -26,27 +26,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_w32CreateMutex_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             HANDLE hMutex = NULL;
             hMutex = CreateMutexW(NULL, FALSE, NULL);
             /* FLAW: Do not check the return value */
-            /* We'll leave out most of the implementation since it has nothing to do with the CWE
-             * and since the checkers are looking for certain function calls anyway */
-            CloseHandle(hMutex);
-        }
-    }
-    else
-    {
-        {
-            HANDLE hMutex = NULL;
-            hMutex = CreateMutexW(NULL, FALSE, NULL);
-            /* FIX: Check the return value of CreateMutex() for NULL */
-            if (hMutex == NULL)
-            {
-                exit(1);
-            }
             /* We'll leave out most of the implementation since it has nothing to do with the CWE
              * and since the checkers are looking for certain function calls anyway */
             CloseHandle(hMutex);
@@ -61,22 +45,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_w32CreateMutex_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            HANDLE hMutex = NULL;
-            hMutex = CreateMutexW(NULL, FALSE, NULL);
-            /* FIX: Check the return value of CreateMutex() for NULL */
-            if (hMutex == NULL)
-            {
-                exit(1);
-            }
-            /* We'll leave out most of the implementation since it has nothing to do with the CWE
-             * and since the checkers are looking for certain function calls anyway */
-            CloseHandle(hMutex);
-        }
-    }
-    else
     {
         {
             HANDLE hMutex = NULL;

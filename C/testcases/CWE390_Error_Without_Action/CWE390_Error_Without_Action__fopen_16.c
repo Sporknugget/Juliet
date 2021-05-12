@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE390_Error_Without_Action__fopen_16_bad()
 {
-    while(1)
     {
         {
             FILE * fileDesc = NULL;
@@ -31,7 +30,6 @@ void CWE390_Error_Without_Action__fopen_16_bad()
             }
             fclose(fileDesc);
         }
-        break;
     }
 }
 
@@ -42,7 +40,6 @@ void CWE390_Error_Without_Action__fopen_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             FILE * fileDesc = NULL;
@@ -55,7 +52,6 @@ static void good1()
             }
             fclose(fileDesc);
         }
-        break;
     }
 }
 

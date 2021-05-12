@@ -28,7 +28,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -43,11 +42,6 @@ void bad()
                 printLine("fgets() failed.");
             }
         }
-    }
-    else
-    {
-        /* FIX: Set data to a relatively small number greater than zero */
-        data = 20;
     }
     {
         size_t dataBytes,i;
@@ -75,12 +69,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Set data to a relatively small number greater than zero */
-        data = 20;
-    }
-    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

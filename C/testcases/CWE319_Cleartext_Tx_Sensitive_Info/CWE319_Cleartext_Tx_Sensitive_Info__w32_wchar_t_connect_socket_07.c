@@ -41,7 +41,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_connect_socket_07_bad()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(staticFive==5)
     {
         {
             WSADATA wsaData;
@@ -104,7 +103,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_connect_socket_07_bad()
             }
         }
     }
-    if(staticFive==5)
     {
         {
             HANDLE pHandle;
@@ -141,7 +139,6 @@ static void goodB2G1()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(staticFive==5)
     {
         {
             WSADATA wsaData;
@@ -204,12 +201,6 @@ static void goodB2G1()
             }
         }
     }
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HCRYPTPROV hCryptProv = 0;
@@ -296,7 +287,6 @@ static void goodB2G2()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(staticFive==5)
     {
         {
             WSADATA wsaData;
@@ -359,7 +349,6 @@ static void goodB2G2()
             }
         }
     }
-    if(staticFive==5)
     {
         {
             HCRYPTPROV hCryptProv = 0;
@@ -446,18 +435,11 @@ static void goodG2B1()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         wcscpy(password, L"Password1234!");
     }
-    if(staticFive==5)
     {
         {
             HANDLE pHandle;
@@ -490,13 +472,11 @@ static void goodG2B2()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    if(staticFive==5)
     {
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         wcscpy(password, L"Password1234!");
     }
-    if(staticFive==5)
     {
         {
             HANDLE pHandle;

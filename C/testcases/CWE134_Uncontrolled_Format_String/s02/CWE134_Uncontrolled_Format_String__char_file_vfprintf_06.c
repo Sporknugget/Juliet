@@ -51,7 +51,6 @@ void CWE134_Uncontrolled_Format_String__char_file_vfprintf_06_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -75,7 +74,6 @@ void CWE134_Uncontrolled_Format_String__char_file_vfprintf_06_bad()
             }
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         badVaSinkB(data, data);
     }
@@ -102,7 +100,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -126,12 +123,6 @@ static void goodB2G1()
             }
         }
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         goodB2G1VaSinkG(data, data);
     }
@@ -154,7 +145,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -178,7 +168,6 @@ static void goodB2G2()
             }
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         goodB2G2VaSinkG(data, data);
     }
@@ -201,17 +190,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(STATIC_CONST_FIVE==5)
     {
         goodG2B1VaSinkB(data, data);
     }
@@ -234,12 +216,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(STATIC_CONST_FIVE==5)
     {
         goodG2B2VaSinkB(data, data);
     }

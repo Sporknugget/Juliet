@@ -23,7 +23,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_16_bad()
 {
-    while(1)
     {
         /* FLAW: fwprintf() might fail, in which case the return value will be negative, but
          * we are checking to see if the return value is 0 */
@@ -31,7 +30,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_16_bad()
         {
             printLine("fwprintf failed!");
         }
-        break;
     }
 }
 
@@ -42,14 +40,12 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: check for the correct return value */
         if (fwprintf(stdout, L"%s\n", L"string") < 0)
         {
             printLine("fwprintf failed!");
         }
-        break;
     }
 }
 

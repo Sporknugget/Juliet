@@ -26,20 +26,16 @@ void CWE190_Integer_Overflow__int64_t_fscanf_square_16_bad()
 {
     int64_t data;
     data = 0LL;
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
             int64_t result = data * data;
             printLongLongLine(result);
         }
-        break;
     }
 }
 
@@ -52,13 +48,10 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
-        break;
     }
-    while(1)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
@@ -70,7 +63,6 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
-        break;
     }
 }
 
@@ -79,20 +71,16 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
-    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
-        break;
     }
-    while(1)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
             int64_t result = data * data;
             printLongLongLine(result);
         }
-        break;
     }
 }
 

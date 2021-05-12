@@ -43,7 +43,6 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 
 void CWE510_Trapdoor__network_connection_04_bad()
 {
-    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32

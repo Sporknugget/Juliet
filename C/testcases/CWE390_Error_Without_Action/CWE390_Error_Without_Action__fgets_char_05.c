@@ -25,7 +25,6 @@ static int staticFalse = 0; /* false */
 
 void CWE390_Error_Without_Action__fgets_char_05_bad()
 {
-    if(staticTrue)
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -47,15 +46,6 @@ void CWE390_Error_Without_Action__fgets_char_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -77,7 +67,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the

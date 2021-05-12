@@ -48,14 +48,12 @@ static char * helperGood()
 
 void CWE480_Use_of_Incorrect_Operator__basic_16_bad()
 {
-    while(1)
     {
         /* FLAW: This will never be true becuase the () was omitted.  Also INCIDENTAL CWE 570 Expression Is Always False */
         if(helperBad == NULL)
         {
             printLine("Got a NULL");
         }
-        break;
     }
 }
 
@@ -66,14 +64,12 @@ void CWE480_Use_of_Incorrect_Operator__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */
         {
             printLine("Got a NULL");
         }
-        break;
     }
 }
 

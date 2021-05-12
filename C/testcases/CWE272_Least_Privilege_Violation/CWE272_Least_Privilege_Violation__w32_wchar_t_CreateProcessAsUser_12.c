@@ -22,7 +22,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcessAsUser_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             STARTUPINFOW si;
@@ -61,43 +60,6 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcessAsUser_12_bad()
             CloseHandle(pHandle);
         }
     }
-    else
-    {
-        {
-            STARTUPINFOW si;
-            PROCESS_INFORMATION pi;
-            HANDLE pHandle = NULL;
-            /* FIX: The commandLine parameter to CreateProcessAsUser() contains quotes surrounding
-               the executable path. */
-            if(!CreateProcessAsUserW(pHandle,
-                                     NULL,
-                                     L"\"C:\\Program Files\\GoodApp\" arg1 arg2",
-                                     NULL,
-                                     NULL,
-                                     FALSE,
-                                     DETACHED_PROCESS,
-                                     NULL,
-                                     NULL,
-                                     &si,
-                                     &pi))
-            {
-                printLine("CreateProcessAsUser failed");
-                RevertToSelf();
-                CloseHandle(pHandle);
-                return;
-            }
-            else
-            {
-                printLine("CreateProcessAUser successful");
-            }
-            /* Wait until child process exits. */
-            WaitForSingleObject(pi.hProcess, INFINITE);
-            /* Close process and thread handles.*/
-            CloseHandle(pi.hProcess);
-            CloseHandle(pi.hThread);
-            CloseHandle(pHandle);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -107,44 +69,6 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcessAsUser_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            STARTUPINFOW si;
-            PROCESS_INFORMATION pi;
-            HANDLE pHandle = NULL;
-            /* FIX: The commandLine parameter to CreateProcessAsUser() contains quotes surrounding
-               the executable path. */
-            if(!CreateProcessAsUserW(pHandle,
-                                     NULL,
-                                     L"\"C:\\Program Files\\GoodApp\" arg1 arg2",
-                                     NULL,
-                                     NULL,
-                                     FALSE,
-                                     DETACHED_PROCESS,
-                                     NULL,
-                                     NULL,
-                                     &si,
-                                     &pi))
-            {
-                printLine("CreateProcessAsUser failed");
-                RevertToSelf();
-                CloseHandle(pHandle);
-                return;
-            }
-            else
-            {
-                printLine("CreateProcessAUser successful");
-            }
-            /* Wait until child process exits. */
-            WaitForSingleObject(pi.hProcess, INFINITE);
-            /* Close process and thread handles.*/
-            CloseHandle(pi.hProcess);
-            CloseHandle(pi.hThread);
-            CloseHandle(pHandle);
-        }
-    }
-    else
     {
         {
             STARTUPINFOW si;

@@ -46,7 +46,6 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_12_bad()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -115,11 +114,6 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_12_bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
-    }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
@@ -146,12 +140,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
-    }
-    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

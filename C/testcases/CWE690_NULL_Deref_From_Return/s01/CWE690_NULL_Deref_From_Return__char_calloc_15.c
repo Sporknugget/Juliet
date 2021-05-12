@@ -26,19 +26,10 @@ void CWE690_NULL_Deref_From_Return__char_calloc_15_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)calloc(20, sizeof(char));
-    switch(6)
-    {
-    case 6:
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         strcpy(data, "Initialize");
         printLine(data);
         free(data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -52,13 +43,6 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)calloc(20, sizeof(char));
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
         {
@@ -66,8 +50,6 @@ static void goodB2G1()
             printLine(data);
             free(data);
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -77,9 +59,6 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)calloc(20, sizeof(char));
-    switch(6)
-    {
-    case 6:
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
         {
@@ -87,12 +66,6 @@ static void goodB2G2()
             printLine(data);
             free(data);
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE690_NULL_Deref_From_Return__char_calloc_15_good()

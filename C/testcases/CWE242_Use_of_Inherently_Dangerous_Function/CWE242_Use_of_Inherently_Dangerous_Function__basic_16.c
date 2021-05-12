@@ -21,7 +21,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE242_Use_of_Inherently_Dangerous_Function__basic_16_bad()
 {
-    while(1)
     {
         {
             char dest[DEST_SIZE];
@@ -40,7 +39,6 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_16_bad()
             dest[DEST_SIZE-1] = '\0';
             printLine(dest);
         }
-        break;
     }
 }
 
@@ -51,7 +49,6 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             char dest[DEST_SIZE];
@@ -68,7 +65,6 @@ static void good1()
             dest[DEST_SIZE-1] = '\0';
             printLine(dest);
         }
-        break;
     }
 }
 

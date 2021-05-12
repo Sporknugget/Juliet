@@ -25,8 +25,6 @@ void CWE665_Improper_Initialization__wchar_t_ncat_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    goto source;
-source:
     /* FLAW: Do not initialize data */
     ; /* empty statement needed for some flow variants */
     {
@@ -51,8 +49,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Properly initialize data */
     data[0] = L'\0'; /* null terminate */
     {

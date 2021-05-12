@@ -23,12 +23,8 @@ void CWE190_Integer_Overflow__char_rand_multiply_18_bad()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (char)RAND32();
-    goto sink;
-sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* POTENTIAL FLAW: if (data*2) > CHAR_MAX, this will overflow */
@@ -46,12 +42,8 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use a random value */
     data = (char)RAND32();
-    goto sink;
-sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* FIX: Add a check to prevent an overflow from occurring */
@@ -72,12 +64,8 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
     data = 2;
-    goto sink;
-sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* POTENTIAL FLAW: if (data*2) > CHAR_MAX, this will overflow */

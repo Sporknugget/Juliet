@@ -31,10 +31,8 @@ namespace CWE122_Heap_Based_Buffer_Overflow__cpp_CWE806_char_snprintf_17
 
 void bad()
 {
-    int i;
     char * data;
     data = new char[100];
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         memset(data, 'A', 100-1); /* fill with 'A's */
@@ -56,10 +54,8 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     char * data;
     data = new char[100];
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         memset(data, 'A', 50-1); /* fill with 'A's */

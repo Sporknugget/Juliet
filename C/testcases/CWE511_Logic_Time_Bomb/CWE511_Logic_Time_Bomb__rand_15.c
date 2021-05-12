@@ -28,21 +28,12 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE511_Logic_Time_Bomb__rand_15_bad()
 {
-    switch(6)
-    {
-    case 6:
         srand((unsigned)time(NULL));
         /* FLAW: If a certain number, delete a file */
         if (rand() == NUM_CHECK)
         {
             UNLINK("important_file.txt");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -52,41 +43,23 @@ void CWE511_Logic_Time_Bomb__rand_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         srand((unsigned)time(NULL));
         /* FIX: If a certain number, print to the console */
         if (rand() == NUM_CHECK)
         {
             printLine("Happy New Year!");
         }
-        break;
-    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
         srand((unsigned)time(NULL));
         /* FIX: If a certain number, print to the console */
         if (rand() == NUM_CHECK)
         {
             printLine("Happy New Year!");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE511_Logic_Time_Bomb__rand_15_good()

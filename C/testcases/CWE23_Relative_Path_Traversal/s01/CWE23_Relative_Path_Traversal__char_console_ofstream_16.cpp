@@ -36,7 +36,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -63,7 +62,6 @@ void bad()
                 }
             }
         }
-        break;
     }
     {
         ofstream outputFile;
@@ -83,11 +81,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
-        break;
     }
     {
         ofstream outputFile;

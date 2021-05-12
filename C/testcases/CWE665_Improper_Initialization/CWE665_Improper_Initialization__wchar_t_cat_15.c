@@ -25,17 +25,8 @@ void CWE665_Improper_Initialization__wchar_t_cat_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FLAW: Do not initialize data */
         ; /* empty statement needed for some flow variants */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         wchar_t source[100];
         wmemset(source, L'C', 100-1); /* fill with L'C's */
@@ -56,17 +47,8 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Properly initialize data */
         data[0] = L'\0'; /* null terminate */
-        break;
-    }
     {
         wchar_t source[100];
         wmemset(source, L'C', 100-1); /* fill with L'C's */
@@ -83,17 +65,8 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Properly initialize data */
         data[0] = L'\0'; /* null terminate */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         wchar_t source[100];
         wmemset(source, L'C', 100-1); /* fill with L'C's */

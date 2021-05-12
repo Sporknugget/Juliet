@@ -45,9 +45,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_15_bad()
     int data;
     /* Initialize data */
     data = -1;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -117,12 +114,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_15_bad()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
@@ -148,17 +139,8 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
-        break;
-    }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
@@ -180,17 +162,8 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {

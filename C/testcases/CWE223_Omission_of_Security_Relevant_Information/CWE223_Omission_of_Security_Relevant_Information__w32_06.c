@@ -34,7 +34,6 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE223_Omission_of_Security_Relevant_Information__w32_06_bad()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         {
             WSADATA wsaData;
@@ -124,15 +123,6 @@ void CWE223_Omission_of_Security_Relevant_Information__w32_06_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
-static void good1()
-{
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             WSADATA wsaData;
@@ -221,7 +211,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         {
             WSADATA wsaData;

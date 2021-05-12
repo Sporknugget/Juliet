@@ -23,15 +23,12 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE190_Integer_Overflow__short_max_square_17_bad()
 {
-    int i,j;
     short data;
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
@@ -48,15 +45,12 @@ void CWE190_Integer_Overflow__short_max_square_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     short data;
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)SHRT_MAX))
@@ -74,15 +68,12 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     short data;
     data = 0;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */

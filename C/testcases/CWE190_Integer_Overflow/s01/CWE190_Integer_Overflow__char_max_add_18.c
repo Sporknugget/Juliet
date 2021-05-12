@@ -23,12 +23,8 @@ void CWE190_Integer_Overflow__char_max_add_18_bad()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use the maximum size of the data type */
     data = CHAR_MAX;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         char result = data + 1;
@@ -45,12 +41,8 @@ static void goodB2G()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* POTENTIAL FLAW: Use the maximum size of the data type */
     data = CHAR_MAX;
-    goto sink;
-sink:
     /* FIX: Add a check to prevent an overflow from occurring */
     if (data < CHAR_MAX)
     {
@@ -68,12 +60,8 @@ static void goodG2B()
 {
     char data;
     data = ' ';
-    goto source;
-source:
     /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
     data = 2;
-    goto sink;
-sink:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         char result = data + 1;

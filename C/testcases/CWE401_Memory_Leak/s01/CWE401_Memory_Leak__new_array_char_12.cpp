@@ -29,7 +29,6 @@ void bad()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char[100];
@@ -37,24 +36,9 @@ void bad()
         strcpy(data, "A String");
         printLine(data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        char dataGoodBuffer[100];
-        data = dataGoodBuffer;
-        /* Initialize and make use of data */
-        strcpy(data, "A String");
-        printLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        delete[] data;
     }
 }
 
@@ -69,7 +53,6 @@ static void goodB2G()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char[100];
@@ -77,20 +60,6 @@ static void goodB2G()
         strcpy(data, "A String");
         printLine(data);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = new char[100];
-        /* Initialize and make use of data */
-        strcpy(data, "A String");
-        printLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        delete[] data;
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -104,7 +73,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         char dataGoodBuffer[100];
@@ -113,21 +81,6 @@ static void goodG2B()
         strcpy(data, "A String");
         printLine(data);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        char dataGoodBuffer[100];
-        data = dataGoodBuffer;
-        /* Initialize and make use of data */
-        strcpy(data, "A String");
-        printLine(data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

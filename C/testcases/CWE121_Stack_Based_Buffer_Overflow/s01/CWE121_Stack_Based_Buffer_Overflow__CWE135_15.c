@@ -28,32 +28,14 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_15_bad()
 {
     void * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
         void * dest = (void *)ALLOCA((dataLen+1) * sizeof(wchar_t));
         (void)wcscpy(dest, data);
         printLine((char *)dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -66,32 +48,14 @@ static void goodB2G1()
 {
     void * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
         void * dest = (void *)ALLOCA((dataLen+1) * sizeof(wchar_t));
         (void)wcscpy(dest, data);
         printWLine((wchar_t *)dest);
-    }
-    break;
     }
 }
 
@@ -100,32 +64,14 @@ static void goodB2G2()
 {
     void * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
         void * dest = (void *)ALLOCA((dataLen+1) * sizeof(wchar_t));
         (void)wcscpy(dest, data);
         printWLine((wchar_t *)dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -134,32 +80,14 @@ static void goodG2B1()
 {
     void * data;
     data = NULL;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
         void * dest = (void *)ALLOCA((dataLen+1) * 1);
         (void)strcpy(dest, data);
         printLine((char *)dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -168,32 +96,14 @@ static void goodG2B2()
 {
     void * data;
     data = NULL;
-    switch(6)
-    {
-    case 6:
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
         void * dest = (void *)ALLOCA((dataLen+1) * 1);
         (void)strcpy(dest, data);
         printLine((char *)dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

@@ -22,8 +22,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_18_bad()
 {
-    goto sink;
-sink:
     {
         char dest[DEST_SIZE];
         /* FLAW: Incorrect number of arguments */
@@ -39,8 +37,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         char dest[DEST_SIZE];
         /* FIX: Use the correct number of arguments */

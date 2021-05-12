@@ -28,27 +28,14 @@ void bad()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = new int[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
     }
-    else
-    {
-        data = new int[100];
-        /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;
-    }
-    else
-    {
-        /* do nothing */
-        /* FIX: Don't attempt to delete the memory */
-        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -64,25 +51,11 @@ static void goodB2G()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = new int[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
     }
-    else
-    {
-        data = new int[100];
-        /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
-        delete [] data;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* do nothing */
-        /* FIX: Don't attempt to delete the memory */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -98,22 +71,10 @@ static void goodG2B()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = new int[100];
         /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
     }
-    else
-    {
-        data = new int[100];
-        /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Possibly deleting memory twice */
-        delete [] data;
-    }
-    else
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;

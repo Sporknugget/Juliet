@@ -26,8 +26,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -60,8 +58,6 @@ void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";

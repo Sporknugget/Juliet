@@ -19,9 +19,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__union_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         union
         {
@@ -37,12 +34,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_15_bad()
         unionStructLong.structChars.charFourth |= 0x80; /* "set the MSB" */
         printIntLine(unionStructLong.longNumber);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -52,13 +43,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         long longNumber;
         longNumber = 0x10203040;
@@ -70,17 +54,12 @@ static void good1()
          */
         longNumber |= LONG_MIN;
         printIntLine(longNumber);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         long longNumber;
         longNumber = 0x10203040;
@@ -92,12 +71,6 @@ static void good2()
          */
         longNumber |= LONG_MIN;
         printIntLine(longNumber);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

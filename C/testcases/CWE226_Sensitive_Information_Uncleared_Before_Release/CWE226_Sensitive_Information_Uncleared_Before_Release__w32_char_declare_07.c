@@ -28,7 +28,6 @@ static int staticFive = 5;
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_07_bad()
 {
-    if(staticFive==5)
     {
         {
             char password[100] = "";
@@ -73,15 +72,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_07_
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char password[100] = "";
@@ -127,7 +117,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             char password[100] = "";

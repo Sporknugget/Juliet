@@ -19,7 +19,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -36,15 +35,6 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -60,7 +50,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };

@@ -47,7 +47,6 @@ void CWE114_Process_Control__w32_char_listen_socket_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -128,7 +127,6 @@ void CWE114_Process_Control__w32_char_listen_socket_16_bad()
             }
 #endif
         }
-        break;
     }
     {
         HMODULE hModule;
@@ -157,11 +155,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
-        break;
     }
     {
         HMODULE hModule;

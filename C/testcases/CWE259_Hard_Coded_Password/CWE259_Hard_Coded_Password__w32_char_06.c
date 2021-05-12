@@ -34,7 +34,6 @@ void CWE259_Hard_Coded_Password__w32_char_06_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: Use a hardcoded password */
         strcpy(password, PASSWORD);
@@ -72,12 +71,6 @@ static void goodG2B1()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t passwordLen = 0;
@@ -125,7 +118,6 @@ static void goodG2B2()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(STATIC_CONST_FIVE==5)
     {
         {
             size_t passwordLen = 0;

@@ -26,7 +26,6 @@ void CWE416_Use_After_Free__malloc_free_long_12_bad()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
@@ -40,31 +39,10 @@ void CWE416_Use_After_Free__malloc_free_long_12_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    else
-    {
-        data = (long *)malloc(100*sizeof(long));
-        if (data == NULL) {exit(-1);}
-        {
-            size_t i;
-            for(i = 0; i < 100; i++)
-            {
-                data[i] = 5L;
-            }
-        }
-        /* FIX: Do not free data in the source */
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printLongLine(data[0]);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-    }
-    else
-    {
-        /* FIX: Don't use data that may have been freed already */
-        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-        /* do nothing */
-        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -80,7 +58,6 @@ static void goodB2G()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
@@ -94,28 +71,6 @@ static void goodB2G()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
-    else
-    {
-        data = (long *)malloc(100*sizeof(long));
-        if (data == NULL) {exit(-1);}
-        {
-            size_t i;
-            for(i = 0; i < 100; i++)
-            {
-                data[i] = 5L;
-            }
-        }
-        /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
-        free(data);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Don't use data that may have been freed already */
-        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-        /* do nothing */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -132,7 +87,6 @@ static void goodG2B()
     long * data;
     /* Initialize data */
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         data = (long *)malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
@@ -145,26 +99,6 @@ static void goodG2B()
         }
         /* FIX: Do not free data in the source */
     }
-    else
-    {
-        data = (long *)malloc(100*sizeof(long));
-        if (data == NULL) {exit(-1);}
-        {
-            size_t i;
-            for(i = 0; i < 100; i++)
-            {
-                data[i] = 5L;
-            }
-        }
-        /* FIX: Do not free data in the source */
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Use of data that may have been freed */
-        printLongLine(data[0]);
-        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
-    }
-    else
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printLongLine(data[0]);

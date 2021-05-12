@@ -25,8 +25,6 @@ void CWE690_NULL_Deref_From_Return__fopen_18_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = fopen("file.txt", "w+");
-    goto sink;
-sink:
     /* FLAW: if the fopen failed, data will be NULL here */
     fclose(data);
 }
@@ -43,8 +41,6 @@ static void goodB2G()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = fopen("file.txt", "w+");
-    goto sink;
-sink:
     /* FIX: check the return value */
     if (data != NULL)
     {

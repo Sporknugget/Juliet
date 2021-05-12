@@ -19,25 +19,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__long_alloca_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             long * pointer = (long *)ALLOCA(sizeof(long));
             long data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printLongLine(data);
-        }
-    }
-    else
-    {
-        {
-            long data;
-            long * pointer = (long *)ALLOCA(sizeof(long));
-            data = 5L;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                long data = *pointer;
-                printLongLine(data);
-            }
         }
     }
 }
@@ -49,20 +35,6 @@ void CWE758_Undefined_Behavior__long_alloca_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            long data;
-            long * pointer = (long *)ALLOCA(sizeof(long));
-            data = 5L;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                long data = *pointer;
-                printLongLine(data);
-            }
-        }
-    }
-    else
     {
         {
             long data;

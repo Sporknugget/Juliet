@@ -33,11 +33,9 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_listen_socket_17_bad()
 {
-    int i,j;
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
             WSADATA wsaData;
@@ -113,14 +111,12 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_listen_socket_17_bad()
             }
         }
     }
-    for(j = 0; j < 1; j++)
     {
         {
             HANDLE pHandle;
             wchar_t * username = L"User";
             wchar_t * domain = L"Domain";
             /* Use the password in LogonUser() to establish that it is "sensitive" */
-            /* POTENTIAL FLAW: Using sensitive information that was possibly sent in plaintext over the network */
             if (LogonUserW(
                         username,
                         domain,
@@ -147,11 +143,9 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_wchar_t_listen_socket_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
             WSADATA wsaData;
@@ -227,7 +221,6 @@ static void goodB2G()
             }
         }
     }
-    for(k = 0; k < 1; k++)
     {
         {
             HCRYPTPROV hCryptProv = 0;
@@ -311,17 +304,14 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         wcscpy(password, L"Password1234!");
     }
-    for(j = 0; j < 1; j++)
     {
         {
             HANDLE pHandle;

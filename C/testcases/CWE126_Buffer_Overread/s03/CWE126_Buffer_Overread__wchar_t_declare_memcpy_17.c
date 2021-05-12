@@ -22,7 +22,6 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE126_Buffer_Overread__wchar_t_declare_memcpy_17_bad()
 {
-    int i;
     wchar_t * data;
     wchar_t dataBadBuffer[50];
     wchar_t dataGoodBuffer[100];
@@ -30,7 +29,6 @@ void CWE126_Buffer_Overread__wchar_t_declare_memcpy_17_bad()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
@@ -54,7 +52,6 @@ void CWE126_Buffer_Overread__wchar_t_declare_memcpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     wchar_t * data;
     wchar_t dataBadBuffer[50];
     wchar_t dataGoodBuffer[100];
@@ -62,7 +59,6 @@ static void goodG2B()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;

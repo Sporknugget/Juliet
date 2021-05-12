@@ -41,8 +41,6 @@ Template File: point-flaw-badonly-17.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__file_transfer_listen_socket_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
 #ifdef _WIN32

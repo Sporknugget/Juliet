@@ -23,15 +23,9 @@ void CWE194_Unexpected_Sign_Extension__fscanf_malloc_12_bad()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%hd", &data);
-    }
-    else
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
     }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
@@ -59,12 +53,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
-    }
-    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

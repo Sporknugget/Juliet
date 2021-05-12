@@ -23,8 +23,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_int_declare_loop_18_bad()
     int * data;
     int dataBadBuffer[50];
     int dataGoodBuffer[100];
-    goto source;
-source:
     /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
      * buffer in various memory copying functions using a "large" source buffer. */
     data = dataBadBuffer;
@@ -52,8 +50,6 @@ static void goodG2B()
     int * data;
     int dataBadBuffer[50];
     int dataGoodBuffer[100];
-    goto source;
-source:
     /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
     data = dataGoodBuffer;
     {

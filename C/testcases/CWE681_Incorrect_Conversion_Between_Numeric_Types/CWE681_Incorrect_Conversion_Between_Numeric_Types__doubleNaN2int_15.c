@@ -22,9 +22,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char inputBuffer[CHAR_ARRAY_SIZE];
         double doubleNumber = 0;
@@ -44,12 +41,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_15_bad()
         /* FLAW: should not cast without checking if conversion is safe */
         printIntLine((int)(sqrt(doubleNumber)));
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -59,13 +50,6 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char inputBuffer[CHAR_ARRAY_SIZE];
         double doubleNumber = 0;
@@ -92,17 +76,12 @@ static void good1()
         {
             printIntLine((int)(sqrt(doubleNumber)));
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char inputBuffer[CHAR_ARRAY_SIZE];
         double doubleNumber = 0;
@@ -129,12 +108,6 @@ static void good2()
         {
             printIntLine((int)(sqrt(doubleNumber)));
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

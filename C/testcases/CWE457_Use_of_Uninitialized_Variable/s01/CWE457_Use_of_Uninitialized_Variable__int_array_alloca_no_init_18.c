@@ -23,12 +23,8 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_no_init_18_bad()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -48,12 +44,8 @@ static void goodB2G()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
-    goto source;
-source:
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
-    goto sink;
-sink:
     /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -76,8 +68,6 @@ static void goodG2B()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
-    goto source;
-source:
     /* FIX: Completely initialize data */
     {
         int i;
@@ -86,8 +76,6 @@ source:
             data[i] = i;
         }
     }
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;

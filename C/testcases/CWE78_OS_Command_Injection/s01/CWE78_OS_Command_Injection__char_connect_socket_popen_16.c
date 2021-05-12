@@ -61,7 +61,6 @@ void CWE78_OS_Command_Injection__char_connect_socket_popen_16_bad()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -130,7 +129,6 @@ void CWE78_OS_Command_Injection__char_connect_socket_popen_16_bad()
             }
 #endif
         }
-        break;
     }
     {
         FILE *pipe;
@@ -153,11 +151,9 @@ static void goodG2B()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
     }
     {
         FILE *pipe;

@@ -19,14 +19,12 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE546_Suspicious_Comment__FIXME_16_bad()
 {
-    while(1)
     {
         /* FLAW: The following comment has the letters 'FIXME' in it*/
         /* FIXME: This comment has the letters 'FIXME' in it, which is certainly
          * suspicious, because it could indicate this code needs to be fixed.
          */
         printLine("Hello");
-        break;
     }
 }
 
@@ -37,11 +35,9 @@ void CWE546_Suspicious_Comment__FIXME_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
-        break;
     }
 }
 

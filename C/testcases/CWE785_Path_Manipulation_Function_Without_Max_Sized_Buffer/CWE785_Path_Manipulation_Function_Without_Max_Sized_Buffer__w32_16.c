@@ -26,7 +26,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_16_bad()
 {
-    while(1)
     {
         {
             char path[BAD_PATH_SIZE];
@@ -47,7 +46,6 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_16_bad()
             printIntLine(BAD_PATH_SIZE);
             printLine(path);
         }
-        break;
     }
 }
 
@@ -58,7 +56,6 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */
@@ -75,7 +72,6 @@ static void good1()
             }
             printLine(path);
         }
-        break;
     }
 }
 

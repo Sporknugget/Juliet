@@ -21,8 +21,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__strtol_18_bad()
 {
-    goto sink;
-sink:
     {
         long longNumber;
         longNumber = strtol("0xfffffffff", NULL, 0);
@@ -38,8 +36,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         long longNumber;
         errno = 0; /* set errno to zero before calling strtol(), which can change its value */

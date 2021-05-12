@@ -40,7 +40,6 @@ void CWE134_Uncontrolled_Format_String__char_console_vfprintf_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -67,12 +66,9 @@ void CWE134_Uncontrolled_Format_String__char_console_vfprintf_16_bad()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         badVaSinkB(data, data);
-        break;
     }
 }
 
@@ -97,7 +93,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -124,12 +119,9 @@ static void goodB2G()
                 }
             }
         }
-        break;
     }
-    while(1)
     {
         goodB2GVaSinkG(data, data);
-        break;
     }
 }
 
@@ -150,16 +142,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
-        break;
     }
-    while(1)
     {
         goodG2BVaSinkB(data, data);
-        break;
     }
 }
 

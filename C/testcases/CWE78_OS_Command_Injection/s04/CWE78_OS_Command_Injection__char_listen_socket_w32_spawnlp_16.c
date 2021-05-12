@@ -62,7 +62,6 @@ void CWE78_OS_Command_Injection__char_listen_socket_w32_spawnlp_16_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -143,7 +142,6 @@ void CWE78_OS_Command_Injection__char_listen_socket_w32_spawnlp_16_bad()
             }
 #endif
         }
-        break;
     }
     /* spawnlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */
@@ -161,11 +159,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
     }
     /* spawnlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */

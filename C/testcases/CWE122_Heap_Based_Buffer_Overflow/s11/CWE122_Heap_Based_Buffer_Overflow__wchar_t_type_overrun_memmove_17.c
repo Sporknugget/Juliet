@@ -32,8 +32,6 @@ typedef struct _charVoid
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -57,8 +55,6 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));

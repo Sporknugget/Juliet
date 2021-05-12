@@ -23,7 +23,6 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_16_bad(
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
-    while(1)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -33,9 +32,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_16_bad(
                 data[i] = i;
             }
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -45,7 +42,6 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_16_bad(
                 printIntLine(data[i]);
             }
         }
-        break;
     }
 }
 
@@ -58,7 +54,6 @@ static void goodB2G()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
-    while(1)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -68,9 +63,7 @@ static void goodB2G()
                 data[i] = i;
             }
         }
-        break;
     }
-    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -87,7 +80,6 @@ static void goodB2G()
                 printIntLine(data[i]);
             }
         }
-        break;
     }
 }
 
@@ -96,7 +88,6 @@ static void goodG2B()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
-    while(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -106,9 +97,7 @@ static void goodG2B()
                 data[i] = i;
             }
         }
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -118,7 +107,6 @@ static void goodG2B()
                 printIntLine(data[i]);
             }
         }
-        break;
     }
 }
 

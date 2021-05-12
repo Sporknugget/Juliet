@@ -29,7 +29,6 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -39,26 +38,9 @@ void bad()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        TwoIntsClass dataGoodBuffer;
-        data = &dataGoodBuffer;
-        /* Initialize and make use of data */
-        data->intOne = 0;
-        data->intTwo = 0;
-        printIntLine(data->intOne);
-        printIntLine(data->intTwo);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        delete data;
     }
 }
 
@@ -73,7 +55,6 @@ static void goodB2G()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -83,22 +64,6 @@ static void goodB2G()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = new TwoIntsClass;
-        /* Initialize and make use of data */
-        data->intOne = 0;
-        data->intTwo = 0;
-        printIntLine(data->intOne);
-        printIntLine(data->intTwo);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        delete data;
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -112,7 +77,6 @@ static void goodG2B()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer;
@@ -123,23 +87,6 @@ static void goodG2B()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        TwoIntsClass dataGoodBuffer;
-        data = &dataGoodBuffer;
-        /* Initialize and make use of data */
-        data->intOne = 0;
-        data->intTwo = 0;
-        printIntLine(data->intOne);
-        printIntLine(data->intTwo);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

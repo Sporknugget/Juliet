@@ -26,7 +26,6 @@ void CWE194_Unexpected_Sign_Extension__fgets_memmove_12_bad()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -41,11 +40,6 @@ void CWE194_Unexpected_Sign_Extension__fgets_memmove_12_bad()
                 printLine("fgets() failed.");
             }
         }
-    }
-    else
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
     }
     {
         char source[100];
@@ -74,12 +68,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a positive integer less than &InitialDataSize&*/
-        data = 100-1;
-    }
-    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

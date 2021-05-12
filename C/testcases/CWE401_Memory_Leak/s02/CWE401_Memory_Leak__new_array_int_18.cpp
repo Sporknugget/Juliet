@@ -29,15 +29,11 @@ void bad()
 {
     int * data;
     data = NULL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new int[100];
     /* Initialize and make use of data */
     data[0] = 5;
     printIntLine(data[0]);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
@@ -51,15 +47,11 @@ static void goodB2G()
 {
     int * data;
     data = NULL;
-    goto source;
-source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new int[100];
     /* Initialize and make use of data */
     data[0] = 5;
     printIntLine(data[0]);
-    goto sink;
-sink:
     /* FIX: Deallocate memory */
     delete[] data;
 }
@@ -69,16 +61,12 @@ static void goodG2B()
 {
     int * data;
     data = NULL;
-    goto source;
-source:
     /* FIX: Use memory allocated on the stack */
     int dataGoodBuffer[100];
     data = dataGoodBuffer;
     /* Initialize and make use of data */
     data[0] = 5;
     printIntLine(data[0]);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }

@@ -29,7 +29,6 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
@@ -39,26 +38,9 @@ void bad()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        TwoIntsClass dataGoodBuffer[100];
-        data = dataGoodBuffer;
-        /* Initialize and make use of data */
-        data[0].intOne = 0;
-        data[0].intTwo = 0;
-        printIntLine(data[0].intOne);
-        printIntLine(data[0].intTwo);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        delete[] data;
     }
 }
 
@@ -73,7 +55,6 @@ static void goodB2G()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
@@ -83,22 +64,6 @@ static void goodB2G()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = new TwoIntsClass[100];
-        /* Initialize and make use of data */
-        data[0].intOne = 0;
-        data[0].intTwo = 0;
-        printIntLine(data[0].intOne);
-        printIntLine(data[0].intTwo);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        delete[] data;
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -112,7 +77,6 @@ static void goodG2B()
 {
     TwoIntsClass * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer[100];
@@ -123,23 +87,6 @@ static void goodG2B()
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        TwoIntsClass dataGoodBuffer[100];
-        data = dataGoodBuffer;
-        /* Initialize and make use of data */
-        data[0].intOne = 0;
-        data[0].intTwo = 0;
-        printIntLine(data[0].intOne);
-        printIntLine(data[0].intTwo);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

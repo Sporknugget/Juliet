@@ -25,11 +25,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_17_bad()
 {
-    int i;
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    for(i = 0; i < 1; i++)
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
@@ -73,11 +71,9 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_17_b
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    for(h = 0; h < 1; h++)
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)

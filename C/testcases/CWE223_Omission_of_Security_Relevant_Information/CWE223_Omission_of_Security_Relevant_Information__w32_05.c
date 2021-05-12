@@ -35,7 +35,6 @@ static int staticFalse = 0; /* false */
 
 void CWE223_Omission_of_Security_Relevant_Information__w32_05_bad()
 {
-    if(staticTrue)
     {
         {
             WSADATA wsaData;
@@ -125,15 +124,6 @@ void CWE223_Omission_of_Security_Relevant_Information__w32_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             WSADATA wsaData;
@@ -222,7 +212,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             WSADATA wsaData;

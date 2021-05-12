@@ -35,13 +35,11 @@ void bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         data = new wchar_t[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;
@@ -58,18 +56,11 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         data = new wchar_t[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -83,13 +74,11 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         data = new wchar_t[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
     }
-    if(STATIC_CONST_TRUE)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -103,17 +92,10 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = new wchar_t[100];
         /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;
@@ -126,12 +108,10 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_TRUE)
     {
         data = new wchar_t[100];
         /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;

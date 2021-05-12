@@ -52,8 +52,6 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_connect_socket_18_bad()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -110,8 +108,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -143,8 +139,6 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -201,8 +195,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -230,12 +222,8 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a relatively small number for memory allocation */
     data = 20;
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough

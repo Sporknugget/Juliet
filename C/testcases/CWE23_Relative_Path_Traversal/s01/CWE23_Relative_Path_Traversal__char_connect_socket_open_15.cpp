@@ -62,9 +62,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -132,12 +129,6 @@ void bad()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         int fileDesc;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -159,17 +150,8 @@ static void goodG2B1()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
-        break;
-    }
     {
         int fileDesc;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -187,17 +169,8 @@ static void goodG2B2()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         int fileDesc;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */

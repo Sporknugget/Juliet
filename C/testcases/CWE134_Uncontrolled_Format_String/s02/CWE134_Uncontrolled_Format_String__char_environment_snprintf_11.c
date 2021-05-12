@@ -42,7 +42,6 @@ void CWE134_Uncontrolled_Format_String__char_environment_snprintf_11_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -56,7 +55,6 @@ void CWE134_Uncontrolled_Format_String__char_environment_snprintf_11_bad()
             }
         }
     }
-    if(globalReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -77,7 +75,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -91,12 +88,6 @@ static void goodB2G1()
             }
         }
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char dest[100] = "";
@@ -113,7 +104,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -127,7 +117,6 @@ static void goodB2G2()
             }
         }
     }
-    if(globalReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -144,17 +133,10 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(globalReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -171,12 +153,10 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
-    if(globalReturnsTrue())
     {
         {
             char dest[100] = "";

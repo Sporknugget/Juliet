@@ -28,8 +28,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE511_Logic_Time_Bomb__counter_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             int count = 0;
@@ -54,8 +52,6 @@ void CWE511_Logic_Time_Bomb__counter_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             int count = 0;

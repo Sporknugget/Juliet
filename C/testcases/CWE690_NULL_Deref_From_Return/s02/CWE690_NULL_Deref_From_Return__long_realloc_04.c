@@ -32,7 +32,6 @@ void CWE690_NULL_Deref_From_Return__long_realloc_04_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (long *)realloc(data, 1*sizeof(long));
-    if(STATIC_CONST_TRUE)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0] = 5L;
@@ -52,12 +51,6 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (long *)realloc(data, 1*sizeof(long));
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
@@ -76,7 +69,6 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (long *)realloc(data, 1*sizeof(long));
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)

@@ -41,7 +41,6 @@ void bad()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
-    if(staticReturnsTrue())
     {
         /* FLAW: Set data to point to an int */
         data = &dataBadBuffer;
@@ -62,12 +61,6 @@ static void goodG2B1()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Set data to point to a TwoIntsClass class */
         data = &dataGoodBuffer;
@@ -84,7 +77,6 @@ static void goodG2B2()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
-    if(staticReturnsTrue())
     {
         /* FIX: Set data to point to a TwoIntsClass class */
         data = &dataGoodBuffer;

@@ -25,8 +25,6 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_18_bad()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
-    goto source;
-source:
     data = CreateFile("BadSource_w32CreateFile.txt",
                       (GENERIC_WRITE|GENERIC_READ),
                       0,
@@ -36,8 +34,6 @@ source:
                       NULL);
     /* POTENTIAL FLAW: Close the file in the source */
     CloseHandle(data);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
     CloseHandle(data);
 }
@@ -51,8 +47,6 @@ static void goodB2G()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
-    goto source;
-source:
     data = CreateFile("BadSource_w32CreateFile.txt",
                       (GENERIC_WRITE|GENERIC_READ),
                       0,
@@ -62,8 +56,6 @@ source:
                       NULL);
     /* POTENTIAL FLAW: Close the file in the source */
     CloseHandle(data);
-    goto sink;
-sink:
     /* Do nothing */
     /* FIX: Don't close the file in the sink */
     ; /* empty statement needed for some flow variants */
@@ -74,8 +66,6 @@ static void goodG2B()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
-    goto source;
-source:
     /* FIX: Open, but do not close the file in the source */
     data = CreateFile("GoodSource_w32CreateFile.txt",
                       (GENERIC_WRITE|GENERIC_READ),
@@ -84,8 +74,6 @@ source:
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
     CloseHandle(data);
 }

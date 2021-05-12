@@ -28,7 +28,6 @@ static int staticFive = 5;
 
 void CWE244_Heap_Inspection__w32_char_realloc_07_bad()
 {
-    if(staticFive==5)
     {
         {
             char * password = (char *)malloc(100*sizeof(char));
@@ -85,15 +84,6 @@ void CWE244_Heap_Inspection__w32_char_realloc_07_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char * password = (char *)malloc(100*sizeof(char));
@@ -147,7 +137,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             char * password = (char *)malloc(100*sizeof(char));

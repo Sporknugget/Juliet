@@ -27,9 +27,6 @@ void bad()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    switch(6)
-    {
-    case 6:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         int64_t * dataBuffer = (int64_t *)ALLOCA(100*sizeof(int64_t));
@@ -41,12 +38,6 @@ void bad()
             }
         }
         data = dataBuffer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     printLongLongLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -62,13 +53,6 @@ static void goodG2B1()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int64_t * dataBuffer = new int64_t[100];
@@ -80,8 +64,6 @@ static void goodG2B1()
             }
         }
         data = dataBuffer;
-    }
-    break;
     }
     printLongLongLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -93,9 +75,6 @@ static void goodG2B2()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    switch(6)
-    {
-    case 6:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int64_t * dataBuffer = new int64_t[100];
@@ -107,12 +86,6 @@ static void goodG2B2()
             }
         }
         data = dataBuffer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     printLongLongLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

@@ -23,11 +23,9 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_fputc_16_bad()
 {
-    while(1)
     {
         /* FLAW: Do not check the return value */
         fputc((int)'A', stdout);
-        break;
     }
 }
 
@@ -38,14 +36,12 @@ void CWE252_Unchecked_Return_Value__char_fputc_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: check the return value */
         if (fputc((int)'A', stdout) == EOF)
         {
             printLine("fputc failed!");
         }
-        break;
     }
 }
 

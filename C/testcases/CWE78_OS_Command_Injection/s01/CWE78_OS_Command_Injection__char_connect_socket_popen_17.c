@@ -58,11 +58,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE78_OS_Command_Injection__char_connect_socket_popen_17_bad()
 {
-    int i;
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -150,11 +148,9 @@ void CWE78_OS_Command_Injection__char_connect_socket_popen_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

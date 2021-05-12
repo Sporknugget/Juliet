@@ -21,8 +21,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_18_bad()
 {
-    goto sink;
-sink:
     {
         wchar_t dataBuffer[100] = L"";
         wchar_t * data = dataBuffer;
@@ -40,8 +38,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         wchar_t dataBuffer[100] = L"";
         wchar_t * data = dataBuffer;

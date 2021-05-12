@@ -43,7 +43,6 @@ static int staticFive = 5;
 
 void CWE510_Trapdoor__network_listen_07_bad()
 {
-    if(staticFive==5)
     {
         {
 #ifdef _WIN32

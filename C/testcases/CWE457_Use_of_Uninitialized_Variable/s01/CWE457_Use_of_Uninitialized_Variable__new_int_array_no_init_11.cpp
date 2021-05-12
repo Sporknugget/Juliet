@@ -25,12 +25,10 @@ void bad()
 {
     int * data;
     data = new int[10];
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -54,17 +52,10 @@ static void goodB2G1()
 {
     int * data;
     data = new int[10];
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -91,12 +82,10 @@ static void goodB2G2()
 {
     int * data;
     data = new int[10];
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(globalReturnsTrue())
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -123,12 +112,6 @@ static void goodG2B1()
 {
     int * data;
     data = new int[10];
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Completely initialize data */
         {
@@ -139,7 +122,6 @@ static void goodG2B1()
             }
         }
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -159,7 +141,6 @@ static void goodG2B2()
 {
     int * data;
     data = new int[10];
-    if(globalReturnsTrue())
     {
         /* FIX: Completely initialize data */
         {
@@ -170,7 +151,6 @@ static void goodG2B2()
             }
         }
     }
-    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

@@ -27,8 +27,6 @@ void CWE114_Process_Control__w32_char_console_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -81,8 +79,6 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Specify the full pathname for the library */
     strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
     {

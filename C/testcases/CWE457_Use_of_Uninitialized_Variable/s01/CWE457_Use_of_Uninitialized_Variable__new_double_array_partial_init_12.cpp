@@ -25,7 +25,6 @@ void bad()
 {
     double * data;
     data = new double[10];
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -36,40 +35,8 @@ void bad()
             }
         }
     }
-    else
-    {
-        /* FIX: Completely initialize data */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-        /* deallocate the memory */
-        delete [] data;
-    }
-    else
-    {
-        /* FIX: Ensure data is initialized before use */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
         {
             int i;
             for(i=0; i<10; i++)
@@ -93,7 +60,6 @@ static void goodB2G()
 {
     double * data;
     data = new double[10];
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -104,38 +70,6 @@ static void goodB2G()
             }
         }
     }
-    else
-    {
-        /* POTENTIAL FLAW: Partially initialize data */
-        {
-            int i;
-            for(i=0; i<(10/2); i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Ensure data is initialized before use */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-        /* deallocate the memory */
-        delete [] data;
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -164,7 +98,6 @@ static void goodG2B()
 {
     double * data;
     data = new double[10];
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Completely initialize data */
         {
@@ -175,31 +108,6 @@ static void goodG2B()
             }
         }
     }
-    else
-    {
-        /* FIX: Completely initialize data */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Use data without initializing it */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-        /* deallocate the memory */
-        delete [] data;
-    }
-    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

@@ -41,11 +41,9 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE78_OS_Command_Injection__wchar_t_file_system_17_bad()
 {
-    int i;
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    for(i = 0; i < 1; i++)
     {
         {
             /* Read input from a file */
@@ -84,11 +82,9 @@ void CWE78_OS_Command_Injection__wchar_t_file_system_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");

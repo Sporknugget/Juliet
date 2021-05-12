@@ -37,7 +37,6 @@ static int staticReturnsFalse()
 
 void CWE534_Info_Exposure_Debug_Log__w32_char_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             char password[100] = "";
@@ -88,15 +87,6 @@ void CWE534_Info_Exposure_Debug_Log__w32_char_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char password[100] = "";
@@ -146,7 +136,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             char password[100] = "";

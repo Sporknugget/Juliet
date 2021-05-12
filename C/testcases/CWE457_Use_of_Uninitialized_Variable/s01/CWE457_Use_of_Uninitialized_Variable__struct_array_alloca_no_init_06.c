@@ -28,12 +28,10 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_alloca_no_init_06_bad()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -56,17 +54,10 @@ static void goodB2G1()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -93,12 +84,10 @@ static void goodB2G2()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -125,12 +114,6 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Completely initialize data */
         {
@@ -142,7 +125,6 @@ static void goodG2B1()
             }
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -161,7 +143,6 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = (twoIntsStruct *)ALLOCA(10*sizeof(twoIntsStruct));
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Completely initialize data */
         {
@@ -173,7 +154,6 @@ static void goodG2B2()
             }
         }
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

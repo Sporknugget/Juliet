@@ -26,7 +26,6 @@ static int staticFive = 5;
 
 void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_07_bad()
 {
-    if(staticFive==5)
     {
         {
             HANDLE hFile;
@@ -57,15 +56,6 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_07_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
-static void good1()
-{
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HANDLE hFile;
@@ -95,7 +85,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticFive==5)
     {
         {
             HANDLE hFile;

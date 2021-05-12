@@ -27,21 +27,12 @@ void bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    switch(6)
-    {
-    case 6:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = (twoIntsStruct *)ALLOCA(sizeof(twoIntsStruct));
         dataBuffer->intOne = 1;
         dataBuffer->intTwo = 1;
         data = dataBuffer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     printStructLine(data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -57,21 +48,12 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = new twoIntsStruct;
         dataBuffer->intOne = 1;
         dataBuffer->intTwo = 1;
         data = dataBuffer;
-    }
-    break;
     }
     printStructLine(data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -83,21 +65,12 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
-    switch(6)
-    {
-    case 6:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         twoIntsStruct * dataBuffer = new twoIntsStruct;
         dataBuffer->intOne = 1;
         dataBuffer->intTwo = 1;
         data = dataBuffer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     printStructLine(data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

@@ -25,11 +25,9 @@ namespace CWE762_Mismatched_Memory_Management_Routines__strdup_delete_array_char
 
 void bad()
 {
-    int i,j;
     char * data;
     /* Initialize data*/
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         {
             char myString[] = "myString";
@@ -37,7 +35,6 @@ void bad()
             data = strdup(myString);
         }
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -52,11 +49,9 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     char * data;
     /* Initialize data*/
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         {
             char myString[] = "myString";
@@ -64,7 +59,6 @@ static void goodB2G()
             data = strdup(myString);
         }
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -74,16 +68,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     char * data;
     /* Initialize data*/
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new char[100];
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */

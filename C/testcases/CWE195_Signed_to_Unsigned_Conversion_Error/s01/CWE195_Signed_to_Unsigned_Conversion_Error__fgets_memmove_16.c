@@ -25,7 +25,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fgets_memmove_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -40,7 +39,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fgets_memmove_16_bad()
                 printLine("fgets() failed.");
             }
         }
-        break;
     }
     {
         char source[100];
@@ -68,11 +66,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
-        break;
     }
     {
         char source[100];

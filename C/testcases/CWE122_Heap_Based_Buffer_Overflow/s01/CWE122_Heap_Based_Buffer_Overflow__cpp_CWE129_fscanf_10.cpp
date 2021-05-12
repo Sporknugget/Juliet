@@ -27,12 +27,10 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    if(globalTrue)
     {
         {
             int i;
@@ -72,17 +70,10 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int i;
@@ -117,12 +108,10 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    if(globalTrue)
     {
         {
             int i;
@@ -157,18 +146,11 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
-    if(globalTrue)
     {
         {
             int i;
@@ -204,13 +186,11 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
-    if(globalTrue)
     {
         {
             int i;

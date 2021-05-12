@@ -24,18 +24,14 @@ Template File: sources-sinks-16.tmpl.c
 void CWE563_Unused_Variable__unused_value_long_16_bad()
 {
     long data;
-    while(1)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;
         printLongLine(data);
-        break;
     }
 }
 
@@ -47,17 +43,13 @@ void CWE563_Unused_Variable__unused_value_long_16_bad()
 static void goodB2G()
 {
     long data;
-    while(1)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
-        break;
     }
-    while(1)
     {
         /* FIX: Use data without over-writing its value */
         printLongLine(data);
-        break;
     }
 }
 
@@ -65,19 +57,15 @@ static void goodB2G()
 static void goodG2B()
 {
     long data;
-    while(1)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5L;
         printLongLine(data);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;
         printLongLine(data);
-        break;
     }
 }
 

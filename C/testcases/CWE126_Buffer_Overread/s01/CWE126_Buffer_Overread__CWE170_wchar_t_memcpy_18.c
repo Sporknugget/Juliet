@@ -21,8 +21,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_wchar_t_memcpy_18_bad()
 {
-    goto sink;
-sink:
     {
         wchar_t data[150], dest[100];
         /* Initialize data */
@@ -41,8 +39,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         wchar_t data[150], dest[100];
         /* Initialize data */

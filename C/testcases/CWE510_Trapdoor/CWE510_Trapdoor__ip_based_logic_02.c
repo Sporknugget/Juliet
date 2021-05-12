@@ -40,7 +40,6 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE510_Trapdoor__ip_based_logic_02_bad()
 {
-    if(1)
     {
         {
 #ifdef _WIN32
@@ -126,15 +125,6 @@ void CWE510_Trapdoor__ip_based_logic_02_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(0) instead of if(1) */
-static void good1()
-{
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
 #ifdef _WIN32
@@ -203,7 +193,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(1)
     {
         {
 #ifdef _WIN32

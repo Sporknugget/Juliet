@@ -30,32 +30,14 @@ void CWE176_Improper_Handling_of_Unicode_Encoding__w32_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char convertedText[10] = "";
         int requiredSize;
         requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
         /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
         WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -69,24 +51,8 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char convertedText[10] = "";
         int requiredSize;
@@ -100,8 +66,6 @@ static void goodB2G1()
         {
             printLine("Destination buffer not large enough to perform conversion.");
         }
-    }
-    break;
     }
 }
 
@@ -111,20 +75,8 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char convertedText[10] = "";
         int requiredSize;
@@ -139,12 +91,6 @@ static void goodB2G2()
             printLine("Destination buffer not large enough to perform conversion.");
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -153,32 +99,14 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char convertedText[10] = "";
         int requiredSize;
         requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
         /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
         WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -188,32 +116,14 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char convertedText[10] = "";
         int requiredSize;
         requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
         /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
         WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

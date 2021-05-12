@@ -22,8 +22,6 @@ namespace CWE758_Undefined_Behavior__char_new_use_17
 
 void bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             char * pointer = new char;
@@ -41,8 +39,6 @@ void bad()
 /* good1() changes the conditions on the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             char data;

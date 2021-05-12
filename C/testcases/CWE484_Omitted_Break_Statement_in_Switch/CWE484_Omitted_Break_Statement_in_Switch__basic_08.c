@@ -32,7 +32,6 @@ static int staticReturnsFalse()
 
 void CWE484_Omitted_Break_Statement_in_Switch__basic_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             int x = (rand() % 3);
@@ -59,15 +58,6 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int x = (rand() % 3);
@@ -95,7 +85,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             int x = (rand() % 3);

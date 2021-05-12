@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_else_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: An empty else statement has no effect */
         {
@@ -35,23 +34,6 @@ void CWE398_Poor_Code_Quality__empty_else_12_bad()
         }
         printLine("Hello from bad()");
     }
-    else
-    {
-        /* FIX: Do not include an empty else statement */
-        {
-            int x;
-            x = (rand() % 3);
-            if (x == 0)
-            {
-                printLine("Inside the if statement");
-            }
-            else
-            {
-                printLine("Inside the else statement");
-            }
-        }
-        printLine("Hello from good()");
-    }
 }
 
 #endif /* OMITBAD */
@@ -61,24 +43,6 @@ void CWE398_Poor_Code_Quality__empty_else_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Do not include an empty else statement */
-        {
-            int x;
-            x = (rand() % 3);
-            if (x == 0)
-            {
-                printLine("Inside the if statement");
-            }
-            else
-            {
-                printLine("Inside the else statement");
-            }
-        }
-        printLine("Hello from good()");
-    }
-    else
     {
         /* FIX: Do not include an empty else statement */
         {

@@ -36,8 +36,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_18_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    goto source;
-source:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;
@@ -98,8 +96,6 @@ source:
             WSACleanup();
         }
     }
-    goto sink;
-sink:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -134,8 +130,6 @@ static void goodB2G()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    goto source;
-source:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;
@@ -196,8 +190,6 @@ source:
             WSACleanup();
         }
     }
-    goto sink;
-sink:
     {
         HCRYPTPROV hCryptProv = 0;
         HCRYPTHASH hHash = 0;
@@ -282,13 +274,9 @@ static void goodG2B()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    goto source;
-source:
     /* FIX: Use a hardcoded password (it was not sent over the network)
     * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
     strcpy(password, "Password1234!");
-    goto sink;
-sink:
     {
         HANDLE pHandle;
         char * username = "User";

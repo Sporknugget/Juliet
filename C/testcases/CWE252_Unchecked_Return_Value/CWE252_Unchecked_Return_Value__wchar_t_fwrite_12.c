@@ -23,18 +23,9 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_fwrite_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Do not check the return value */
         fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout);
-    }
-    else
-    {
-        /* FIX: check the return value */
-        if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))
-        {
-            printLine("fwrite failed!");
-        }
     }
 }
 
@@ -45,15 +36,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_fwrite_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: check the return value */
-        if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))
-        {
-            printLine("fwrite failed!");
-        }
-    }
-    else
     {
         /* FIX: check the return value */
         if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))

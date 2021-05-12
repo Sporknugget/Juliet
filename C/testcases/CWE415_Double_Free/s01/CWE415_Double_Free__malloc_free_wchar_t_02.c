@@ -26,14 +26,12 @@ void CWE415_Double_Free__malloc_free_wchar_t_02_bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -50,19 +48,12 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -76,14 +67,12 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
-    if(1)
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -97,18 +86,11 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -121,13 +103,11 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
-    if(1)
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);

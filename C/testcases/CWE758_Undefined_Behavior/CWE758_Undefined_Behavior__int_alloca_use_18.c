@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE758_Undefined_Behavior__int_alloca_use_18_bad()
 {
-    goto sink;
-sink:
     {
         int * pointer = (int *)ALLOCA(sizeof(int));
         int data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
@@ -35,8 +33,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int data;
         int * pointer = (int *)ALLOCA(sizeof(int));

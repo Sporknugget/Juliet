@@ -21,7 +21,6 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateFile_03_bad()
 {
-    if(5==5)
     {
         {
             HANDLE hFile;
@@ -52,15 +51,6 @@ void CWE284_Improper_Access_Control__w32_char_CreateFile_03_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(5!=5) instead of if(5==5) */
-static void good1()
-{
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HANDLE hFile;
@@ -90,7 +80,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(5==5)
     {
         {
             HANDLE hFile;

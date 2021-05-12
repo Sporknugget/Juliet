@@ -25,7 +25,6 @@ void CWE401_Memory_Leak__struct_twoIntsStruct_realloc_16_bad()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (struct _twoIntsStruct *)realloc(data, 100*sizeof(struct _twoIntsStruct));
@@ -34,13 +33,10 @@ void CWE401_Memory_Leak__struct_twoIntsStruct_realloc_16_bad()
         data[0].intOne = 0;
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -53,7 +49,6 @@ static void goodB2G()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (struct _twoIntsStruct *)realloc(data, 100*sizeof(struct _twoIntsStruct));
@@ -62,13 +57,10 @@ static void goodB2G()
         data[0].intOne = 0;
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
-        break;
     }
-    while(1)
     {
         /* FIX: Deallocate memory */
         free(data);
-        break;
     }
 }
 
@@ -77,7 +69,6 @@ static void goodG2B()
 {
     struct _twoIntsStruct * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (struct _twoIntsStruct *)ALLOCA(100*sizeof(struct _twoIntsStruct));
@@ -85,13 +76,10 @@ static void goodG2B()
         data[0].intOne = 0;
         data[0].intTwo = 0;
         printStructLine((twoIntsStruct *)&data[0]);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 

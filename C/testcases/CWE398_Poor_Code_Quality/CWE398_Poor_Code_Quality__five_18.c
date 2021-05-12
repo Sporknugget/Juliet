@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE398_Poor_Code_Quality__five_18_bad()
 {
-    goto sink;
-sink:
     /* FLAW: the statement has no effect */
     5;
     printLine("Hello from bad()");
@@ -33,8 +31,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     /* FIX: Do not include a statement that has no effect */
     printLine("Hello from good()");
 }

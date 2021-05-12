@@ -19,8 +19,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE390_Error_Without_Action__fopen_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         {
             FILE * fileDesc = NULL;
@@ -42,8 +40,6 @@ void CWE390_Error_Without_Action__fopen_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         {
             FILE * fileDesc = NULL;

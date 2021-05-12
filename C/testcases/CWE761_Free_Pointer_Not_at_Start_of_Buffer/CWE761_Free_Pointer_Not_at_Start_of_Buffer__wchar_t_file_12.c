@@ -55,7 +55,6 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_file_12_bad()
             }
         }
     }
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
          * memory block not at the start of the buffer */
@@ -68,22 +67,6 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_file_12_bad()
             }
         }
         free(data);
-    }
-    else
-    {
-        {
-            size_t i;
-            /* FIX: Use a loop variable to traverse through the string pointed to by data */
-            for (i=0; i < wcslen(data); i++)
-            {
-                if (data[i] == SEARCH_CHAR)
-                {
-                    printLine("We have a match!");
-                    break;
-                }
-            }
-            free(data);
-        }
     }
 }
 
@@ -120,23 +103,6 @@ static void goodB2G()
             }
         }
     }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            size_t i;
-            /* FIX: Use a loop variable to traverse through the string pointed to by data */
-            for (i=0; i < wcslen(data); i++)
-            {
-                if (data[i] == SEARCH_CHAR)
-                {
-                    printLine("We have a match!");
-                    break;
-                }
-            }
-            free(data);
-        }
-    }
-    else
     {
         {
             size_t i;

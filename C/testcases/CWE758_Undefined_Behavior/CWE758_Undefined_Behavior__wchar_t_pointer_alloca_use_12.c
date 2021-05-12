@@ -19,25 +19,11 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
             wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printWLine(data);
-        }
-    }
-    else
-    {
-        {
-            wchar_t * data;
-            wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
-            data = L"string";
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                wchar_t * data = *pointer;
-                printWLine(data);
-            }
         }
     }
 }
@@ -49,20 +35,6 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            wchar_t * data;
-            wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
-            data = L"string";
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                wchar_t * data = *pointer;
-                printWLine(data);
-            }
-        }
-    }
-    else
     {
         {
             wchar_t * data;

@@ -23,12 +23,10 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_struct_alloca_loop_16_bad()
     twoIntsStruct * data;
     twoIntsStruct * dataBadBuffer = (twoIntsStruct *)ALLOCA(50*sizeof(twoIntsStruct));
     twoIntsStruct * dataGoodBuffer = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
-    while(1)
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
         data = dataBadBuffer;
-        break;
     }
     {
         twoIntsStruct source[100];
@@ -63,11 +61,9 @@ static void goodG2B()
     twoIntsStruct * data;
     twoIntsStruct * dataBadBuffer = (twoIntsStruct *)ALLOCA(50*sizeof(twoIntsStruct));
     twoIntsStruct * dataGoodBuffer = (twoIntsStruct *)ALLOCA(100*sizeof(twoIntsStruct));
-    while(1)
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
-        break;
     }
     {
         twoIntsStruct source[100];

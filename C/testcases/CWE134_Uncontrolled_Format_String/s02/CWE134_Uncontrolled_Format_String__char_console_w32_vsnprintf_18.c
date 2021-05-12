@@ -42,8 +42,6 @@ void CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -69,8 +67,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     badVaSinkB(data, data);
 }
 
@@ -97,8 +93,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -124,8 +118,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     goodB2GVaSinkG(data, data);
 }
 
@@ -148,12 +140,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     strcpy(data, "fixedstringtest");
-    goto sink;
-sink:
     goodG2BVaSinkB(data, data);
 }
 

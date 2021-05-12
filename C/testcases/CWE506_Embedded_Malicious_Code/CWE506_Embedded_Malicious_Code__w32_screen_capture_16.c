@@ -23,7 +23,6 @@ Template File: point-flaw-badonly-16.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_16_bad()
 {
-    while(1)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */
@@ -184,7 +183,6 @@ void CWE506_Embedded_Malicious_Code__w32_screen_capture_16_bad()
                 ReleaseDC(hWnd,hdcWindow);
             }
         }
-        break;
     }
 }
 

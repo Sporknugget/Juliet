@@ -21,7 +21,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE667_Improper_Locking__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             static stdThreadLock badLock = NULL;
@@ -36,25 +35,6 @@ void CWE667_Improper_Locking__basic_12_bad()
             /* FLAW: Do not release the lock */
         }
     }
-    else
-    {
-        {
-            static stdThreadLock goodLock = NULL;
-            printLine("Creating lock...");
-            if (!stdThreadLockCreate(&goodLock))
-            {
-                printLine("Could not create lock");
-                exit(1);
-            }
-            printLine("Acquiring lock...");
-            stdThreadLockAcquire(goodLock);
-            /* FIX: Release and destroy the lock */
-            printLine("Releasing lock...");
-            stdThreadLockRelease(goodLock);
-            printLine("Destroying lock...");
-            stdThreadLockDestroy(goodLock);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -64,26 +44,6 @@ void CWE667_Improper_Locking__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            static stdThreadLock goodLock = NULL;
-            printLine("Creating lock...");
-            if (!stdThreadLockCreate(&goodLock))
-            {
-                printLine("Could not create lock");
-                exit(1);
-            }
-            printLine("Acquiring lock...");
-            stdThreadLockAcquire(goodLock);
-            /* FIX: Release and destroy the lock */
-            printLine("Releasing lock...");
-            stdThreadLockRelease(goodLock);
-            printLine("Destroying lock...");
-            stdThreadLockDestroy(goodLock);
-        }
-    }
-    else
     {
         {
             static stdThreadLock goodLock = NULL;

@@ -19,19 +19,10 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE758_Undefined_Behavior__char_alloca_use_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         char * pointer = (char *)ALLOCA(sizeof(char));
         char data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         printHexCharLine(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -42,13 +33,6 @@ void CWE758_Undefined_Behavior__char_alloca_use_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char data;
         char * pointer = (char *)ALLOCA(sizeof(char));
@@ -58,17 +42,12 @@ static void good1()
             char data = *pointer;
             printHexCharLine(data);
         }
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         char data;
         char * pointer = (char *)ALLOCA(sizeof(char));
@@ -78,12 +57,6 @@ static void good2()
             char data = *pointer;
             printHexCharLine(data);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

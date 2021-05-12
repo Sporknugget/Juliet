@@ -34,14 +34,12 @@ void bad()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_FIVE==5)
     {
         data = new int;
         *data = 5;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printIntLine(*data);
@@ -59,19 +57,12 @@ static void goodB2G1()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_FIVE==5)
     {
         data = new int;
         *data = 5;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -86,14 +77,12 @@ static void goodB2G2()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_FIVE==5)
     {
         data = new int;
         *data = 5;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -108,18 +97,11 @@ static void goodG2B1()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         data = new int;
         *data = 5;
         /* FIX: Do not delete data in the source */
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printIntLine(*data);
@@ -133,13 +115,11 @@ static void goodG2B2()
     int * data;
     /* Initialize data */
     data = NULL;
-    if(STATIC_CONST_FIVE==5)
     {
         data = new int;
         *data = 5;
         /* FIX: Do not delete data in the source */
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printIntLine(*data);

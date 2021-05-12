@@ -26,12 +26,10 @@ void CWE563_Unused_Variable__unused_init_variable_struct_16_bad()
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data.intOne = 0;
     data.intTwo = 0;
-    while(1)
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -46,11 +44,9 @@ static void goodB2G()
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data.intOne = 0;
     data.intTwo = 0;
-    while(1)
     {
         /* FIX: Use data */
         printStructLine(&data);
-        break;
     }
 }
 

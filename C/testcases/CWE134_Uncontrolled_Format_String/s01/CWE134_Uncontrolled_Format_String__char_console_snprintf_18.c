@@ -34,8 +34,6 @@ void CWE134_Uncontrolled_Format_String__char_console_snprintf_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -61,8 +59,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     {
         char dest[100] = "";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
@@ -81,8 +77,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -108,8 +102,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     {
         char dest[100] = "";
         /* FIX: Specify the format disallowing a format string vulnerability */
@@ -124,12 +116,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     strcpy(data, "fixedstringtest");
-    goto sink;
-sink:
     {
         char dest[100] = "";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */

@@ -36,8 +36,6 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_file_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from a file */
         size_t dataLen = wcslen(data);
@@ -59,8 +57,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     {
         int i, n, intVariable;
         if (swscanf(data, L"%d", &n) == 1)
@@ -87,8 +83,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from a file */
         size_t dataLen = wcslen(data);
@@ -110,8 +104,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     {
         int i, n, intVariable;
         if (swscanf(data, L"%d", &n) == 1)
@@ -137,12 +129,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Set data to a number less than MAX_LOOP */
     wcscpy(data, L"15");
-    goto sink;
-sink:
     {
         int i, n, intVariable;
         if (swscanf(data, L"%d", &n) == 1)

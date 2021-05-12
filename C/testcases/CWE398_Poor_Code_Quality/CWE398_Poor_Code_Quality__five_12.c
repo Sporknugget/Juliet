@@ -19,16 +19,10 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE398_Poor_Code_Quality__five_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: the statement has no effect */
         5;
         printLine("Hello from bad()");
-    }
-    else
-    {
-        /* FIX: Do not include a statement that has no effect */
-        printLine("Hello from good()");
     }
 }
 
@@ -39,12 +33,6 @@ void CWE398_Poor_Code_Quality__five_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Do not include a statement that has no effect */
-        printLine("Hello from good()");
-    }
-    else
     {
         /* FIX: Do not include a statement that has no effect */
         printLine("Hello from good()");

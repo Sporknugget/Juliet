@@ -26,12 +26,8 @@ void CWE400_Resource_Exhaustion__rand_fwrite_18_bad()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set count to a random value */
     count = RAND32();
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -67,12 +63,8 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set count to a random value */
     count = RAND32();
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -103,12 +95,8 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     /* FIX: Use a relatively small number */
     count = 20;
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;

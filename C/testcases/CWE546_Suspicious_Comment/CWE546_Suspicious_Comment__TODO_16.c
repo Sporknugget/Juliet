@@ -19,14 +19,12 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE546_Suspicious_Comment__TODO_16_bad()
 {
-    while(1)
     {
         /* FLAW: The following comment has the letters 'TODO' in it*/
         /* TODO: This comment has the letters 'TODO' in it, which is certainly
          * suspicious, because it could indicate this code is not finished.
          */
         printLine("Hello");
-        break;
     }
 }
 
@@ -37,11 +35,9 @@ void CWE546_Suspicious_Comment__TODO_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
-        break;
     }
 }
 

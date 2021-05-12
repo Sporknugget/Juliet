@@ -46,7 +46,6 @@ void CWE404_Improper_Resource_Shutdown__w32CreateFile_fclose_08_bad()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    if(staticReturnsTrue())
     {
         if (data != INVALID_HANDLE_VALUE)
         {
@@ -74,12 +73,6 @@ static void goodB2G1()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         if (data != INVALID_HANDLE_VALUE)
         {
@@ -103,7 +96,6 @@ static void goodB2G2()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    if(staticReturnsTrue())
     {
         if (data != INVALID_HANDLE_VALUE)
         {

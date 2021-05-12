@@ -45,7 +45,6 @@ static int staticReturnsFalse()
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -66,15 +65,6 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -94,7 +84,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));

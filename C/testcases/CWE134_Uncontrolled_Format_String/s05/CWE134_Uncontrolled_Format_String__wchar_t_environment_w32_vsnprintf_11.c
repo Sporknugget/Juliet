@@ -50,7 +50,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_w32_vsnprintf_11_bad
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -64,7 +63,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_w32_vsnprintf_11_bad
             }
         }
     }
-    if(globalReturnsTrue())
     {
         badVaSinkB(data, data);
     }
@@ -93,7 +91,6 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -107,12 +104,6 @@ static void goodB2G1()
             }
         }
     }
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         goodB2G1VaSinkG(data, data);
     }
@@ -137,7 +128,6 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -151,7 +141,6 @@ static void goodB2G2()
             }
         }
     }
-    if(globalReturnsTrue())
     {
         goodB2G2VaSinkG(data, data);
     }
@@ -176,17 +165,10 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(globalReturnsTrue())
     {
         goodG2B1VaSinkB(data, data);
     }
@@ -211,12 +193,10 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(globalReturnsTrue())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(globalReturnsTrue())
     {
         goodG2B2VaSinkB(data, data);
     }

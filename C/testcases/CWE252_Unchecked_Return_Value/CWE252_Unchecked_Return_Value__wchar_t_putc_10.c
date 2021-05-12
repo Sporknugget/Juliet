@@ -23,7 +23,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_putc_10_bad()
 {
-    if(globalTrue)
     {
         /* FLAW: Do not check the return value */
         putwc((wchar_t)L'A', stdout);
@@ -34,15 +33,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_putc_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: check the return value */
         if (putwc((wchar_t)L'A', stdout) == WEOF)
@@ -55,7 +45,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         /* FIX: check the return value */
         if (putwc((wchar_t)L'A', stdout) == WEOF)

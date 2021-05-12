@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE196_Unsigned_to_Signed_Conversion_Error__basic_16_bad()
 {
-    while(1)
     {
         {
             unsigned intUnsigned;
@@ -33,7 +32,6 @@ void CWE196_Unsigned_to_Signed_Conversion_Error__basic_16_bad()
             intSigned = intUnsigned;
             printIntLine(intSigned);
         }
-        break;
     }
 }
 
@@ -44,7 +42,6 @@ void CWE196_Unsigned_to_Signed_Conversion_Error__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             unsigned intUnsigned;
@@ -62,7 +59,6 @@ static void good1()
             intSigned = intUnsigned;
             printIntLine(intSigned);
         }
-        break;
     }
 }
 

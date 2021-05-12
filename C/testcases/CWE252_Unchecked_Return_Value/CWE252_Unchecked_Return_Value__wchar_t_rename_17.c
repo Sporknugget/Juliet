@@ -32,8 +32,6 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_rename_17_bad()
 {
-    int j;
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: Do not check the return value */
         RENAME(OLD_BAD_FILE_NAME, L"newbadfilename.txt");
@@ -47,8 +45,6 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
-    int k;
-    for(k = 0; k < 1; k++)
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)

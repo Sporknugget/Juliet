@@ -25,7 +25,6 @@ static int staticFalse = 0; /* false */
 
 void CWE188_Reliance_on_Data_Memory_Layout__modify_local_05_bad()
 {
-    if(staticTrue)
     {
         {
             struct
@@ -49,15 +48,6 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             struct
@@ -78,7 +68,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             struct

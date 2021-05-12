@@ -34,9 +34,6 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_15_bad()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    switch(6)
-    {
-    case 6:
         /* FLAW: Assign data to another file descriptor without closing the descriptor from the source */
         data = OPEN("BadSink_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* avoid incidental for not closing the file */
@@ -44,12 +41,6 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_15_bad()
         {
             CLOSE(data);
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 #endif /* OMITBAD */
@@ -64,13 +55,6 @@ static void goodB2G1()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Close the file from the source before reassigning data to a new file descriptor */
         if (data != -1)
         {
@@ -82,8 +66,6 @@ static void goodB2G1()
         {
             CLOSE(data);
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -94,9 +76,6 @@ static void goodB2G2()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-    switch(6)
-    {
-    case 6:
         /* FIX: Close the file from the source before reassigning data to a new file descriptor */
         if (data != -1)
         {
@@ -108,12 +87,6 @@ static void goodB2G2()
         {
             CLOSE(data);
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_15_good()

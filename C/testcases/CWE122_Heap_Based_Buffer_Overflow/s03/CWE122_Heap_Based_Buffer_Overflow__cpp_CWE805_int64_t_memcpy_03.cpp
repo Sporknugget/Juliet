@@ -25,7 +25,6 @@ void bad()
 {
     int64_t * data;
     data = NULL;
-    if(5==5)
     {
         /* FLAW: Allocate using new[] and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = new int64_t[50];
@@ -48,12 +47,6 @@ static void goodG2B1()
 {
     int64_t * data;
     data = NULL;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new int64_t[100];
@@ -72,7 +65,6 @@ static void goodG2B2()
 {
     int64_t * data;
     data = NULL;
-    if(5==5)
     {
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new int64_t[100];

@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_for_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: An empty for statement has no effect */
         {
@@ -30,18 +29,6 @@ void CWE398_Poor_Code_Quality__empty_for_12_bad()
         }
         printLine("Hello from bad()");
     }
-    else
-    {
-        /* FIX: Do not include an empty for statement */
-        {
-            int i;
-            for (i = 0; i < 10; i++)
-            {
-                printLine("Inside the for statement");
-            }
-        }
-        printLine("Hello from good()");
-    }
 }
 
 #endif /* OMITBAD */
@@ -51,19 +38,6 @@ void CWE398_Poor_Code_Quality__empty_for_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Do not include an empty for statement */
-        {
-            int i;
-            for (i = 0; i < 10; i++)
-            {
-                printLine("Inside the for statement");
-            }
-        }
-        printLine("Hello from good()");
-    }
-    else
     {
         /* FIX: Do not include an empty for statement */
         {

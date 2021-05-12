@@ -23,30 +23,12 @@ void CWE190_Integer_Overflow__int64_t_max_add_15_bad()
 {
     int64_t data;
     data = 0LL;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         int64_t result = data + 1;
         printLongLongLine(result);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -59,24 +41,8 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < LLONG_MAX)
         {
@@ -87,8 +53,6 @@ static void goodB2G1()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -96,20 +60,8 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < LLONG_MAX)
         {
@@ -120,12 +72,6 @@ static void goodB2G2()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -133,30 +79,12 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         int64_t result = data + 1;
         printLongLongLine(result);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -165,30 +93,12 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         int64_t result = data + 1;
         printLongLongLine(result);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

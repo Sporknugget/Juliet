@@ -48,8 +48,6 @@ void CWE400_Resource_Exhaustion__connect_socket_fwrite_18_bad()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -106,8 +104,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -143,8 +139,6 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -201,8 +195,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -233,12 +225,8 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     /* FIX: Use a relatively small number */
     count = 20;
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;

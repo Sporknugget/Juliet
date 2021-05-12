@@ -24,12 +24,10 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_no_init_02_bad()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
-    if(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -52,17 +50,10 @@ static void goodB2G1()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
-    if(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -88,12 +79,10 @@ static void goodB2G2()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
-    if(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    if(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -119,12 +108,6 @@ static void goodG2B1()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Completely initialize data */
         {
@@ -135,7 +118,6 @@ static void goodG2B1()
             }
         }
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -154,7 +136,6 @@ static void goodG2B2()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
-    if(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -165,7 +146,6 @@ static void goodG2B2()
             }
         }
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

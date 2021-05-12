@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__struct_new_use_12
 
 void bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             twoIntsStruct * pointer = new twoIntsStruct;
@@ -30,22 +29,6 @@ void bad()
             delete pointer;
             printIntLine(data.intOne);
             printIntLine(data.intTwo);
-        }
-    }
-    else
-    {
-        {
-            twoIntsStruct data;
-            data.intOne = 1;
-            data.intTwo = 2;
-            twoIntsStruct * pointer = new twoIntsStruct;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                twoIntsStruct data = *pointer;
-                printIntLine(data.intOne);
-                printIntLine(data.intTwo);
-            }
-            delete pointer;
         }
     }
 }
@@ -57,23 +40,6 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            twoIntsStruct data;
-            data.intOne = 1;
-            data.intTwo = 2;
-            twoIntsStruct * pointer = new twoIntsStruct;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                twoIntsStruct data = *pointer;
-                printIntLine(data.intOne);
-                printIntLine(data.intTwo);
-            }
-            delete pointer;
-        }
-    }
-    else
     {
         {
             twoIntsStruct data;

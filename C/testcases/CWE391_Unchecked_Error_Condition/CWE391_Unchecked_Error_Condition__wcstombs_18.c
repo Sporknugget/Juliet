@@ -21,8 +21,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__wcstombs_18_bad()
 {
-    goto sink;
-sink:
     {
         size_t bytesTranslated = 0;
         char charString[100];
@@ -41,8 +39,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         size_t bytesTranslated = 0;
         char charString[100];

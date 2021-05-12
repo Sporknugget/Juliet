@@ -38,8 +38,6 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_environment_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -51,8 +49,6 @@ source:
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     {
         int i, n, intVariable;
         if (swscanf(data, L"%d", &n) == 1)
@@ -79,8 +75,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -92,8 +86,6 @@ source:
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
-    goto sink;
-sink:
     {
         int i, n, intVariable;
         if (swscanf(data, L"%d", &n) == 1)
@@ -119,12 +111,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Set data to a number less than MAX_LOOP */
     wcscpy(data, L"15");
-    goto sink;
-sink:
     {
         int i, n, intVariable;
         if (swscanf(data, L"%d", &n) == 1)

@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE478_Missing_Default_Case_in_Switch__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             const char *charString = "shouldn\'t see this value";
@@ -38,27 +37,6 @@ void CWE478_Missing_Default_Case_in_Switch__basic_12_bad()
             printLine(charString);
         }
     }
-    else
-    {
-        {
-            const char *charString = "shouldn\'t see this value";
-            int x;
-            x = (rand() % 3);
-            switch (x)
-            {
-            case 0:
-                charString = "0";
-                break;
-            case 1:
-                charString = "1";
-                break;
-                /* FIX: provide a 'default' case for other values */
-            default:
-                return;
-            }
-            printLine(charString);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -68,28 +46,6 @@ void CWE478_Missing_Default_Case_in_Switch__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            const char *charString = "shouldn\'t see this value";
-            int x;
-            x = (rand() % 3);
-            switch (x)
-            {
-            case 0:
-                charString = "0";
-                break;
-            case 1:
-                charString = "1";
-                break;
-                /* FIX: provide a 'default' case for other values */
-            default:
-                return;
-            }
-            printLine(charString);
-        }
-    }
-    else
     {
         {
             const char *charString = "shouldn\'t see this value";

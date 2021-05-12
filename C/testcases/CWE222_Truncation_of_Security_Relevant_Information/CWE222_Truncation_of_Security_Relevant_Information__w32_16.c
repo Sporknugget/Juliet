@@ -30,7 +30,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE222_Truncation_of_Security_Relevant_Information__w32_16_bad()
 {
-    while(1)
     {
         {
             WSADATA wsaData;
@@ -115,7 +114,6 @@ void CWE222_Truncation_of_Security_Relevant_Information__w32_16_bad()
                 WSACleanup();
             }
         }
-        break;
     }
 }
 
@@ -126,7 +124,6 @@ void CWE222_Truncation_of_Security_Relevant_Information__w32_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             WSADATA wsaData;
@@ -208,7 +205,6 @@ static void good1()
                 WSACleanup();
             }
         }
-        break;
     }
 }
 

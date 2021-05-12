@@ -67,7 +67,6 @@ void CWE78_OS_Command_Injection__char_connect_socket_execl_16_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -136,7 +135,6 @@ void CWE78_OS_Command_Injection__char_connect_socket_execl_16_bad()
             }
 #endif
         }
-        break;
     }
     /* execl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -153,11 +151,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
-        break;
     }
     /* execl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */

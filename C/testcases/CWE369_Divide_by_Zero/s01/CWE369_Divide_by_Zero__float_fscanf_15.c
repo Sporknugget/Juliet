@@ -26,30 +26,12 @@ void CWE369_Divide_by_Zero__float_fscanf_15_bad()
     float data;
     /* Initialize data */
     data = 0.0F;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%f", &data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         int result = (int)(100.0 / data);
         printIntLine(result);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -63,24 +45,8 @@ static void goodB2G1()
     float data;
     /* Initialize data */
     data = 0.0F;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%f", &data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
         {
@@ -91,8 +57,6 @@ static void goodB2G1()
         {
             printLine("This would result in a divide by zero");
         }
-        break;
-    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -101,20 +65,8 @@ static void goodB2G2()
     float data;
     /* Initialize data */
     data = 0.0F;
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%f", &data);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
         {
@@ -125,12 +77,6 @@ static void goodB2G2()
         {
             printLine("This would result in a divide by zero");
         }
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -139,30 +85,12 @@ static void goodG2B1()
     float data;
     /* Initialize data */
     data = 0.0F;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         int result = (int)(100.0 / data);
         printIntLine(result);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -172,30 +100,12 @@ static void goodG2B2()
     float data;
     /* Initialize data */
     data = 0.0F;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         int result = (int)(100.0 / data);
         printIntLine(result);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

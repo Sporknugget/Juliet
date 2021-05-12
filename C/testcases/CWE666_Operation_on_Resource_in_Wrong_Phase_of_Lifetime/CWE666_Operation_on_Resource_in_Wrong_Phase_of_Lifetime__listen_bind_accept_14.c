@@ -43,7 +43,6 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__listen_bind_accept_14_bad()
 {
-    if(globalFive==5)
     {
         {
             char data[100] = "";
@@ -133,15 +132,6 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__listen_bind_accept
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
-static void good1()
-{
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char data[100] = "";
@@ -230,7 +220,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalFive==5)
     {
         {
             char data[100] = "";

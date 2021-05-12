@@ -29,7 +29,6 @@ void bad()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct[100];
@@ -38,25 +37,9 @@ void bad()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        twoIntsStruct dataGoodBuffer[100];
-        data = dataGoodBuffer;
-        /* Initialize and make use of data */
-        data[0].intOne = 0;
-        data[0].intTwo = 0;
-        printStructLine(&data[0]);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        delete[] data;
     }
 }
 
@@ -71,7 +54,6 @@ static void goodB2G()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new twoIntsStruct[100];
@@ -80,21 +62,6 @@ static void goodB2G()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = new twoIntsStruct[100];
-        /* Initialize and make use of data */
-        data[0].intOne = 0;
-        data[0].intTwo = 0;
-        printStructLine(&data[0]);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        delete[] data;
-    }
-    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -108,7 +75,6 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         twoIntsStruct dataGoodBuffer[100];
@@ -118,22 +84,6 @@ static void goodG2B()
         data[0].intTwo = 0;
         printStructLine(&data[0]);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack */
-        twoIntsStruct dataGoodBuffer[100];
-        data = dataGoodBuffer;
-        /* Initialize and make use of data */
-        data[0].intOne = 0;
-        data[0].intTwo = 0;
-        printStructLine(&data[0]);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

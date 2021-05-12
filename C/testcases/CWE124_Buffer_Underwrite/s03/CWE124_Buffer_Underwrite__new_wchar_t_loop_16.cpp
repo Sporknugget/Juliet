@@ -27,7 +27,6 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];
@@ -36,7 +35,6 @@ void bad()
             /* FLAW: Set data pointer to before the allocated memory buffer */
             data = dataBuffer - 8;
         }
-        break;
     }
     {
         size_t i;
@@ -65,7 +63,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];
@@ -74,7 +71,6 @@ static void goodG2B()
             /* FIX: Set data pointer to the allocated memory buffer */
             data = dataBuffer;
         }
-        break;
     }
     {
         size_t i;

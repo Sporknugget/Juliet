@@ -36,7 +36,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_02_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(1)
     {
         {
             WSADATA wsaData;
@@ -99,7 +98,6 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_02_bad()
             }
         }
     }
-    if(1)
     {
         {
             HANDLE pHandle;
@@ -136,7 +134,6 @@ static void goodB2G1()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(1)
     {
         {
             WSADATA wsaData;
@@ -199,12 +196,6 @@ static void goodB2G1()
             }
         }
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HCRYPTPROV hCryptProv = 0;
@@ -291,7 +282,6 @@ static void goodB2G2()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(1)
     {
         {
             WSADATA wsaData;
@@ -354,7 +344,6 @@ static void goodB2G2()
             }
         }
     }
-    if(1)
     {
         {
             HCRYPTPROV hCryptProv = 0;
@@ -441,18 +430,11 @@ static void goodG2B1()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         strcpy(password, "Password1234!");
     }
-    if(1)
     {
         {
             HANDLE pHandle;
@@ -485,13 +467,11 @@ static void goodG2B2()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
-    if(1)
     {
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         strcpy(password, "Password1234!");
     }
-    if(1)
     {
         {
             HANDLE pHandle;

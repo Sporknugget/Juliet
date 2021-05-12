@@ -49,7 +49,6 @@ void CWE617_Reachable_Assertion__connect_socket_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -107,7 +106,6 @@ void CWE617_Reachable_Assertion__connect_socket_16_bad()
             }
 #endif
         }
-        break;
     }
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
     assert(data > ASSERT_VALUE);
@@ -123,11 +121,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;
-        break;
     }
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
     assert(data > ASSERT_VALUE);

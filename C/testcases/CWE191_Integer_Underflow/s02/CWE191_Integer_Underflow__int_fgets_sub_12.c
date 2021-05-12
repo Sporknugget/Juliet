@@ -26,7 +26,6 @@ void CWE191_Integer_Underflow__int_fgets_sub_12_bad()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -42,30 +41,11 @@ void CWE191_Integer_Underflow__int_fgets_sub_12_bad()
             }
         }
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
             int result = data - 1;
             printIntLine(result);
-        }
-    }
-    else
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > INT_MIN)
-        {
-            int result = data - 1;
-            printIntLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform subtraction.");
         }
     }
 }
@@ -82,7 +62,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -98,36 +77,6 @@ static void goodB2G()
             }
         }
     }
-    else
-    {
-        {
-            char inputBuffer[CHAR_ARRAY_SIZE] = "";
-            /* POTENTIAL FLAW: Read data from the console using fgets() */
-            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
-            {
-                /* Convert to int */
-                data = atoi(inputBuffer);
-            }
-            else
-            {
-                printLine("fgets() failed.");
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Add a check to prevent an underflow from occurring */
-        if (data > INT_MIN)
-        {
-            int result = data - 1;
-            printIntLine(result);
-        }
-        else
-        {
-            printLine("data value is too large to perform subtraction.");
-        }
-    }
-    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > INT_MIN)
@@ -150,25 +99,10 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
-        data = -2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
-            int result = data - 1;
-            printIntLine(result);
-        }
-    }
-    else
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

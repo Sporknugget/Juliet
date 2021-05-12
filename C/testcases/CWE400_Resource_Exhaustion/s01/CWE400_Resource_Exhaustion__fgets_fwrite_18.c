@@ -28,8 +28,6 @@ void CWE400_Resource_Exhaustion__fgets_fwrite_18_bad()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read count from the console using fgets() */
@@ -43,8 +41,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -80,8 +76,6 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read count from the console using fgets() */
@@ -95,8 +89,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;
@@ -127,12 +119,8 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
-    goto source;
-source:
     /* FIX: Use a relatively small number */
     count = 20;
-    goto sink;
-sink:
     {
         size_t i = 0;
         FILE *pFile = NULL;

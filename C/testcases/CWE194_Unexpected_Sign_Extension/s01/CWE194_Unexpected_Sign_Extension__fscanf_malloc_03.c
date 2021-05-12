@@ -23,7 +23,6 @@ void CWE194_Unexpected_Sign_Extension__fscanf_malloc_03_bad()
     short data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%hd", &data);
@@ -53,12 +52,6 @@ static void goodG2B1()
     short data;
     /* Initialize data */
     data = 0;
-    if(5!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
@@ -84,7 +77,6 @@ static void goodG2B2()
     short data;
     /* Initialize data */
     data = 0;
-    if(5==5)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

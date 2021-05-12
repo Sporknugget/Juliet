@@ -34,7 +34,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_printf_05_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             /* Read input from the console */
@@ -62,7 +61,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_printf_05_bad()
             }
         }
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         wprintf(data);
@@ -79,7 +77,6 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             /* Read input from the console */
@@ -107,12 +104,6 @@ static void goodB2G1()
             }
         }
     }
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         wprintf(L"%s\n", data);
@@ -125,7 +116,6 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             /* Read input from the console */
@@ -153,7 +143,6 @@ static void goodB2G2()
             }
         }
     }
-    if(staticTrue)
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         wprintf(L"%s\n", data);
@@ -166,17 +155,10 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         wprintf(data);
@@ -189,12 +171,10 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    if(staticTrue)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
-    if(staticTrue)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         wprintf(data);

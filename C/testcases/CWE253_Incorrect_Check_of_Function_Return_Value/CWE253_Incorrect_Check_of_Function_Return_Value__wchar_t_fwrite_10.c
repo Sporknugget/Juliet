@@ -23,7 +23,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fwrite_10_bad()
 {
-    if(globalTrue)
     {
         /* FLAW: fwrite() might fail, in which case the return value will not be equal to strlen(data),
          * but we are checking to see if the return value is less than 0 */
@@ -38,15 +37,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fwrite_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: check for the correct return value */
         if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))
@@ -59,7 +49,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         /* FIX: check for the correct return value */
         if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))

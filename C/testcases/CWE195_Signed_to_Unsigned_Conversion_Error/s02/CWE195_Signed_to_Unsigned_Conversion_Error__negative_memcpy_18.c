@@ -23,8 +23,6 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__negative_memcpy_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FLAW: Use a negative number */
     data = -1;
     {
@@ -53,8 +51,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     {

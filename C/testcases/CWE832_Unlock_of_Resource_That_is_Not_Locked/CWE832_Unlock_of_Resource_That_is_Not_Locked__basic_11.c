@@ -21,7 +21,6 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_11_bad()
 {
-    if(globalReturnsTrue())
     {
         {
             static stdThreadLock badLock = NULL;
@@ -44,15 +43,6 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_11_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
-static void good1()
-{
-    if(globalReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             static stdThreadLock goodLock = NULL;
@@ -76,7 +66,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalReturnsTrue())
     {
         {
             static stdThreadLock goodLock = NULL;

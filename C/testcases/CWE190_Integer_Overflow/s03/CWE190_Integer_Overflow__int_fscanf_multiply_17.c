@@ -21,16 +21,13 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE190_Integer_Overflow__int_fscanf_multiply_17_bad()
 {
-    int i,j;
     int data;
     /* Initialize data */
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    for(j = 0; j < 1; j++)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -48,16 +45,13 @@ void CWE190_Integer_Overflow__int_fscanf_multiply_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     int data;
     /* Initialize data */
     data = 0;
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
     }
-    for(k = 0; k < 1; k++)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -78,16 +72,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     int data;
     /* Initialize data */
     data = 0;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
-    for(j = 0; j < 1; j++)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

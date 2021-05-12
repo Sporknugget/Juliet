@@ -31,7 +31,6 @@ static int staticFive = 5;
 
 void CWE506_Embedded_Malicious_Code__w32_email_07_bad()
 {
-    if(staticFive==5)
     {
         {
             WSADATA wsaData;

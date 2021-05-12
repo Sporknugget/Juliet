@@ -23,43 +23,12 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_alloca_no_init_12_bad()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    else
-    {
-        /* FIX: Completely initialize data */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-    }
-    else
-    {
-        /* FIX: Ensure data is initialized before use */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
         {
             int i;
             for(i=0; i<10; i++)
@@ -81,35 +50,10 @@ static void goodB2G()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
-    else
-    {
-        /* POTENTIAL FLAW: Don't initialize data */
-        ; /* empty statement needed for some flow variants */
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Ensure data is initialized before use */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-    }
-    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -136,7 +80,6 @@ static void goodG2B()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Completely initialize data */
         {
@@ -147,29 +90,6 @@ static void goodG2B()
             }
         }
     }
-    else
-    {
-        /* FIX: Completely initialize data */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                data[i] = (double)i;
-            }
-        }
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: Use data without initializing it */
-        {
-            int i;
-            for(i=0; i<10; i++)
-            {
-                printDoubleLine(data[i]);
-            }
-        }
-    }
-    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

@@ -24,8 +24,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE534_Info_Exposure_Debug_Log__w32_char_18_bad()
 {
-    goto sink;
-sink:
     {
         char password[100] = "";
         size_t passwordLen = 0;
@@ -77,8 +75,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         char password[100] = "";
         size_t passwordLen = 0;

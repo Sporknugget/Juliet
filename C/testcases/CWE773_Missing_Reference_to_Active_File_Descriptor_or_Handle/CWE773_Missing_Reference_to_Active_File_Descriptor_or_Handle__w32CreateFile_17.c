@@ -22,7 +22,6 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__w32CreateFile_17_bad()
 {
-    int j;
     HANDLE data;
     /* Initialize data */
     data = INVALID_HANDLE_VALUE;
@@ -34,7 +33,6 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__w32CreateFile
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    for(j = 0; j < 1; j++)
     {
         /* FLAW: Point data to another file handle without closing the handle from the source */
         data = CreateFile("BadSink_w32CreateFile.txt",
@@ -59,7 +57,6 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__w32CreateFile
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
-    int k;
     HANDLE data;
     /* Initialize data */
     data = INVALID_HANDLE_VALUE;
@@ -71,7 +68,6 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != INVALID_HANDLE_VALUE)

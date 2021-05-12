@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE196_Unsigned_to_Signed_Conversion_Error__basic_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             unsigned intUnsigned;
@@ -34,25 +33,6 @@ void CWE196_Unsigned_to_Signed_Conversion_Error__basic_12_bad()
             printIntLine(intSigned);
         }
     }
-    else
-    {
-        {
-            unsigned intUnsigned;
-            int intSigned;
-            intUnsigned = rand();
-            if (rand() % 2 == 0)
-            {
-                intUnsigned = UINT_MAX - intUnsigned;
-            }
-            /* FIX: don't allow very large values of intUnsigned */
-            if (intUnsigned > INT_MAX)
-            {
-                exit(1);
-            }
-            intSigned = intUnsigned;
-            printIntLine(intSigned);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -62,26 +42,6 @@ void CWE196_Unsigned_to_Signed_Conversion_Error__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            unsigned intUnsigned;
-            int intSigned;
-            intUnsigned = rand();
-            if (rand() % 2 == 0)
-            {
-                intUnsigned = UINT_MAX - intUnsigned;
-            }
-            /* FIX: don't allow very large values of intUnsigned */
-            if (intUnsigned > INT_MAX)
-            {
-                exit(1);
-            }
-            intSigned = intUnsigned;
-            printIntLine(intSigned);
-        }
-    }
-    else
     {
         {
             unsigned intUnsigned;

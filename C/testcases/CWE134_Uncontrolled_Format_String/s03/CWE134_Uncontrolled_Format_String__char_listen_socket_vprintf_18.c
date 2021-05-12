@@ -61,8 +61,6 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_vprintf_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -142,8 +140,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     badVaSinkB(data, data);
 }
 
@@ -168,8 +164,6 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -249,8 +243,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     goodB2GVaSinkG(data, data);
 }
 
@@ -271,12 +263,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     strcpy(data, "fixedstringtest");
-    goto sink;
-sink:
     goodG2BVaSinkB(data, data);
 }
 

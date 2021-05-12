@@ -52,11 +52,9 @@ namespace CWE23_Relative_Path_Traversal__wchar_t_connect_socket_w32CreateFile_17
 
 void bad()
 {
-    int i;
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -150,11 +148,9 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
-    int h;
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");

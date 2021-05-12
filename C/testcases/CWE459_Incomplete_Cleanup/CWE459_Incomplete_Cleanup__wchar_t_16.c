@@ -30,7 +30,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE459_Incomplete_Cleanup__wchar_t_16_bad()
 {
-    while(1)
     {
         {
             wchar_t * filename;
@@ -49,7 +48,6 @@ void CWE459_Incomplete_Cleanup__wchar_t_16_bad()
                 }
             }
         }
-        break;
     }
 }
 
@@ -60,7 +58,6 @@ void CWE459_Incomplete_Cleanup__wchar_t_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             wchar_t * filename;
@@ -80,7 +77,6 @@ static void good1()
                 }
             }
         }
-        break;
     }
 }
 

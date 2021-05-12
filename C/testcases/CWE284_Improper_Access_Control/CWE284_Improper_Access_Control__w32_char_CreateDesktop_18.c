@@ -22,8 +22,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateDesktop_18_bad()
 {
-    goto sink;
-sink:
     {
         HDESK hDesk;
         char * desktopName = "DesktopExample";
@@ -54,8 +52,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         HDESK hDesk;
         char * desktopName = "DesktopExample";

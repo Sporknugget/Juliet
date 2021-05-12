@@ -29,13 +29,11 @@ static const int STATIC_CONST_FIVE = 5;
 void CWE563_Unused_Variable__unused_value_struct_06_bad()
 {
     twoIntsStruct data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data.intOne = 0;
         data.intTwo = 0;
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data.intOne = 1;
@@ -52,18 +50,11 @@ void CWE563_Unused_Variable__unused_value_struct_06_bad()
 static void goodB2G1()
 {
     twoIntsStruct data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data.intOne = 0;
         data.intTwo = 0;
     }
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use data without over-writing its value */
         printStructLine(&data);
@@ -74,13 +65,11 @@ static void goodB2G1()
 static void goodB2G2()
 {
     twoIntsStruct data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data.intOne = 0;
         data.intTwo = 0;
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use data without over-writing its value */
         printStructLine(&data);
@@ -91,19 +80,12 @@ static void goodB2G2()
 static void goodG2B1()
 {
     twoIntsStruct data;
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize and use data before it is overwritten */
         data.intOne = 0;
         data.intTwo = 0;
         printStructLine(&data);
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data.intOne = 1;
@@ -116,14 +98,12 @@ static void goodG2B1()
 static void goodG2B2()
 {
     twoIntsStruct data;
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data.intOne = 0;
         data.intTwo = 0;
         printStructLine(&data);
     }
-    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data.intOne = 1;

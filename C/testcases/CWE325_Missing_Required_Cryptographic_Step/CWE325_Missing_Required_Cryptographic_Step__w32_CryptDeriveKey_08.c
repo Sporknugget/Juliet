@@ -41,7 +41,6 @@ static int staticReturnsFalse()
 
 void CWE325_Missing_Required_Cryptographic_Step__w32_CryptDeriveKey_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             BYTE payload[100];
@@ -100,15 +99,6 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptDeriveKey_08_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             BYTE payload[100];
@@ -170,7 +160,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             BYTE payload[100];

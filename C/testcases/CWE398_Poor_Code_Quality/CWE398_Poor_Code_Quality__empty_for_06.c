@@ -24,7 +24,6 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE398_Poor_Code_Quality__empty_for_06_bad()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: An empty for statement has no effect */
         {
@@ -41,15 +40,6 @@ void CWE398_Poor_Code_Quality__empty_for_06_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
-static void good1()
-{
-    if(STATIC_CONST_FIVE!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Do not include an empty for statement */
         {
@@ -66,7 +56,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Do not include an empty for statement */
         {

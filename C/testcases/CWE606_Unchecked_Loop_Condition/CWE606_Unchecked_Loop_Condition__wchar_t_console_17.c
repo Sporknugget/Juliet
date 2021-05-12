@@ -27,11 +27,9 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE606_Unchecked_Loop_Condition__wchar_t_console_17_bad()
 {
-    int i,j;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
             /* Read input from the console */
@@ -59,7 +57,6 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_console_17_bad()
             }
         }
     }
-    for(j = 0; j < 1; j++)
     {
         {
             int i, n, intVariable;
@@ -70,7 +67,6 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_console_17_bad()
                 for (i = 0; i < n; i++)
                 {
                     /* INCIDENTAL: CWE 561: Dead Code - non-avoidable if n <= 0 */
-                    intVariable++; /* avoid a dead/empty code block issue */
                 }
                 printIntLine(intVariable);
             }
@@ -85,11 +81,9 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_console_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    for(i = 0; i < 1; i++)
     {
         {
             /* Read input from the console */
@@ -117,7 +111,6 @@ static void goodB2G()
             }
         }
     }
-    for(k = 0; k < 1; k++)
     {
         {
             int i, n, intVariable;
@@ -142,16 +135,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
     }
-    for(j = 0; j < 1; j++)
     {
         {
             int i, n, intVariable;

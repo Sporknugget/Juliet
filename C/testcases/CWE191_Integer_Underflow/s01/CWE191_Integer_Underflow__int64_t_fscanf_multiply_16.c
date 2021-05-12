@@ -24,13 +24,10 @@ void CWE191_Integer_Underflow__int64_t_fscanf_multiply_16_bad()
 {
     int64_t data;
     data = 0LL;
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
-        break;
     }
-    while(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -38,7 +35,6 @@ void CWE191_Integer_Underflow__int64_t_fscanf_multiply_16_bad()
             int64_t result = data * 2;
             printLongLongLine(result);
         }
-        break;
     }
 }
 
@@ -51,13 +47,10 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
-    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
-        break;
     }
-    while(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -72,7 +65,6 @@ static void goodB2G()
                 printLine("data value is too small to perform multiplication.");
             }
         }
-        break;
     }
 }
 
@@ -81,13 +73,10 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
-    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
-        break;
     }
-    while(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -95,7 +84,6 @@ static void goodG2B()
             int64_t result = data * 2;
             printLongLongLine(result);
         }
-        break;
     }
 }
 

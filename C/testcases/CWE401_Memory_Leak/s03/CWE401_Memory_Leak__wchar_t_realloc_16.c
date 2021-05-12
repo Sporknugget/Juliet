@@ -25,7 +25,6 @@ void CWE401_Memory_Leak__wchar_t_realloc_16_bad()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
@@ -33,13 +32,10 @@ void CWE401_Memory_Leak__wchar_t_realloc_16_bad()
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 
@@ -52,7 +48,6 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
@@ -60,13 +55,10 @@ static void goodB2G()
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
-        break;
     }
-    while(1)
     {
         /* FIX: Deallocate memory */
         free(data);
-        break;
     }
 }
 
@@ -75,20 +67,16 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
-        break;
     }
-    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-        break;
     }
 }
 

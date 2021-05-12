@@ -25,7 +25,6 @@ void CWE401_Memory_Leak__int64_t_malloc_12_bad()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -34,23 +33,9 @@ void CWE401_Memory_Leak__int64_t_malloc_12_bad()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack with ALLOCA */
-        data = (int64_t *)ALLOCA(100*sizeof(int64_t));
-        /* Initialize and make use of data */
-        data[0] = 5LL;
-        printLongLongLine(data[0]);
-    }
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
-    }
-    else
-    {
-        /* FIX: Deallocate memory */
-        free(data);
     }
 }
 
@@ -65,7 +50,6 @@ static void goodB2G()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -74,21 +58,6 @@ static void goodB2G()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
-    else
-    {
-        /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (int64_t *)malloc(100*sizeof(int64_t));
-        if (data == NULL) {exit(-1);}
-        /* Initialize and make use of data */
-        data[0] = 5LL;
-        printLongLongLine(data[0]);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Deallocate memory */
-        free(data);
-    }
-    else
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -102,7 +71,6 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (int64_t *)ALLOCA(100*sizeof(int64_t));
@@ -110,20 +78,6 @@ static void goodG2B()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
-    else
-    {
-        /* FIX: Use memory allocated on the stack with ALLOCA */
-        data = (int64_t *)ALLOCA(100*sizeof(int64_t));
-        /* Initialize and make use of data */
-        data[0] = 5LL;
-        printLongLongLine(data[0]);
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        /* POTENTIAL FLAW: No deallocation */
-        ; /* empty statement needed for some flow variants */
-    }
-    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

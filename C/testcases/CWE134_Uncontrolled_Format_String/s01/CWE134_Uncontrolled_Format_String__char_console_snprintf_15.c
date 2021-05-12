@@ -34,9 +34,6 @@ void CWE134_Uncontrolled_Format_String__char_console_snprintf_15_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -62,26 +59,11 @@ void CWE134_Uncontrolled_Format_String__char_console_snprintf_15_bad()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char dest[100] = "";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         SNPRINTF(dest, 100-1, data);
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -95,9 +77,6 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -123,26 +102,11 @@ static void goodB2G1()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         char dest[100] = "";
         /* FIX: Specify the format disallowing a format string vulnerability */
         SNPRINTF(dest, 100-1, "%s", data);
         printLine(dest);
-    }
-    break;
     }
 }
 
@@ -152,9 +116,6 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -180,26 +141,11 @@ static void goodB2G2()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char dest[100] = "";
         /* FIX: Specify the format disallowing a format string vulnerability */
         SNPRINTF(dest, 100-1, "%s", data);
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -209,31 +155,13 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char dest[100] = "";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         SNPRINTF(dest, 100-1, data);
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -243,31 +171,13 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         char dest[100] = "";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         SNPRINTF(dest, 100-1, data);
         printLine(dest);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

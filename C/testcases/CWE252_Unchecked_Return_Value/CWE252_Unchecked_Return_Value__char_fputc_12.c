@@ -23,18 +23,9 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_fputc_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Do not check the return value */
         fputc((int)'A', stdout);
-    }
-    else
-    {
-        /* FIX: check the return value */
-        if (fputc((int)'A', stdout) == EOF)
-        {
-            printLine("fputc failed!");
-        }
     }
 }
 
@@ -45,15 +36,6 @@ void CWE252_Unchecked_Return_Value__char_fputc_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: check the return value */
-        if (fputc((int)'A', stdout) == EOF)
-        {
-            printLine("fputc failed!");
-        }
-    }
-    else
     {
         /* FIX: check the return value */
         if (fputc((int)'A', stdout) == EOF)

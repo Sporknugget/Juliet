@@ -22,7 +22,6 @@ namespace CWE758_Undefined_Behavior__int64_t_new_use_16
 
 void bad()
 {
-    while(1)
     {
         {
             int64_t * pointer = new int64_t;
@@ -30,7 +29,6 @@ void bad()
             delete pointer;
             printLongLongLine(data);
         }
-        break;
     }
 }
 
@@ -41,7 +39,6 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
-    while(1)
     {
         {
             int64_t data;
@@ -54,7 +51,6 @@ static void good1()
             }
             delete pointer;
         }
-        break;
     }
 }
 

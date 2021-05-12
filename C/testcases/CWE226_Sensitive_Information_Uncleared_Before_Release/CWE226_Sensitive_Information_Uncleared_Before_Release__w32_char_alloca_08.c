@@ -36,7 +36,6 @@ static int staticReturnsFalse()
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_08_bad()
 {
-    if(staticReturnsTrue())
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -83,15 +82,6 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_08_b
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
-static void good1()
-{
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -139,7 +129,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticReturnsTrue())
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));

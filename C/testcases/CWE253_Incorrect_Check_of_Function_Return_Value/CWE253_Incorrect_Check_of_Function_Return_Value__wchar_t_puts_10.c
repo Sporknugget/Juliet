@@ -29,7 +29,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_puts_10_bad()
 {
-    if(globalTrue)
     {
         /* FLAW: putws() might fail, in which case the return value will be WEOF (-1), but
          * we are checking to see if the return value is 0 */
@@ -44,15 +43,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_puts_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: check for the correct return value */
         if (PUTS(L"string") == WEOF)
@@ -65,7 +55,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         /* FIX: check for the correct return value */
         if (PUTS(L"string") == WEOF)

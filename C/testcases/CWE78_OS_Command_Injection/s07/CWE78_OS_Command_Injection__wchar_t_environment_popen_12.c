@@ -49,7 +49,6 @@ void CWE78_OS_Command_Injection__wchar_t_environment_popen_12_bad()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -62,11 +61,6 @@ void CWE78_OS_Command_Injection__wchar_t_environment_popen_12_bad()
                 wcsncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
-    }
-    else
-    {
-        /* FIX: Append a fixed string to data (not user / external input) */
-        wcscat(data, L"*.*");
     }
     {
         FILE *pipe;
@@ -90,12 +84,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Append a fixed string to data (not user / external input) */
-        wcscat(data, L"*.*");
-    }
-    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");

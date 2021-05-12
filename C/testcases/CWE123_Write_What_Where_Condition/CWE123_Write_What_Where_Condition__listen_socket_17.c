@@ -54,7 +54,6 @@ static linkedList *linkedListPrev, *linkedListNext;
 
 void CWE123_Write_What_Where_Condition__listen_socket_17_bad()
 {
-    int i;
     badStruct data;
     linkedList head = { &head, &head };
     /* This simulates a Microsoft-style linked list insertion */
@@ -62,7 +61,6 @@ void CWE123_Write_What_Where_Condition__listen_socket_17_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -156,7 +154,6 @@ void CWE123_Write_What_Where_Condition__listen_socket_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
-    int h;
     badStruct data;
     linkedList head = { &head, &head };
     /* This simulates a Microsoft-style linked list insertion */
@@ -164,7 +161,6 @@ static void goodG2B()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */

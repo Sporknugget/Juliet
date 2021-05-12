@@ -26,14 +26,10 @@ void bad()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
     data = (int64_t *)realloc(data, 100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete [] data;
@@ -49,14 +45,10 @@ static void goodB2G()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
     data = (int64_t *)realloc(data, 100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
-    goto sink;
-sink:
     /* FIX: Free memory using free() */
     free(data);
 }
@@ -67,12 +59,8 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data*/
     data = NULL;
-    goto source;
-source:
     /* FIX: Allocate memory using new [] */
     data = new int64_t[100];
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete [] data;

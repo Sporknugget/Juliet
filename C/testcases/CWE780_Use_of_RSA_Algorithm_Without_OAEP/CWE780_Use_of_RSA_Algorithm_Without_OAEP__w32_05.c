@@ -33,7 +33,6 @@ static int staticFalse = 0; /* false */
 
 void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_05_bad()
 {
-    if(staticTrue)
     {
         {
             BYTE payload[200];
@@ -103,15 +102,6 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             BYTE payload[200];
@@ -180,7 +170,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             BYTE payload[200];

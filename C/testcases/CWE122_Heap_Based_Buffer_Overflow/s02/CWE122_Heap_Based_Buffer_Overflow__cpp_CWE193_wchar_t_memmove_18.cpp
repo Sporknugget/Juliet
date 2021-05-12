@@ -32,8 +32,6 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     /* FLAW: Did not leave space for a null terminator */
     data = new wchar_t[10];
     {
@@ -55,8 +53,6 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
-    goto source;
-source:
     /* FIX: Allocate space for a null terminator */
     data = new wchar_t[10+1];
     {

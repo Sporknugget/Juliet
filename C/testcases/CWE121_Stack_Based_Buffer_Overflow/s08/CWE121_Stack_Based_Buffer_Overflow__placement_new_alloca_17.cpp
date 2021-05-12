@@ -23,16 +23,13 @@ namespace CWE121_Stack_Based_Buffer_Overflow__placement_new_alloca_17
 
 void bad()
 {
-    int i,j;
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -57,16 +54,13 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
-    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
-    for(k = 0; k < 1; k++)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -85,16 +79,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
-    for(j = 0; j < 1; j++)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().

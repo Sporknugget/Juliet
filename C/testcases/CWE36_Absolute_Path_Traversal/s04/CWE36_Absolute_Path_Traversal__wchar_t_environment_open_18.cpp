@@ -47,8 +47,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -81,8 +79,6 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
-    goto source;
-source:
 #ifdef _WIN32
     /* FIX: Use a fixed, full path and file name */
     wcscat(data, L"c:\\temp\\file.txt");

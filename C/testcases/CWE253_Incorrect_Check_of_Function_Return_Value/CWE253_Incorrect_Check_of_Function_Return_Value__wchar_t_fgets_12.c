@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fgets_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -41,23 +40,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fgets_12_bad()
             printWLine(data);
         }
     }
-    else
-    {
-        {
-            /* By initializing dataBuffer, we ensure this will not be the
-             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
-            wchar_t dataBuffer[100] = L"";
-            wchar_t * data = dataBuffer;
-            printLine("Please enter a string: ");
-            /* FIX: check for the correct return value */
-            if (fgetws(data, 100, stdin) == NULL)
-            {
-                printLine("fgetws failed!");
-                exit(1);
-            }
-            printWLine(data);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -67,24 +49,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fgets_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* By initializing dataBuffer, we ensure this will not be the
-             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgetws() and other variants */
-            wchar_t dataBuffer[100] = L"";
-            wchar_t * data = dataBuffer;
-            printLine("Please enter a string: ");
-            /* FIX: check for the correct return value */
-            if (fgetws(data, 100, stdin) == NULL)
-            {
-                printLine("fgetws failed!");
-                exit(1);
-            }
-            printWLine(data);
-        }
-    }
-    else
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the

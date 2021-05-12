@@ -32,7 +32,6 @@ static int staticFalse = 0; /* false */
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_05_bad()
 {
-    if(staticTrue)
     {
         {
             char path[BAD_PATH_SIZE];
@@ -60,15 +59,6 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */
@@ -91,7 +81,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */

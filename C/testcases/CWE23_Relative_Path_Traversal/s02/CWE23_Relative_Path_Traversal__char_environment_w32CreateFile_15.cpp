@@ -43,9 +43,6 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -56,12 +53,6 @@ void bad()
             /* POTENTIAL FLAW: Read data from an environment variable */
             strncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
         }
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
     {
         HANDLE hFile;
@@ -90,17 +81,8 @@ static void goodG2B1()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
-        break;
-    }
     {
         HANDLE hFile;
         /* POTENTIAL FLAW: Possibly creating and opening a file without validating the file name or path */
@@ -124,17 +106,8 @@ static void goodG2B2()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         HANDLE hFile;
         /* POTENTIAL FLAW: Possibly creating and opening a file without validating the file name or path */

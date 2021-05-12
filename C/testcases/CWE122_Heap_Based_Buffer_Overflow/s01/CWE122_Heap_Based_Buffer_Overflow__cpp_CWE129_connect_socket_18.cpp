@@ -48,8 +48,6 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -106,8 +104,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         int i;
         int * buffer = new int[10];
@@ -145,8 +141,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -203,8 +197,6 @@ source:
         }
 #endif
     }
-    goto sink;
-sink:
     {
         int i;
         int * buffer = new int[10];
@@ -237,13 +229,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
      * access an index of the array in the sink that is out-of-bounds */
     data = 7;
-    goto sink;
-sink:
     {
         int i;
         int * buffer = new int[10];

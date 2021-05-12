@@ -34,19 +34,10 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_rename_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: rename() might fail, in which case the return value will be non-zero, but
          * we are checking to see if the return value is 0 */
         if (RENAME(OLD_BAD_FILE_NAME, NEW_BAD_FILE_NAME) == 0)
-        {
-            printLine("rename failed!");
-        }
-    }
-    else
-    {
-        /* FIX: check for the correct return value */
-        if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)
         {
             printLine("rename failed!");
         }
@@ -60,15 +51,6 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_rename_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: check for the correct return value */
-        if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)
-        {
-            printLine("rename failed!");
-        }
-    }
-    else
     {
         /* FIX: check for the correct return value */
         if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)

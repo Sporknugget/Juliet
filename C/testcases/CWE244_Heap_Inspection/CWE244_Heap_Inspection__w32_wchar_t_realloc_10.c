@@ -23,7 +23,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE244_Heap_Inspection__w32_wchar_t_realloc_10_bad()
 {
-    if(globalTrue)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -80,15 +79,6 @@ void CWE244_Heap_Inspection__w32_wchar_t_realloc_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -142,7 +132,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));

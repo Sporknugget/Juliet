@@ -38,7 +38,6 @@ static int _mkstemp(const char * t){
 
 void CWE459_Incomplete_Cleanup__char_16_bad()
 {
-    while(1)
     {
         {
             char filename[] = "badXXXXXX";
@@ -56,7 +55,6 @@ void CWE459_Incomplete_Cleanup__char_16_bad()
                 }
             }
         }
-        break;
     }
 }
 
@@ -67,7 +65,6 @@ void CWE459_Incomplete_Cleanup__char_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             char filename[] = "goodXXXXXX";
@@ -86,7 +83,6 @@ static void good1()
                 }
             }
         }
-        break;
     }
 }
 

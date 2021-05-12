@@ -25,7 +25,6 @@ static int staticFalse = 0; /* false */
 
 void CWE398_Poor_Code_Quality__equals_05_bad()
 {
-    if(staticTrue)
     {
         {
             int intOne = 1;
@@ -41,15 +40,6 @@ void CWE398_Poor_Code_Quality__equals_05_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(staticFalse) instead of if(staticTrue) */
-static void good1()
-{
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             int intOne = 1, intFive = 5;
@@ -64,7 +54,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(staticTrue)
     {
         {
             int intOne = 1, intFive = 5;

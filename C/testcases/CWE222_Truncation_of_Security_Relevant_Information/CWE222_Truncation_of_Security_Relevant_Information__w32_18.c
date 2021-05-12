@@ -30,8 +30,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE222_Truncation_of_Security_Relevant_Information__w32_18_bad()
 {
-    goto sink;
-sink:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -124,8 +122,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;

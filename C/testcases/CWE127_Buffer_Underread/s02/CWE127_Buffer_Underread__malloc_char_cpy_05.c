@@ -31,7 +31,6 @@ void CWE127_Buffer_Underread__malloc_char_cpy_05_bad()
 {
     char * data;
     data = NULL;
-    if(staticTrue)
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));
@@ -63,12 +62,6 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));
@@ -96,7 +89,6 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
-    if(staticTrue)
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));

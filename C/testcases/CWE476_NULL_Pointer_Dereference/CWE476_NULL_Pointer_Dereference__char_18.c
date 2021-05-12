@@ -24,12 +24,8 @@ Template File: sources-sinks-18.tmpl.c
 void CWE476_NULL_Pointer_Dereference__char_18_bad()
 {
     char * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to NULL */
     data = NULL;
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
     /* printLine() checks for NULL, so we cannot use it here */
     printHexCharLine(data[0]);
@@ -43,12 +39,8 @@ sink:
 static void goodB2G()
 {
     char * data;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to NULL */
     data = NULL;
-    goto sink;
-sink:
     /* FIX: Check for NULL before attempting to print data */
     if (data != NULL)
     {
@@ -65,12 +57,8 @@ sink:
 static void goodG2B()
 {
     char * data;
-    goto source;
-source:
     /* FIX: Initialize data */
     data = "Good";
-    goto sink;
-sink:
     /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
     /* printLine() checks for NULL, so we cannot use it here */
     printHexCharLine(data[0]);

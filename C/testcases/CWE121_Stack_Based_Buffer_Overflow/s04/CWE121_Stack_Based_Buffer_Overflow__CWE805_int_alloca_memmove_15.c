@@ -23,18 +23,9 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_int_alloca_memmove_15_bad()
     int * data;
     int * dataBadBuffer = (int *)ALLOCA(50*sizeof(int));
     int * dataGoodBuffer = (int *)ALLOCA(100*sizeof(int));
-    switch(6)
-    {
-    case 6:
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
         data = dataBadBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         int source[100] = {0}; /* fill with 0's */
         /* POTENTIAL FLAW: Possible buffer overflow if data < 100 */
@@ -53,17 +44,8 @@ static void goodG2B1()
     int * data;
     int * dataBadBuffer = (int *)ALLOCA(50*sizeof(int));
     int * dataGoodBuffer = (int *)ALLOCA(100*sizeof(int));
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
-        break;
-    }
     {
         int source[100] = {0}; /* fill with 0's */
         /* POTENTIAL FLAW: Possible buffer overflow if data < 100 */
@@ -78,17 +60,8 @@ static void goodG2B2()
     int * data;
     int * dataBadBuffer = (int *)ALLOCA(50*sizeof(int));
     int * dataGoodBuffer = (int *)ALLOCA(100*sizeof(int));
-    switch(6)
-    {
-    case 6:
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     {
         int source[100] = {0}; /* fill with 0's */
         /* POTENTIAL FLAW: Possible buffer overflow if data < 100 */

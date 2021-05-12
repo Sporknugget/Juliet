@@ -38,7 +38,6 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_05_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticTrue)
     {
         {
             WSADATA wsaData;
@@ -128,12 +127,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: get the hostname from a string literal */
         strcpy(data, "hostname");
@@ -152,7 +145,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticTrue)
     {
         /* FIX: get the hostname from a string literal */
         strcpy(data, "hostname");

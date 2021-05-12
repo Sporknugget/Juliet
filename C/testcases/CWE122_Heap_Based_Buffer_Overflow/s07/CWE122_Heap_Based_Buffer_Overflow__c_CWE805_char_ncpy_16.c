@@ -24,13 +24,11 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_ncpy_16_bad()
 {
     char * data;
     data = NULL;
-    while(1)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
-        break;
     }
     {
         char source[100];
@@ -53,13 +51,11 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
-    while(1)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
-        break;
     }
     {
         char source[100];

@@ -25,7 +25,6 @@ void CWE563_Unused_Variable__unused_init_variable_int_10_bad()
     int data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
-    if(globalTrue)
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -43,12 +42,6 @@ static void goodB2G1()
     int data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use data */
         printIntLine(data);
@@ -61,7 +54,6 @@ static void goodB2G2()
     int data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
-    if(globalTrue)
     {
         /* FIX: Use data */
         printIntLine(data);

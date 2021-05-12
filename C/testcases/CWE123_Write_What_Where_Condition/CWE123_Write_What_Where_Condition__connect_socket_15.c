@@ -61,9 +61,6 @@ void CWE123_Write_What_Where_Condition__connect_socket_15_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    switch(6)
-    {
-    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -115,12 +112,6 @@ void CWE123_Write_What_Where_Condition__connect_socket_15_bad()
         }
 #endif
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this
      * causes a "write-what-where" aka "write4".  It does another write as
      * well.  But this is the prototypical "write-what-where" at least from
@@ -155,17 +146,8 @@ static void goodG2B1()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */
-        break;
-    }
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this
      * causes a "write-what-where" aka "write4".  It does another write as
      * well.  But this is the prototypical "write-what-where" at least from
@@ -196,17 +178,8 @@ static void goodG2B2()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    switch(6)
-    {
-    case 6:
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this
      * causes a "write-what-where" aka "write4".  It does another write as
      * well.  But this is the prototypical "write-what-where" at least from

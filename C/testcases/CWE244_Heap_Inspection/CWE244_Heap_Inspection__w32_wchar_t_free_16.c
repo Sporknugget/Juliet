@@ -23,7 +23,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE244_Heap_Inspection__w32_wchar_t_free_16_bad()
 {
-    while(1)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -65,7 +64,6 @@ void CWE244_Heap_Inspection__w32_wchar_t_free_16_bad()
             /* FLAW: free() password without clearing the password buffer */
             free(password);
         }
-        break;
     }
 }
 
@@ -76,7 +74,6 @@ void CWE244_Heap_Inspection__w32_wchar_t_free_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -120,7 +117,6 @@ static void good1()
             SecureZeroMemory(password, passwordLen * sizeof(wchar_t));
             free(password);
         }
-        break;
     }
 }
 

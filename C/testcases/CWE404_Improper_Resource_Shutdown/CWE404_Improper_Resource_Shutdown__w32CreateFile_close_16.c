@@ -33,14 +33,12 @@ void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_16_bad()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    while(1)
     {
         if (data != INVALID_HANDLE_VALUE)
         {
             /* FLAW: Attempt to close the file using close() instead of CloseHandle() */
             _close((int)data);
         }
-        break;
     }
 }
 
@@ -62,14 +60,12 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
-    while(1)
     {
         if (data != INVALID_HANDLE_VALUE)
         {
             /* FIX: Close the file using CloseHandle() */
             CloseHandle(data);
         }
-        break;
     }
 }
 

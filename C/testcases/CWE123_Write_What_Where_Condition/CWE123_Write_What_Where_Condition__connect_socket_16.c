@@ -61,7 +61,6 @@ void CWE123_Write_What_Where_Condition__connect_socket_16_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    while(1)
     {
         {
 #ifdef _WIN32
@@ -114,7 +113,6 @@ void CWE123_Write_What_Where_Condition__connect_socket_16_bad()
             }
 #endif
         }
-        break;
     }
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this
      * causes a "write-what-where" aka "write4".  It does another write as
@@ -150,11 +148,9 @@ static void goodG2B()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
-    while(1)
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */
-        break;
     }
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this
      * causes a "write-what-where" aka "write4".  It does another write as

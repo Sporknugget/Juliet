@@ -22,21 +22,12 @@ namespace CWE758_Undefined_Behavior__struct_pointer_new_use_15
 
 void bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         twoIntsStruct * * pointer = new twoIntsStruct *;
         twoIntsStruct * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         delete pointer;
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -47,13 +38,6 @@ void bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         twoIntsStruct * data;
         /* initialize both the pointer and the data pointed to */
@@ -68,17 +52,12 @@ static void good1()
             printIntLine(data->intTwo);
         }
         delete pointer;
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         twoIntsStruct * data;
         /* initialize both the pointer and the data pointed to */
@@ -93,12 +72,6 @@ static void good2()
             printIntLine(data->intTwo);
         }
         delete pointer;
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

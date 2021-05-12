@@ -23,7 +23,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_fgets_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -36,23 +35,6 @@ void CWE252_Unchecked_Return_Value__char_fgets_12_bad()
             printLine(data);
         }
     }
-    else
-    {
-        {
-            /* By initializing dataBuffer, we ensure this will not be the
-             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgets() and other variants */
-            char dataBuffer[100] = "";
-            char * data = dataBuffer;
-            printLine("Please enter a string: ");
-            /* FIX: check the return value */
-            if (fgets(data, 100, stdin) == NULL)
-            {
-                printLine("fgets failed!");
-                exit(1);
-            }
-            printLine(data);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -62,24 +44,6 @@ void CWE252_Unchecked_Return_Value__char_fgets_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            /* By initializing dataBuffer, we ensure this will not be the
-             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgets() and other variants */
-            char dataBuffer[100] = "";
-            char * data = dataBuffer;
-            printLine("Please enter a string: ");
-            /* FIX: check the return value */
-            if (fgets(data, 100, stdin) == NULL)
-            {
-                printLine("fgets failed!");
-                exit(1);
-            }
-            printLine(data);
-        }
-    }
-    else
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the

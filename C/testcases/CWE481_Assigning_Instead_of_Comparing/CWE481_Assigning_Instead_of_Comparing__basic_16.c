@@ -19,7 +19,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE481_Assigning_Instead_of_Comparing__basic_16_bad()
 {
-    while(1)
     {
         {
             int intRand = rand();
@@ -29,7 +28,6 @@ void CWE481_Assigning_Instead_of_Comparing__basic_16_bad()
                 printLine("i was 5");
             }
         }
-        break;
     }
 }
 
@@ -40,7 +38,6 @@ void CWE481_Assigning_Instead_of_Comparing__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             int intRand = rand();
@@ -50,7 +47,6 @@ static void good1()
                 printLine("i was 5");
             }
         }
-        break;
     }
 }
 

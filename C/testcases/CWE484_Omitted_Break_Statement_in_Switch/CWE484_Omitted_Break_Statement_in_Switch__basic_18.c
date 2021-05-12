@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE484_Omitted_Break_Statement_in_Switch__basic_18_bad()
 {
-    goto sink;
-sink:
     {
         int x = (rand() % 3);
         /* FLAW: Missing break in first case */
@@ -48,8 +46,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         int x = (rand() % 3);
         /* FIX: Use break in all cases that you do not intend "fall-through"

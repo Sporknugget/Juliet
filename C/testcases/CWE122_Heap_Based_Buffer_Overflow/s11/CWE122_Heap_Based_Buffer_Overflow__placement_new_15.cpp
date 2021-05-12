@@ -28,20 +28,8 @@ void bad()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -55,12 +43,6 @@ void bad()
         printIntLine(classTwo->intOne);
         /* skip printing classTwo->intTwo since that could be a buffer overread */
         free(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -76,24 +58,8 @@ static void goodB2G1()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(8)
-    {
-    case 7:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -105,8 +71,6 @@ static void goodB2G1()
         classOne->intOne = 5;
         printIntLine(classOne->intOne);
         free(data);
-    }
-    break;
     }
 }
 
@@ -118,20 +82,8 @@ static void goodB2G2()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
-    switch(6)
-    {
-    case 6:
         /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -144,12 +96,6 @@ static void goodB2G2()
         printIntLine(classOne->intOne);
         free(data);
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -160,20 +106,8 @@ static void goodG2B1()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -187,12 +121,6 @@ static void goodG2B1()
         printIntLine(classTwo->intOne);
         /* skip printing classTwo->intTwo since that could be a buffer overread */
         free(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -204,20 +132,8 @@ static void goodG2B2()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
-    switch(6)
-    {
-    case 6:
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
-    switch(7)
-    {
-    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -231,12 +147,6 @@ static void goodG2B2()
         printIntLine(classTwo->intOne);
         /* skip printing classTwo->intTwo since that could be a buffer overread */
         free(data);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

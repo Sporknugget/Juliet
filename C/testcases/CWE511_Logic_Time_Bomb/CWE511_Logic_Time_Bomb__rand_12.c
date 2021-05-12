@@ -28,22 +28,12 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE511_Logic_Time_Bomb__rand_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         srand((unsigned)time(NULL));
         /* FLAW: If a certain number, delete a file */
         if (rand() == NUM_CHECK)
         {
             UNLINK("important_file.txt");
-        }
-    }
-    else
-    {
-        srand((unsigned)time(NULL));
-        /* FIX: If a certain number, print to the console */
-        if (rand() == NUM_CHECK)
-        {
-            printLine("Happy New Year!");
         }
     }
 }
@@ -55,16 +45,6 @@ void CWE511_Logic_Time_Bomb__rand_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        srand((unsigned)time(NULL));
-        /* FIX: If a certain number, print to the console */
-        if (rand() == NUM_CHECK)
-        {
-            printLine("Happy New Year!");
-        }
-    }
-    else
     {
         srand((unsigned)time(NULL));
         /* FIX: If a certain number, print to the console */

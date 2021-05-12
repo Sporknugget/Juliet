@@ -28,8 +28,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE511_Logic_Time_Bomb__rand_18_bad()
 {
-    goto sink;
-sink:
     srand((unsigned)time(NULL));
     /* FLAW: If a certain number, delete a file */
     if (rand() == NUM_CHECK)
@@ -45,8 +43,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     srand((unsigned)time(NULL));
     /* FIX: If a certain number, print to the console */
     if (rand() == NUM_CHECK)

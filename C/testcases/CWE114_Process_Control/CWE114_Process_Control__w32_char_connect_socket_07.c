@@ -53,7 +53,6 @@ void CWE114_Process_Control__w32_char_connect_socket_07_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -150,12 +149,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
@@ -183,7 +176,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    if(staticFive==5)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");

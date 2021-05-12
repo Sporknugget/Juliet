@@ -32,9 +32,6 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_console_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
     {
         /* Read input from the console */
         size_t dataLen = wcslen(data);
@@ -60,12 +57,6 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_console_15_bad()
             }
         }
     }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }
@@ -80,17 +71,8 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);
-        break;
-    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }
@@ -101,17 +83,8 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
-    switch(6)
-    {
-    case 6:
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);
-        break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }

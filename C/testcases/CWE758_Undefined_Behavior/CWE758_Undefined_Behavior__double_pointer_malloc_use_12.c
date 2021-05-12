@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__double_pointer_malloc_use_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             double * * pointer = (double * *)malloc(sizeof(double *));
@@ -27,24 +26,6 @@ void CWE758_Undefined_Behavior__double_pointer_malloc_use_12_bad()
             double * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             free(pointer);
             printDoubleLine(*data);
-        }
-    }
-    else
-    {
-        {
-            double * data;
-            double * * pointer = (double * *)malloc(sizeof(double *));
-            if (pointer == NULL) {exit(-1);}
-            /* initialize both the pointer and the data pointed to */
-            data = (double *)malloc(sizeof(double));
-            if (data == NULL) {exit(-1);}
-            *data = 5.0;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                double * data = *pointer;
-                printDoubleLine(*data);
-            }
-            free(pointer);
         }
     }
 }
@@ -56,25 +37,6 @@ void CWE758_Undefined_Behavior__double_pointer_malloc_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            double * data;
-            double * * pointer = (double * *)malloc(sizeof(double *));
-            if (pointer == NULL) {exit(-1);}
-            /* initialize both the pointer and the data pointed to */
-            data = (double *)malloc(sizeof(double));
-            if (data == NULL) {exit(-1);}
-            *data = 5.0;
-            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
-            {
-                double * data = *pointer;
-                printDoubleLine(*data);
-            }
-            free(pointer);
-        }
-    }
-    else
     {
         {
             double * data;

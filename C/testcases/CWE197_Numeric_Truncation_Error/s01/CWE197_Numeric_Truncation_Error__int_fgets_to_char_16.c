@@ -25,7 +25,6 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_char_16_bad()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -40,7 +39,6 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_char_16_bad()
                 printLine("fgets() failed.");
             }
         }
-        break;
     }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
@@ -59,11 +57,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    while(1)
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
-        break;
     }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */

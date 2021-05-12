@@ -19,8 +19,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__binary_if_18_bad()
 {
-    goto sink;
-sink:
     {
         twoIntsStruct *twoIntsStructPointer = NULL;
         /* FLAW: Using a single & in the if statement will cause both sides of the expression to be evaluated
@@ -39,8 +37,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         twoIntsStruct *twoIntsStructPointer = NULL;
         /* FIX: Use && in the if statement so that if the left side of the expression fails then

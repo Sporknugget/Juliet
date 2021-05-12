@@ -37,12 +37,10 @@ void CWE190_Integer_Overflow__int64_t_fscanf_multiply_08_bad()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
-    if(staticReturnsTrue())
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -62,17 +60,10 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -95,12 +86,10 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
-    if(staticReturnsTrue())
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -123,17 +112,10 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(staticReturnsTrue())
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -149,12 +131,10 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
-    if(staticReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    if(staticReturnsTrue())
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

@@ -34,8 +34,6 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -49,8 +47,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -81,8 +77,6 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -96,8 +90,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -124,12 +116,8 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a relatively small number for memory allocation */
     data = 20;
-    goto sink;
-sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough

@@ -23,8 +23,6 @@ void CWE194_Unexpected_Sign_Extension__fscanf_malloc_18_bad()
     short data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FLAW: Use a value input from the console using fscanf() */
     fscanf (stdin, "%hd", &data);
     /* Assume we want to allocate a relatively small buffer */
@@ -52,8 +50,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
-    goto source;
-source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     /* Assume we want to allocate a relatively small buffer */

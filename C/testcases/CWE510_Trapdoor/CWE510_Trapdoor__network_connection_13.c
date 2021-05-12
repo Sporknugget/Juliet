@@ -38,7 +38,6 @@ Template File: point-flaw-badonly-13.tmpl.c
 
 void CWE510_Trapdoor__network_connection_13_bad()
 {
-    if(GLOBAL_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32

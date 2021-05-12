@@ -19,7 +19,6 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__null_check_after_deref_12_bad()
 {
-    if(globalReturnsTrueOrFalse())
     {
         {
             int *intPointer = NULL;
@@ -34,18 +33,6 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_12_bad()
             printIntLine(*intPointer);
         }
     }
-    else
-    {
-        {
-            int *intPointer = NULL;
-            intPointer = (int *)malloc(sizeof(int));
-            *intPointer = 5;
-            printIntLine(*intPointer);
-            /* FIX: Don't check for NULL since we wouldn't reach this line if the pointer was NULL */
-            *intPointer = 10;
-            printIntLine(*intPointer);
-        }
-    }
 }
 
 #endif /* OMITBAD */
@@ -55,19 +42,6 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
-    if(globalReturnsTrueOrFalse())
-    {
-        {
-            int *intPointer = NULL;
-            intPointer = (int *)malloc(sizeof(int));
-            *intPointer = 5;
-            printIntLine(*intPointer);
-            /* FIX: Don't check for NULL since we wouldn't reach this line if the pointer was NULL */
-            *intPointer = 10;
-            printIntLine(*intPointer);
-        }
-    }
-    else
     {
         {
             int *intPointer = NULL;

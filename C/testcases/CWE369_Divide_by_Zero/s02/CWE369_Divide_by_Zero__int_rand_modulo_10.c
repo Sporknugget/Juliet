@@ -24,12 +24,10 @@ void CWE369_Divide_by_Zero__int_rand_modulo_10_bad()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
@@ -46,17 +44,10 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -76,12 +67,10 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
-    if(globalTrue)
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -101,17 +90,10 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
@@ -124,12 +106,10 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
-    if(globalTrue)
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
-    if(globalTrue)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);

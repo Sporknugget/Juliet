@@ -45,8 +45,6 @@ static void helperGood(int sig)
 
 void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_18_bad()
 {
-    goto sink;
-sink:
     signal(SIGINT, helperBad);
 }
 
@@ -57,8 +55,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     signal(SIGINT, helperGood);
 }
 

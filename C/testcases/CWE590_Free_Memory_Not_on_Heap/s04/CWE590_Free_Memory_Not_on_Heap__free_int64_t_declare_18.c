@@ -24,8 +24,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_declare_18_bad()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         int64_t dataBuffer[100];
@@ -52,8 +50,6 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int64_t * dataBuffer = (int64_t *)malloc(100*sizeof(int64_t));

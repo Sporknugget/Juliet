@@ -30,12 +30,10 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 void CWE476_NULL_Pointer_Dereference__char_04_bad()
 {
     char * data;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
@@ -51,17 +49,10 @@ void CWE476_NULL_Pointer_Dereference__char_04_bad()
 static void goodB2G1()
 {
     char * data;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -80,12 +71,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     char * data;
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -104,17 +93,10 @@ static void goodB2G2()
 static void goodG2B1()
 {
     char * data;
-    if(STATIC_CONST_FALSE)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         data = "Good";
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
@@ -126,12 +108,10 @@ static void goodG2B1()
 static void goodG2B2()
 {
     char * data;
-    if(STATIC_CONST_TRUE)
     {
         /* FIX: Initialize data */
         data = "Good";
     }
-    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */

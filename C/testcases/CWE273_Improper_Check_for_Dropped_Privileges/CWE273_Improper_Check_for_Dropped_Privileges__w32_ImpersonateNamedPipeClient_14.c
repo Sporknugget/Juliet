@@ -24,7 +24,6 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_14_bad()
 {
-    if(globalFive==5)
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -67,15 +66,6 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClien
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
-static void good1()
-{
-    if(globalFive!=5)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -120,7 +110,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalFive==5)
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;

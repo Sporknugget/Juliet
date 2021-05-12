@@ -27,8 +27,6 @@ void CWE617_Reachable_Assertion__rand_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = RAND32();
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
@@ -45,8 +43,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a value greater than the assert value */
     data = ASSERT_VALUE+1;
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */

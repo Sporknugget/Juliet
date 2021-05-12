@@ -23,8 +23,6 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
     data = INT_MAX / 2 + 2; /* 1073741825 */
     /* NOTE: This value will cause the sink to only allocate 4 bytes of memory, however
@@ -55,8 +53,6 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Set data to a relatively small number greater than zero */
     data = 20;
     {

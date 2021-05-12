@@ -24,12 +24,10 @@ void CWE400_Resource_Exhaustion__fscanf_for_loop_02_bad()
     int count;
     /* Initialize count */
     count = -1;
-    if(1)
     {
         /* POTENTIAL FLAW: Read count from the console using fscanf() */
         fscanf(stdin, "%d", &count);
     }
-    if(1)
     {
         {
             size_t i = 0;
@@ -52,17 +50,10 @@ static void goodB2G1()
     int count;
     /* Initialize count */
     count = -1;
-    if(1)
     {
         /* POTENTIAL FLAW: Read count from the console using fscanf() */
         fscanf(stdin, "%d", &count);
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             size_t i = 0;
@@ -84,12 +75,10 @@ static void goodB2G2()
     int count;
     /* Initialize count */
     count = -1;
-    if(1)
     {
         /* POTENTIAL FLAW: Read count from the console using fscanf() */
         fscanf(stdin, "%d", &count);
     }
-    if(1)
     {
         {
             size_t i = 0;
@@ -111,17 +100,10 @@ static void goodG2B1()
     int count;
     /* Initialize count */
     count = -1;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(1)
     {
         {
             size_t i = 0;
@@ -140,12 +122,10 @@ static void goodG2B2()
     int count;
     /* Initialize count */
     count = -1;
-    if(1)
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
-    if(1)
     {
         {
             size_t i = 0;

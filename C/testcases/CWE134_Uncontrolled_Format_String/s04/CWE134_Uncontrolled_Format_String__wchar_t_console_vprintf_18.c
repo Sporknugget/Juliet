@@ -40,8 +40,6 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = wcslen(data);
@@ -67,8 +65,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     badVaSinkB(data, data);
 }
 
@@ -93,8 +89,6 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     {
         /* Read input from the console */
         size_t dataLen = wcslen(data);
@@ -120,8 +114,6 @@ source:
             }
         }
     }
-    goto sink;
-sink:
     goodB2GVaSinkG(data, data);
 }
 
@@ -142,12 +134,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
-    goto source;
-source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     wcscpy(data, L"fixedstringtest");
-    goto sink;
-sink:
     goodG2BVaSinkB(data, data);
 }
 

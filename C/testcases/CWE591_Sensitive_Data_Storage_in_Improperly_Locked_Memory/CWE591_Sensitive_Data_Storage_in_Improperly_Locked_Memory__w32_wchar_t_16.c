@@ -28,7 +28,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_16_b
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    while(1)
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
@@ -39,7 +38,6 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_16_b
         /* FLAW: Do not lock the memory */
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         wcscpy(password, L"Password1234!");
-        break;
     }
     {
         HANDLE pHandle;
@@ -76,7 +74,6 @@ static void goodG2B()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
-    while(1)
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
@@ -92,7 +89,6 @@ static void goodG2B()
         }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         wcscpy(password, L"Password1234!");
-        break;
     }
     {
         HANDLE pHandle;

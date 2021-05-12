@@ -43,7 +43,6 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE605_Multiple_Binds_Same_Port__basic_10_bad()
 {
-    if(globalTrue)
     {
         {
             char data[100] = "";
@@ -144,15 +143,6 @@ void CWE605_Multiple_Binds_Same_Port__basic_10_bad()
 
 #ifndef OMITGOOD
 
-/* good1() uses if(globalFalse) instead of if(globalTrue) */
-static void good1()
-{
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         {
             char data[100] = "";
@@ -241,7 +231,6 @@ static void good1()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
-    if(globalTrue)
     {
         {
             char data[100] = "";

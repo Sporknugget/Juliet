@@ -63,7 +63,6 @@ void CWE78_OS_Command_Injection__char_listen_socket_w32_execvp_10_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    if(globalTrue)
     {
         {
 #ifdef _WIN32
@@ -164,12 +163,6 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    if(globalFalse)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
@@ -189,7 +182,6 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
-    if(globalTrue)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

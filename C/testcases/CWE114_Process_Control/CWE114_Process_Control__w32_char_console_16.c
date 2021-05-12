@@ -27,7 +27,6 @@ void CWE114_Process_Control__w32_char_console_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         {
             /* Read input from the console */
@@ -54,7 +53,6 @@ void CWE114_Process_Control__w32_char_console_16_bad()
                 }
             }
         }
-        break;
     }
     {
         HMODULE hModule;
@@ -83,11 +81,9 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
-    while(1)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
-        break;
     }
     {
         HMODULE hModule;

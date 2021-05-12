@@ -19,9 +19,6 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE482_Comparing_Instead_of_Assigning__basic_15_bad()
 {
-    switch(6)
-    {
-    case 6:
     {
         int intBadSink = 0;
         /* Print original value to avoid any unused variable incidentals */
@@ -29,12 +26,6 @@ void CWE482_Comparing_Instead_of_Assigning__basic_15_bad()
         /* FLAW: meant to assign 5 to intBadSink.  Maintenance note: may generate a compiler warning, this is intentional */
         intBadSink == 5;
         printIntLine(intBadSink);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 
@@ -45,13 +36,6 @@ void CWE482_Comparing_Instead_of_Assigning__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
-    switch(5)
-    {
-    case 6:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
-    default:
     {
         int intGoodSink = 0;
         /* Print original value to avoid any unused variable incidentals */
@@ -59,17 +43,12 @@ static void good1()
         /* FIX: use = instead of == */
         intGoodSink = 5;
         printIntLine(intGoodSink);
-    }
-    break;
     }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
-    switch(6)
-    {
-    case 6:
     {
         int intGoodSink = 0;
         /* Print original value to avoid any unused variable incidentals */
@@ -77,12 +56,6 @@ static void good2()
         /* FIX: use = instead of == */
         intGoodSink = 5;
         printIntLine(intGoodSink);
-    }
-    break;
-    default:
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-        break;
     }
 }
 

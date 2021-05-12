@@ -32,8 +32,6 @@ typedef struct _charVoid
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_18_bad()
 {
-    goto sink;
-sink:
     {
         charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
         if (structCharVoid == NULL) {exit(-1);}
@@ -55,8 +53,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
         if (structCharVoid == NULL) {exit(-1);}

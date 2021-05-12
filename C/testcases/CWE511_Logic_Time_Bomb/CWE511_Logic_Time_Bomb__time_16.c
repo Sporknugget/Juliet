@@ -30,7 +30,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE511_Logic_Time_Bomb__time_16_bad()
 {
-    while(1)
     {
         {
             time_t currentTime;
@@ -41,7 +40,6 @@ void CWE511_Logic_Time_Bomb__time_16_bad()
                 UNLINK("important_file.txt");
             }
         }
-        break;
     }
 }
 
@@ -52,7 +50,6 @@ void CWE511_Logic_Time_Bomb__time_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             time_t currentTime;
@@ -63,7 +60,6 @@ static void good1()
                 printLine("Happy New Year!");
             }
         }
-        break;
     }
 }
 

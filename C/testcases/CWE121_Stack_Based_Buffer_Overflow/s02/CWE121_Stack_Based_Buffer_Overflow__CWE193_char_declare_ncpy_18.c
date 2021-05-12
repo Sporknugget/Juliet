@@ -30,8 +30,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_char_declare_ncpy_18_bad()
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
-    goto source;
-source:
     /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
      * string copies in the sinks  */
     data = dataBadBuffer;
@@ -55,8 +53,6 @@ static void goodG2B()
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
-    goto source;
-source:
     /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
      * string copies in the sinks  */
     data = dataGoodBuffer;

@@ -34,7 +34,6 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_16_bad()
 {
-    while(1)
     {
         {
             char filename[MAX_PATH] = "";
@@ -54,7 +53,6 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_16_bad()
                 CLOSE(fileDesc);
             }
         }
-        break;
     }
 }
 
@@ -65,7 +63,6 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
-    while(1)
     {
         {
             char filename[MAX_PATH] = "";
@@ -87,7 +84,6 @@ static void good1()
                 CLOSE(fileDesc);
             }
         }
-        break;
     }
 }
 

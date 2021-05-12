@@ -26,8 +26,6 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE129_fgets_18_bad()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -41,8 +39,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     {
         int i;
         int buffer[10] = { 0 };
@@ -74,8 +70,6 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -89,8 +83,6 @@ source:
             printLine("fgets() failed.");
         }
     }
-    goto sink;
-sink:
     {
         int i;
         int buffer[10] = { 0 };
@@ -117,13 +109,9 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
-    goto source;
-source:
     /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
      * access an index of the array in the sink that is out-of-bounds */
     data = 7;
-    goto sink;
-sink:
     {
         int i;
         int buffer[10] = { 0 };

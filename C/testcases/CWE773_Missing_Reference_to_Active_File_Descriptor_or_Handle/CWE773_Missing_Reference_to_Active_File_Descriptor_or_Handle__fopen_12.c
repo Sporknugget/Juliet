@@ -24,24 +24,9 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__fopen_12_bad(
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
-    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Point data to another file handle without closing the handle from the source */
         data = fopen("BadSink_fopen.txt", "w+");
-        /* avoid incidental for not closing the file handle */
-        if (data != NULL)
-        {
-            fclose(data);
-        }
-    }
-    else
-    {
-        /* FIX: Close the file from the source before pointing data to a new file handle */
-        if (data != NULL)
-        {
-            fclose(data);
-        }
-        data = fopen("GoodSink_fopen.txt", "w+");
         /* avoid incidental for not closing the file handle */
         if (data != NULL)
         {
@@ -62,21 +47,6 @@ static void goodB2G()
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Close the file from the source before pointing data to a new file handle */
-        if (data != NULL)
-        {
-            fclose(data);
-        }
-        data = fopen("GoodSink_fopen.txt", "w+");
-        /* avoid incidental for not closing the file handle */
-        if (data != NULL)
-        {
-            fclose(data);
-        }
-    }
-    else
     {
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != NULL)

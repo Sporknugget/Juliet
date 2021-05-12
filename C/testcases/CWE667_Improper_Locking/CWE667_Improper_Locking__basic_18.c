@@ -21,8 +21,6 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE667_Improper_Locking__basic_18_bad()
 {
-    goto sink;
-sink:
     {
         static stdThreadLock badLock = NULL;
         printLine("Creating lock...");
@@ -44,8 +42,6 @@ sink:
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
-    goto sink;
-sink:
     {
         static stdThreadLock goodLock = NULL;
         printLine("Creating lock...");

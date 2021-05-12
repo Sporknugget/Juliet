@@ -46,7 +46,6 @@ void CWE197_Numeric_Truncation_Error__short_listen_socket_12_bad()
     short data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -118,11 +117,6 @@ void CWE197_Numeric_Truncation_Error__short_listen_socket_12_bad()
 #endif
         }
     }
-    else
-    {
-        /* FIX: Use a positive integer less than CHAR_MAX*/
-        data = CHAR_MAX-5;
-    }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
         char charData = (char)data;
@@ -141,12 +135,6 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = -1;
-    if(globalReturnsTrueOrFalse())
-    {
-        /* FIX: Use a positive integer less than CHAR_MAX*/
-        data = CHAR_MAX-5;
-    }
-    else
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;

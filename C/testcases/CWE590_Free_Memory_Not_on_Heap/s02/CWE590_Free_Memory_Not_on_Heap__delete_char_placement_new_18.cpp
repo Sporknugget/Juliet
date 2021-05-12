@@ -27,8 +27,6 @@ void bad()
 {
     char * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         char buffer[sizeof(char)];
@@ -50,8 +48,6 @@ static void goodG2B()
 {
     char * data;
     data = NULL; /* Initialize data */
-    goto source;
-source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         char * dataBuffer = new char;

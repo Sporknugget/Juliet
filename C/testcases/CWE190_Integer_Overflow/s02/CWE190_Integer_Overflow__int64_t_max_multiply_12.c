@@ -23,39 +23,16 @@ void CWE190_Integer_Overflow__int64_t_max_multiply_12_bad()
 {
     int64_t data;
     data = 0LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
-        data = 2;
-    }
-    if(globalReturnsTrueOrFalse())
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
             /* POTENTIAL FLAW: if (data*2) > LLONG_MAX, this will overflow */
             int64_t result = data * 2;
             printLongLongLine(result);
-        }
-    }
-    else
-    {
-        if(data > 0) /* ensure we won't have an underflow */
-        {
-            /* FIX: Add a check to prevent an overflow from occurring */
-            if (data < (LLONG_MAX/2))
-            {
-                int64_t result = data * 2;
-                printLongLongLine(result);
-            }
-            else
-            {
-                printLine("data value is too large to perform arithmetic safely.");
-            }
         }
     }
 }
@@ -71,33 +48,10 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = LLONG_MAX;
     }
-    else
-    {
-        /* POTENTIAL FLAW: Use the maximum size of the data type */
-        data = LLONG_MAX;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data > 0) /* ensure we won't have an underflow */
-        {
-            /* FIX: Add a check to prevent an overflow from occurring */
-            if (data < (LLONG_MAX/2))
-            {
-                int64_t result = data * 2;
-                printLongLongLine(result);
-            }
-            else
-            {
-                printLine("data value is too large to perform arithmetic safely.");
-            }
-        }
-    }
-    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -122,26 +76,10 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
-    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
-    else
-    {
-        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
-        data = 2;
-    }
-    if(globalReturnsTrueOrFalse())
-    {
-        if(data > 0) /* ensure we won't have an underflow */
-        {
-            /* POTENTIAL FLAW: if (data*2) > LLONG_MAX, this will overflow */
-            int64_t result = data * 2;
-            printLongLongLine(result);
-        }
-    }
-    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

@@ -24,12 +24,10 @@ Template File: sources-sinks-02.tmpl.c
 void CWE476_NULL_Pointer_Dereference__int64_t_02_bad()
 {
     int64_t * data;
-    if(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLongLine(*data);
@@ -44,17 +42,10 @@ void CWE476_NULL_Pointer_Dereference__int64_t_02_bad()
 static void goodB2G1()
 {
     int64_t * data;
-    if(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -72,12 +63,10 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int64_t * data;
-    if(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
-    if(1)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -96,19 +85,12 @@ static void goodG2B1()
 {
     int64_t * data;
     int64_t tmpData = 5LL;
-    if(0)
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLongLine(*data);
@@ -120,14 +102,12 @@ static void goodG2B2()
 {
     int64_t * data;
     int64_t tmpData = 5LL;
-    if(1)
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
-    if(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLongLine(*data);

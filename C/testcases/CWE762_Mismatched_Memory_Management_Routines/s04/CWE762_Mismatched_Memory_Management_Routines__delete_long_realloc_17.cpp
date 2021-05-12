@@ -23,18 +23,15 @@ namespace CWE762_Mismatched_Memory_Management_Routines__delete_long_realloc_17
 
 void bad()
 {
-    int i,j;
     long * data;
     /* Initialize data*/
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -49,18 +46,15 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
-    int i,k;
     long * data;
     /* Initialize data*/
     data = NULL;
-    for(i = 0; i < 1; i++)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
     }
-    for(k = 0; k < 1; k++)
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -70,16 +64,13 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
-    int h,j;
     long * data;
     /* Initialize data*/
     data = NULL;
-    for(h = 0; h < 1; h++)
     {
         /* FIX: Allocate memory from the heap using new */
         data = new long;
     }
-    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */

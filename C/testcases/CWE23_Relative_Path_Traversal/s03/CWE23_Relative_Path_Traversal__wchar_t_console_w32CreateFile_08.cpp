@@ -48,7 +48,6 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         {
             /* Read input from the console */
@@ -103,12 +102,6 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(staticReturnsFalse())
-    {
-        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
-        printLine("Benign, fixed string");
-    }
-    else
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");
@@ -136,7 +129,6 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
-    if(staticReturnsTrue())
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");

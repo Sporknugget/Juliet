@@ -23,10 +23,13 @@ void CWE190_Integer_Overflow__char_max_multiply_16_bad()
 {
     char data;
     data = ' ';
+    while(1)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
+        break;
     }
+    while(1)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -34,6 +37,7 @@ void CWE190_Integer_Overflow__char_max_multiply_16_bad()
             char result = data * 2;
             printHexCharLine(result);
         }
+        break;
     }
 }
 
@@ -46,10 +50,13 @@ static void goodB2G()
 {
     char data;
     data = ' ';
+    while(1)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
+        break;
     }
+    while(1)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -64,6 +71,7 @@ static void goodB2G()
                 printLine("data value is too large to perform arithmetic safely.");
             }
         }
+        break;
     }
 }
 
@@ -72,10 +80,13 @@ static void goodG2B()
 {
     char data;
     data = ' ';
+    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
+        break;
     }
+    while(1)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -83,6 +94,7 @@ static void goodG2B()
             char result = data * 2;
             printHexCharLine(result);
         }
+        break;
     }
 }
 

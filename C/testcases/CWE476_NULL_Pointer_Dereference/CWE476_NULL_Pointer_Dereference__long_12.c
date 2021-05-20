@@ -25,13 +25,34 @@ void CWE476_NULL_Pointer_Dereference__long_12_bad()
 {
     long * data;
     long tmpData = 5L;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    else
+    {
+        /* FIX: Initialize data */
+        {
+            data = &tmpData;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLine(*data);
+    }
+    else
+    {
+        /* FIX: Check for NULL before attempting to print data */
+        if (data != NULL)
+        {
+            printLongLine(*data);
+        }
+        else
+        {
+            printLine("data is NULL");
+        }
     }
 }
 
@@ -45,10 +66,29 @@ void CWE476_NULL_Pointer_Dereference__long_12_bad()
 static void goodB2G()
 {
     long * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Set data to NULL */
+        data = NULL;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Check for NULL before attempting to print data */
+        if (data != NULL)
+        {
+            printLongLine(*data);
+        }
+        else
+        {
+            printLine("data is NULL");
+        }
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -69,12 +109,26 @@ static void goodG2B()
 {
     long * data;
     long tmpData = 5L;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
+    else
+    {
+        /* FIX: Initialize data */
+        {
+            data = &tmpData;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
+        printLongLine(*data);
+    }
+    else
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printLongLine(*data);

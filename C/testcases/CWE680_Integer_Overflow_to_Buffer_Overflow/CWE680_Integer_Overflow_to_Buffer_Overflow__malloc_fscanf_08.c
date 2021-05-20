@@ -37,6 +37,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fscanf_08_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
@@ -67,6 +68,12 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
@@ -93,6 +100,7 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

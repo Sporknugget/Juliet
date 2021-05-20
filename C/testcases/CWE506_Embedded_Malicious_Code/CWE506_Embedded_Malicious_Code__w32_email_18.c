@@ -26,6 +26,8 @@ Template File: point-flaw-badonly-18.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_email_18_bad()
 {
+    goto sink;
+sink:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;

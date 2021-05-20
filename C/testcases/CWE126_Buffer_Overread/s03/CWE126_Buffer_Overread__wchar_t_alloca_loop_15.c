@@ -29,8 +29,17 @@ void CWE126_Buffer_Overread__wchar_t_alloca_loop_15_bad()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
+    switch(6)
+    {
+    case 6:
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i, destLen;
         wchar_t dest[100];
@@ -62,8 +71,17 @@ static void goodG2B1()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;
+        break;
+    }
     {
         size_t i, destLen;
         wchar_t dest[100];
@@ -91,8 +109,17 @@ static void goodG2B2()
     dataBadBuffer[50-1] = L'\0'; /* null terminate */
     wmemset(dataGoodBuffer, L'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = L'\0'; /* null terminate */
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i, destLen;
         wchar_t dest[100];

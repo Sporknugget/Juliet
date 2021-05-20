@@ -22,10 +22,12 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE690_NULL_Deref_From_Return__struct_realloc_17_bad()
 {
+    int j;
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0].intOne = 1;
@@ -42,10 +44,12 @@ void CWE690_NULL_Deref_From_Return__struct_realloc_17_bad()
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
+    int k;
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)

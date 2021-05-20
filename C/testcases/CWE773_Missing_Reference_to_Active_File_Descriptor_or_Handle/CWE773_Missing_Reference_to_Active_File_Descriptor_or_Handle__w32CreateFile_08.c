@@ -46,6 +46,7 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__w32CreateFile
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(staticReturnsTrue())
     {
         /* FLAW: Point data to another file handle without closing the handle from the source */
         data = CreateFile("BadSink_w32CreateFile.txt",
@@ -81,6 +82,12 @@ static void goodB2G1()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != INVALID_HANDLE_VALUE)
@@ -116,6 +123,7 @@ static void goodB2G2()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(staticReturnsTrue())
     {
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != INVALID_HANDLE_VALUE)

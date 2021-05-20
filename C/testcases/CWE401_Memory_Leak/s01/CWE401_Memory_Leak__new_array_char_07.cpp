@@ -35,6 +35,7 @@ void bad()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char[100];
@@ -42,6 +43,7 @@ void bad()
         strcpy(data, "A String");
         printLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -57,6 +59,7 @@ static void goodB2G1()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char[100];
@@ -64,6 +67,12 @@ static void goodB2G1()
         strcpy(data, "A String");
         printLine(data);
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -75,6 +84,7 @@ static void goodB2G2()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char[100];
@@ -82,6 +92,7 @@ static void goodB2G2()
         strcpy(data, "A String");
         printLine(data);
     }
+    if(staticFive==5)
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -93,6 +104,12 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack */
         char dataGoodBuffer[100];
@@ -101,6 +118,7 @@ static void goodG2B1()
         strcpy(data, "A String");
         printLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -112,6 +130,7 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* FIX: Use memory allocated on the stack */
         char dataGoodBuffer[100];
@@ -120,6 +139,7 @@ static void goodG2B2()
         strcpy(data, "A String");
         printLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

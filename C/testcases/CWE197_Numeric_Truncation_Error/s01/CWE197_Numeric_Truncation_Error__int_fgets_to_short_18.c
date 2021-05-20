@@ -25,6 +25,8 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_short_18_bad()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -55,6 +57,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Use a positive integer less than CHAR_MAX*/
     data = CHAR_MAX-5;
     {

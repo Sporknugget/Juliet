@@ -67,6 +67,8 @@ void CWE78_OS_Command_Injection__char_connect_socket_execl_18_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -149,6 +151,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Append a fixed string to data (not user / external input) */
     strcat(data, "*.*");
     /* execl - specify the path where the command is located */

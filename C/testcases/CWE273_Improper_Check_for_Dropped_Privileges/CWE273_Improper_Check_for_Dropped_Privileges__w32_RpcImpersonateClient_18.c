@@ -24,6 +24,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_18_bad()
 {
+    goto sink;
+sink:
     RpcImpersonateClient(0);
     /* FLAW: Do not check if RpcImpersonateClient() fails */
     /* We'll leave out most of the implementation since it has nothing to do with the CWE
@@ -37,6 +39,8 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_18_b
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
     if (RpcImpersonateClient(0) != RPC_S_OK)
     {

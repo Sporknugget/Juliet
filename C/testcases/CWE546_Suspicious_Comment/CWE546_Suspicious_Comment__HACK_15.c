@@ -19,11 +19,20 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE546_Suspicious_Comment__HACK_15_bad()
 {
+    switch(6)
+    {
+    case 6:
         /* FLAW: The following comment has the letters 'HACK' in it*/
         /* HACK: This comment has the letters 'HACK' in it, which is certainly
          * suspicious, because it could indicate this code needs to be investigated further.
          */
         printLine("Hello");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -33,15 +42,33 @@ void CWE546_Suspicious_Comment__HACK_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
+        break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE546_Suspicious_Comment__HACK_15_good()

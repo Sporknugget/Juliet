@@ -36,6 +36,7 @@ void CWE90_LDAP_Injection__w32_char_environment_16_bad()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -48,6 +49,7 @@ void CWE90_LDAP_Injection__w32_char_environment_16_bad()
                 strncat(data+dataLen, environment, 256-dataLen-1);
             }
         }
+        break;
     }
     {
         LDAP* pLdapConnection = NULL;
@@ -111,9 +113,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");
+        break;
     }
     {
         LDAP* pLdapConnection = NULL;

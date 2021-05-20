@@ -19,6 +19,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__short_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             short * badShort = NULL;
@@ -39,6 +41,8 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__short_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             short * goodShort = NULL;

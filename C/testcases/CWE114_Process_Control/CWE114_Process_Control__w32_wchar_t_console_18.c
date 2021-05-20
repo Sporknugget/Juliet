@@ -27,6 +27,8 @@ void CWE114_Process_Control__w32_wchar_t_console_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Read input from the console */
         size_t dataLen = wcslen(data);
@@ -79,6 +81,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Specify the full pathname for the library */
     wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");
     {

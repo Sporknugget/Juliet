@@ -19,6 +19,7 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE481_Assigning_Instead_of_Comparing__basic_10_bad()
 {
+    if(globalTrue)
     {
         {
             int intRand = rand();
@@ -35,6 +36,15 @@ void CWE481_Assigning_Instead_of_Comparing__basic_10_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int intRand = rand();
@@ -50,6 +60,7 @@ void CWE481_Assigning_Instead_of_Comparing__basic_10_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         {
             int intRand = rand();

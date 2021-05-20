@@ -22,6 +22,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_18_bad()
 {
+    goto sink;
+sink:
     {
         char inputBuffer[CHAR_ARRAY_SIZE];
         double doubleNumber = 0;
@@ -50,6 +52,8 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__doubleNaN2int_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char inputBuffer[CHAR_ARRAY_SIZE];
         double doubleNumber = 0;

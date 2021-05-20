@@ -26,6 +26,7 @@ void CWE190_Integer_Overflow__int_fgets_multiply_16_bad()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -40,7 +41,9 @@ void CWE190_Integer_Overflow__int_fgets_multiply_16_bad()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -48,6 +51,7 @@ void CWE190_Integer_Overflow__int_fgets_multiply_16_bad()
             int result = data * 2;
             printIntLine(result);
         }
+        break;
     }
 }
 
@@ -61,6 +65,7 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -75,7 +80,9 @@ static void goodB2G()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -90,6 +97,7 @@ static void goodB2G()
                 printLine("data value is too large to perform arithmetic safely.");
             }
         }
+        break;
     }
 }
 
@@ -99,10 +107,13 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
+        break;
     }
+    while(1)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -110,6 +121,7 @@ static void goodG2B()
             int result = data * 2;
             printIntLine(result);
         }
+        break;
     }
 }
 

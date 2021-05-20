@@ -25,6 +25,7 @@ static int staticFalse = 0; /* false */
 
 void CWE476_NULL_Pointer_Dereference__null_check_after_deref_05_bad()
 {
+    if(staticTrue)
     {
         {
             int *intPointer = NULL;
@@ -45,6 +46,15 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int *intPointer = NULL;
@@ -61,6 +71,7 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             int *intPointer = NULL;

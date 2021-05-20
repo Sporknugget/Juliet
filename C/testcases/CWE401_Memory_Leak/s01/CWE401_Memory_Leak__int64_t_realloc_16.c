@@ -25,6 +25,7 @@ void CWE401_Memory_Leak__int64_t_realloc_16_bad()
 {
     int64_t * data;
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
@@ -32,10 +33,13 @@ void CWE401_Memory_Leak__int64_t_realloc_16_bad()
         /* Initialize and make use of data */
         data[0] = 5LL;
         printLongLongLine(data[0]);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -48,6 +52,7 @@ static void goodB2G()
 {
     int64_t * data;
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
@@ -55,10 +60,13 @@ static void goodB2G()
         /* Initialize and make use of data */
         data[0] = 5LL;
         printLongLongLine(data[0]);
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate memory */
         free(data);
+        break;
     }
 }
 
@@ -67,16 +75,20 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL;
+    while(1)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (int64_t *)ALLOCA(100*sizeof(int64_t));
         /* Initialize and make use of data */
         data[0] = 5LL;
         printLongLongLine(data[0]);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 

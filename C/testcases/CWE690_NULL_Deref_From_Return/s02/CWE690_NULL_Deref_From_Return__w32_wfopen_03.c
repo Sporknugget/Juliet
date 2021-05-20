@@ -25,6 +25,7 @@ void CWE690_NULL_Deref_From_Return__w32_wfopen_03_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = _wfopen(L"file.txt", L"w+");
+    if(5==5)
     {
         /* FLAW: if the fopen failed, data will be NULL here */
         fclose(data);
@@ -43,6 +44,12 @@ static void goodB2G1()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = _wfopen(L"file.txt", L"w+");
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check the return value */
         if (data != NULL)
@@ -60,6 +67,7 @@ static void goodB2G2()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without checking the return value for NULL */
     data = _wfopen(L"file.txt", L"w+");
+    if(5==5)
     {
         /* FIX: check the return value */
         if (data != NULL)

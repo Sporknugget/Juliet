@@ -45,9 +45,11 @@ namespace CWE122_Heap_Based_Buffer_Overflow__cpp_CWE129_listen_socket_17
 
 void bad()
 {
+    int i,j;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -119,6 +121,7 @@ void bad()
 #endif
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             int i;
@@ -155,9 +158,11 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -229,6 +234,7 @@ static void goodB2G()
 #endif
         }
     }
+    for(k = 0; k < 1; k++)
     {
         {
             int i;
@@ -260,14 +266,17 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int data;
     /* Initialize data */
     data = -1;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    for(j = 0; j < 1; j++)
     {
         {
             int i;

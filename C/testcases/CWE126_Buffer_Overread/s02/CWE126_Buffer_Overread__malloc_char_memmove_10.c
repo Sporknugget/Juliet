@@ -24,6 +24,7 @@ void CWE126_Buffer_Overread__malloc_char_memmove_10_bad()
 {
     char * data;
     data = NULL;
+    if(globalTrue)
     {
         /* FLAW: Use a small buffer */
         data = (char *)malloc(50*sizeof(char));
@@ -53,6 +54,12 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a large buffer */
         data = (char *)malloc(100*sizeof(char));
@@ -78,6 +85,7 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
+    if(globalTrue)
     {
         /* FIX: Use a large buffer */
         data = (char *)malloc(100*sizeof(char));

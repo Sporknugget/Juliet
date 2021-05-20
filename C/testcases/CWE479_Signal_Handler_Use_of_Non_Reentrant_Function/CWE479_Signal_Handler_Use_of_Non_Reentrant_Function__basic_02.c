@@ -45,6 +45,7 @@ static void helperGood(int sig)
 
 void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_02_bad()
 {
+    if(1)
     {
         signal(SIGINT, helperBad);
     }
@@ -54,6 +55,15 @@ void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_02_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         signal(SIGINT, helperGood);
     }
@@ -62,6 +72,7 @@ void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_02_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         signal(SIGINT, helperGood);
     }

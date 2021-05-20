@@ -22,11 +22,13 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE404_Improper_Resource_Shutdown__freopen_w32CloseHandle_17_bad()
 {
+    int j;
     FILE * data;
     /* Initialize data */
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
+    for(j = 0; j < 1; j++)
     {
         if (data != NULL)
         {
@@ -43,11 +45,13 @@ void CWE404_Improper_Resource_Shutdown__freopen_w32CloseHandle_17_bad()
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
+    int k;
     FILE * data;
     /* Initialize data */
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
+    for(k = 0; k < 1; k++)
     {
         if (data != NULL)
         {

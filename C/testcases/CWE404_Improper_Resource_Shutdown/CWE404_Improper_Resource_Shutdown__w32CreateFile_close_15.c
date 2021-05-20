@@ -33,11 +33,20 @@ void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_15_bad()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    switch(6)
+    {
+    case 6:
         if (data != INVALID_HANDLE_VALUE)
         {
             /* FLAW: Attempt to close the file using close() instead of CloseHandle() */
             _close((int)data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -58,11 +67,20 @@ static void goodB2G1()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         if (data != INVALID_HANDLE_VALUE)
         {
             /* FIX: Close the file using CloseHandle() */
             CloseHandle(data);
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -79,11 +97,20 @@ static void goodB2G2()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    switch(6)
+    {
+    case 6:
         if (data != INVALID_HANDLE_VALUE)
         {
             /* FIX: Close the file using CloseHandle() */
             CloseHandle(data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_15_good()

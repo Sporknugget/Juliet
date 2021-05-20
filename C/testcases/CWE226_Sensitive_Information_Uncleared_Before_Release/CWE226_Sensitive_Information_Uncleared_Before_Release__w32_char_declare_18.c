@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_18_bad()
 {
+    goto sink;
+sink:
     {
         char password[100] = "";
         size_t passwordLen = 0;
@@ -68,6 +70,8 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_18_
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char password[100] = "";
         size_t passwordLen = 0;

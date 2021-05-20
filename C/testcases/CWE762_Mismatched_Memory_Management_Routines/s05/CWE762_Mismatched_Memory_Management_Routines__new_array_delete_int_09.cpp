@@ -27,10 +27,12 @@ void bad()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new int[100];
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
@@ -48,10 +50,17 @@ static void goodB2G1()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new int[100];
     }
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate the memory using delete [] */
         delete [] data;
@@ -64,10 +73,12 @@ static void goodB2G2()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new int[100];
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Deallocate the memory using delete [] */
         delete [] data;
@@ -80,10 +91,17 @@ static void goodG2B1()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory from the heap using new */
         data = new int;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
@@ -97,10 +115,12 @@ static void goodG2B2()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Allocate memory from the heap using new */
         data = new int;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */

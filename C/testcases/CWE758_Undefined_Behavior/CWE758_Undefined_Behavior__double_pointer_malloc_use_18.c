@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE758_Undefined_Behavior__double_pointer_malloc_use_18_bad()
 {
+    goto sink;
+sink:
     {
         double * * pointer = (double * *)malloc(sizeof(double *));
         if (pointer == NULL) {exit(-1);}
@@ -35,6 +37,8 @@ void CWE758_Undefined_Behavior__double_pointer_malloc_use_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         double * data;
         double * * pointer = (double * *)malloc(sizeof(double *));

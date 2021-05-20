@@ -41,10 +41,13 @@ Template File: sources-sinks-17.tmpl.c
 
 #ifndef OMITBAD
 
+void CWE190_Integer_Overflow__int_connect_socket_postinc_17_bad()
 {
+    int i,j;
     int data;
     /* Initialize data */
     data = 0;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -103,6 +106,7 @@ Template File: sources-sinks-17.tmpl.c
 #endif
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -120,9 +124,11 @@ Template File: sources-sinks-17.tmpl.c
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int data;
     /* Initialize data */
     data = 0;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -181,6 +187,7 @@ static void goodB2G()
 #endif
         }
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < INT_MAX)
@@ -199,13 +206,16 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int data;
     /* Initialize data */
     data = 0;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

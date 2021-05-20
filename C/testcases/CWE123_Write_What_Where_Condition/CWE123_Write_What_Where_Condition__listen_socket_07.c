@@ -67,6 +67,7 @@ void CWE123_Write_What_Where_Condition__listen_socket_07_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -167,6 +168,12 @@ static void goodG2B1()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */
@@ -201,6 +208,7 @@ static void goodG2B2()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(staticFive==5)
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */

@@ -23,11 +23,14 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE457_Use_of_Uninitialized_Variable__int_pointer_17_bad()
 {
+    int i,j;
     int * data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(*data);
@@ -41,11 +44,14 @@ void CWE457_Use_of_Uninitialized_Variable__int_pointer_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int * data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
@@ -59,7 +65,9 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int * data;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
@@ -67,6 +75,7 @@ static void goodG2B()
         if (data == NULL) {exit(-1);}
         *data = 5;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(*data);

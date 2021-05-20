@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__null_check_after_deref_18_bad()
 {
+    goto sink;
+sink:
     {
         int *intPointer = NULL;
         intPointer = (int *)malloc(sizeof(int));
@@ -40,6 +42,8 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         int *intPointer = NULL;
         intPointer = (int *)malloc(sizeof(int));

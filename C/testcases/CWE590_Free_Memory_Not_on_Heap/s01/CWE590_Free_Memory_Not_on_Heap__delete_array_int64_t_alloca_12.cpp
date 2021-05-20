@@ -27,10 +27,26 @@ void bad()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
             int64_t * dataBuffer = (int64_t *)ALLOCA(100*sizeof(int64_t));
+            {
+                size_t i;
+                for (i = 0; i < 100; i++)
+                {
+                    dataBuffer[i] = 5LL;
+                }
+            }
+            data = dataBuffer;
+        }
+    }
+    else
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            int64_t * dataBuffer = new int64_t[100];
             {
                 size_t i;
                 for (i = 0; i < 100; i++)
@@ -56,6 +72,22 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            int64_t * dataBuffer = new int64_t[100];
+            {
+                size_t i;
+                for (i = 0; i < 100; i++)
+                {
+                    dataBuffer[i] = 5LL;
+                }
+            }
+            data = dataBuffer;
+        }
+    }
+    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

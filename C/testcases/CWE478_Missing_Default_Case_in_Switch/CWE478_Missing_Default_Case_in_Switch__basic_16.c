@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE478_Missing_Default_Case_in_Switch__basic_16_bad()
 {
+    while(1)
     {
         {
             const char *charString = "shouldn\'t see this value";
@@ -36,6 +37,7 @@ void CWE478_Missing_Default_Case_in_Switch__basic_16_bad()
             }
             printLine(charString);
         }
+        break;
     }
 }
 
@@ -46,6 +48,7 @@ void CWE478_Missing_Default_Case_in_Switch__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             const char *charString = "shouldn\'t see this value";
@@ -65,6 +68,7 @@ static void good1()
             }
             printLine(charString);
         }
+        break;
     }
 }
 

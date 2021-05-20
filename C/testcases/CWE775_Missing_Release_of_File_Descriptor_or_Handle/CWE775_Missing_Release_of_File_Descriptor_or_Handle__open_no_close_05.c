@@ -40,6 +40,7 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__open_no_close_05_bad()
     data = -1;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    if(staticTrue)
     {
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
@@ -58,6 +59,12 @@ static void goodB2G1()
     data = -1;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: If the file is still opened, close it */
         if (data != -1)
@@ -75,6 +82,7 @@ static void goodB2G2()
     data = -1;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    if(staticTrue)
     {
         /* FIX: If the file is still opened, close it */
         if (data != -1)

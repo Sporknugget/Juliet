@@ -19,6 +19,7 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE526_Info_Exposure_Environment_Variables__basic_11_bad()
 {
+    if(globalReturnsTrue())
     {
         /* FLAW: environment variable exposed */
         printLine(getenv("PATH"));
@@ -29,6 +30,15 @@ void CWE526_Info_Exposure_Environment_Variables__basic_11_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: error message is general */
         printLine("Not in path");
@@ -38,6 +48,7 @@ void CWE526_Info_Exposure_Environment_Variables__basic_11_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         /* FIX: error message is general */
         printLine("Not in path");

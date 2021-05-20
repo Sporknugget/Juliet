@@ -22,11 +22,20 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char dest[DEST_SIZE];
         /* FLAW: Incorrect number of arguments */
         sprintf(dest, "%s %s", SOURCE_STRING);
         printLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -37,22 +46,40 @@ void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char dest[DEST_SIZE];
         /* FIX: Use the correct number of arguments */
         sprintf(dest, "%s %s", SOURCE_STRING, SOURCE_STRING);
         printLine(dest);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char dest[DEST_SIZE];
         /* FIX: Use the correct number of arguments */
         sprintf(dest, "%s %s", SOURCE_STRING, SOURCE_STRING);
         printLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

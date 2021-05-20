@@ -29,6 +29,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         FILETIME ftModified;
         ULONGLONG qwResult;
@@ -71,6 +74,12 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_15_bad()
             CloseHandle(hFile);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -80,6 +89,13 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
                                   GENERIC_READ | GENERIC_WRITE,
@@ -93,11 +109,16 @@ static void good1()
             CloseHandle(hFile);
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
                                   GENERIC_READ | GENERIC_WRITE,
@@ -110,6 +131,12 @@ static void good2()
         {
             CloseHandle(hFile);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

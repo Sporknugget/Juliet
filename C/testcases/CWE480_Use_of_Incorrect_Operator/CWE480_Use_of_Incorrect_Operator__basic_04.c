@@ -54,6 +54,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE480_Use_of_Incorrect_Operator__basic_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         /* FLAW: This will never be true becuase the () was omitted.  Also INCIDENTAL CWE 570 Expression Is Always False */
         if(helperBad == NULL)
@@ -67,6 +68,15 @@ void CWE480_Use_of_Incorrect_Operator__basic_04_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */
@@ -79,6 +89,7 @@ void CWE480_Use_of_Incorrect_Operator__basic_04_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */

@@ -47,6 +47,7 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* Append input from an environment variable to data */
@@ -81,6 +82,12 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");
@@ -102,6 +109,7 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");

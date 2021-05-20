@@ -24,6 +24,7 @@ void CWE124_Buffer_Underwrite__malloc_char_memmove_10_bad()
 {
     char * data;
     data = NULL;
+    if(globalTrue)
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));
@@ -57,6 +58,12 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));
@@ -86,6 +93,7 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
+    if(globalTrue)
     {
         {
             char * dataBuffer = (char *)malloc(100*sizeof(char));

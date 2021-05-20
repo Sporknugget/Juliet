@@ -53,6 +53,7 @@ void CWE78_OS_Command_Injection__char_file_execl_16_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from a file */
@@ -75,6 +76,7 @@ void CWE78_OS_Command_Injection__char_file_execl_16_bad()
                 }
             }
         }
+        break;
     }
     /* execl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -91,9 +93,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
+        break;
     }
     /* execl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */

@@ -27,6 +27,7 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];
@@ -34,6 +35,16 @@ void bad()
             dataBuffer[100-1] = L'\0';
             /* FLAW: Set data pointer to before the allocated memory buffer */
             data = dataBuffer - 8;
+        }
+    }
+    else
+    {
+        {
+            wchar_t * dataBuffer = new wchar_t[100];
+            wmemset(dataBuffer, L'A', 100-1);
+            dataBuffer[100-1] = L'\0';
+            /* FIX: Set data pointer to the allocated memory buffer */
+            data = dataBuffer;
         }
     }
     {
@@ -60,6 +71,17 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            wchar_t * dataBuffer = new wchar_t[100];
+            wmemset(dataBuffer, L'A', 100-1);
+            dataBuffer[100-1] = L'\0';
+            /* FIX: Set data pointer to the allocated memory buffer */
+            data = dataBuffer;
+        }
+    }
+    else
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];

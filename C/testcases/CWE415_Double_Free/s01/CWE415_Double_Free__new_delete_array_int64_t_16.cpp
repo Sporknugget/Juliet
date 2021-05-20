@@ -28,14 +28,18 @@ void bad()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    while(1)
     {
         data = new int64_t[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;
+        break;
     }
 }
 
@@ -49,15 +53,19 @@ static void goodB2G()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    while(1)
     {
         data = new int64_t[100];
         /* POTENTIAL FLAW: delete the array data in the source - the bad sink deletes the array data as well */
         delete [] data;
+        break;
     }
+    while(1)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -67,13 +75,17 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    while(1)
     {
         data = new int64_t[100];
         /* FIX: Do NOT delete the array data in the source - the bad sink deletes the array data */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete [] data;
+        break;
     }
 }
 

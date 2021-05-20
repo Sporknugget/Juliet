@@ -22,6 +22,8 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_18_bad()
 {
     char data;
     data = ' ';
+    goto source;
+source:
     {
         char charArraySource[2];
         charArraySource[0] = (char)getc(stdin);
@@ -50,6 +52,8 @@ static void goodG2B()
 {
     char data;
     data = ' ';
+    goto source;
+source:
     /* FIX: Set data to be a char */
     data = 'a';
     {

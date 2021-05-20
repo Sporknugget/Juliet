@@ -27,6 +27,8 @@ void CWE404_Improper_Resource_Shutdown__freopen_w32CloseHandle_18_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
+    goto sink;
+sink:
     if (data != NULL)
     {
         /* FLAW: Attempt to close the file using CloseHandle() instead of fclose() */
@@ -46,6 +48,8 @@ static void goodB2G()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
+    goto sink;
+sink:
     if (data != NULL)
     {
         /* FIX: Close the file using fclose() */

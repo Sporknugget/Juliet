@@ -23,6 +23,9 @@ Template File: point-flaw-badonly-15.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */
         HDC hdcWindow = NULL;
@@ -181,6 +184,12 @@ void CWE506_Embedded_Malicious_Code__w32_screen_capture_15_bad()
         {
             ReleaseDC(hWnd,hdcWindow);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

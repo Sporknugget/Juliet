@@ -32,6 +32,8 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_fixed_string_18_bad()
     data[0] = '\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
     strcpy(data, BAD_SOURCE_FIXED_STRING);
+    goto sink;
+sink:
     /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
      * memory block not at the start of the buffer */
     for (; *data != '\0'; data++)
@@ -58,6 +60,8 @@ static void goodB2G()
     data[0] = '\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
     strcpy(data, BAD_SOURCE_FIXED_STRING);
+    goto sink;
+sink:
     {
         size_t i;
         /* FIX: Use a loop variable to traverse through the string pointed to by data */

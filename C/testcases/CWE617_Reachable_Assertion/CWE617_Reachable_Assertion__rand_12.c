@@ -27,9 +27,15 @@ void CWE617_Reachable_Assertion__rand_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
+    }
+    else
+    {
+        /* FIX: Use a value greater than the assert value */
+        data = ASSERT_VALUE+1;
     }
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
     assert(data > ASSERT_VALUE);
@@ -46,6 +52,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a value greater than the assert value */
+        data = ASSERT_VALUE+1;
+    }
+    else
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;

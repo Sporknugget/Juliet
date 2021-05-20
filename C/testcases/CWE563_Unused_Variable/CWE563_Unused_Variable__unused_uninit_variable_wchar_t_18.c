@@ -25,6 +25,8 @@ void CWE563_Unused_Variable__unused_uninit_variable_wchar_t_18_bad()
     wchar_t data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    goto sink;
+sink:
     /* FLAW: Do not use the variable */
     /* do nothing */
     ; /* empty statement needed for some flow variants */
@@ -40,6 +42,8 @@ static void goodB2G()
     wchar_t data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    goto sink;
+sink:
     /* FIX: Initialize then use data */
     data = L'W';
     printWcharLine(data);

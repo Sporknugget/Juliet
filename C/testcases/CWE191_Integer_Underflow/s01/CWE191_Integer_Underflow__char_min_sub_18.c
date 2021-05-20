@@ -23,8 +23,12 @@ void CWE191_Integer_Underflow__char_min_sub_18_bad()
 {
     char data;
     data = ' ';
+    goto source;
+source:
     /* POTENTIAL FLAW: Use the minimum size of the data type */
     data = CHAR_MIN;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         char result = data - 1;
@@ -41,8 +45,12 @@ static void goodB2G()
 {
     char data;
     data = ' ';
+    goto source;
+source:
     /* POTENTIAL FLAW: Use the minimum size of the data type */
     data = CHAR_MIN;
+    goto sink;
+sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > CHAR_MIN)
     {
@@ -60,8 +68,12 @@ static void goodG2B()
 {
     char data;
     data = ' ';
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
     data = -2;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         char result = data - 1;

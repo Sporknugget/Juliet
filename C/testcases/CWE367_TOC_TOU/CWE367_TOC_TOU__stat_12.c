@@ -36,6 +36,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE367_TOC_TOU__stat_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char filename[100] = "";
@@ -71,6 +72,37 @@ void CWE367_TOC_TOU__stat_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            char filename[100] = "";
+            int fileDesc = -1;
+            if (fgets(filename, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                filename[0] = '\0';
+            }
+            if (strlen(filename) > 0)
+            {
+                filename[strlen(filename)-1] = '\0'; /* remove newline */
+            }
+            /* FIX: Open the file without checking the status information */
+            fileDesc  = OPEN(filename, O_RDWR);
+            if (fileDesc == -1)
+            {
+                exit(1);
+            }
+            if (WRITE(fileDesc, GOOD_SINK_STRING, strlen(GOOD_SINK_STRING)) == -1)
+            {
+                exit(1);
+            }
+            if (fileDesc != -1)
+            {
+                CLOSE(fileDesc);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -80,6 +112,38 @@ void CWE367_TOC_TOU__stat_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char filename[100] = "";
+            int fileDesc = -1;
+            if (fgets(filename, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                filename[0] = '\0';
+            }
+            if (strlen(filename) > 0)
+            {
+                filename[strlen(filename)-1] = '\0'; /* remove newline */
+            }
+            /* FIX: Open the file without checking the status information */
+            fileDesc  = OPEN(filename, O_RDWR);
+            if (fileDesc == -1)
+            {
+                exit(1);
+            }
+            if (WRITE(fileDesc, GOOD_SINK_STRING, strlen(GOOD_SINK_STRING)) == -1)
+            {
+                exit(1);
+            }
+            if (fileDesc != -1)
+            {
+                CLOSE(fileDesc);
+            }
+        }
+    }
+    else
     {
         {
             char filename[100] = "";

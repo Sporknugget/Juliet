@@ -50,6 +50,8 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -82,6 +84,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Use a fixed file name */
     strcat(data, "file.txt");
     {

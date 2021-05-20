@@ -26,6 +26,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32CreateNamedPipe_16_bad()
 {
+    while(1)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -53,6 +54,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32CreateNamedPipe_16
              * and since the checkers are looking for certain function calls anyway */
             CloseHandle(hPipe);
         }
+        break;
     }
 }
 
@@ -63,6 +65,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32CreateNamedPipe_16
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -89,6 +92,7 @@ static void good1()
              * and since the checkers are looking for certain function calls anyway */
             CloseHandle(hPipe);
         }
+        break;
     }
 }
 

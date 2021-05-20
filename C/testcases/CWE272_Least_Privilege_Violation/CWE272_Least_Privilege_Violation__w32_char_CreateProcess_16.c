@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_char_CreateProcess_16_bad()
 {
+    while(1)
     {
         {
             STARTUPINFOA si;
@@ -55,6 +56,7 @@ void CWE272_Least_Privilege_Violation__w32_char_CreateProcess_16_bad()
             CloseHandle(pi.hProcess);
             CloseHandle(pi.hThread);
         }
+        break;
     }
 }
 
@@ -65,6 +67,7 @@ void CWE272_Least_Privilege_Violation__w32_char_CreateProcess_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             STARTUPINFOA si;
@@ -95,6 +98,7 @@ static void good1()
             CloseHandle(pi.hProcess);
             CloseHandle(pi.hThread);
         }
+        break;
     }
 }
 

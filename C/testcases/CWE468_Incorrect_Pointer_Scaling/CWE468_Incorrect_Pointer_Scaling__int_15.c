@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__int_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         int *intPointer = intArray;
@@ -26,6 +29,12 @@ void CWE468_Incorrect_Pointer_Scaling__int_15_bad()
         /* FLAW: included *sizeof(int) which is unnecessary since pointer arithmetic is automatically scaled */
         int toPrint = *(intPointer+(2*sizeof(int)));
         printIntLine(toPrint);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -36,6 +45,13 @@ void CWE468_Incorrect_Pointer_Scaling__int_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         int *intPointer = intArray;
@@ -44,11 +60,16 @@ static void good1()
         int toPrint = *(intPointer+2);
         printIntLine(toPrint);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         int *intPointer = intArray;
@@ -56,6 +77,12 @@ static void good2()
         /* FIX: no sizeof() needed since pointer math is automatically scaled */
         int toPrint = *(intPointer+2);
         printIntLine(toPrint);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

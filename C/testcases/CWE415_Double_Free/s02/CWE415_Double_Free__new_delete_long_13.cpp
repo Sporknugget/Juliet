@@ -28,11 +28,13 @@ void bad()
     long * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = new long;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -49,11 +51,18 @@ static void goodB2G1()
     long * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = new long;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -67,11 +76,13 @@ static void goodB2G2()
     long * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = new long;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -85,10 +96,17 @@ static void goodG2B1()
     long * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = new long;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -101,10 +119,12 @@ static void goodG2B2()
     long * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = new long;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

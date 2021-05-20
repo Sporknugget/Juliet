@@ -28,6 +28,7 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t myString[] = L"myString";
@@ -35,10 +36,21 @@ void bad()
             data = wcsdup(myString);
         }
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new [] */
+        data = new wchar_t[100];
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
+    }
+    else
+    {
+        /* FIX: Deallocate the memory using free() */
+        free(data);
     }
 }
 
@@ -54,6 +66,7 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t myString[] = L"myString";
@@ -61,6 +74,20 @@ static void goodB2G()
             data = wcsdup(myString);
         }
     }
+    else
+    {
+        {
+            wchar_t myString[] = L"myString";
+            /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
+            data = wcsdup(myString);
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate the memory using free() */
+        free(data);
+    }
+    else
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -75,10 +102,23 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new wchar_t[100];
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new [] */
+        data = new wchar_t[100];
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
+         * require a call to free() to deallocate the memory */
+        delete [] data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */

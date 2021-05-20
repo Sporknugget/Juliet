@@ -28,6 +28,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_06_bad(
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -38,6 +39,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_06_bad(
             }
         }
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -59,6 +61,7 @@ static void goodB2G1()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -69,6 +72,12 @@ static void goodB2G1()
             }
         }
     }
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -93,6 +102,7 @@ static void goodB2G2()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -103,6 +113,7 @@ static void goodB2G2()
             }
         }
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -127,6 +138,12 @@ static void goodG2B1()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -137,6 +154,7 @@ static void goodG2B1()
             }
         }
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -154,6 +172,7 @@ static void goodG2B2()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Completely initialize data */
         {
@@ -164,6 +183,7 @@ static void goodG2B2()
             }
         }
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

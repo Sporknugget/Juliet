@@ -20,9 +20,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE843_Type_Confusion__short_17_bad()
 {
+    int i;
     void * data;
     /* Initialize data */
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             /* FLAW: Point data to a short */
@@ -41,9 +43,11 @@ void CWE843_Type_Confusion__short_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     void * data;
     /* Initialize data */
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         {
             /* FIX: Point data to an int */

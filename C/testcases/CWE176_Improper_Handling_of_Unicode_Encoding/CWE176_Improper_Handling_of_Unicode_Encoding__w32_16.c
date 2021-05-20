@@ -30,10 +30,13 @@ void CWE176_Improper_Handling_of_Unicode_Encoding__w32_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    while(1)
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
+        break;
     }
+    while(1)
     {
         {
             char convertedText[10] = "";
@@ -42,6 +45,7 @@ void CWE176_Improper_Handling_of_Unicode_Encoding__w32_16_bad()
             /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
             WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
         }
+        break;
     }
 }
 
@@ -55,10 +59,13 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    while(1)
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
+        break;
     }
+    while(1)
     {
         {
             char convertedText[10] = "";
@@ -74,6 +81,7 @@ static void goodB2G()
                 printLine("Destination buffer not large enough to perform conversion.");
             }
         }
+        break;
     }
 }
 
@@ -83,10 +91,13 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580");
+        break;
     }
+    while(1)
     {
         {
             char convertedText[10] = "";
@@ -95,6 +106,7 @@ static void goodG2B()
             /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
             WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
         }
+        break;
     }
 }
 

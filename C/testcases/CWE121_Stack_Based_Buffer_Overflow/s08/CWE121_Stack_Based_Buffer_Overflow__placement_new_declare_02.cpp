@@ -27,10 +27,12 @@ void bad()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
+    if(1)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -58,10 +60,17 @@ static void goodB2G1()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
+    if(1)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -83,10 +92,12 @@ static void goodB2G2()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
+    if(1)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -108,10 +119,17 @@ static void goodG2B1()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
+    if(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -135,10 +153,12 @@ static void goodG2B2()
     char * data;
     char dataBadBuffer[sizeof(OneIntClass)];
     char dataGoodBuffer[sizeof(TwoIntsClass)];
+    if(1)
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
+    if(1)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().

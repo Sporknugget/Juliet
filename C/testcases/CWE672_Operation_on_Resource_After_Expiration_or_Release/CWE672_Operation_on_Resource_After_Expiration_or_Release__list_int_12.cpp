@@ -30,11 +30,19 @@ namespace CWE672_Operation_on_Resource_After_Expiration_or_Release__list_int_12
 void bad()
 {
     list<int>  data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    else
+    {
+        /* FIX: Insert non-zero values into the list */
+        data.push_back(100);
+        data.push_back(200);
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             list<int> ::iterator i;
@@ -46,6 +54,19 @@ void bad()
                     data.clear();
                 }
                 /* POTENTIAL FLAW: Dereference the iterator, which may be invalid if data is cleared */
+                cout << " " << *i;
+            }
+            cout << endl;
+        }
+    }
+    else
+    {
+        {
+            list<int> ::iterator i;
+            cout << "The list contains: ";
+            for( i = data.begin(); i != data.end(); i++)
+            {
+                /* FIX: Do not make any attempt to clear the list */
                 cout << " " << *i;
             }
             cout << endl;
@@ -63,11 +84,32 @@ void bad()
 static void goodB2G()
 {
     list<int>  data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    else
+    {
+        /* POTENTIAL FLAW: Insert a zero into the list */
+        data.push_back(100);
+        data.push_back(0);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            list<int> ::iterator i;
+            cout << "The list contains: ";
+            for( i = data.begin(); i != data.end(); i++)
+            {
+                /* FIX: Do not make any attempt to clear the list */
+                cout << " " << *i;
+            }
+            cout << endl;
+        }
+    }
+    else
     {
         {
             list<int> ::iterator i;
@@ -88,11 +130,36 @@ static void goodB2G()
 static void goodG2B()
 {
     list<int>  data;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
     }
+    else
+    {
+        /* FIX: Insert non-zero values into the list */
+        data.push_back(100);
+        data.push_back(200);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            list<int> ::iterator i;
+            cout << "The list contains: ";
+            for( i = data.begin(); i != data.end(); i++)
+            {
+                if (!*i)
+                {
+                    data.clear();
+                }
+                /* POTENTIAL FLAW: Dereference the iterator, which may be invalid if data is cleared */
+                cout << " " << *i;
+            }
+            cout << endl;
+        }
+    }
+    else
     {
         {
             list<int> ::iterator i;

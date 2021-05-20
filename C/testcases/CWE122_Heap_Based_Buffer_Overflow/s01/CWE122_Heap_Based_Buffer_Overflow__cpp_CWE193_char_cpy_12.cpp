@@ -32,9 +32,15 @@ void bad()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Did not leave space for a null terminator */
         data = new char[10];
+    }
+    else
+    {
+        /* FIX: Allocate space for a null terminator */
+        data = new char[10+1];
     }
     {
         char source[10+1] = SRC_STRING;
@@ -55,6 +61,12 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Allocate space for a null terminator */
+        data = new char[10+1];
+    }
+    else
     {
         /* FIX: Allocate space for a null terminator */
         data = new char[10+1];

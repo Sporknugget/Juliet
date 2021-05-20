@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE244_Heap_Inspection__w32_char_realloc_18_bad()
 {
+    goto sink;
+sink:
     {
         char * password = (char *)malloc(100*sizeof(char));
         if (password == NULL) {exit(-1);}
@@ -80,6 +82,8 @@ void CWE244_Heap_Inspection__w32_char_realloc_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char * password = (char *)malloc(100*sizeof(char));
         if (password == NULL) {exit(-1);}

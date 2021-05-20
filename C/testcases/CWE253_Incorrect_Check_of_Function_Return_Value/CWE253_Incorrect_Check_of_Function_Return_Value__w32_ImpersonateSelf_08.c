@@ -35,6 +35,7 @@ static int staticReturnsFalse()
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_08_bad()
 {
+    if(staticReturnsTrue())
     {
         /* FLAW: ImpersonateSelf() could fail and would return 0 (false), but we are checking to see
          * if the return value is greater than zero (true) */
@@ -49,6 +50,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_08_bad
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (!ImpersonateSelf(SecurityImpersonation))
@@ -61,6 +71,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_08_bad
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         /* FIX: check for the correct return value */
         if (!ImpersonateSelf(SecurityImpersonation))

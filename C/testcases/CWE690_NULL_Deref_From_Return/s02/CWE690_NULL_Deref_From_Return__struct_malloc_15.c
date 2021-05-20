@@ -26,11 +26,20 @@ void CWE690_NULL_Deref_From_Return__struct_malloc_15_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
+    switch(6)
+    {
+    case 6:
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0].intOne = 1;
         data[0].intTwo = 1;
         printStructLine(&data[0]);
         free(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -44,6 +53,13 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
         {
@@ -52,6 +68,8 @@ static void goodB2G1()
             printStructLine(&data[0]);
             free(data);
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -61,6 +79,9 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
+    switch(6)
+    {
+    case 6:
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
         {
@@ -69,6 +90,12 @@ static void goodB2G2()
             printStructLine(&data[0]);
             free(data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE690_NULL_Deref_From_Return__struct_malloc_15_good()

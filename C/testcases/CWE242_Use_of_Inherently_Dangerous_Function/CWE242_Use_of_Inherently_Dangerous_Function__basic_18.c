@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE242_Use_of_Inherently_Dangerous_Function__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         char dest[DEST_SIZE];
         char *result;
@@ -47,6 +49,8 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char dest[DEST_SIZE];
         char *result;

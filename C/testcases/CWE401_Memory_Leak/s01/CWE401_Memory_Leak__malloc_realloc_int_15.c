@@ -23,6 +23,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_int_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int * data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -39,6 +42,12 @@ void CWE401_Memory_Leak__malloc_realloc_int_15_bad()
             free(data);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -48,6 +57,13 @@ void CWE401_Memory_Leak__malloc_realloc_int_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int * data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -67,11 +83,16 @@ static void good1()
         }
         free(data);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int * data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -90,6 +111,12 @@ static void good2()
             printIntLine(data[0]);
         }
         free(data);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

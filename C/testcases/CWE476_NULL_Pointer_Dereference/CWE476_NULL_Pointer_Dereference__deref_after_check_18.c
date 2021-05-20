@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__deref_after_check_18_bad()
 {
+    goto sink;
+sink:
     {
         /* FLAW: Check for NULL, but still dereference the pointer */
         int *intPointer = NULL;
@@ -36,6 +38,8 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
         int *intPointer = NULL;

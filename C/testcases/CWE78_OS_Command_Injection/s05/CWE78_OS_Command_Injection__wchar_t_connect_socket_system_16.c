@@ -58,6 +58,7 @@ void CWE78_OS_Command_Injection__wchar_t_connect_socket_system_16_bad()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -126,6 +127,7 @@ void CWE78_OS_Command_Injection__wchar_t_connect_socket_system_16_bad()
             }
 #endif
         }
+        break;
     }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)
@@ -145,9 +147,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
+    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
+        break;
     }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)

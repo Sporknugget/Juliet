@@ -61,6 +61,7 @@ void CWE123_Write_What_Where_Condition__connect_socket_11_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(globalReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -148,6 +149,12 @@ static void goodG2B1()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */
@@ -182,6 +189,7 @@ static void goodG2B2()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(globalReturnsTrue())
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */

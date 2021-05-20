@@ -29,10 +29,12 @@ void CWE190_Integer_Overflow__unsigned_int_fscanf_postinc_05_bad()
 {
     unsigned int data;
     data = 0;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
     }
+    if(staticTrue)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -52,10 +54,17 @@ static void goodB2G1()
 {
     unsigned int data;
     data = 0;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -76,10 +85,12 @@ static void goodB2G2()
 {
     unsigned int data;
     data = 0;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%u", &data);
     }
+    if(staticTrue)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -100,10 +111,17 @@ static void goodG2B1()
 {
     unsigned int data;
     data = 0;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticTrue)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -119,10 +137,12 @@ static void goodG2B2()
 {
     unsigned int data;
     data = 0;
+    if(staticTrue)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticTrue)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

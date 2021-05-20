@@ -24,6 +24,7 @@ static int staticFive = 5;
 
 void CWE188_Reliance_on_Data_Memory_Layout__union_07_bad()
 {
+    if(staticFive==5)
     {
         {
             union
@@ -47,6 +48,15 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             long longNumber;
@@ -66,6 +76,7 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             long longNumber;

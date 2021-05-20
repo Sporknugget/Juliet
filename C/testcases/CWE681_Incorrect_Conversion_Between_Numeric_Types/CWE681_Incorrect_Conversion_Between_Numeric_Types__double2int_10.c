@@ -21,6 +21,7 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2int_10_bad()
 {
+    if(globalTrue)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -45,6 +46,15 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2int_10_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -79,6 +89,7 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2int_10_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];

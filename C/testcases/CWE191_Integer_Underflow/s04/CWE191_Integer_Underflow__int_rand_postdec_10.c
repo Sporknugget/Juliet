@@ -24,10 +24,12 @@ void CWE191_Integer_Underflow__int_rand_postdec_10_bad()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
+    if(globalTrue)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -48,10 +50,17 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > INT_MIN)
@@ -73,10 +82,12 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
+    if(globalTrue)
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > INT_MIN)
@@ -98,10 +109,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
+    if(globalTrue)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -118,10 +136,12 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
+    if(globalTrue)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */

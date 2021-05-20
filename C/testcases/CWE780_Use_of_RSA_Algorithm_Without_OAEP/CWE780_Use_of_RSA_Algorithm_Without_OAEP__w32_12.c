@@ -27,6 +27,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             BYTE payload[200];
@@ -90,6 +91,70 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_12_bad()
             printBytesLine((BYTE *) payload, payloadLen);
         }
     }
+    else
+    {
+        {
+            BYTE payload[200];
+            DWORD payloadLen = strlen(PAYLOAD);
+            HCRYPTPROV hCryptProv = (HCRYPTPROV)NULL;
+            HCRYPTHASH hHash = (HCRYPTHASH)NULL;
+            HCRYPTKEY hKey = (HCRYPTKEY)NULL;
+            do
+            {
+                /* Copy plaintext into payload buffer */
+                memcpy(payload, PAYLOAD, payloadLen);
+                /* Try to get a context with and without a new key set */
+                if(!CryptAcquireContext(&hCryptProv, NULL, MS_ENHANCED_PROV, PROV_RSA_FULL, 0))
+                {
+                    if(!CryptAcquireContext(&hCryptProv, NULL, MS_ENHANCED_PROV, PROV_RSA_FULL, CRYPT_NEWKEYSET))
+                    {
+                        printLine("Error in acquiring cryptographic context");
+                        exit(1);
+                    }
+                }
+                /* Create Hash handle */
+                if(!CryptCreateHash(hCryptProv, CALG_SHA_256, 0, 0, &hHash))
+                {
+                    printLine("Error in creating hash");
+                    exit(1);
+                }
+                /* Hash the data */
+                if(!CryptHashData(hHash, (BYTE *) HASH_INPUT, strlen(HASH_INPUT)*sizeof(char), 0))
+                {
+                    printLine("Error in hashing HASH_INPUT");
+                    exit(1);
+                }
+                /* Derive an RSA key from the hash */
+                if(!CryptDeriveKey(hCryptProv, CALG_RSA_SIGN, hHash, 0, &hKey))
+                {
+                    printLine("Error in CryptDeriveKey");
+                    exit(1);
+                }
+                /* FIX: Use OAEP padding */
+                /* Use the derived key to encrypt something */
+                if(!CryptEncrypt(hKey, (HCRYPTHASH)NULL, 1, CRYPT_OAEP, (BYTE *)payload, &payloadLen, sizeof(payload)))
+                {
+                    printLine("Error in CryptEncryptData");
+                    exit(1);
+                }
+            }
+            while (0);
+            if (hKey)
+            {
+                CryptDestroyKey(hKey);
+            }
+            if (hHash)
+            {
+                CryptDestroyHash(hHash);
+            }
+            if (hCryptProv)
+            {
+                CryptReleaseContext(hCryptProv, 0);
+            }
+            /* use encrypted block */
+            printBytesLine((BYTE *) payload, payloadLen);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -99,6 +164,71 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            BYTE payload[200];
+            DWORD payloadLen = strlen(PAYLOAD);
+            HCRYPTPROV hCryptProv = (HCRYPTPROV)NULL;
+            HCRYPTHASH hHash = (HCRYPTHASH)NULL;
+            HCRYPTKEY hKey = (HCRYPTKEY)NULL;
+            do
+            {
+                /* Copy plaintext into payload buffer */
+                memcpy(payload, PAYLOAD, payloadLen);
+                /* Try to get a context with and without a new key set */
+                if(!CryptAcquireContext(&hCryptProv, NULL, MS_ENHANCED_PROV, PROV_RSA_FULL, 0))
+                {
+                    if(!CryptAcquireContext(&hCryptProv, NULL, MS_ENHANCED_PROV, PROV_RSA_FULL, CRYPT_NEWKEYSET))
+                    {
+                        printLine("Error in acquiring cryptographic context");
+                        exit(1);
+                    }
+                }
+                /* Create Hash handle */
+                if(!CryptCreateHash(hCryptProv, CALG_SHA_256, 0, 0, &hHash))
+                {
+                    printLine("Error in creating hash");
+                    exit(1);
+                }
+                /* Hash the data */
+                if(!CryptHashData(hHash, (BYTE *) HASH_INPUT, strlen(HASH_INPUT)*sizeof(char), 0))
+                {
+                    printLine("Error in hashing HASH_INPUT");
+                    exit(1);
+                }
+                /* Derive an RSA key from the hash */
+                if(!CryptDeriveKey(hCryptProv, CALG_RSA_SIGN, hHash, 0, &hKey))
+                {
+                    printLine("Error in CryptDeriveKey");
+                    exit(1);
+                }
+                /* FIX: Use OAEP padding */
+                /* Use the derived key to encrypt something */
+                if(!CryptEncrypt(hKey, (HCRYPTHASH)NULL, 1, CRYPT_OAEP, (BYTE *)payload, &payloadLen, sizeof(payload)))
+                {
+                    printLine("Error in CryptEncryptData");
+                    exit(1);
+                }
+            }
+            while (0);
+            if (hKey)
+            {
+                CryptDestroyKey(hKey);
+            }
+            if (hHash)
+            {
+                CryptDestroyHash(hHash);
+            }
+            if (hCryptProv)
+            {
+                CryptReleaseContext(hCryptProv, 0);
+            }
+            /* use encrypted block */
+            printBytesLine((BYTE *) payload, payloadLen);
+        }
+    }
+    else
     {
         {
             BYTE payload[200];

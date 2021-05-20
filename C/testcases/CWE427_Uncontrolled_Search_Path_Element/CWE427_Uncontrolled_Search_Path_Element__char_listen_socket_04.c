@@ -60,6 +60,7 @@ void CWE427_Uncontrolled_Search_Path_Element__char_listen_socket_04_bad()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -155,6 +156,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);
@@ -169,6 +176,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);

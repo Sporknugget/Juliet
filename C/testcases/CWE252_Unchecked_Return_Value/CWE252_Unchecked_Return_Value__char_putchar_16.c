@@ -23,9 +23,11 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_putchar_16_bad()
 {
+    while(1)
     {
         /* FLAW: Do not check the return value */
         putchar((int)'A');
+        break;
     }
 }
 
@@ -36,12 +38,14 @@ void CWE252_Unchecked_Return_Value__char_putchar_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: check the return value */
         if (putchar((int)'A') == EOF)
         {
             printLine("putchar failed!");
         }
+        break;
     }
 }
 

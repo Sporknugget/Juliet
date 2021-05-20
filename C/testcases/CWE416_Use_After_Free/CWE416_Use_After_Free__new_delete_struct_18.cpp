@@ -28,11 +28,15 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     data = new twoIntsStruct;
     data->intOne = 1;
     data->intTwo = 2;
     /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
     delete data;
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use of data that may have been deleted */
     printStructLine(data);
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -48,11 +52,15 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     data = new twoIntsStruct;
     data->intOne = 1;
     data->intTwo = 2;
     /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
     delete data;
+    goto sink;
+sink:
     /* FIX: Don't use data that may have been deleted already */
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
     /* do nothing */
@@ -65,10 +73,14 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     data = new twoIntsStruct;
     data->intOne = 1;
     data->intTwo = 2;
     /* FIX: Do not delete data in the source */
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use of data that may have been deleted */
     printStructLine(data);
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */

@@ -35,6 +35,7 @@ static int staticFive = 5;
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_accessed_07_bad()
 {
+    if(staticFive==5)
     {
         {
             FILETIME ftAccess;
@@ -85,6 +86,15 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_accessed_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
@@ -105,6 +115,7 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_accessed_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),

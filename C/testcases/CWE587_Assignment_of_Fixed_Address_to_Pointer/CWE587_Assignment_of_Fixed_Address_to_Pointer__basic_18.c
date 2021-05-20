@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         /* FLAW: Assigning fixed address to pointer */
         char *charPointer = (char*)0x400000;
@@ -33,6 +35,8 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         /* FIX: Assign the pointer to a stack variable */
         char charStack = 'a';

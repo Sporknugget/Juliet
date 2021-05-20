@@ -27,12 +27,21 @@ void bad()
 {
     int * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         char buffer[sizeof(int)];
         int * dataBuffer = new(buffer) int;
         *dataBuffer = 5;
         data = dataBuffer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     printIntLine(*data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -48,11 +57,20 @@ static void goodG2B1()
 {
     int * data;
     data = NULL; /* Initialize data */
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int * dataBuffer = new int;
         *dataBuffer = 5;
         data = dataBuffer;
+    }
+    break;
     }
     printIntLine(*data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -64,11 +82,20 @@ static void goodG2B2()
 {
     int * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int * dataBuffer = new int;
         *dataBuffer = 5;
         data = dataBuffer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     printIntLine(*data);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

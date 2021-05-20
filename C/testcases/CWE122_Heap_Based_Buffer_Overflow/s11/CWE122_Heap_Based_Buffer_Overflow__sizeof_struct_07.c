@@ -29,6 +29,7 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_07_bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    if(staticFive==5)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
         /* FLAW: Using sizeof the pointer and not the data type in malloc() */
@@ -52,6 +53,12 @@ static void goodG2B1()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Using sizeof the data type in malloc() */
         data = (twoIntsStruct *)malloc(sizeof(*data));
@@ -70,6 +77,7 @@ static void goodG2B2()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    if(staticFive==5)
     {
         /* FIX: Using sizeof the data type in malloc() */
         data = (twoIntsStruct *)malloc(sizeof(*data));

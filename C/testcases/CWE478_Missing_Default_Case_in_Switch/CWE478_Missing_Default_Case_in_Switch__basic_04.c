@@ -25,6 +25,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE478_Missing_Default_Case_in_Switch__basic_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             const char *charString = "shouldn\'t see this value";
@@ -49,6 +50,15 @@ void CWE478_Missing_Default_Case_in_Switch__basic_04_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             const char *charString = "shouldn\'t see this value";
@@ -74,6 +84,7 @@ void CWE478_Missing_Default_Case_in_Switch__basic_04_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             const char *charString = "shouldn\'t see this value";

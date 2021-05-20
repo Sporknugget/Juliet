@@ -28,17 +28,21 @@ void bad()
     char * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         {
             char myString[] = "myString";
             /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
             data = strdup(myString);
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+        break;
     }
 }
 
@@ -52,16 +56,20 @@ static void goodB2G()
     char * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         {
             char myString[] = "myString";
             /* POTENTIAL FLAW: Allocate memory from the heap using a function that requires free() for deallocation */
             data = strdup(myString);
         }
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
+        break;
     }
 }
 
@@ -71,14 +79,18 @@ static void goodG2B()
     char * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* FIX: Allocate memory from the heap using new */
         data = new char;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+        break;
     }
 }
 

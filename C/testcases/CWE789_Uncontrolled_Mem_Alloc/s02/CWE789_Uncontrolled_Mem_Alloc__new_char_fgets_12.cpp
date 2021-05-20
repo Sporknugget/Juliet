@@ -34,6 +34,7 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -49,6 +50,12 @@ void bad()
             }
         }
     }
+    else
+    {
+        /* FIX: Use a relatively small number for memory allocation */
+        data = 20;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * myString;
@@ -69,6 +76,27 @@ void bad()
             }
         }
     }
+    else
+    {
+        {
+            char * myString;
+            /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
+             * for the strcpy() function to not cause a buffer overflow */
+            /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
+            if (data > strlen(HELLO_STRING) && data < 100)
+            {
+                myString = new char[data];
+                /* Copy a small string into myString */
+                strcpy(myString, HELLO_STRING);
+                printLine(myString);
+                delete [] myString;
+            }
+            else
+            {
+                printLine("Input is less than the length of the source string or too large");
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -83,6 +111,7 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -98,6 +127,44 @@ static void goodB2G()
             }
         }
     }
+    else
+    {
+        {
+            char inputBuffer[CHAR_ARRAY_SIZE] = "";
+            /* POTENTIAL FLAW: Read data from the console using fgets() */
+            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
+            {
+                /* Convert to unsigned int */
+                data = strtoul(inputBuffer, NULL, 0);
+            }
+            else
+            {
+                printLine("fgets() failed.");
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * myString;
+            /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
+             * for the strcpy() function to not cause a buffer overflow */
+            /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
+            if (data > strlen(HELLO_STRING) && data < 100)
+            {
+                myString = new char[data];
+                /* Copy a small string into myString */
+                strcpy(myString, HELLO_STRING);
+                printLine(myString);
+                delete [] myString;
+            }
+            else
+            {
+                printLine("Input is less than the length of the source string or too large");
+            }
+        }
+    }
+    else
     {
         {
             char * myString;
@@ -128,10 +195,38 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    else
+    {
+        /* FIX: Use a relatively small number for memory allocation */
+        data = 20;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * myString;
+            /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
+             * for the strcpy() function to not cause a buffer overflow */
+            /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
+            if (data > strlen(HELLO_STRING))
+            {
+                myString = new char[data];
+                /* Copy a small string into myString */
+                strcpy(myString, HELLO_STRING);
+                printLine(myString);
+                delete [] myString;
+            }
+            else
+            {
+                printLine("Input is less than the length of the source string");
+            }
+        }
+    }
+    else
     {
         {
             char * myString;

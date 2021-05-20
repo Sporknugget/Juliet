@@ -24,13 +24,17 @@ Template File: sources-sinks-16.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__double_pointer_16_bad()
 {
     double * data;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printDoubleLine(*data);
+        break;
     }
 }
 
@@ -42,10 +46,13 @@ void CWE457_Use_of_Uninitialized_Variable__double_pointer_16_bad()
 static void goodB2G()
 {
     double * data;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
@@ -53,6 +60,7 @@ static void goodB2G()
         if (data == NULL) {exit(-1);}
         *data = 5.0;
         printDoubleLine(*data);
+        break;
     }
 }
 
@@ -60,16 +68,20 @@ static void goodB2G()
 static void goodG2B()
 {
     double * data;
+    while(1)
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
         data = (double *)malloc(sizeof(double));
         if (data == NULL) {exit(-1);}
         *data = 5.0;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printDoubleLine(*data);
+        break;
     }
 }
 

@@ -27,6 +27,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPipeClient_18_bad()
 {
+    goto sink;
+sink:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -62,6 +64,8 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPi
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;

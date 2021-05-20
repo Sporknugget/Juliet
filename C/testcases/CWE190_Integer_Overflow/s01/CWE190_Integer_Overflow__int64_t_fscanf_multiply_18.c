@@ -24,8 +24,12 @@ void CWE190_Integer_Overflow__int64_t_fscanf_multiply_18_bad()
 {
     int64_t data;
     data = 0LL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a value input from the console */
     fscanf (stdin, "%" SCNd64, &data);
+    goto sink;
+sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* POTENTIAL FLAW: if (data*2) > LLONG_MAX, this will overflow */
@@ -43,8 +47,12 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a value input from the console */
     fscanf (stdin, "%" SCNd64, &data);
+    goto sink;
+sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* FIX: Add a check to prevent an overflow from occurring */
@@ -65,8 +73,12 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
     data = 2;
+    goto sink;
+sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* POTENTIAL FLAW: if (data*2) > LLONG_MAX, this will overflow */

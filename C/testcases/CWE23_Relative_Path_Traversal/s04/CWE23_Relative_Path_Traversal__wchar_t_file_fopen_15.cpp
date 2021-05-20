@@ -45,6 +45,9 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Read input from a file */
         size_t dataLen = wcslen(data);
@@ -65,6 +68,12 @@ void bad()
                 fclose(pFile);
             }
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     {
         FILE *pFile = NULL;
@@ -87,8 +96,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");
+        break;
+    }
     {
         FILE *pFile = NULL;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -106,8 +124,17 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         FILE *pFile = NULL;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */

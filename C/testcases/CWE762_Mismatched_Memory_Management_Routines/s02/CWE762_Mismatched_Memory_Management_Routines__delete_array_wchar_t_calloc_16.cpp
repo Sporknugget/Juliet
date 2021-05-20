@@ -26,15 +26,19 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (wchar_t *)calloc(100, sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
+        break;
     }
 }
 
@@ -48,14 +52,18 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (wchar_t *)calloc(100, sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* FIX: Free memory using free() */
         free(data);
+        break;
     }
 }
 
@@ -65,14 +73,18 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* FIX: Allocate memory using new [] */
         data = new wchar_t[100];
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
+        break;
     }
 }
 

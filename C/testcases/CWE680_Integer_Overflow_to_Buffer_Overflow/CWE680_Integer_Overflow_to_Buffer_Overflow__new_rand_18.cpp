@@ -26,6 +26,8 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* POTENTIAL FLAW: Set data to a random value */
     data = RAND32();
     {
@@ -53,6 +55,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Set data to a relatively small number greater than zero */
     data = 20;
     {

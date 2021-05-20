@@ -19,6 +19,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__char_malloc_use_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * pointer = (char *)malloc(sizeof(char));
@@ -26,6 +27,21 @@ void CWE758_Undefined_Behavior__char_malloc_use_12_bad()
             char data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             free(pointer);
             printHexCharLine(data);
+        }
+    }
+    else
+    {
+        {
+            char data;
+            char * pointer = (char *)malloc(sizeof(char));
+            if (pointer == NULL) {exit(-1);}
+            data = 5;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                char data = *pointer;
+                printHexCharLine(data);
+            }
+            free(pointer);
         }
     }
 }
@@ -37,6 +53,22 @@ void CWE758_Undefined_Behavior__char_malloc_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char data;
+            char * pointer = (char *)malloc(sizeof(char));
+            if (pointer == NULL) {exit(-1);}
+            data = 5;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                char data = *pointer;
+                printHexCharLine(data);
+            }
+            free(pointer);
+        }
+    }
+    else
     {
         {
             char data;

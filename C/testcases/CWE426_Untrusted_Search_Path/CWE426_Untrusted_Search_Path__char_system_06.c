@@ -49,6 +49,7 @@ void CWE426_Untrusted_Search_Path__char_system_06_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: the full path is not specified */
         strcpy(data, BAD_OS_COMMAND);
@@ -72,6 +73,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);
@@ -91,6 +98,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);

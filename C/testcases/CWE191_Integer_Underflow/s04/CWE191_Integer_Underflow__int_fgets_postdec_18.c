@@ -26,6 +26,8 @@ void CWE191_Integer_Underflow__int_fgets_postdec_18_bad()
     int data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -39,6 +41,8 @@ void CWE191_Integer_Underflow__int_fgets_postdec_18_bad()
             printLine("fgets() failed.");
         }
     }
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         data--;
@@ -57,6 +61,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -70,6 +76,8 @@ static void goodB2G()
             printLine("fgets() failed.");
         }
     }
+    goto sink;
+sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > INT_MIN)
     {
@@ -89,8 +97,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
     data = -2;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Decrementing data could cause an underflow */
         data--;

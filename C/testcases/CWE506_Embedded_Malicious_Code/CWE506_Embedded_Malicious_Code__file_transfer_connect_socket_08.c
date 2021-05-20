@@ -48,6 +48,7 @@ static int staticReturnsTrue()
 
 void CWE506_Embedded_Malicious_Code__file_transfer_connect_socket_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32

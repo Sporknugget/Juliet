@@ -22,6 +22,7 @@ namespace CWE758_Undefined_Behavior__double_pointer_new_use_10
 
 void bad()
 {
+    if(globalTrue)
     {
         {
             double * * pointer = new double *;
@@ -36,6 +37,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             double * data;
@@ -56,6 +66,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         {
             double * data;

@@ -23,6 +23,7 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_13_bad()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             STARTUPINFOW si;
@@ -62,6 +63,15 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_13_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
+static void good1()
+{
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             STARTUPINFOW si;
@@ -98,6 +108,7 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_13_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             STARTUPINFOW si;

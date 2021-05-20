@@ -46,6 +46,8 @@ void CWE126_Buffer_Overread__CWE129_connect_socket_18_bad()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -102,6 +104,8 @@ void CWE126_Buffer_Overread__CWE129_connect_socket_18_bad()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         int buffer[10] = { 0 };
         /* POTENTIAL FLAW: Attempt to access an index of the array that is above the upper bound
@@ -127,6 +131,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -183,6 +189,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         int buffer[10] = { 0 };
         /* FIX: Properly validate the array index and prevent a buffer overread */
@@ -203,9 +211,13 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
      * access an index of the array in the sink that is out-of-bounds */
     data = 7;
+    goto sink;
+sink:
     {
         int buffer[10] = { 0 };
         /* POTENTIAL FLAW: Attempt to access an index of the array that is above the upper bound

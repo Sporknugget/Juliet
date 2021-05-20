@@ -42,6 +42,7 @@ void bad()
     char * data;
     /* Initialize data*/
     data = NULL;
+    if(staticReturnsTrue())
     {
         {
             char myString[] = "myString";
@@ -49,6 +50,7 @@ void bad()
             data = strdup(myString);
         }
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -66,6 +68,7 @@ static void goodB2G1()
     char * data;
     /* Initialize data*/
     data = NULL;
+    if(staticReturnsTrue())
     {
         {
             char myString[] = "myString";
@@ -73,6 +76,12 @@ static void goodB2G1()
             data = strdup(myString);
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -85,6 +94,7 @@ static void goodB2G2()
     char * data;
     /* Initialize data*/
     data = NULL;
+    if(staticReturnsTrue())
     {
         {
             char myString[] = "myString";
@@ -92,6 +102,7 @@ static void goodB2G2()
             data = strdup(myString);
         }
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -104,10 +115,17 @@ static void goodG2B1()
     char * data;
     /* Initialize data*/
     data = NULL;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new char[100];
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -121,10 +139,12 @@ static void goodG2B2()
     char * data;
     /* Initialize data*/
     data = NULL;
+    if(staticReturnsTrue())
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new char[100];
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */

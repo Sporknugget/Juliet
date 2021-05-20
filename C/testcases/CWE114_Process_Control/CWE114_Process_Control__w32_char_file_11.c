@@ -33,6 +33,7 @@ void CWE114_Process_Control__w32_char_file_11_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsTrue())
     {
         {
             /* Read input from a file */
@@ -83,6 +84,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
@@ -110,6 +117,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsTrue())
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");

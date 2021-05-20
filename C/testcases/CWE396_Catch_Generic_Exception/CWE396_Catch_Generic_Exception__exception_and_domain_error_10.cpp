@@ -26,6 +26,7 @@ namespace CWE396_Catch_Generic_Exception__exception_and_domain_error_10
 
 void bad()
 {
+    if(globalTrue)
     {
         try
         {
@@ -58,6 +59,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         try
         {
@@ -87,6 +97,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         try
         {

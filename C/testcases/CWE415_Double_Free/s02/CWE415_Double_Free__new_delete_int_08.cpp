@@ -42,11 +42,13 @@ void bad()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(staticReturnsTrue())
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -63,11 +65,18 @@ static void goodB2G1()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(staticReturnsTrue())
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -81,11 +90,13 @@ static void goodB2G2()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(staticReturnsTrue())
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(staticReturnsTrue())
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -99,10 +110,17 @@ static void goodG2B1()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = new int;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -115,10 +133,12 @@ static void goodG2B2()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(staticReturnsTrue())
     {
         data = new int;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

@@ -43,6 +43,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE367_TOC_TOU__access_18_bad()
 {
+    goto sink;
+sink:
     {
         char filename[100] = "";
         int fileDesc = -1;
@@ -84,6 +86,8 @@ void CWE367_TOC_TOU__access_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char filename[100] = "";
         int fileDesc = -1;

@@ -45,11 +45,13 @@ void CWE675_Duplicate_Operations_on_Resource__open_08_bad()
 {
     int data;
     data = -1; /* Initialize data */
+    if(staticReturnsTrue())
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);
@@ -65,11 +67,18 @@ static void goodB2G1()
 {
     int data;
     data = -1; /* Initialize data */
+    if(staticReturnsTrue())
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -82,11 +91,13 @@ static void goodB2G2()
 {
     int data;
     data = -1; /* Initialize data */
+    if(staticReturnsTrue())
     {
         data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
         /* POTENTIAL FLAW: Close the file in the source */
         CLOSE(data);
     }
+    if(staticReturnsTrue())
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -99,10 +110,17 @@ static void goodG2B1()
 {
     int data;
     data = -1; /* Initialize data */
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Open, but do not close the file in the source */
         data = OPEN("GoodSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);
@@ -114,10 +132,12 @@ static void goodG2B2()
 {
     int data;
     data = -1; /* Initialize data */
+    if(staticReturnsTrue())
     {
         /* FIX: Open, but do not close the file in the source */
         data = OPEN("GoodSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CLOSE(data);

@@ -23,6 +23,7 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_03_bad()
 {
+    if(5==5)
     {
         /* FLAW: fwprintf() might fail, in which case the return value will be negative, but
          * we are checking to see if the return value is 0 */
@@ -37,6 +38,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_03_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(5!=5) instead of if(5==5) */
+static void good1()
+{
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (fwprintf(stdout, L"%s\n", L"string") < 0)
@@ -49,6 +59,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fprintf_03_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(5==5)
     {
         /* FIX: check for the correct return value */
         if (fwprintf(stdout, L"%s\n", L"string") < 0)

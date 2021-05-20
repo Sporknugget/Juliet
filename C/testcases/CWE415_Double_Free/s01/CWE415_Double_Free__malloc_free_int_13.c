@@ -26,12 +26,14 @@ void CWE415_Double_Free__malloc_free_int_13_bad()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -48,12 +50,19 @@ static void goodB2G1()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -67,12 +76,14 @@ static void goodB2G2()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* do nothing */
         /* FIX: Don't attempt to free the memory */
@@ -86,11 +97,18 @@ static void goodG2B1()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);
@@ -103,11 +121,13 @@ static void goodG2B2()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Possibly freeing memory twice */
         free(data);

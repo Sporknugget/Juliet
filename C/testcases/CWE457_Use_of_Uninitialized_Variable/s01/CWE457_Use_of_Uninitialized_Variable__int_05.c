@@ -30,10 +30,12 @@ static int staticFalse = 0; /* false */
 void CWE457_Use_of_Uninitialized_Variable__int_05_bad()
 {
     int data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data);
@@ -48,10 +50,17 @@ void CWE457_Use_of_Uninitialized_Variable__int_05_bad()
 static void goodB2G1()
 {
     int data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         data = 5;
@@ -63,10 +72,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(staticTrue)
     {
         /* FIX: Ensure data is initialized before use */
         data = 5;
@@ -78,10 +89,17 @@ static void goodB2G2()
 static void goodG2B1()
 {
     int data;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         data = 5;
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data);
@@ -92,10 +110,12 @@ static void goodG2B1()
 static void goodG2B2()
 {
     int data;
+    if(staticTrue)
     {
         /* FIX: Initialize data */
         data = 5;
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data);

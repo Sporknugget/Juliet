@@ -36,6 +36,7 @@ static int staticReturnsFalse()
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
             char password[100] = "";
@@ -80,6 +81,15 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_08_
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char password[100] = "";
@@ -125,6 +135,7 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_declare_08_
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         {
             char password[100] = "";

@@ -30,6 +30,7 @@ void bad()
 {
     int * data;
     data = NULL;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int;
@@ -37,6 +38,7 @@ void bad()
         *data = 5;
         printIntLine(*data);
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -52,6 +54,7 @@ static void goodB2G1()
 {
     int * data;
     data = NULL;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int;
@@ -59,6 +62,12 @@ static void goodB2G1()
         *data = 5;
         printIntLine(*data);
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -70,6 +79,7 @@ static void goodB2G2()
 {
     int * data;
     data = NULL;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int;
@@ -77,6 +87,7 @@ static void goodB2G2()
         *data = 5;
         printIntLine(*data);
     }
+    if(globalTrue)
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -88,6 +99,12 @@ static void goodG2B1()
 {
     int * data;
     data = NULL;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack */
         int dataGoodBuffer;
@@ -96,6 +113,7 @@ static void goodG2B1()
         *data = 5;
         printIntLine(*data);
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -107,6 +125,7 @@ static void goodG2B2()
 {
     int * data;
     data = NULL;
+    if(globalTrue)
     {
         /* FIX: Use memory allocated on the stack */
         int dataGoodBuffer;
@@ -115,6 +134,7 @@ static void goodG2B2()
         *data = 5;
         printIntLine(*data);
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

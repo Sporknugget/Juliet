@@ -30,10 +30,12 @@ static int staticFalse = 0; /* false */
 void CWE476_NULL_Pointer_Dereference__int_05_bad()
 {
     int * data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
@@ -48,10 +50,17 @@ void CWE476_NULL_Pointer_Dereference__int_05_bad()
 static void goodB2G1()
 {
     int * data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -69,10 +78,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int * data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(staticTrue)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -91,12 +102,19 @@ static void goodG2B1()
 {
     int * data;
     int tmpData = 5;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
@@ -108,12 +126,14 @@ static void goodG2B2()
 {
     int * data;
     int tmpData = 5;
+    if(staticTrue)
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);

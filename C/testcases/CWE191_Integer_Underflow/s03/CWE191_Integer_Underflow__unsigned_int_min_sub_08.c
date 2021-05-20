@@ -36,10 +36,12 @@ void CWE191_Integer_Underflow__unsigned_int_min_sub_08_bad()
 {
     unsigned int data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = 0;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -58,10 +60,17 @@ static void goodB2G1()
 {
     unsigned int data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = 0;
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > 0)
@@ -81,10 +90,12 @@ static void goodB2G2()
 {
     unsigned int data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = 0;
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > 0)
@@ -104,10 +115,17 @@ static void goodG2B1()
 {
     unsigned int data;
     data = 0;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -122,10 +140,12 @@ static void goodG2B2()
 {
     unsigned int data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

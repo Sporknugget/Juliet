@@ -52,6 +52,7 @@ void CWE400_Resource_Exhaustion__connect_socket_sleep_12_bad()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -110,10 +111,29 @@ void CWE400_Resource_Exhaustion__connect_socket_sleep_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
         printLine("Sleep time possibly too long");
+    }
+    else
+    {
+        /* FIX: Validate count before using it as a parameter in the sleep function */
+        if (count > 0 && count <= 2000)
+        {
+            SLEEP(count);
+            printLine("Sleep time OK");
+        }
+        else
+        {
+            printLine("Sleep time too long");
+        }
     }
 }
 
@@ -129,6 +149,7 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -187,6 +208,79 @@ static void goodB2G()
 #endif
         }
     }
+    else
+    {
+        {
+#ifdef _WIN32
+            WSADATA wsaData;
+            int wsaDataInit = 0;
+#endif
+            int recvResult;
+            struct sockaddr_in service;
+            SOCKET connectSocket = INVALID_SOCKET;
+            char inputBuffer[CHAR_ARRAY_SIZE];
+            do
+            {
+#ifdef _WIN32
+                if (WSAStartup(MAKEWORD(2,2), &wsaData) != NO_ERROR)
+                {
+                    break;
+                }
+                wsaDataInit = 1;
+#endif
+                /* POTENTIAL FLAW: Read count using a connect socket */
+                connectSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+                if (connectSocket == INVALID_SOCKET)
+                {
+                    break;
+                }
+                memset(&service, 0, sizeof(service));
+                service.sin_family = AF_INET;
+                service.sin_addr.s_addr = inet_addr(IP_ADDRESS);
+                service.sin_port = htons(TCP_PORT);
+                if (connect(connectSocket, (struct sockaddr*)&service, sizeof(service)) == SOCKET_ERROR)
+                {
+                    break;
+                }
+                /* Abort on error or the connection was closed, make sure to recv one
+                 * less char than is in the recv_buf in order to append a terminator */
+                recvResult = recv(connectSocket, inputBuffer, CHAR_ARRAY_SIZE - 1, 0);
+                if (recvResult == SOCKET_ERROR || recvResult == 0)
+                {
+                    break;
+                }
+                /* NUL-terminate the string */
+                inputBuffer[recvResult] = '\0';
+                /* Convert to int */
+                count = atoi(inputBuffer);
+            }
+            while (0);
+            if (connectSocket != INVALID_SOCKET)
+            {
+                CLOSE_SOCKET(connectSocket);
+            }
+#ifdef _WIN32
+            if (wsaDataInit)
+            {
+                WSACleanup();
+            }
+#endif
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Validate count before using it as a parameter in the sleep function */
+        if (count > 0 && count <= 2000)
+        {
+            SLEEP(count);
+            printLine("Sleep time OK");
+        }
+        else
+        {
+            printLine("Sleep time too long");
+        }
+    }
+    else
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -209,10 +303,23 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
+        SLEEP(count);
+        printLine("Sleep time possibly too long");
+    }
+    else
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);

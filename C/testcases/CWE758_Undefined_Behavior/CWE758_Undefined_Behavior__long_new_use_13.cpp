@@ -22,6 +22,7 @@ namespace CWE758_Undefined_Behavior__long_new_use_13
 
 void bad()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             long * pointer = new long;
@@ -36,6 +37,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
+static void good1()
+{
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             long data;
@@ -54,6 +64,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             long data;

@@ -19,6 +19,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__int_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -26,6 +27,17 @@ void CWE468_Incorrect_Pointer_Scaling__int_12_bad()
             /* get intArray[2] */
             /* FLAW: included *sizeof(int) which is unnecessary since pointer arithmetic is automatically scaled */
             int toPrint = *(intPointer+(2*sizeof(int)));
+            printIntLine(toPrint);
+        }
+    }
+    else
+    {
+        {
+            int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int *intPointer = intArray;
+            /* get intArray[2] */
+            /* FIX: no sizeof() needed since pointer math is automatically scaled */
+            int toPrint = *(intPointer+2);
             printIntLine(toPrint);
         }
     }
@@ -38,6 +50,18 @@ void CWE468_Incorrect_Pointer_Scaling__int_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int *intPointer = intArray;
+            /* get intArray[2] */
+            /* FIX: no sizeof() needed since pointer math is automatically scaled */
+            int toPrint = *(intPointer+2);
+            printIntLine(toPrint);
+        }
+    }
+    else
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

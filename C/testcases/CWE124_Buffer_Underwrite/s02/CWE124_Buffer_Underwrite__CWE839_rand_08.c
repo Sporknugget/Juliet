@@ -37,10 +37,12 @@ void CWE124_Buffer_Underwrite__CWE839_rand_08_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
+    if(staticReturnsTrue())
     {
         {
             int i;
@@ -74,10 +76,17 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int i;
@@ -106,10 +115,12 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
     }
+    if(staticReturnsTrue())
     {
         {
             int i;
@@ -138,11 +149,18 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(staticReturnsTrue())
     {
         {
             int i;
@@ -172,11 +190,13 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(staticReturnsTrue())
     {
         {
             int i;

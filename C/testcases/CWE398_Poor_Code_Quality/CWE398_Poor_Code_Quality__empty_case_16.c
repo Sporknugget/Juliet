@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_case_16_bad()
 {
+    while(1)
     {
         /* FLAW: An empty case statement has no effect */
         {
@@ -30,6 +31,7 @@ void CWE398_Poor_Code_Quality__empty_case_16_bad()
             }
         }
         printLine("Hello from bad()");
+        break;
     }
 }
 
@@ -40,6 +42,7 @@ void CWE398_Poor_Code_Quality__empty_case_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: Do not include an empty case statement */
         {
@@ -52,6 +55,7 @@ static void good1()
             }
         }
         printLine("Hello from good()");
+        break;
     }
 }
 

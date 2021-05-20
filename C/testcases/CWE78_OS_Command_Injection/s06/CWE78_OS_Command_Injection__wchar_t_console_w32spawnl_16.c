@@ -42,6 +42,7 @@ void CWE78_OS_Command_Injection__wchar_t_console_w32spawnl_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from the console */
@@ -68,6 +69,7 @@ void CWE78_OS_Command_Injection__wchar_t_console_w32spawnl_16_bad()
                 }
             }
         }
+        break;
     }
     /* wspawnl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -84,9 +86,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
+        break;
     }
     /* wspawnl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */

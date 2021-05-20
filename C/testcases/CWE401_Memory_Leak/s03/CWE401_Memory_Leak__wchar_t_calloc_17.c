@@ -23,8 +23,10 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE401_Memory_Leak__wchar_t_calloc_17_bad()
 {
+    int i,j;
     wchar_t * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)calloc(100, sizeof(wchar_t));
@@ -33,6 +35,7 @@ void CWE401_Memory_Leak__wchar_t_calloc_17_bad()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -46,8 +49,10 @@ void CWE401_Memory_Leak__wchar_t_calloc_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     wchar_t * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)calloc(100, sizeof(wchar_t));
@@ -56,6 +61,7 @@ static void goodB2G()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -65,8 +71,10 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     wchar_t * data;
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -74,6 +82,7 @@ static void goodG2B()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

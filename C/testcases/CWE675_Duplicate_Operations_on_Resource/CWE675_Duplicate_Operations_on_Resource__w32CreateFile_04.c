@@ -31,6 +31,7 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_04_bad()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(STATIC_CONST_TRUE)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -42,6 +43,7 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_04_bad()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
@@ -57,6 +59,7 @@ static void goodB2G1()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(STATIC_CONST_TRUE)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -68,6 +71,12 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -80,6 +89,7 @@ static void goodB2G2()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(STATIC_CONST_TRUE)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -91,6 +101,7 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    if(STATIC_CONST_TRUE)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -103,6 +114,12 @@ static void goodG2B1()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Open, but do not close the file in the source */
         data = CreateFile("GoodSource_w32CreateFile.txt",
@@ -113,6 +130,7 @@ static void goodG2B1()
                           FILE_ATTRIBUTE_NORMAL,
                           NULL);
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
@@ -124,6 +142,7 @@ static void goodG2B2()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Open, but do not close the file in the source */
         data = CreateFile("GoodSource_w32CreateFile.txt",
@@ -134,6 +153,7 @@ static void goodG2B2()
                           FILE_ATTRIBUTE_NORMAL,
                           NULL);
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);

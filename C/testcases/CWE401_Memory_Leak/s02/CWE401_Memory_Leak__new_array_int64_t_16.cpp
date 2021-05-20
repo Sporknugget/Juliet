@@ -29,16 +29,20 @@ void bad()
 {
     int64_t * data;
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t[100];
         /* Initialize and make use of data */
         data[0] = 5LL;
         printLongLongLine(data[0]);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -51,16 +55,20 @@ static void goodB2G()
 {
     int64_t * data;
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int64_t[100];
         /* Initialize and make use of data */
         data[0] = 5LL;
         printLongLongLine(data[0]);
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate memory */
         delete[] data;
+        break;
     }
 }
 
@@ -69,6 +77,7 @@ static void goodG2B()
 {
     int64_t * data;
     data = NULL;
+    while(1)
     {
         /* FIX: Use memory allocated on the stack */
         int64_t dataGoodBuffer[100];
@@ -76,10 +85,13 @@ static void goodG2B()
         /* Initialize and make use of data */
         data[0] = 5LL;
         printLongLongLine(data[0]);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 

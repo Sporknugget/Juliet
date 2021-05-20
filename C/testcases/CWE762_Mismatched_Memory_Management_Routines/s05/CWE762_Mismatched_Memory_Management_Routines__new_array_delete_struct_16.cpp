@@ -26,14 +26,18 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new twoIntsStruct[100];
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
         delete data;
+        break;
     }
 }
 
@@ -47,13 +51,17 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new twoIntsStruct[100];
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate the memory using delete [] */
         delete [] data;
+        break;
     }
 }
 
@@ -63,14 +71,18 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* FIX: Allocate memory from the heap using new */
         data = new twoIntsStruct;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
         delete data;
+        break;
     }
 }
 

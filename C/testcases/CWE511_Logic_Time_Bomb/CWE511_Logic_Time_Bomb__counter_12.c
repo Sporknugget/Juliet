@@ -28,6 +28,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE511_Logic_Time_Bomb__counter_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             int count = 0;
@@ -43,6 +44,22 @@ void CWE511_Logic_Time_Bomb__counter_12_bad()
             while(1 == 1);   /* infinite loop */
         }
     }
+    else
+    {
+        {
+            int count = 0;
+            do
+            {
+                /* FIX: If a counter reaches a certain value, print to the console */
+                if (count == COUNT_CHECK)
+                {
+                    printLine("Happy New Year!");
+                }
+                count++;
+            }
+            while(1 == 1);   /* infinite loop */
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -52,6 +69,23 @@ void CWE511_Logic_Time_Bomb__counter_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int count = 0;
+            do
+            {
+                /* FIX: If a counter reaches a certain value, print to the console */
+                if (count == COUNT_CHECK)
+                {
+                    printLine("Happy New Year!");
+                }
+                count++;
+            }
+            while(1 == 1);   /* infinite loop */
+        }
+    }
+    else
     {
         {
             int count = 0;

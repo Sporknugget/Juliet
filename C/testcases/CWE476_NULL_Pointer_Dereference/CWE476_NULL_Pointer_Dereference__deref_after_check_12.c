@@ -19,6 +19,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__deref_after_check_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: Check for NULL, but still dereference the pointer */
@@ -26,6 +27,17 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_12_bad()
             if (intPointer == NULL)
             {
                 printIntLine(*intPointer);
+            }
+        }
+    }
+    else
+    {
+        {
+            /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
+            int *intPointer = NULL;
+            if (intPointer == NULL)
+            {
+                printLine("pointer is NULL");
             }
         }
     }
@@ -38,6 +50,18 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
+            int *intPointer = NULL;
+            if (intPointer == NULL)
+            {
+                printLine("pointer is NULL");
+            }
+        }
+    }
+    else
     {
         {
             /* FIX: Check for NULL and do not dereference the pointer if it is NULL */

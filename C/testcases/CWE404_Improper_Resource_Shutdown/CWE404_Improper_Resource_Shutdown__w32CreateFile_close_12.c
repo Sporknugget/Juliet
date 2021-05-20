@@ -33,11 +33,20 @@ void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_12_bad()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(globalReturnsTrueOrFalse())
     {
         if (data != INVALID_HANDLE_VALUE)
         {
             /* FLAW: Attempt to close the file using close() instead of CloseHandle() */
             _close((int)data);
+        }
+    }
+    else
+    {
+        if (data != INVALID_HANDLE_VALUE)
+        {
+            /* FIX: Close the file using CloseHandle() */
+            CloseHandle(data);
         }
     }
 }
@@ -61,6 +70,15 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(globalReturnsTrueOrFalse())
+    {
+        if (data != INVALID_HANDLE_VALUE)
+        {
+            /* FIX: Close the file using CloseHandle() */
+            CloseHandle(data);
+        }
+    }
+    else
     {
         if (data != INVALID_HANDLE_VALUE)
         {

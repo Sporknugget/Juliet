@@ -23,10 +23,19 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE338_Weak_PRNG__w32_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         /* FLAW: Use of rand() as a PRNG */
         int data = rand();
         printIntLine(data);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -37,6 +46,13 @@ void CWE338_Weak_PRNG__w32_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         HCRYPTPROV hCryptProv;
         int data;
@@ -56,11 +72,16 @@ static void good1()
         }
         printIntLine(data);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         HCRYPTPROV hCryptProv;
         int data;
@@ -79,6 +100,12 @@ static void good2()
             CryptReleaseContext(hCryptProv, 0);
         }
         printIntLine(data);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

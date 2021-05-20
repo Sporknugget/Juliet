@@ -24,10 +24,12 @@ Template File: sources-sinks-13.tmpl.c
 void CWE476_NULL_Pointer_Dereference__int_13_bad()
 {
     int * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
@@ -42,10 +44,17 @@ void CWE476_NULL_Pointer_Dereference__int_13_bad()
 static void goodB2G1()
 {
     int * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -63,10 +72,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -85,12 +96,19 @@ static void goodG2B1()
 {
     int * data;
     int tmpData = 5;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
@@ -102,12 +120,14 @@ static void goodG2B2()
 {
     int * data;
     int tmpData = 5;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);

@@ -33,6 +33,7 @@ void CWE194_Unexpected_Sign_Extension__fgets_strncpy_05_bad()
     short data;
     /* Initialize data */
     data = 0;
+    if(staticTrue)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -74,6 +75,12 @@ static void goodG2B1()
     short data;
     /* Initialize data */
     data = 0;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
@@ -100,6 +107,7 @@ static void goodG2B2()
     short data;
     /* Initialize data */
     data = 0;
+    if(staticTrue)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

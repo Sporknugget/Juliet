@@ -39,6 +39,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             charVoid structCharVoid;
@@ -58,6 +59,15 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_04_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             charVoid structCharVoid;
@@ -76,6 +86,7 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_04_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             charVoid structCharVoid;

@@ -21,6 +21,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE667_Improper_Locking__basic_16_bad()
 {
+    while(1)
     {
         {
             static stdThreadLock badLock = NULL;
@@ -34,6 +35,7 @@ void CWE667_Improper_Locking__basic_16_bad()
             stdThreadLockAcquire(badLock);
             /* FLAW: Do not release the lock */
         }
+        break;
     }
 }
 
@@ -44,6 +46,7 @@ void CWE667_Improper_Locking__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             static stdThreadLock goodLock = NULL;
@@ -61,6 +64,7 @@ static void good1()
             printLine("Destroying lock...");
             stdThreadLockDestroy(goodLock);
         }
+        break;
     }
 }
 

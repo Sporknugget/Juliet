@@ -22,6 +22,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_16_bad()
 {
+    while(1)
     {
         {
             char dest[DEST_SIZE];
@@ -29,6 +30,7 @@ void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_16_bad()
             sprintf(dest, "%s %s", SOURCE_STRING);
             printLine(dest);
         }
+        break;
     }
 }
 
@@ -39,6 +41,7 @@ void CWE685_Function_Call_With_Incorrect_Number_of_Arguments__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char dest[DEST_SIZE];
@@ -46,6 +49,7 @@ static void good1()
             sprintf(dest, "%s %s", SOURCE_STRING, SOURCE_STRING);
             printLine(dest);
         }
+        break;
     }
 }
 

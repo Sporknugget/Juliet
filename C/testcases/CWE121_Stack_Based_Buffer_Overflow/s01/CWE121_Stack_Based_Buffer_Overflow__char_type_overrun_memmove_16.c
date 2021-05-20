@@ -33,6 +33,7 @@ typedef struct _charVoid
 
 void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_16_bad()
 {
+    while(1)
     {
         {
             charVoid structCharVoid;
@@ -45,6 +46,7 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_16_bad()
             printLine((char *)structCharVoid.charFirst);
             printLine((char *)structCharVoid.voidSecond);
         }
+        break;
     }
 }
 
@@ -55,6 +57,7 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             charVoid structCharVoid;
@@ -67,6 +70,7 @@ static void good1()
             printLine((char *)structCharVoid.charFirst);
             printLine((char *)structCharVoid.voidSecond);
         }
+        break;
     }
 }
 

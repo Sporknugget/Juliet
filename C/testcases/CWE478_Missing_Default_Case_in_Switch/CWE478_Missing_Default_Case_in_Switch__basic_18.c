@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE478_Missing_Default_Case_in_Switch__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         const char *charString = "shouldn\'t see this value";
         int x;
@@ -44,6 +46,8 @@ void CWE478_Missing_Default_Case_in_Switch__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         const char *charString = "shouldn\'t see this value";
         int x;

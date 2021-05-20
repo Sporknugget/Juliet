@@ -26,12 +26,16 @@ void bad()
     TwoIntsClass * data;
     TwoIntsClass dataUninitArray[10];
     data = dataUninitArray;
+    goto source;
+source:
     /* POTENTIAL FLAW: Partially initialize data */
     for(int i=0; i<(10/2); i++)
     {
         data[i].intOne = i;
         data[i].intTwo = i;
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     for(int i=0; i<10; i++)
     {
@@ -50,12 +54,16 @@ static void goodB2G()
     TwoIntsClass * data;
     TwoIntsClass dataUninitArray[10];
     data = dataUninitArray;
+    goto source;
+source:
     /* POTENTIAL FLAW: Partially initialize data */
     for(int i=0; i<(10/2); i++)
     {
         data[i].intOne = i;
         data[i].intTwo = i;
     }
+    goto sink;
+sink:
     /* FIX: Ensure data is initialized before use */
     for(int i=0; i<10; i++)
     {
@@ -75,12 +83,16 @@ static void goodG2B()
     TwoIntsClass * data;
     TwoIntsClass dataUninitArray[10];
     data = dataUninitArray;
+    goto source;
+source:
     /* FIX: Completely initialize data */
     for(int i=0; i<10; i++)
     {
         data[i].intOne = i;
         data[i].intTwo = i;
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     for(int i=0; i<10; i++)
     {

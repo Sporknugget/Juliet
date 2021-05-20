@@ -23,6 +23,8 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_alloca_partial_init_18_b
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
+    goto source;
+source:
     /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -31,6 +33,8 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_alloca_partial_init_18_b
             data[i] = (double)i;
         }
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -50,6 +54,8 @@ static void goodB2G()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
+    goto source;
+source:
     /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -58,6 +64,8 @@ static void goodB2G()
             data[i] = (double)i;
         }
     }
+    goto sink;
+sink:
     /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -80,6 +88,8 @@ static void goodG2B()
 {
     double * data;
     data = (double *)ALLOCA(10*sizeof(double));
+    goto source;
+source:
     /* FIX: Completely initialize data */
     {
         int i;
@@ -88,6 +98,8 @@ static void goodG2B()
             data[i] = (double)i;
         }
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;

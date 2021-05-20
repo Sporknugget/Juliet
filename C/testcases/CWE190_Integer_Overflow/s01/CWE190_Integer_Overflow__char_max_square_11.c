@@ -25,10 +25,12 @@ void CWE190_Integer_Overflow__char_max_square_11_bad()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > CHAR_MAX, this will overflow */
@@ -47,10 +49,17 @@ static void goodB2G1()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)CHAR_MAX))
@@ -70,10 +79,12 @@ static void goodB2G2()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    if(globalReturnsTrue())
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)CHAR_MAX))
@@ -93,10 +104,17 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > CHAR_MAX, this will overflow */
@@ -111,10 +129,12 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > CHAR_MAX, this will overflow */

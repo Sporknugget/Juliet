@@ -23,11 +23,14 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE457_Use_of_Uninitialized_Variable__long_17_bad()
 {
+    int i,j;
     long data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
@@ -41,11 +44,14 @@ void CWE457_Use_of_Uninitialized_Variable__long_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     long data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Ensure data is initialized before use */
         data = 5L;
@@ -56,11 +62,14 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     long data;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize data */
         data = 5L;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);

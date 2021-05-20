@@ -23,6 +23,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE244_Heap_Inspection__w32_wchar_t_free_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -74,6 +76,8 @@ void CWE244_Heap_Inspection__w32_wchar_t_free_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));

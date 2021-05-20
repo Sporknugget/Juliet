@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__null_check_after_deref_16_bad()
 {
+    while(1)
     {
         {
             int *intPointer = NULL;
@@ -32,6 +33,7 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_16_bad()
             }
             printIntLine(*intPointer);
         }
+        break;
     }
 }
 
@@ -42,6 +44,7 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             int *intPointer = NULL;
@@ -52,6 +55,7 @@ static void good1()
             *intPointer = 10;
             printIntLine(*intPointer);
         }
+        break;
     }
 }
 

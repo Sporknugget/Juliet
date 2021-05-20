@@ -38,6 +38,9 @@ Template File: point-flaw-badonly-15.tmpl.c
 
 void CWE510_Trapdoor__network_listen_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -95,6 +98,12 @@ void CWE510_Trapdoor__network_listen_15_bad()
             WSACleanup();
         }
 #endif
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

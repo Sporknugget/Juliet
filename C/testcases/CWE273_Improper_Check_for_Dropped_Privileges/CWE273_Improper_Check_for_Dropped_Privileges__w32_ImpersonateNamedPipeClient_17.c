@@ -24,6 +24,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -69,6 +71,8 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClien
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;

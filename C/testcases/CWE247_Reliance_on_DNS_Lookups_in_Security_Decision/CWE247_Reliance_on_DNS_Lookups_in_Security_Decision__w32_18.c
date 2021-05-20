@@ -26,6 +26,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_18_bad()
 {
+    goto sink;
+sink:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -109,6 +111,8 @@ void CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;

@@ -23,8 +23,17 @@ void CWE194_Unexpected_Sign_Extension__negative_memcpy_15_bad()
     short data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Use a negative number */
         data = -1;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         char source[100];
         char dest[100] = "";
@@ -51,8 +60,17 @@ static void goodG2B1()
     short data;
     /* Initialize data */
     data = 0;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
+        break;
+    }
     {
         char source[100];
         char dest[100] = "";
@@ -75,8 +93,17 @@ static void goodG2B2()
     short data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         char source[100];
         char dest[100] = "";

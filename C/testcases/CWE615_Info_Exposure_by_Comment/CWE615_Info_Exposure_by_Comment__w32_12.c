@@ -25,6 +25,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE615_Info_Exposure_by_Comment__w32_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             size_t passwordLen = 0;
@@ -50,6 +51,32 @@ void CWE615_Info_Exposure_by_Comment__w32_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            size_t passwordLen = 0;
+            HANDLE hUser;
+            char * domain = "Domain";
+            /* Use the password in LogonUser() to establish that it is "sensitive" */
+            if (LogonUserA(
+                        USERNAME,
+                        domain,
+                        PASSWORD,
+                        LOGON32_LOGON_NETWORK,
+                        LOGON32_PROVIDER_DEFAULT,
+                        &hUser) != 0)
+            {
+                /* FIX: do not expose username or password in comment */
+                /* User logged in successfully */
+                printLine("User logged in successfully with password" );
+                CloseHandle(hUser);
+            }
+            else
+            {
+                printLine("Unable to login.");
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -59,6 +86,33 @@ void CWE615_Info_Exposure_by_Comment__w32_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t passwordLen = 0;
+            HANDLE hUser;
+            char * domain = "Domain";
+            /* Use the password in LogonUser() to establish that it is "sensitive" */
+            if (LogonUserA(
+                        USERNAME,
+                        domain,
+                        PASSWORD,
+                        LOGON32_LOGON_NETWORK,
+                        LOGON32_PROVIDER_DEFAULT,
+                        &hUser) != 0)
+            {
+                /* FIX: do not expose username or password in comment */
+                /* User logged in successfully */
+                printLine("User logged in successfully with password" );
+                CloseHandle(hUser);
+            }
+            else
+            {
+                printLine("Unable to login.");
+            }
+        }
+    }
+    else
     {
         {
             size_t passwordLen = 0;

@@ -25,6 +25,7 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fgets_malloc_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -39,6 +40,11 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fgets_malloc_12_bad()
                 printLine("fgets() failed.");
             }
         }
+    }
+    else
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
     }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
@@ -66,6 +72,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
+    }
+    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

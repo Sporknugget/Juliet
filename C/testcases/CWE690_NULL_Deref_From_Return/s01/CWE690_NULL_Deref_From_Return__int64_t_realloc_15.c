@@ -26,10 +26,19 @@ void CWE690_NULL_Deref_From_Return__int64_t_realloc_15_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int64_t *)realloc(data, 1*sizeof(int64_t));
+    switch(6)
+    {
+    case 6:
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0] = 5LL;
         printLongLongLine(data[0]);
         free(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -43,6 +52,13 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int64_t *)realloc(data, 1*sizeof(int64_t));
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
         {
@@ -50,6 +66,8 @@ static void goodB2G1()
             printLongLongLine(data[0]);
             free(data);
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -59,6 +77,9 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int64_t *)realloc(data, 1*sizeof(int64_t));
+    switch(6)
+    {
+    case 6:
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
         {
@@ -66,6 +87,12 @@ static void goodB2G2()
             printLongLongLine(data[0]);
             free(data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE690_NULL_Deref_From_Return__int64_t_realloc_15_good()

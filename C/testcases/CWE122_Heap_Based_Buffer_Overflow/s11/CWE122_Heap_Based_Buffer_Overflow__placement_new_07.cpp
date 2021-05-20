@@ -34,10 +34,12 @@ void bad()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(staticFive==5)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -68,10 +70,17 @@ static void goodB2G1()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -96,10 +105,12 @@ static void goodB2G2()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(staticFive==5)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -124,10 +135,17 @@ static void goodG2B1()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
+    if(staticFive==5)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -154,10 +172,12 @@ static void goodG2B2()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    if(staticFive==5)
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
+    if(staticFive==5)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().

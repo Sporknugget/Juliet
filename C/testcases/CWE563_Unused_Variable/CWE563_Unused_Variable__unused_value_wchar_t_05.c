@@ -30,10 +30,12 @@ static int staticFalse = 0; /* false */
 void CWE563_Unused_Variable__unused_value_wchar_t_05_bad()
 {
     wchar_t data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = L'W';
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = L'Z';
@@ -49,10 +51,17 @@ void CWE563_Unused_Variable__unused_value_wchar_t_05_bad()
 static void goodB2G1()
 {
     wchar_t data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = L'W';
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data without over-writing its value */
         printf("%02lx\n", data);
@@ -63,10 +72,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     wchar_t data;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = L'W';
     }
+    if(staticTrue)
     {
         /* FIX: Use data without over-writing its value */
         printf("%02lx\n", data);
@@ -77,11 +88,18 @@ static void goodB2G2()
 static void goodG2B1()
 {
     wchar_t data;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = L'W';
         printf("%02lx\n", data);
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = L'Z';
@@ -93,11 +111,13 @@ static void goodG2B1()
 static void goodG2B2()
 {
     wchar_t data;
+    if(staticTrue)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = L'W';
         printf("%02lx\n", data);
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = L'Z';

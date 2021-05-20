@@ -28,6 +28,8 @@ void CWE90_LDAP_Injection__w32_wchar_t_console_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Read input from the console */
         size_t dataLen = wcslen(data);
@@ -115,6 +117,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Use a fixed file name */
     wcscat(data, L"Doe, XXXXX");
     {

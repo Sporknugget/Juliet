@@ -128,6 +128,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_16_bad()
         }
 #endif
     }
+    while(1)
     {
         /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
          * memory block not at the start of the buffer */
@@ -140,6 +141,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_16_bad()
             }
         }
         free(data);
+        break;
     }
 }
 
@@ -233,6 +235,7 @@ static void goodB2G()
         }
 #endif
     }
+    while(1)
     {
         {
             size_t i;
@@ -247,6 +250,7 @@ static void goodB2G()
             }
             free(data);
         }
+        break;
     }
 }
 

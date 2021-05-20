@@ -51,6 +51,7 @@ void CWE190_Integer_Overflow__int_connect_socket_multiply_07_bad()
     int data;
     /* Initialize data */
     data = 0;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -109,6 +110,7 @@ void CWE190_Integer_Overflow__int_connect_socket_multiply_07_bad()
 #endif
         }
     }
+    if(staticFive==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -129,6 +131,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -187,6 +190,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -210,6 +219,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -268,6 +278,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(staticFive==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -291,10 +302,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    if(staticFive==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -311,10 +329,12 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    if(staticFive==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    if(staticFive==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

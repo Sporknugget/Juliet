@@ -33,6 +33,8 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__w32CreateFile
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    goto sink;
+sink:
     /* FLAW: Point data to another file handle without closing the handle from the source */
     data = CreateFile("BadSink_w32CreateFile.txt",
                       (GENERIC_WRITE|GENERIC_READ),
@@ -66,6 +68,8 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    goto sink;
+sink:
     /* FIX: Close the file from the source before pointing data to a new file handle */
     if (data != INVALID_HANDLE_VALUE)
     {

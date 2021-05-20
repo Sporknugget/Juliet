@@ -68,6 +68,7 @@ static char * helperGood(char * aString)
 
 void CWE416_Use_After_Free__return_freed_ptr_02_bad()
 {
+    if(1)
     {
         {
             /* Call the bad helper function */
@@ -85,6 +86,15 @@ void CWE416_Use_After_Free__return_freed_ptr_02_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* Call the good helper function */
@@ -101,6 +111,7 @@ void CWE416_Use_After_Free__return_freed_ptr_02_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         {
             /* Call the good helper function */

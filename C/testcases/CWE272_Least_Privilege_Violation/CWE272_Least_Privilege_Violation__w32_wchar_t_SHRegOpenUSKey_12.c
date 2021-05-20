@@ -23,6 +23,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_SHRegOpenUSKey_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";
@@ -44,6 +45,28 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_SHRegOpenUSKey_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            wchar_t * keyName = L"TEST\\TestKey";
+            HUSKEY hKey;
+            /* FIX: Call SHRegOpenUSKeyW() with HKEY_CURRENT_USER (fIgnoreHKCU == FALSE) */
+            if (SHRegOpenUSKeyW(
+                        keyName,
+                        KEY_WRITE,
+                        NULL,
+                        &hKey,
+                        FALSE) != ERROR_SUCCESS)
+            {
+                printLine("Registry key could not be opened");
+            }
+            else
+            {
+                printLine("Registry key opened successfully");
+                SHRegCloseUSKey(hKey);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -53,6 +76,29 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_SHRegOpenUSKey_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            wchar_t * keyName = L"TEST\\TestKey";
+            HUSKEY hKey;
+            /* FIX: Call SHRegOpenUSKeyW() with HKEY_CURRENT_USER (fIgnoreHKCU == FALSE) */
+            if (SHRegOpenUSKeyW(
+                        keyName,
+                        KEY_WRITE,
+                        NULL,
+                        &hKey,
+                        FALSE) != ERROR_SUCCESS)
+            {
+                printLine("Registry key could not be opened");
+            }
+            else
+            {
+                printLine("Registry key opened successfully");
+                SHRegCloseUSKey(hKey);
+            }
+        }
+    }
+    else
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";

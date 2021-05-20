@@ -28,6 +28,9 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_15_bad(
     char * password;
     /* Initialize Data */
     password = "";
+    switch(6)
+    {
+    case 6:
         password = (char *)malloc(100*sizeof(char));
         if (password == NULL)
         {
@@ -37,6 +40,12 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_15_bad(
         /* FLAW: Do not lock the memory */
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         strcpy(password, "Password1234!");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         HANDLE pHandle;
         char * username = "User";
@@ -72,6 +81,13 @@ static void goodG2B1()
     char * password;
     /* Initialize Data */
     password = "";
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         password = (char *)malloc(100*sizeof(char));
         if (password == NULL)
         {
@@ -86,6 +102,8 @@ static void goodG2B1()
         }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         strcpy(password, "Password1234!");
+        break;
+    }
     {
         HANDLE pHandle;
         char * username = "User";
@@ -117,6 +135,9 @@ static void goodG2B2()
     char * password;
     /* Initialize Data */
     password = "";
+    switch(6)
+    {
+    case 6:
         password = (char *)malloc(100*sizeof(char));
         if (password == NULL)
         {
@@ -131,6 +152,12 @@ static void goodG2B2()
         }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         strcpy(password, "Password1234!");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         HANDLE pHandle;
         char * username = "User";

@@ -55,6 +55,8 @@ void CWE78_OS_Command_Injection__wchar_t_environment_execlp_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -82,6 +84,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Append a fixed string to data (not user / external input) */
     wcscat(data, L"*.*");
     /* wexeclp - searches for the location of the command among

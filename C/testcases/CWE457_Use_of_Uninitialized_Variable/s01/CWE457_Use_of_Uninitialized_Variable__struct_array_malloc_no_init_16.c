@@ -24,10 +24,13 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_no_init_16_bad()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -38,6 +41,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_no_init_16_bad()
                 printIntLine(data[i].intTwo);
             }
         }
+        break;
     }
 }
 
@@ -51,10 +55,13 @@ static void goodB2G()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -73,6 +80,7 @@ static void goodB2G()
                 printIntLine(data[i].intTwo);
             }
         }
+        break;
     }
 }
 
@@ -82,6 +90,7 @@ static void goodG2B()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    while(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -92,7 +101,9 @@ static void goodG2B()
                 data[i].intTwo = i;
             }
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -103,6 +114,7 @@ static void goodG2B()
                 printIntLine(data[i].intTwo);
             }
         }
+        break;
     }
 }
 

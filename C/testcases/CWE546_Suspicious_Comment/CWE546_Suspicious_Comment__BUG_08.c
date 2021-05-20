@@ -32,6 +32,7 @@ static int staticReturnsFalse()
 
 void CWE546_Suspicious_Comment__BUG_08_bad()
 {
+    if(staticReturnsTrue())
     {
         /* FLAW: The following comment has the letters 'BUG' in it*/
         /* BUG: This comment has the letters 'BUG' in it, which is certainly
@@ -45,6 +46,15 @@ void CWE546_Suspicious_Comment__BUG_08_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -54,6 +64,7 @@ void CWE546_Suspicious_Comment__BUG_08_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

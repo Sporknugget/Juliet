@@ -38,6 +38,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE252_Unchecked_Return_Value__wchar_t_rename_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         /* FLAW: Do not check the return value */
         RENAME(OLD_BAD_FILE_NAME, L"newbadfilename.txt");
@@ -48,6 +49,15 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_04_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)
@@ -60,6 +70,7 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_04_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)

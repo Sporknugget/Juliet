@@ -27,6 +27,8 @@ void CWE114_Process_Control__w32_char_relativePath_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FLAW: Specify just the file name for the library, not the full path */
     strcpy(data, "winsrv.dll");
     {
@@ -56,6 +58,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Specify the full pathname for the library */
     strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
     {

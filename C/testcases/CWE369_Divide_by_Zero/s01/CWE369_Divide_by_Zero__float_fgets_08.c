@@ -41,6 +41,7 @@ void CWE369_Divide_by_Zero__float_fgets_08_bad()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticReturnsTrue())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -56,6 +57,7 @@ void CWE369_Divide_by_Zero__float_fgets_08_bad()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
@@ -75,6 +77,7 @@ static void goodB2G1()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticReturnsTrue())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -90,6 +93,12 @@ static void goodB2G1()
             }
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -110,6 +119,7 @@ static void goodB2G2()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticReturnsTrue())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -125,6 +135,7 @@ static void goodB2G2()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -145,10 +156,17 @@ static void goodG2B1()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
@@ -164,10 +182,12 @@ static void goodG2B2()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */

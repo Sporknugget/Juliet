@@ -26,6 +26,7 @@ void bad()
     TwoIntsClass * data;
     TwoIntsClass dataUninitArray[10];
     data = dataUninitArray;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         for(int i=0; i<(10/2); i++)
@@ -34,8 +35,32 @@ void bad()
             data[i].intTwo = i;
         }
     }
+    else
+    {
+        /* FIX: Completely initialize data */
+        for(int i=0; i<10; i++)
+        {
+            data[i].intOne = i;
+            data[i].intTwo = i;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
+        for(int i=0; i<10; i++)
+        {
+            printIntLine(data[i].intOne);
+            printIntLine(data[i].intTwo);
+        }
+    }
+    else
+    {
+        /* FIX: Ensure data is initialized before use */
+        for(int i=0; i<10; i++)
+        {
+            data[i].intOne = i;
+            data[i].intTwo = i;
+        }
         for(int i=0; i<10; i++)
         {
             printIntLine(data[i].intOne);
@@ -56,6 +81,7 @@ static void goodB2G()
     TwoIntsClass * data;
     TwoIntsClass dataUninitArray[10];
     data = dataUninitArray;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         for(int i=0; i<(10/2); i++)
@@ -64,6 +90,30 @@ static void goodB2G()
             data[i].intTwo = i;
         }
     }
+    else
+    {
+        /* POTENTIAL FLAW: Partially initialize data */
+        for(int i=0; i<(10/2); i++)
+        {
+            data[i].intOne = i;
+            data[i].intTwo = i;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Ensure data is initialized before use */
+        for(int i=0; i<10; i++)
+        {
+            data[i].intOne = i;
+            data[i].intTwo = i;
+        }
+        for(int i=0; i<10; i++)
+        {
+            printIntLine(data[i].intOne);
+            printIntLine(data[i].intTwo);
+        }
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         for(int i=0; i<10; i++)
@@ -87,6 +137,7 @@ static void goodG2B()
     TwoIntsClass * data;
     TwoIntsClass dataUninitArray[10];
     data = dataUninitArray;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Completely initialize data */
         for(int i=0; i<10; i++)
@@ -95,6 +146,25 @@ static void goodG2B()
             data[i].intTwo = i;
         }
     }
+    else
+    {
+        /* FIX: Completely initialize data */
+        for(int i=0; i<10; i++)
+        {
+            data[i].intOne = i;
+            data[i].intTwo = i;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use data without initializing it */
+        for(int i=0; i<10; i++)
+        {
+            printIntLine(data[i].intOne);
+            printIntLine(data[i].intTwo);
+        }
+    }
+    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)

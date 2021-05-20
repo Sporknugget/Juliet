@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_char_18_bad()
 {
+    goto sink;
+sink:
     {
         char * data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
@@ -48,6 +50,8 @@ void CWE401_Memory_Leak__malloc_realloc_char_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char * data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}

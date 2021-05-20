@@ -74,6 +74,7 @@ static int staticFalse = 0; /* false */
 
 void CWE416_Use_After_Free__return_freed_ptr_05_bad()
 {
+    if(staticTrue)
     {
         {
             /* Call the bad helper function */
@@ -91,6 +92,15 @@ void CWE416_Use_After_Free__return_freed_ptr_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* Call the good helper function */
@@ -107,6 +117,7 @@ void CWE416_Use_After_Free__return_freed_ptr_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             /* Call the good helper function */

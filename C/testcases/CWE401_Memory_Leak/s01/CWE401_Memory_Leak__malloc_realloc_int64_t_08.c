@@ -36,6 +36,7 @@ static int staticReturnsFalse()
 
 void CWE401_Memory_Leak__malloc_realloc_int64_t_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
             int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -60,6 +61,15 @@ void CWE401_Memory_Leak__malloc_realloc_int64_t_08_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -86,6 +96,7 @@ void CWE401_Memory_Leak__malloc_realloc_int64_t_08_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         {
             int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));

@@ -58,6 +58,7 @@ static void helperGood(void *args)
 
 void CWE366_Race_Condition_Within_Thread__global_int_16_bad()
 {
+    while(1)
     {
         {
             stdThread threadA = NULL;
@@ -81,6 +82,7 @@ void CWE366_Race_Condition_Within_Thread__global_int_16_bad()
             }
             printIntLine(gBadInt);
         }
+        break;
     }
 }
 
@@ -91,6 +93,7 @@ void CWE366_Race_Condition_Within_Thread__global_int_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             stdThread threadA = NULL;
@@ -118,6 +121,7 @@ static void good1()
             stdThreadLockDestroy(gGoodLock);
             printIntLine(gGoodInt);
         }
+        break;
     }
 }
 

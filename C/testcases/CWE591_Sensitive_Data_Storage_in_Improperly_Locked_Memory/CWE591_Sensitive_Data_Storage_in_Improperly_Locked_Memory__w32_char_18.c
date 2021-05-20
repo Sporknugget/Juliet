@@ -28,6 +28,8 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_18_bad(
     char * password;
     /* Initialize Data */
     password = "";
+    goto source;
+source:
     password = (char *)malloc(100*sizeof(char));
     if (password == NULL)
     {
@@ -72,6 +74,8 @@ static void goodG2B()
     char * password;
     /* Initialize Data */
     password = "";
+    goto source;
+source:
     password = (char *)malloc(100*sizeof(char));
     if (password == NULL)
     {

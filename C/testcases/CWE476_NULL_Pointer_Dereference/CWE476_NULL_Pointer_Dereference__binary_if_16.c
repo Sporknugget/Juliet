@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__binary_if_16_bad()
 {
+    while(1)
     {
         {
             twoIntsStruct *twoIntsStructPointer = NULL;
@@ -29,6 +30,7 @@ void CWE476_NULL_Pointer_Dereference__binary_if_16_bad()
                 printLine("intOne == 5");
             }
         }
+        break;
     }
 }
 
@@ -39,6 +41,7 @@ void CWE476_NULL_Pointer_Dereference__binary_if_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             twoIntsStruct *twoIntsStructPointer = NULL;
@@ -49,6 +52,7 @@ static void good1()
                 printLine("intOne == 5");
             }
         }
+        break;
     }
 }
 

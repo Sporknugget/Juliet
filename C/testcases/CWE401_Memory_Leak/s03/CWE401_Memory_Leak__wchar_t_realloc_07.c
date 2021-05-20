@@ -30,6 +30,7 @@ void CWE401_Memory_Leak__wchar_t_realloc_07_bad()
 {
     wchar_t * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
@@ -38,6 +39,7 @@ void CWE401_Memory_Leak__wchar_t_realloc_07_bad()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -53,6 +55,7 @@ static void goodB2G1()
 {
     wchar_t * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
@@ -61,6 +64,12 @@ static void goodB2G1()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -72,6 +81,7 @@ static void goodB2G2()
 {
     wchar_t * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
@@ -80,6 +90,7 @@ static void goodB2G2()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    if(staticFive==5)
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -91,6 +102,12 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -98,6 +115,7 @@ static void goodG2B1()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -109,6 +127,7 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -116,6 +135,7 @@ static void goodG2B2()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

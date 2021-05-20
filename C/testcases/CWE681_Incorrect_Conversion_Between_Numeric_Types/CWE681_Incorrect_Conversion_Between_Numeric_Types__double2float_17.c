@@ -22,6 +22,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -53,6 +55,8 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2float_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];

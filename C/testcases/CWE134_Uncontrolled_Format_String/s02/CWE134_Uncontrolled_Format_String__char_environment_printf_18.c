@@ -36,6 +36,8 @@ void CWE134_Uncontrolled_Format_String__char_environment_printf_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -47,6 +49,8 @@ void CWE134_Uncontrolled_Format_String__char_environment_printf_18_bad()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
     printf(data);
 }
@@ -61,6 +65,8 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -72,6 +78,8 @@ static void goodB2G()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    goto sink;
+sink:
     /* FIX: Specify the format disallowing a format string vulnerability */
     printf("%s\n", data);
 }
@@ -82,8 +90,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     strcpy(data, "fixedstringtest");
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
     printf(data);
 }

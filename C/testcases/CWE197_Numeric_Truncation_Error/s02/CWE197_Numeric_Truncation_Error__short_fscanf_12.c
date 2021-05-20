@@ -23,9 +23,15 @@ void CWE197_Numeric_Truncation_Error__short_fscanf_12_bad()
     short data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a number input from the console using fscanf() */
         fscanf (stdin, "%hd", &data);
+    }
+    else
+    {
+        /* FIX: Use a positive integer less than CHAR_MAX*/
+        data = CHAR_MAX-5;
     }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
@@ -45,6 +51,12 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a positive integer less than CHAR_MAX*/
+        data = CHAR_MAX-5;
+    }
+    else
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;

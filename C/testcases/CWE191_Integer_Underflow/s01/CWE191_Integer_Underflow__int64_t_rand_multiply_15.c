@@ -23,14 +23,32 @@ void CWE191_Integer_Underflow__int64_t_rand_multiply_15_bad()
 {
     int64_t data;
     data = 0LL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* POTENTIAL FLAW: if (data * 2) < LLONG_MIN, this will underflow */
             int64_t result = data * 2;
             printLongLongLine(result);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -42,8 +60,24 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* FIX: Add a check to prevent an underflow from occurring */
@@ -57,6 +91,8 @@ static void goodB2G1()
                 printLine("data value is too small to perform multiplication.");
             }
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -64,8 +100,20 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* FIX: Add a check to prevent an underflow from occurring */
@@ -79,6 +127,12 @@ static void goodB2G2()
                 printLine("data value is too small to perform multiplication.");
             }
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -86,14 +140,32 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* POTENTIAL FLAW: if (data * 2) < LLONG_MIN, this will underflow */
             int64_t result = data * 2;
             printLongLongLine(result);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -101,14 +173,32 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         if(data < 0) /* ensure we won't have an overflow */
         {
             /* POTENTIAL FLAW: if (data * 2) < LLONG_MIN, this will underflow */
             int64_t result = data * 2;
             printLongLongLine(result);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE191_Integer_Underflow__int64_t_rand_multiply_15_good()

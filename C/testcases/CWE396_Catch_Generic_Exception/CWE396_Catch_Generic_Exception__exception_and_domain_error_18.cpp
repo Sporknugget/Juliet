@@ -26,6 +26,8 @@ namespace CWE396_Catch_Generic_Exception__exception_and_domain_error_18
 
 void bad()
 {
+    goto sink;
+sink:
     try
     {
         if (rand()%2 == 0)
@@ -59,6 +61,8 @@ void bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     try
     {
         if (rand()%2 == 0)

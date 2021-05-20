@@ -32,6 +32,7 @@ typedef struct _charVoid
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memcpy_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -53,6 +54,15 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memcpy_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -73,6 +83,7 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memcpy_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));

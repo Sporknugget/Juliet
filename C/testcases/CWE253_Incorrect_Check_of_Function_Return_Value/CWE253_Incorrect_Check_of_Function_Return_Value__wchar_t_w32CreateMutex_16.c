@@ -26,6 +26,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_16_bad()
 {
+    while(1)
     {
         {
             HANDLE hMutex = NULL;
@@ -40,6 +41,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_16_
              * and since the checkers are looking for certain function calls anyway */
             CloseHandle(hMutex);
         }
+        break;
     }
 }
 
@@ -50,6 +52,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_16_
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             HANDLE hMutex = NULL;
@@ -63,6 +66,7 @@ static void good1()
              * and since the checkers are looking for certain function calls anyway */
             CloseHandle(hMutex);
         }
+        break;
     }
 }
 

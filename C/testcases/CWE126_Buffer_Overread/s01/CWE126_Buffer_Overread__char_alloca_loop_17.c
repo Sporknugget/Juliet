@@ -22,6 +22,7 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE126_Buffer_Overread__char_alloca_loop_17_bad()
 {
+    int i;
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(50*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA(100*sizeof(char));
@@ -29,6 +30,7 @@ void CWE126_Buffer_Overread__char_alloca_loop_17_bad()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
@@ -57,6 +59,7 @@ void CWE126_Buffer_Overread__char_alloca_loop_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(50*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA(100*sizeof(char));
@@ -64,6 +67,7 @@ static void goodG2B()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;

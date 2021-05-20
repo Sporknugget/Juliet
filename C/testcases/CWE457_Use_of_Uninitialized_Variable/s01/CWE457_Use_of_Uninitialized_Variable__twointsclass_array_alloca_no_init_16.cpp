@@ -25,10 +25,13 @@ void bad()
 {
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(ALLOCA(10*sizeof(TwoIntsClass)));
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -36,6 +39,7 @@ void bad()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+        break;
     }
 }
 
@@ -48,10 +52,13 @@ static void goodB2G()
 {
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(ALLOCA(10*sizeof(TwoIntsClass)));
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         for(int i=0; i<10; i++)
@@ -64,6 +71,7 @@ static void goodB2G()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+        break;
     }
 }
 
@@ -72,6 +80,7 @@ static void goodG2B()
 {
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(ALLOCA(10*sizeof(TwoIntsClass)));
+    while(1)
     {
         /* FIX: Completely initialize data */
         for(int i=0; i<10; i++)
@@ -79,7 +88,9 @@ static void goodG2B()
             data[i].intOne = i;
             data[i].intTwo = i;
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -87,6 +98,7 @@ static void goodG2B()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+        break;
     }
 }
 

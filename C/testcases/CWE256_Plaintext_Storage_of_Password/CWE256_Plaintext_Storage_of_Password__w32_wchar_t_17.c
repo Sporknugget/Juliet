@@ -29,9 +29,11 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_17_bad()
 {
+    int i,j;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
             FILE *pFile;
@@ -51,6 +53,7 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_17_bad()
             }
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             HANDLE pHandle;
@@ -83,9 +86,11 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
             FILE *pFile;
@@ -105,6 +110,7 @@ static void goodB2G()
             }
         }
     }
+    for(k = 0; k < 1; k++)
     {
         {
             HANDLE pHandle;
@@ -187,9 +193,11 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         {
             FILE *pFile;
@@ -263,6 +271,7 @@ static void goodG2B()
             }
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             HANDLE pHandle;

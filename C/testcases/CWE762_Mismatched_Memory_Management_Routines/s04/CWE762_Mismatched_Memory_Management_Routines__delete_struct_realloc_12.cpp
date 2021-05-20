@@ -26,16 +26,28 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (twoIntsStruct *)realloc(data, 100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new */
+        data = new twoIntsStruct;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+    }
+    else
+    {
+        /* FIX: Deallocate the memory using free() */
+        free(data);
     }
 }
 
@@ -51,12 +63,26 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (twoIntsStruct *)realloc(data, 100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
+    else
+    {
+        data = NULL;
+        /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
+        data = (twoIntsStruct *)realloc(data, 100*sizeof(twoIntsStruct));
+        if (data == NULL) {exit(-1);}
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate the memory using free() */
+        free(data);
+    }
+    else
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -71,10 +97,23 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate memory from the heap using new */
         data = new twoIntsStruct;
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new */
+        data = new twoIntsStruct;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
+         * require a call to free() to deallocate the memory */
+        delete data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */

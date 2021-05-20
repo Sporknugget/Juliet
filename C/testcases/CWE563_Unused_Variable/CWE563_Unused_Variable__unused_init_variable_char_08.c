@@ -38,6 +38,7 @@ void CWE563_Unused_Variable__unused_init_variable_char_08_bad()
     char data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 'C';
+    if(staticReturnsTrue())
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -55,6 +56,12 @@ static void goodB2G1()
     char data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 'C';
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data */
         printHexCharLine(data);
@@ -67,6 +74,7 @@ static void goodB2G2()
     char data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 'C';
+    if(staticReturnsTrue())
     {
         /* FIX: Use data */
         printHexCharLine(data);

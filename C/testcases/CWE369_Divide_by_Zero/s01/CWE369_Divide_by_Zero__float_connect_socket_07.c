@@ -53,6 +53,7 @@ void CWE369_Divide_by_Zero__float_connect_socket_07_bad()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -111,6 +112,7 @@ void CWE369_Divide_by_Zero__float_connect_socket_07_bad()
 #endif
         }
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
@@ -130,6 +132,7 @@ static void goodB2G1()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -188,6 +191,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -208,6 +217,7 @@ static void goodB2G2()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32
@@ -266,6 +276,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(staticFive==5)
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -286,10 +297,17 @@ static void goodG2B1()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
@@ -305,10 +323,12 @@ static void goodG2B2()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(staticFive==5)
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */

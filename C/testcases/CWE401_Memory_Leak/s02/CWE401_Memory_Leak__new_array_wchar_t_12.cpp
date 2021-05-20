@@ -29,6 +29,7 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new wchar_t[100];
@@ -36,9 +37,24 @@ void bad()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    else
+    {
+        /* FIX: Use memory allocated on the stack */
+        wchar_t dataGoodBuffer[100];
+        data = dataGoodBuffer;
+        /* Initialize and make use of data */
+        wcscpy(data, L"A String");
+        printWLine(data);
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+    }
+    else
+    {
+        /* FIX: Deallocate memory */
+        delete[] data;
     }
 }
 
@@ -53,6 +69,7 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new wchar_t[100];
@@ -60,6 +77,20 @@ static void goodB2G()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    else
+    {
+        /* POTENTIAL FLAW: Allocate memory on the heap */
+        data = new wchar_t[100];
+        /* Initialize and make use of data */
+        wcscpy(data, L"A String");
+        printWLine(data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate memory */
+        delete[] data;
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete[] data;
@@ -73,6 +104,7 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         wchar_t dataGoodBuffer[100];
@@ -81,6 +113,21 @@ static void goodG2B()
         wcscpy(data, L"A String");
         printWLine(data);
     }
+    else
+    {
+        /* FIX: Use memory allocated on the stack */
+        wchar_t dataGoodBuffer[100];
+        data = dataGoodBuffer;
+        /* Initialize and make use of data */
+        wcscpy(data, L"A String");
+        printWLine(data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: No deallocation */
+        ; /* empty statement needed for some flow variants */
+    }
+    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

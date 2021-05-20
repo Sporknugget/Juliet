@@ -25,9 +25,11 @@ void CWE665_Improper_Initialization__char_ncat_16_bad()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    while(1)
     {
         /* FLAW: Do not initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
     {
         size_t sourceLen;
@@ -51,9 +53,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Properly initialize data */
         data[0] = '\0'; /* null terminate */
+        break;
     }
     {
         size_t sourceLen;

@@ -39,6 +39,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE377_Insecure_Temporary_File__wchar_t_tmpnam_16_bad()
 {
+    while(1)
     {
         {
             wchar_t * filename;
@@ -57,6 +58,7 @@ void CWE377_Insecure_Temporary_File__wchar_t_tmpnam_16_bad()
                 CLOSE(fileDesc);
             }
         }
+        break;
     }
 }
 
@@ -67,6 +69,7 @@ void CWE377_Insecure_Temporary_File__wchar_t_tmpnam_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             wchar_t * filename;
@@ -86,6 +89,7 @@ static void good1()
                 CLOSE(fileDesc);
             }
         }
+        break;
     }
 }
 

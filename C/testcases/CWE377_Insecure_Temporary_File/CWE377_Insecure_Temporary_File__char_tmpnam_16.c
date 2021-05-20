@@ -49,6 +49,7 @@ static int _mkstemp(const char * t){
 
 void CWE377_Insecure_Temporary_File__char_tmpnam_16_bad()
 {
+    while(1)
     {
         {
             char * filename;
@@ -67,6 +68,7 @@ void CWE377_Insecure_Temporary_File__char_tmpnam_16_bad()
                 CLOSE(fileDesc);
             }
         }
+        break;
     }
 }
 
@@ -77,6 +79,7 @@ void CWE377_Insecure_Temporary_File__char_tmpnam_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename
@@ -90,6 +93,7 @@ static void good1()
                 CLOSE(fileDesc);
             }
         }
+        break;
     }
 }
 

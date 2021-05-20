@@ -33,9 +33,18 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
+    }
+    else
+    {
+        /* FIX: If the file is still opened, close it */
+        if (data != INVALID_HANDLE_VALUE)
+        {
+            CloseHandle(data);
+        }
     }
 }
 
@@ -58,6 +67,15 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: If the file is still opened, close it */
+        if (data != INVALID_HANDLE_VALUE)
+        {
+            CloseHandle(data);
+        }
+    }
+    else
     {
         /* FIX: If the file is still opened, close it */
         if (data != INVALID_HANDLE_VALUE)

@@ -22,8 +22,10 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE124_Buffer_Underwrite__malloc_wchar_t_cpy_17_bad()
 {
+    int i;
     wchar_t * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -53,8 +55,10 @@ void CWE124_Buffer_Underwrite__malloc_wchar_t_cpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     wchar_t * data;
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         {
             wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));

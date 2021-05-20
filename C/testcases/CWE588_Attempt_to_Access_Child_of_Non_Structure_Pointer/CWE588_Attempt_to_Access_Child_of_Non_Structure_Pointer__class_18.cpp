@@ -28,6 +28,8 @@ void bad()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    goto source;
+source:
     /* FLAW: Set data to point to an int */
     data = &dataBadBuffer;
     /* POTENTIAL FLAW: Attempt to print a class member when data may be a non-object data type */
@@ -46,6 +48,8 @@ static void goodG2B()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    goto source;
+source:
     /* FIX: Set data to point to a TwoIntsClass class */
     data = &dataGoodBuffer;
     /* POTENTIAL FLAW: Attempt to print a class member when data may be a non-object data type */

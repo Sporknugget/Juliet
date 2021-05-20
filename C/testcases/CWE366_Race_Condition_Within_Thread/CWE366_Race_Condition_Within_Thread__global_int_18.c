@@ -58,6 +58,8 @@ static void helperGood(void *args)
 
 void CWE366_Race_Condition_Within_Thread__global_int_18_bad()
 {
+    goto sink;
+sink:
     {
         stdThread threadA = NULL;
         stdThread threadB = NULL;
@@ -89,6 +91,8 @@ void CWE366_Race_Condition_Within_Thread__global_int_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         stdThread threadA = NULL;
         stdThread threadB = NULL;

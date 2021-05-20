@@ -52,6 +52,7 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_04_bad()
     int data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -110,6 +111,7 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_04_bad()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -130,6 +132,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -188,6 +191,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -211,6 +220,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -269,6 +279,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -292,10 +303,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
+    if(STATIC_CONST_TRUE)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -312,10 +330,12 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
+    if(STATIC_CONST_TRUE)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

@@ -28,6 +28,7 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_06_bad()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

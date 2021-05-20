@@ -19,6 +19,7 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__int_03_bad()
 {
+    if(5==5)
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -35,6 +36,15 @@ void CWE468_Incorrect_Pointer_Scaling__int_03_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(5!=5) instead of if(5==5) */
+static void good1()
+{
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -50,6 +60,7 @@ void CWE468_Incorrect_Pointer_Scaling__int_03_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(5==5)
     {
         {
             int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

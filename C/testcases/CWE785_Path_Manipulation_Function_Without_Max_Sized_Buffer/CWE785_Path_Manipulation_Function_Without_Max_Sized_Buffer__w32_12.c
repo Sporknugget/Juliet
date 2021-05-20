@@ -26,6 +26,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char path[BAD_PATH_SIZE];
@@ -47,6 +48,24 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_12_bad()
             printLine(path);
         }
     }
+    else
+    {
+        {
+            /* FIX: ensure MAX_PATH allocated in 'path' */
+            char path[MAX_PATH];
+            DWORD length;
+            length = GetCurrentDirectoryA(MAX_PATH, path);
+            if (length == 0 || length >= MAX_PATH)
+            {
+                exit(1); /* failure conditions for this API call */
+            }
+            if (!PathAppendA(path, "AAAAAAAAAAAA"))
+            {
+                exit(1);
+            }
+            printLine(path);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -56,6 +75,25 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: ensure MAX_PATH allocated in 'path' */
+            char path[MAX_PATH];
+            DWORD length;
+            length = GetCurrentDirectoryA(MAX_PATH, path);
+            if (length == 0 || length >= MAX_PATH)
+            {
+                exit(1); /* failure conditions for this API call */
+            }
+            if (!PathAppendA(path, "AAAAAAAAAAAA"))
+            {
+                exit(1);
+            }
+            printLine(path);
+        }
+    }
+    else
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */

@@ -25,9 +25,18 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE806_wchar_t_declare_ncat_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         wmemset(data, L'A', 100-1); /* fill with L'A's */
         data[100-1] = L'\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         wchar_t dest[50] = L"";
         /* POTENTIAL FLAW: Possible buffer overflow if data is larger than sizeof(dest)-wcslen(dest)*/
@@ -47,9 +56,18 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */
         data[50-1] = L'\0'; /* null terminate */
+        break;
+    }
     {
         wchar_t dest[50] = L"";
         /* POTENTIAL FLAW: Possible buffer overflow if data is larger than sizeof(dest)-wcslen(dest)*/
@@ -65,9 +83,18 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */
         data[50-1] = L'\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         wchar_t dest[50] = L"";
         /* POTENTIAL FLAW: Possible buffer overflow if data is larger than sizeof(dest)-wcslen(dest)*/

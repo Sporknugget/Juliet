@@ -22,6 +22,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE390_Error_Without_Action__sqrt_18_bad()
 {
+    goto sink;
+sink:
     {
         double doubleNumber;
         errno = 0; /* set errno to zero before calling sqrt(), which can change its value */
@@ -42,6 +44,8 @@ void CWE390_Error_Without_Action__sqrt_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         double doubleNumber;
         errno = 0; /* set errno to zero before calling sqrt(), which can change its value */

@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_loop_18_bad()
 {
+    goto sink;
+sink:
     {
         char src[150], dest[100];
         int i;
@@ -43,6 +45,8 @@ void CWE126_Buffer_Overread__CWE170_char_loop_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char src[150], dest[100];
         int i;

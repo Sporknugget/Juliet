@@ -27,10 +27,19 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Use a small buffer */
         data = new wchar_t[50];
         wmemset(data, L'A', 50-1); /* fill with 'A's */
         data[50-1] = L'\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i, destLen;
         wchar_t dest[100];
@@ -58,10 +67,19 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a large buffer */
         data = new wchar_t[100];
         wmemset(data, L'A', 100-1); /* fill with 'A's */
         data[100-1] = L'\0'; /* null terminate */
+        break;
+    }
     {
         size_t i, destLen;
         wchar_t dest[100];
@@ -85,10 +103,19 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a large buffer */
         data = new wchar_t[100];
         wmemset(data, L'A', 100-1); /* fill with 'A's */
         data[100-1] = L'\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i, destLen;
         wchar_t dest[100];

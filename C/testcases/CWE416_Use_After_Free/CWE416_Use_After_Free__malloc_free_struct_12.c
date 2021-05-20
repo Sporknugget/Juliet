@@ -26,6 +26,7 @@ void CWE416_Use_After_Free__malloc_free_struct_12_bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -40,10 +41,32 @@ void CWE416_Use_After_Free__malloc_free_struct_12_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    else
+    {
+        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        if (data == NULL) {exit(-1);}
+        {
+            size_t i;
+            for(i = 0; i < 100; i++)
+            {
+                data[i].intOne = 1;
+                data[i].intTwo = 2;
+            }
+        }
+        /* FIX: Do not free data in the source */
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printStructLine(&data[0]);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+    }
+    else
+    {
+        /* FIX: Don't use data that may have been freed already */
+        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+        /* do nothing */
+        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -59,6 +82,7 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -73,6 +97,29 @@ static void goodB2G()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    else
+    {
+        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        if (data == NULL) {exit(-1);}
+        {
+            size_t i;
+            for(i = 0; i < 100; i++)
+            {
+                data[i].intOne = 1;
+                data[i].intTwo = 2;
+            }
+        }
+        /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
+        free(data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Don't use data that may have been freed already */
+        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+        /* do nothing */
+        ; /* empty statement needed for some flow variants */
+    }
+    else
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -89,6 +136,7 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -102,6 +150,27 @@ static void goodG2B()
         }
         /* FIX: Do not free data in the source */
     }
+    else
+    {
+        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        if (data == NULL) {exit(-1);}
+        {
+            size_t i;
+            for(i = 0; i < 100; i++)
+            {
+                data[i].intOne = 1;
+                data[i].intTwo = 2;
+            }
+        }
+        /* FIX: Do not free data in the source */
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use of data that may have been freed */
+        printStructLine(&data[0]);
+        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+    }
+    else
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printStructLine(&data[0]);

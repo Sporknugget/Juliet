@@ -25,8 +25,17 @@ void bad()
 {
     int * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Allocate using new[] and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = new int[50];
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         int source[100] = {0}; /* fill with 0's */
         {
@@ -51,8 +60,17 @@ static void goodG2B1()
 {
     int * data;
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new int[100];
+        break;
+    }
     {
         int source[100] = {0}; /* fill with 0's */
         {
@@ -73,8 +91,17 @@ static void goodG2B2()
 {
     int * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Allocate using new[] and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = new int[100];
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         int source[100] = {0}; /* fill with 0's */
         {

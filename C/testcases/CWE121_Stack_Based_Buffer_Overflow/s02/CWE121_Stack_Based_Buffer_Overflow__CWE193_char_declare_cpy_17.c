@@ -27,9 +27,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE121_Stack_Based_Buffer_Overflow__CWE193_char_declare_cpy_17_bad()
 {
+    int i;
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -51,9 +53,11 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_char_declare_cpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBadBuffer[10];
     char dataGoodBuffer[10+1];
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */

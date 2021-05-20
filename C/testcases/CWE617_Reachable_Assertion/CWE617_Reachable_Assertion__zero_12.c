@@ -21,9 +21,17 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE617_Reachable_Assertion__zero_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: this assertion can be reached, and will always trigger */
         assert(0); /* INCIDENTAL: CWE 571 - expression is always true - it's "true" because assert(e) basically does if (!(e)) */
+    }
+    else
+    {
+        /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
+        * function, assert(1)
+        */
+        assert(1); /* INCIDENTAL: CWE 570 - expression is always false - it's "false" because assert(e) basically does if (!(e)) */
     }
 }
 
@@ -34,6 +42,14 @@ void CWE617_Reachable_Assertion__zero_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
+        * function, assert(1)
+        */
+        assert(1); /* INCIDENTAL: CWE 570 - expression is always false - it's "false" because assert(e) basically does if (!(e)) */
+    }
+    else
     {
         /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
         * function, assert(1)

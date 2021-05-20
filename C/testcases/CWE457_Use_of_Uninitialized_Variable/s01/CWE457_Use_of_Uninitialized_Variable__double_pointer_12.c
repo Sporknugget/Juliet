@@ -24,12 +24,31 @@ Template File: sources-sinks-12.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__double_pointer_12_bad()
 {
     double * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    else
+    {
+        /* FIX: Initialize data */
+        /* initialize both the pointer and the data pointed to */
+        data = (double *)malloc(sizeof(double));
+        if (data == NULL) {exit(-1);}
+        *data = 5.0;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
+        printDoubleLine(*data);
+    }
+    else
+    {
+        /* FIX: Ensure data is initialized before use */
+        /* initialize both the pointer and the data pointed to */
+        data = (double *)malloc(sizeof(double));
+        if (data == NULL) {exit(-1);}
+        *data = 5.0;
         printDoubleLine(*data);
     }
 }
@@ -44,10 +63,26 @@ void CWE457_Use_of_Uninitialized_Variable__double_pointer_12_bad()
 static void goodB2G()
 {
     double * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    else
+    {
+        /* POTENTIAL FLAW: Don't initialize data */
+        ; /* empty statement needed for some flow variants */
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Ensure data is initialized before use */
+        /* initialize both the pointer and the data pointed to */
+        data = (double *)malloc(sizeof(double));
+        if (data == NULL) {exit(-1);}
+        *data = 5.0;
+        printDoubleLine(*data);
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
@@ -64,6 +99,7 @@ static void goodB2G()
 static void goodG2B()
 {
     double * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
@@ -71,6 +107,20 @@ static void goodG2B()
         if (data == NULL) {exit(-1);}
         *data = 5.0;
     }
+    else
+    {
+        /* FIX: Initialize data */
+        /* initialize both the pointer and the data pointed to */
+        data = (double *)malloc(sizeof(double));
+        if (data == NULL) {exit(-1);}
+        *data = 5.0;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use data without initializing it */
+        printDoubleLine(*data);
+    }
+    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printDoubleLine(*data);

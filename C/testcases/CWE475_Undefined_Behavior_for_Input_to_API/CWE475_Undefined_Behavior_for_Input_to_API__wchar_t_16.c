@@ -21,6 +21,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_16_bad()
 {
+    while(1)
     {
         {
             wchar_t dataBuffer[100] = L"";
@@ -30,6 +31,7 @@ void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_16_bad()
             memcpy(data + 6, data + 4, 10*sizeof(wchar_t));
             printWLine(data);
         }
+        break;
     }
 }
 
@@ -40,6 +42,7 @@ void CWE475_Undefined_Behavior_for_Input_to_API__wchar_t_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             wchar_t dataBuffer[100] = L"";
@@ -49,6 +52,7 @@ static void good1()
             memmove(data + 6, data + 4, 10*sizeof(wchar_t));
             printWLine(data);
         }
+        break;
     }
 }
 

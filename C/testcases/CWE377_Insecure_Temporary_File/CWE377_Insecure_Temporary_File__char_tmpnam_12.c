@@ -49,6 +49,7 @@ static int _mkstemp(const char * t){
 
 void CWE377_Insecure_Temporary_File__char_tmpnam_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * filename;
@@ -68,6 +69,27 @@ void CWE377_Insecure_Temporary_File__char_tmpnam_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            char * filename;
+            int fileDesc;
+            filename = TMPNAM(NULL);
+            if (filename == NULL)
+            {
+                exit(1);
+            }
+            printLine(filename);
+            /* FIX: Open a temporary file using open() and the O_CREAT and O_EXCL flags
+             * NOTE: This is not a perfect solution, but it is the base case scenario */
+            fileDesc = OPEN(filename, O_RDWR|O_CREAT|O_EXCL, S_IREAD|S_IWRITE);
+            if (fileDesc != -1)
+            {
+                printLine("Temporary file was opened...now closing file");
+                CLOSE(fileDesc);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -77,6 +99,22 @@ void CWE377_Insecure_Temporary_File__char_tmpnam_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename
+            // FIX: Use mkstemp(). This is not a perfect solution, since file
+            // names are too predictable, but it is a vast improvement.
+            int fileDesc = MKSTEMP(filename);
+            printLine(filename);
+            if (fileDesc != -1)
+            {
+                printLine("Temporary file was opened...now closing file");
+                CLOSE(fileDesc);
+            }
+        }
+    }
+    else
     {
         {
             char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename

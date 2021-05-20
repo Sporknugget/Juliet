@@ -28,6 +28,7 @@ void CWE400_Resource_Exhaustion__fgets_fwrite_16_bad()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -42,7 +43,9 @@ void CWE400_Resource_Exhaustion__fgets_fwrite_16_bad()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         {
             size_t i = 0;
@@ -67,6 +70,7 @@ void CWE400_Resource_Exhaustion__fgets_fwrite_16_bad()
                 fclose(pFile);
             }
         }
+        break;
     }
 }
 
@@ -80,6 +84,7 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -94,7 +99,9 @@ static void goodB2G()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         {
             size_t i = 0;
@@ -118,6 +125,7 @@ static void goodB2G()
                 }
             }
         }
+        break;
     }
 }
 
@@ -127,10 +135,13 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         /* FIX: Use a relatively small number */
         count = 20;
+        break;
     }
+    while(1)
     {
         {
             size_t i = 0;
@@ -155,6 +166,7 @@ static void goodG2B()
                 fclose(pFile);
             }
         }
+        break;
     }
 }
 

@@ -30,8 +30,17 @@ void CWE259_Hard_Coded_Password__w32_wchar_t_15_bad()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Use a hardcoded password */
         wcscpy(password, PASSWORD);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         HANDLE pHandle;
         wchar_t * username = L"User";
@@ -65,6 +74,13 @@ static void goodG2B1()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         size_t passwordLen = 0;
         /* FIX: Read the password from the console */
@@ -80,6 +96,8 @@ static void goodG2B1()
         {
             password[passwordLen-1] = L'\0';
         }
+    }
+    break;
     }
     {
         HANDLE pHandle;
@@ -110,6 +128,9 @@ static void goodG2B2()
     wchar_t * password;
     wchar_t passwordBuffer[100] = L"";
     password = passwordBuffer;
+    switch(6)
+    {
+    case 6:
     {
         size_t passwordLen = 0;
         /* FIX: Read the password from the console */
@@ -125,6 +146,12 @@ static void goodG2B2()
         {
             password[passwordLen-1] = L'\0';
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     {
         HANDLE pHandle;

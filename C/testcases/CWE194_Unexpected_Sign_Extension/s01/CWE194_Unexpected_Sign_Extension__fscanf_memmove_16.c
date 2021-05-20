@@ -23,9 +23,11 @@ void CWE194_Unexpected_Sign_Extension__fscanf_memmove_16_bad()
     short data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%hd", &data);
+        break;
     }
     {
         char source[100];
@@ -53,9 +55,11 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
+        break;
     }
     {
         char source[100];

@@ -26,8 +26,17 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t dataBytes,i;
         int *intPointer;
@@ -53,8 +62,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
+        break;
+    }
     {
         size_t dataBytes,i;
         int *intPointer;
@@ -76,8 +94,17 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t dataBytes,i;
         int *intPointer;

@@ -24,6 +24,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE620_Unverified_Password_Change__w32_16_bad()
 {
+    while(1)
     {
         {
             wchar_t newPassword[256];
@@ -46,6 +47,7 @@ void CWE620_Unverified_Password_Change__w32_16_bad()
                 wprintf(L"NetUserSetInfo failed.  Status = %u = 0x%x\n", status, status);
             }
         }
+        break;
     }
 }
 
@@ -56,6 +58,7 @@ void CWE620_Unverified_Password_Change__w32_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             wchar_t oldPassword[256];
@@ -82,6 +85,7 @@ static void good1()
                 wprintf(L"NetUserChangePassword failed.  Status = %u = 0x%x\n", status, status);
             }
         }
+        break;
     }
 }
 

@@ -19,6 +19,7 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE546_Suspicious_Comment__TODO_13_bad()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FLAW: The following comment has the letters 'TODO' in it*/
         /* TODO: This comment has the letters 'TODO' in it, which is certainly
@@ -32,6 +33,15 @@ void CWE546_Suspicious_Comment__TODO_13_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
+static void good1()
+{
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -41,6 +51,7 @@ void CWE546_Suspicious_Comment__TODO_13_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

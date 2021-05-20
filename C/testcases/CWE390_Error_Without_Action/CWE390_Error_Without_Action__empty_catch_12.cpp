@@ -27,6 +27,7 @@ namespace CWE390_Error_Without_Action__empty_catch_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             try
@@ -41,6 +42,23 @@ void bad()
             }
         }
     }
+    else
+    {
+        {
+            try
+            {
+                string stringHello = "hello";
+                string stringSubstring = stringHello.substr(rand(), rand());
+                printLine(stringSubstring.c_str());
+            }
+            catch (out_of_range &)
+            {
+                /* FIX: catch the out_of_range error */
+                printLine("Range specified was invalid");
+                exit(1);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -50,6 +68,24 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            try
+            {
+                string stringHello = "hello";
+                string stringSubstring = stringHello.substr(rand(), rand());
+                printLine(stringSubstring.c_str());
+            }
+            catch (out_of_range &)
+            {
+                /* FIX: catch the out_of_range error */
+                printLine("Range specified was invalid");
+                exit(1);
+            }
+        }
+    }
+    else
     {
         {
             try

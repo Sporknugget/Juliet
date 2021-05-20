@@ -20,9 +20,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__rand_memcpy_17_bad()
 {
+    int i;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
@@ -50,9 +52,11 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__rand_memcpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     int data;
     /* Initialize data */
     data = -1;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

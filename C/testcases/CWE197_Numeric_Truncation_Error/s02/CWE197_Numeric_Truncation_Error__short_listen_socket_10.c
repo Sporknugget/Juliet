@@ -46,6 +46,7 @@ void CWE197_Numeric_Truncation_Error__short_listen_socket_10_bad()
     short data;
     /* Initialize data */
     data = -1;
+    if(globalTrue)
     {
         {
 #ifdef _WIN32
@@ -134,6 +135,12 @@ static void goodG2B1()
     short data;
     /* Initialize data */
     data = -1;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
@@ -151,6 +158,7 @@ static void goodG2B2()
     short data;
     /* Initialize data */
     data = -1;
+    if(globalTrue)
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;

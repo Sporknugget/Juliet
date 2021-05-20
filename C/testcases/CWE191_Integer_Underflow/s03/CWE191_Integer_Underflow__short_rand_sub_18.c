@@ -23,8 +23,12 @@ void CWE191_Integer_Underflow__short_rand_sub_18_bad()
 {
     short data;
     data = 0;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a random value */
     data = (short)RAND32();
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         short result = data - 1;
@@ -41,8 +45,12 @@ static void goodB2G()
 {
     short data;
     data = 0;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a random value */
     data = (short)RAND32();
+    goto sink;
+sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > SHRT_MIN)
     {
@@ -60,8 +68,12 @@ static void goodG2B()
 {
     short data;
     data = 0;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
     data = -2;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         short result = data - 1;

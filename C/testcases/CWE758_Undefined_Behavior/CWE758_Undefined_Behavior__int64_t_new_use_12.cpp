@@ -22,12 +22,27 @@ namespace CWE758_Undefined_Behavior__int64_t_new_use_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             int64_t * pointer = new int64_t;
             int64_t data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             delete pointer;
             printLongLongLine(data);
+        }
+    }
+    else
+    {
+        {
+            int64_t data;
+            data = 5LL;
+            int64_t * pointer = new int64_t;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                int64_t data = *pointer;
+                printLongLongLine(data);
+            }
+            delete pointer;
         }
     }
 }
@@ -39,6 +54,21 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int64_t data;
+            data = 5LL;
+            int64_t * pointer = new int64_t;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                int64_t data = *pointer;
+                printLongLongLine(data);
+            }
+            delete pointer;
+        }
+    }
+    else
     {
         {
             int64_t data;

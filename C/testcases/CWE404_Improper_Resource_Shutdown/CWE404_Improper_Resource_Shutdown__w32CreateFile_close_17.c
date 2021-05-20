@@ -22,6 +22,7 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_17_bad()
 {
+    int j;
     HANDLE data;
     /* Initialize data */
     data = INVALID_HANDLE_VALUE;
@@ -33,6 +34,7 @@ void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_17_bad()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    for(j = 0; j < 1; j++)
     {
         if (data != INVALID_HANDLE_VALUE)
         {
@@ -49,6 +51,7 @@ void CWE404_Improper_Resource_Shutdown__w32CreateFile_close_17_bad()
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
+    int k;
     HANDLE data;
     /* Initialize data */
     data = INVALID_HANDLE_VALUE;
@@ -60,6 +63,7 @@ static void goodB2G()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    for(k = 0; k < 1; k++)
     {
         if (data != INVALID_HANDLE_VALUE)
         {

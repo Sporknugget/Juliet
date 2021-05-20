@@ -32,6 +32,7 @@ static int staticFalse = 0; /* false */
 
 void CWE252_Unchecked_Return_Value__wchar_t_w32CreateNamedPipe_05_bad()
 {
+    if(staticTrue)
     {
         {
             wchar_t * pipeName = L"\\\\.\\pipe\\mypipe";
@@ -61,6 +62,15 @@ void CWE252_Unchecked_Return_Value__wchar_t_w32CreateNamedPipe_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * pipeName = L"\\\\.\\pipe\\mypipe";
@@ -93,6 +103,7 @@ void CWE252_Unchecked_Return_Value__wchar_t_w32CreateNamedPipe_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             wchar_t * pipeName = L"\\\\.\\pipe\\mypipe";

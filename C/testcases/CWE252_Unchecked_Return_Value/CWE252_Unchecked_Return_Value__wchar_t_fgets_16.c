@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_fgets_16_bad()
 {
+    while(1)
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -34,6 +35,7 @@ void CWE252_Unchecked_Return_Value__wchar_t_fgets_16_bad()
             fgetws(data, 100, stdin);
             printWLine(data);
         }
+        break;
     }
 }
 
@@ -44,6 +46,7 @@ void CWE252_Unchecked_Return_Value__wchar_t_fgets_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -59,6 +62,7 @@ static void good1()
             }
             printWLine(data);
         }
+        break;
     }
 }
 

@@ -25,6 +25,7 @@ void CWE401_Memory_Leak__char_malloc_16_bad()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (char *)malloc(100*sizeof(char));
@@ -32,10 +33,13 @@ void CWE401_Memory_Leak__char_malloc_16_bad()
         /* Initialize and make use of data */
         strcpy(data, "A String");
         printLine(data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -48,6 +52,7 @@ static void goodB2G()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (char *)malloc(100*sizeof(char));
@@ -55,10 +60,13 @@ static void goodB2G()
         /* Initialize and make use of data */
         strcpy(data, "A String");
         printLine(data);
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate memory */
         free(data);
+        break;
     }
 }
 
@@ -67,16 +75,20 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
         /* Initialize and make use of data */
         strcpy(data, "A String");
         printLine(data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 

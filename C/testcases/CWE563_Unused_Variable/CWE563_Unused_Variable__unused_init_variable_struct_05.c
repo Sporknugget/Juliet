@@ -32,6 +32,7 @@ void CWE563_Unused_Variable__unused_init_variable_struct_05_bad()
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data.intOne = 0;
     data.intTwo = 0;
+    if(staticTrue)
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -50,6 +51,12 @@ static void goodB2G1()
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data.intOne = 0;
     data.intTwo = 0;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data */
         printStructLine(&data);
@@ -63,6 +70,7 @@ static void goodB2G2()
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data.intOne = 0;
     data.intTwo = 0;
+    if(staticTrue)
     {
         /* FIX: Use data */
         printStructLine(&data);

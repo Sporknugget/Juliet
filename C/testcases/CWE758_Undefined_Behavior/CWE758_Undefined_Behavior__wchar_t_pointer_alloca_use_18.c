@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_18_bad()
 {
+    goto sink;
+sink:
     {
         wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
         wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
@@ -33,6 +35,8 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         wchar_t * data;
         wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));

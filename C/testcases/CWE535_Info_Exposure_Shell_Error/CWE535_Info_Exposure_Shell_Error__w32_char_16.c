@@ -24,6 +24,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE535_Info_Exposure_Shell_Error__w32_char_16_bad()
 {
+    while(1)
     {
         {
             char password[100] = "";
@@ -62,6 +63,7 @@ void CWE535_Info_Exposure_Shell_Error__w32_char_16_bad()
             /* FLAW: Write sensitive data to stderr */
             fprintf(stderr, "User attempted access with password: %s\n", password);
         }
+        break;
     }
 }
 
@@ -72,6 +74,7 @@ void CWE535_Info_Exposure_Shell_Error__w32_char_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char password[100] = "";
@@ -110,6 +113,7 @@ static void good1()
             /* FIX: Do not write sensitive data to stderr */
             fprintf(stderr, "User attempted access\n");
         }
+        break;
     }
 }
 

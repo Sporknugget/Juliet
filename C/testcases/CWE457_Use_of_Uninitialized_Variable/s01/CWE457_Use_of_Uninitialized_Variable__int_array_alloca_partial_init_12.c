@@ -23,6 +23,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_12_bad(
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -33,8 +34,38 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_alloca_partial_init_12_bad(
             }
         }
     }
+    else
+    {
+        /* FIX: Completely initialize data */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i] = i;
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                printIntLine(data[i]);
+            }
+        }
+    }
+    else
+    {
+        /* FIX: Ensure data is initialized before use */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i] = i;
+            }
+        }
         {
             int i;
             for(i=0; i<10; i++)
@@ -56,6 +87,7 @@ static void goodB2G()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -66,6 +98,36 @@ static void goodB2G()
             }
         }
     }
+    else
+    {
+        /* POTENTIAL FLAW: Partially initialize data */
+        {
+            int i;
+            for(i=0; i<(10/2); i++)
+            {
+                data[i] = i;
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Ensure data is initialized before use */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i] = i;
+            }
+        }
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                printIntLine(data[i]);
+            }
+        }
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -92,6 +154,7 @@ static void goodG2B()
 {
     int * data;
     data = (int *)ALLOCA(10*sizeof(int));
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Completely initialize data */
         {
@@ -102,6 +165,29 @@ static void goodG2B()
             }
         }
     }
+    else
+    {
+        /* FIX: Completely initialize data */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i] = i;
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use data without initializing it */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                printIntLine(data[i]);
+            }
+        }
+    }
+    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

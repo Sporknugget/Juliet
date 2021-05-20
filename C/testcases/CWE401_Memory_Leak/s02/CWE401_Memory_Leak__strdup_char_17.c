@@ -23,8 +23,10 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE401_Memory_Leak__strdup_char_17_bad()
 {
+    int i,j;
     char * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             char myString[] = "myString";
@@ -34,6 +36,7 @@ void CWE401_Memory_Leak__strdup_char_17_bad()
             printLine(data);
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
@@ -48,8 +51,10 @@ void CWE401_Memory_Leak__strdup_char_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     char * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             char myString[] = "myString";
@@ -59,6 +64,7 @@ static void goodB2G()
             printLine(data);
         }
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -68,8 +74,10 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     char * data;
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
@@ -77,6 +85,7 @@ static void goodG2B()
         strcpy(data, "a string");
         printLine(data);
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */

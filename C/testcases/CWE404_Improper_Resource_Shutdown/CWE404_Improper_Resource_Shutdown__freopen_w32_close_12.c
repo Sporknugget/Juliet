@@ -25,11 +25,20 @@ void CWE404_Improper_Resource_Shutdown__freopen_w32_close_12_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
+    if(globalReturnsTrueOrFalse())
     {
         if (data != NULL)
         {
             /* FLAW: Attempt to close the file using close() instead of fclose() */
             _close((int)data);
+        }
+    }
+    else
+    {
+        if (data != NULL)
+        {
+            /* FIX: Close the file using fclose() */
+            fclose(data);
         }
     }
 }
@@ -47,6 +56,15 @@ static void goodB2G()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = freopen("BadSource_freopen.txt","w+",stdin);
+    if(globalReturnsTrueOrFalse())
+    {
+        if (data != NULL)
+        {
+            /* FIX: Close the file using fclose() */
+            fclose(data);
+        }
+    }
+    else
     {
         if (data != NULL)
         {

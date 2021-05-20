@@ -33,6 +33,7 @@ typedef struct _charVoid
 
 void CWE121_Stack_Based_Buffer_Overflow__wchar_t_type_overrun_memcpy_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             charVoid structCharVoid;
@@ -41,6 +42,20 @@ void CWE121_Stack_Based_Buffer_Overflow__wchar_t_type_overrun_memcpy_12_bad()
             printWLine((wchar_t *)structCharVoid.voidSecond);
             /* FLAW: Use the sizeof(structCharVoid) which will overwrite the pointer voidSecond */
             memcpy(structCharVoid.charFirst, SRC_STR, sizeof(structCharVoid));
+            structCharVoid.charFirst[(sizeof(structCharVoid.charFirst)/sizeof(wchar_t))-1] = L'\0'; /* null terminate the string */
+            printWLine((wchar_t *)structCharVoid.charFirst);
+            printWLine((wchar_t *)structCharVoid.voidSecond);
+        }
+    }
+    else
+    {
+        {
+            charVoid structCharVoid;
+            structCharVoid.voidSecond = (void *)SRC_STR;
+            /* Print the initial block pointed to by structCharVoid.voidSecond */
+            printWLine((wchar_t *)structCharVoid.voidSecond);
+            /* FIX: Use sizeof(structCharVoid.charFirst) to avoid overwriting the pointer voidSecond */
+            memcpy(structCharVoid.charFirst, SRC_STR, sizeof(structCharVoid.charFirst));
             structCharVoid.charFirst[(sizeof(structCharVoid.charFirst)/sizeof(wchar_t))-1] = L'\0'; /* null terminate the string */
             printWLine((wchar_t *)structCharVoid.charFirst);
             printWLine((wchar_t *)structCharVoid.voidSecond);
@@ -55,6 +70,21 @@ void CWE121_Stack_Based_Buffer_Overflow__wchar_t_type_overrun_memcpy_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            charVoid structCharVoid;
+            structCharVoid.voidSecond = (void *)SRC_STR;
+            /* Print the initial block pointed to by structCharVoid.voidSecond */
+            printWLine((wchar_t *)structCharVoid.voidSecond);
+            /* FIX: Use sizeof(structCharVoid.charFirst) to avoid overwriting the pointer voidSecond */
+            memcpy(structCharVoid.charFirst, SRC_STR, sizeof(structCharVoid.charFirst));
+            structCharVoid.charFirst[(sizeof(structCharVoid.charFirst)/sizeof(wchar_t))-1] = L'\0'; /* null terminate the string */
+            printWLine((wchar_t *)structCharVoid.charFirst);
+            printWLine((wchar_t *)structCharVoid.voidSecond);
+        }
+    }
+    else
     {
         {
             charVoid structCharVoid;

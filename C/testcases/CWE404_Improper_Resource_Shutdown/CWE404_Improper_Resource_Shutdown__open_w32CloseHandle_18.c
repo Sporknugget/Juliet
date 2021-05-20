@@ -36,6 +36,8 @@ void CWE404_Improper_Resource_Shutdown__open_w32CloseHandle_18_bad()
     data = -1;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    goto sink;
+sink:
     if (data != -1)
     {
         /* FLAW: Attempt to close the file using CloseHandle() instead of close() */
@@ -55,6 +57,8 @@ static void goodB2G()
     data = -1;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    goto sink;
+sink:
     if (data != -1)
     {
         /* FIX: Close the file using close() */

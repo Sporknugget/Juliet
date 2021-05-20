@@ -26,6 +26,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char path[BAD_PATH_SIZE];
         DWORD length;
@@ -45,6 +48,12 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_15_bad()
         printIntLine(BAD_PATH_SIZE);
         printLine(path);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -54,6 +63,13 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* FIX: ensure MAX_PATH allocated in 'path' */
         char path[MAX_PATH];
@@ -69,11 +85,16 @@ static void good1()
         }
         printLine(path);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         /* FIX: ensure MAX_PATH allocated in 'path' */
         char path[MAX_PATH];
@@ -88,6 +109,12 @@ static void good2()
             exit(1);
         }
         printLine(path);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

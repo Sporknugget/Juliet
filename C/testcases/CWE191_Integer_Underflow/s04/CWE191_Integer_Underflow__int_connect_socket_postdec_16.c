@@ -46,6 +46,7 @@ void CWE191_Integer_Underflow__int_connect_socket_postdec_16_bad()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -103,7 +104,9 @@ void CWE191_Integer_Underflow__int_connect_socket_postdec_16_bad()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -111,6 +114,7 @@ void CWE191_Integer_Underflow__int_connect_socket_postdec_16_bad()
             int result = data;
             printIntLine(result);
         }
+        break;
     }
 }
 
@@ -124,6 +128,7 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -181,7 +186,9 @@ static void goodB2G()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > INT_MIN)
@@ -194,6 +201,7 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
+        break;
     }
 }
 
@@ -203,10 +211,13 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
+        break;
     }
+    while(1)
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -214,6 +225,7 @@ static void goodG2B()
             int result = data;
             printIntLine(result);
         }
+        break;
     }
 }
 

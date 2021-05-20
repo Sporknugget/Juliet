@@ -26,6 +26,7 @@ namespace CWE396_Catch_Generic_Exception__exception_and_domain_error_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         try
         {
@@ -52,6 +53,31 @@ void bad()
         }
         printLine("ok");
     }
+    else
+    {
+        try
+        {
+            if (rand()%2 == 0)
+            {
+                throw out_of_range("err1");
+            }
+            if (rand()%2 == 0)
+            {
+                throw domain_error("err2");
+            }
+        }
+        catch (out_of_range &)
+        {
+            /* FIX: specify each catch individually */
+            printLine("out_of_range");
+        }
+        catch (domain_error &)
+        {
+            printLine("domain_error");
+            return;
+        }
+        printLine("ok");
+    }
 }
 
 #endif /* OMITBAD */
@@ -61,6 +87,32 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        try
+        {
+            if (rand()%2 == 0)
+            {
+                throw out_of_range("err1");
+            }
+            if (rand()%2 == 0)
+            {
+                throw domain_error("err2");
+            }
+        }
+        catch (out_of_range &)
+        {
+            /* FIX: specify each catch individually */
+            printLine("out_of_range");
+        }
+        catch (domain_error &)
+        {
+            printLine("domain_error");
+            return;
+        }
+        printLine("ok");
+    }
+    else
     {
         try
         {

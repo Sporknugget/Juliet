@@ -24,10 +24,12 @@ Template File: sources-sinks-13.tmpl.c
 void CWE476_NULL_Pointer_Dereference__char_13_bad()
 {
     char * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
@@ -43,10 +45,17 @@ void CWE476_NULL_Pointer_Dereference__char_13_bad()
 static void goodB2G1()
 {
     char * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -65,10 +74,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     char * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -87,10 +98,17 @@ static void goodB2G2()
 static void goodG2B1()
 {
     char * data;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         data = "Good";
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */
@@ -102,10 +120,12 @@ static void goodG2B1()
 static void goodG2B2()
 {
     char * data;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Initialize data */
         data = "Good";
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         /* printLine() checks for NULL, so we cannot use it here */

@@ -48,9 +48,18 @@ static char * helperGood()
 
 void CWE480_Use_of_Incorrect_Operator__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: This will never be true becuase the () was omitted.  Also INCIDENTAL CWE 570 Expression Is Always False */
         if(helperBad == NULL)
+        {
+            printLine("Got a NULL");
+        }
+    }
+    else
+    {
+        /* FIX: add () to function call */
+        if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */
         {
             printLine("Got a NULL");
         }
@@ -64,6 +73,15 @@ void CWE480_Use_of_Incorrect_Operator__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: add () to function call */
+        if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */
+        {
+            printLine("Got a NULL");
+        }
+    }
+    else
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */

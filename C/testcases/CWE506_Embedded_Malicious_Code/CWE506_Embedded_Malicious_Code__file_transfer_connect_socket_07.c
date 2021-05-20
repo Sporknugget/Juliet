@@ -45,6 +45,7 @@ static int staticFive = 5;
 
 void CWE506_Embedded_Malicious_Code__file_transfer_connect_socket_07_bad()
 {
+    if(staticFive==5)
     {
         {
 #ifdef _WIN32

@@ -42,6 +42,7 @@ void CWE90_LDAP_Injection__w32_wchar_t_environment_07_bad()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    if(staticFive==5)
     {
         {
             /* Append input from an environment variable to data */
@@ -117,6 +118,12 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"Doe, XXXXX");
@@ -179,6 +186,7 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    if(staticFive==5)
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"Doe, XXXXX");

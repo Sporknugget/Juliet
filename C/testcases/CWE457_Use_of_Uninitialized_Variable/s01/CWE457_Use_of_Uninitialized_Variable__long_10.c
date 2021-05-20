@@ -24,10 +24,12 @@ Template File: sources-sinks-10.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__long_10_bad()
 {
     long data;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
@@ -42,10 +44,17 @@ void CWE457_Use_of_Uninitialized_Variable__long_10_bad()
 static void goodB2G1()
 {
     long data;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         data = 5L;
@@ -57,10 +66,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     long data;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(globalTrue)
     {
         /* FIX: Ensure data is initialized before use */
         data = 5L;
@@ -72,10 +83,17 @@ static void goodB2G2()
 static void goodG2B1()
 {
     long data;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         data = 5L;
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);
@@ -86,10 +104,12 @@ static void goodG2B1()
 static void goodG2B2()
 {
     long data;
+    if(globalTrue)
     {
         /* FIX: Initialize data */
         data = 5L;
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLongLine(data);

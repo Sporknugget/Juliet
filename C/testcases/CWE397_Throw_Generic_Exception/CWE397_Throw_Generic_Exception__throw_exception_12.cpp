@@ -28,9 +28,15 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: throw std::exception class, which is very generic */
         throw exception();
+    }
+    else
+    {
+        /* FIX: Throw a specific exception */
+        throw range_error("Test");
     }
 }
 
@@ -41,6 +47,12 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Throw a specific exception */
+        throw range_error("Test");
+    }
+    else
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");

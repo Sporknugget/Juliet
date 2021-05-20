@@ -38,6 +38,7 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_file_03_bad()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    if(5==5)
     {
         {
             /* Read input from a file */
@@ -75,6 +76,12 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);
@@ -89,6 +96,7 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    if(5==5)
     {
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);

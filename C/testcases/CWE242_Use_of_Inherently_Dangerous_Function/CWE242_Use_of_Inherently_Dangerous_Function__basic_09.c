@@ -21,6 +21,7 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE242_Use_of_Inherently_Dangerous_Function__basic_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             char dest[DEST_SIZE];
@@ -46,6 +47,15 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char dest[DEST_SIZE];
@@ -68,6 +78,7 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             char dest[DEST_SIZE];

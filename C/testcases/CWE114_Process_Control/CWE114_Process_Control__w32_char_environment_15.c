@@ -35,6 +35,9 @@ void CWE114_Process_Control__w32_char_environment_15_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -45,6 +48,12 @@ void CWE114_Process_Control__w32_char_environment_15_bad()
             /* POTENTIAL FLAW: Read data from an environment variable */
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     {
         HMODULE hModule;
@@ -73,8 +82,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
+        break;
+    }
     {
         HMODULE hModule;
         /* POTENTIAL FLAW: If the path to the library is not specified, an attacker may be able to
@@ -98,8 +116,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         HMODULE hModule;
         /* POTENTIAL FLAW: If the path to the library is not specified, an attacker may be able to

@@ -26,6 +26,7 @@ void CWE190_Integer_Overflow__int_fgets_add_14_bad()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFive==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -41,6 +42,7 @@ void CWE190_Integer_Overflow__int_fgets_add_14_bad()
             }
         }
     }
+    if(globalFive==5)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
@@ -60,6 +62,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFive==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -75,6 +78,12 @@ static void goodB2G1()
             }
         }
     }
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < INT_MAX)
@@ -95,6 +104,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFive==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -110,6 +120,7 @@ static void goodB2G2()
             }
         }
     }
+    if(globalFive==5)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < INT_MAX)
@@ -130,10 +141,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    if(globalFive==5)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
@@ -149,10 +167,12 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFive==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    if(globalFive==5)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */

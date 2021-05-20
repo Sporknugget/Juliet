@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_16_bad()
 {
+    while(1)
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -42,6 +43,7 @@ void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_16_bad()
                 free(data);
             }
         }
+        break;
     }
 }
 
@@ -52,6 +54,7 @@ void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
@@ -74,6 +77,7 @@ static void good1()
             }
             free(data);
         }
+        break;
     }
 }
 

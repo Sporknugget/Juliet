@@ -45,6 +45,8 @@ void CWE426_Untrusted_Search_Path__char_system_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FLAW: the full path is not specified */
     strcpy(data, BAD_OS_COMMAND);
     /* POTENTIAL FLAW: Executing the system() function without specifying the full path to the executable
@@ -66,6 +68,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: full path is specified */
     strcpy(data, GOOD_OS_COMMAND);
     /* POTENTIAL FLAW: Executing the system() function without specifying the full path to the executable

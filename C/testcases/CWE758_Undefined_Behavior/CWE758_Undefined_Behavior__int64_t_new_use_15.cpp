@@ -22,11 +22,20 @@ namespace CWE758_Undefined_Behavior__int64_t_new_use_15
 
 void bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int64_t * pointer = new int64_t;
         int64_t data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         delete pointer;
         printLongLongLine(data);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -37,6 +46,13 @@ void bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int64_t data;
         data = 5LL;
@@ -48,11 +64,16 @@ static void good1()
         }
         delete pointer;
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int64_t data;
         data = 5LL;
@@ -63,6 +84,12 @@ static void good2()
             printLongLongLine(data);
         }
         delete pointer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

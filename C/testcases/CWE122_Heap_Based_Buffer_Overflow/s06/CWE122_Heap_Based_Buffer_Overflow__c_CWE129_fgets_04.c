@@ -32,6 +32,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_04_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -47,6 +48,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_04_bad()
             }
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i;
@@ -87,6 +89,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -102,6 +105,12 @@ static void goodB2G1()
             }
         }
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int i;
@@ -137,6 +146,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -152,6 +162,7 @@ static void goodB2G2()
             }
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i;
@@ -187,11 +198,18 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i;
@@ -228,11 +246,13 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i;

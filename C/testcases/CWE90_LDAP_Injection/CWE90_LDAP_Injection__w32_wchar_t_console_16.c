@@ -28,6 +28,7 @@ void CWE90_LDAP_Injection__w32_wchar_t_console_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from the console */
@@ -54,6 +55,7 @@ void CWE90_LDAP_Injection__w32_wchar_t_console_16_bad()
                 }
             }
         }
+        break;
     }
     {
         LDAP* pLdapConnection = NULL;
@@ -117,9 +119,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"Doe, XXXXX");
+        break;
     }
     {
         LDAP* pLdapConnection = NULL;

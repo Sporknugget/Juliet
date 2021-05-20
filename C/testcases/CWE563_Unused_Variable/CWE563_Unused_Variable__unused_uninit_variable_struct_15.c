@@ -25,9 +25,18 @@ void CWE563_Unused_Variable__unused_uninit_variable_struct_15_bad()
     twoIntsStruct data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    switch(6)
+    {
+    case 6:
         /* FLAW: Do not use the variable */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -40,10 +49,19 @@ static void goodB2G1()
     twoIntsStruct data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Initialize then use data */
         data.intOne = 0;
         data.intTwo = 0;
         printStructLine(&data);
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -52,10 +70,19 @@ static void goodB2G2()
     twoIntsStruct data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    switch(6)
+    {
+    case 6:
         /* FIX: Initialize then use data */
         data.intOne = 0;
         data.intTwo = 0;
         printStructLine(&data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE563_Unused_Variable__unused_uninit_variable_struct_15_good()

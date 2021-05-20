@@ -23,6 +23,7 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE338_Weak_PRNG__w32_11_bad()
 {
+    if(globalReturnsTrue())
     {
         {
             /* FLAW: Use of rand() as a PRNG */
@@ -36,6 +37,15 @@ void CWE338_Weak_PRNG__w32_11_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HCRYPTPROV hCryptProv;
@@ -62,6 +72,7 @@ void CWE338_Weak_PRNG__w32_11_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         {
             HCRYPTPROV hCryptProv;

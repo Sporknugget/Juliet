@@ -26,14 +26,18 @@ void bad()
     int * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new int[100];
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
         free(data);
+        break;
     }
 }
 
@@ -47,13 +51,17 @@ static void goodB2G()
     int * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
         data = new int[100];
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate the memory using delete [] */
         delete [] data;
+        break;
     }
 }
 
@@ -63,15 +71,19 @@ static void goodG2B()
     int * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete [] to deallocate the memory */
         free(data);
+        break;
     }
 }
 

@@ -25,6 +25,9 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_15_bad()
 {
     void * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
@@ -33,6 +36,15 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_15_bad()
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)dataBadBuffer;
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
@@ -41,6 +53,12 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_15_bad()
         (void)wcscpy(dest, data);
         printLine((char *)dest);
         free(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -53,6 +71,9 @@ static void goodB2G1()
 {
     void * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
@@ -61,6 +82,19 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)dataBadBuffer;
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
@@ -69,6 +103,8 @@ static void goodB2G1()
         (void)wcscpy(dest, data);
         printWLine((wchar_t *)dest);
         free(dest);
+    }
+    break;
     }
 }
 
@@ -77,6 +113,9 @@ static void goodB2G2()
 {
     void * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
@@ -85,6 +124,15 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)dataBadBuffer;
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
@@ -94,6 +142,12 @@ static void goodB2G2()
         printWLine((wchar_t *)dest);
         free(dest);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -101,6 +155,13 @@ static void goodG2B1()
 {
     void * data;
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
         if (dataGoodBuffer == NULL) {exit(-1);}
@@ -109,6 +170,11 @@ static void goodG2B1()
         /* FIX: Set data to point to a char string */
         data = (void *)dataGoodBuffer;
     }
+    break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
@@ -117,6 +183,12 @@ static void goodG2B1()
         (void)strcpy(dest, data);
         printLine((char *)dest);
         free(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -125,6 +197,9 @@ static void goodG2B2()
 {
     void * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
         if (dataGoodBuffer == NULL) {exit(-1);}
@@ -133,6 +208,15 @@ static void goodG2B2()
         /* FIX: Set data to point to a char string */
         data = (void *)dataGoodBuffer;
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
@@ -141,6 +225,12 @@ static void goodG2B2()
         (void)strcpy(dest, data);
         printLine((char *)dest);
         free(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

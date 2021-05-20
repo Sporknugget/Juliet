@@ -25,13 +25,36 @@ void CWE476_NULL_Pointer_Dereference__struct_12_bad()
 {
     twoIntsStruct * data;
     twoIntsStruct tmpData;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    else
+    {
+        /* FIX: Initialize data */
+        {
+            tmpData.intOne = 0;
+            tmpData.intTwo = 0;
+            data = &tmpData;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
+    }
+    else
+    {
+        /* FIX: Check for NULL before attempting to print data */
+        if (data != NULL)
+        {
+            printIntLine(data->intOne);
+        }
+        else
+        {
+            printLine("data is NULL");
+        }
     }
 }
 
@@ -45,10 +68,29 @@ void CWE476_NULL_Pointer_Dereference__struct_12_bad()
 static void goodB2G()
 {
     twoIntsStruct * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Set data to NULL */
+        data = NULL;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Check for NULL before attempting to print data */
+        if (data != NULL)
+        {
+            printIntLine(data->intOne);
+        }
+        else
+        {
+            printLine("data is NULL");
+        }
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -69,6 +111,7 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     twoIntsStruct tmpData;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         {
@@ -77,6 +120,21 @@ static void goodG2B()
             data = &tmpData;
         }
     }
+    else
+    {
+        /* FIX: Initialize data */
+        {
+            tmpData.intOne = 0;
+            tmpData.intTwo = 0;
+            data = &tmpData;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
+        printIntLine(data->intOne);
+    }
+    else
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

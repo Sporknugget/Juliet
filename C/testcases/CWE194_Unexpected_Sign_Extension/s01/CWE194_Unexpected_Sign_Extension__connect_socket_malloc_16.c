@@ -46,6 +46,7 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_16_bad()
     short data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -113,6 +114,7 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_16_bad()
             }
 #endif
         }
+        break;
     }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
@@ -139,9 +141,11 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
+        break;
     }
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)

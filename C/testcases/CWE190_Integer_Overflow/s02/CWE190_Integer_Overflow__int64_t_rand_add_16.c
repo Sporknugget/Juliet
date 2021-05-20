@@ -23,16 +23,20 @@ void CWE190_Integer_Overflow__int64_t_rand_add_16_bad()
 {
     int64_t data;
     data = 0LL;
+    while(1)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
+        break;
     }
+    while(1)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             int64_t result = data + 1;
             printLongLongLine(result);
         }
+        break;
     }
 }
 
@@ -45,10 +49,13 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
+    while(1)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
+        break;
     }
+    while(1)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < LLONG_MAX)
@@ -60,6 +67,7 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
+        break;
     }
 }
 
@@ -68,16 +76,20 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
+    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
+        break;
     }
+    while(1)
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             int64_t result = data + 1;
             printLongLongLine(result);
         }
+        break;
     }
 }
 

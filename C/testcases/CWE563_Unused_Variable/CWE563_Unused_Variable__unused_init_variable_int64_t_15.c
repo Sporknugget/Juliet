@@ -25,9 +25,18 @@ void CWE563_Unused_Variable__unused_init_variable_int64_t_15_bad()
     int64_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Do not use the variable */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -40,8 +49,17 @@ static void goodB2G1()
     int64_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use data */
         printLongLongLine(data);
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -50,8 +68,17 @@ static void goodB2G2()
     int64_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use data */
         printLongLongLine(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE563_Unused_Variable__unused_init_variable_int64_t_15_good()

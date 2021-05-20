@@ -21,6 +21,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE475_Undefined_Behavior_for_Input_to_API__char_14_bad()
 {
+    if(globalFive==5)
     {
         {
             char dataBuffer[100] = "";
@@ -37,6 +38,15 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_14_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char dataBuffer[100] = "";
@@ -52,6 +62,7 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_14_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         {
             char dataBuffer[100] = "";

@@ -45,6 +45,7 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_memmove_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -103,6 +104,11 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_memmove_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
+    }
     {
         char source[100];
         char dest[100] = "";
@@ -130,6 +136,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
+    }
+    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

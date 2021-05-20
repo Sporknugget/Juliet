@@ -23,13 +23,16 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE369_Divide_by_Zero__float_fscanf_17_bad()
 {
+    int i,j;
     float data;
     /* Initialize data */
     data = 0.0F;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%f", &data);
     }
+    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
@@ -46,13 +49,16 @@ void CWE369_Divide_by_Zero__float_fscanf_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     float data;
     /* Initialize data */
     data = 0.0F;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Use a value input from the console using fscanf() */
         fscanf (stdin, "%f", &data);
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -70,13 +76,16 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     float data;
     /* Initialize data */
     data = 0.0F;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
     }
+    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */

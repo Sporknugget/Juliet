@@ -23,6 +23,8 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_strncpy_18_bad()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
     {
@@ -51,6 +53,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     {

@@ -28,11 +28,15 @@ void bad()
     char * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     {
         char myString[] = "myString";
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = strdup(myString);
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete [] data;
@@ -48,11 +52,15 @@ static void goodB2G()
     char * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     {
         char myString[] = "myString";
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = strdup(myString);
     }
+    goto sink;
+sink:
     /* FIX: Deallocate the memory using free() */
     free(data);
 }
@@ -63,8 +71,12 @@ static void goodG2B()
     char * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* FIX: Allocate memory from the heap using new [] */
     data = new char[100];
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete [] data;

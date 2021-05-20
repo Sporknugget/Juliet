@@ -27,6 +27,8 @@ void bad()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* FLAW: Use a small buffer */
     data = new char[50];
     memset(data, 'A', 50-1); /* fill with 'A's */
@@ -58,6 +60,8 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Use a large buffer */
     data = new char[100];
     memset(data, 'A', 100-1); /* fill with 'A's */

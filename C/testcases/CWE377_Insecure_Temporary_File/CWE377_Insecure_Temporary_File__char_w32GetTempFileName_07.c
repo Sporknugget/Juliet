@@ -39,6 +39,7 @@ static int staticFive = 5;
 
 void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_07_bad()
 {
+    if(staticFive==5)
     {
         {
             char filename[MAX_PATH] = "";
@@ -65,6 +66,15 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char filename[MAX_PATH] = "";
@@ -92,6 +102,7 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             char filename[MAX_PATH] = "";

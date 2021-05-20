@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_char_SHRegCreateUSKey_18_bad()
 {
+    goto sink;
+sink:
     {
         char * keyName = "TEST\\TestKey";
         HUSKEY hKey;
@@ -51,6 +53,8 @@ void CWE272_Least_Privilege_Violation__w32_char_SHRegCreateUSKey_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char * keyName = "TEST\\TestKey";
         HUSKEY hKey;

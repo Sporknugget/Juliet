@@ -49,6 +49,8 @@ static int _mkstemp(const char * t){
 
 void CWE377_Insecure_Temporary_File__char_mktemp_18_bad()
 {
+    goto sink;
+sink:
     {
         char * filename;
         char tmpl[] = "fnXXXXXX";
@@ -76,6 +78,8 @@ void CWE377_Insecure_Temporary_File__char_mktemp_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename
         // FIX: Use mkstemp(). This is not a perfect solution, since file

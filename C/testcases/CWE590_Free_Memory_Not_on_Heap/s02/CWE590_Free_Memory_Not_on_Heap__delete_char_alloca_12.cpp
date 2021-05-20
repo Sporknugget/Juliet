@@ -27,10 +27,20 @@ void bad()
 {
     char * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
             char * dataBuffer = (char *)ALLOCA(sizeof(char));
+            *dataBuffer = 'A';
+            data = dataBuffer;
+        }
+    }
+    else
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            char * dataBuffer = new char;
             *dataBuffer = 'A';
             data = dataBuffer;
         }
@@ -50,6 +60,16 @@ static void goodG2B()
 {
     char * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            char * dataBuffer = new char;
+            *dataBuffer = 'A';
+            data = dataBuffer;
+        }
+    }
+    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

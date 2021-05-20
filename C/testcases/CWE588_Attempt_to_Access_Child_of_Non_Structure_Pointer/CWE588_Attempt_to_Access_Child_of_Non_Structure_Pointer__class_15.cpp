@@ -28,8 +28,17 @@ void bad()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Set data to point to an int */
         data = &dataBadBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Attempt to print a class member when data may be a non-object data type */
     printIntLine((reinterpret_cast<TwoIntsClass *>(data))->intTwo);
 }
@@ -46,8 +55,17 @@ static void goodG2B1()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data to point to a TwoIntsClass class */
         data = &dataGoodBuffer;
+        break;
+    }
     /* POTENTIAL FLAW: Attempt to print a class member when data may be a non-object data type */
     printIntLine((reinterpret_cast<TwoIntsClass *>(data))->intTwo);
 }
@@ -60,8 +78,17 @@ static void goodG2B2()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data to point to a TwoIntsClass class */
         data = &dataGoodBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Attempt to print a class member when data may be a non-object data type */
     printIntLine((reinterpret_cast<TwoIntsClass *>(data))->intTwo);
 }

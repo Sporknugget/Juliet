@@ -23,10 +23,12 @@ void CWE190_Integer_Overflow__unsigned_int_max_preinc_14_bad()
 {
     unsigned int data;
     data = 0;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = UINT_MAX;
     }
+    if(globalFive==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -46,10 +48,17 @@ static void goodB2G1()
 {
     unsigned int data;
     data = 0;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = UINT_MAX;
     }
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -70,10 +79,12 @@ static void goodB2G2()
 {
     unsigned int data;
     data = 0;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = UINT_MAX;
     }
+    if(globalFive==5)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < UINT_MAX)
@@ -94,10 +105,17 @@ static void goodG2B1()
 {
     unsigned int data;
     data = 0;
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(globalFive==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -113,10 +131,12 @@ static void goodG2B2()
 {
     unsigned int data;
     data = 0;
+    if(globalFive==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(globalFive==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

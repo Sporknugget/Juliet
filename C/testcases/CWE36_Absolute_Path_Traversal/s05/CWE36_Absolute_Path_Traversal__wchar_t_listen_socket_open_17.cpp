@@ -56,9 +56,11 @@ namespace CWE36_Absolute_Path_Traversal__wchar_t_listen_socket_open_17
 
 void bad()
 {
+    int i;
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -158,9 +160,11 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
+    int h;
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = L"";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */

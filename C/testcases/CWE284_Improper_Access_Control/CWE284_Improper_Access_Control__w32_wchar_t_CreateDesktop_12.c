@@ -22,6 +22,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_wchar_t_CreateDesktop_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             HDESK hDesk;
@@ -45,6 +46,30 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateDesktop_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            HDESK hDesk;
+            wchar_t * desktopName = L"DesktopExample";
+            /* FIX: Call CreateDesktopW() without GENERIC_READ as the 5th parameter to limit access */
+            hDesk = CreateDesktopW(
+                        desktopName,
+                        NULL,
+                        NULL,
+                        0,
+                        GENERIC_READ,
+                        NULL);
+            if (hDesk == NULL)
+            {
+                printLine("Desktop could not be created");
+            }
+            else
+            {
+                printLine("Desktop created successfully");
+                CloseDesktop(hDesk);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -54,6 +79,31 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateDesktop_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            HDESK hDesk;
+            wchar_t * desktopName = L"DesktopExample";
+            /* FIX: Call CreateDesktopW() without GENERIC_READ as the 5th parameter to limit access */
+            hDesk = CreateDesktopW(
+                        desktopName,
+                        NULL,
+                        NULL,
+                        0,
+                        GENERIC_READ,
+                        NULL);
+            if (hDesk == NULL)
+            {
+                printLine("Desktop could not be created");
+            }
+            else
+            {
+                printLine("Desktop created successfully");
+                CloseDesktop(hDesk);
+            }
+        }
+    }
+    else
     {
         {
             HDESK hDesk;

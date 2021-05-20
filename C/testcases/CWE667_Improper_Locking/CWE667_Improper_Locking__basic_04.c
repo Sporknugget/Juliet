@@ -27,6 +27,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE667_Improper_Locking__basic_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             static stdThreadLock badLock = NULL;
@@ -47,6 +48,15 @@ void CWE667_Improper_Locking__basic_04_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             static stdThreadLock goodLock = NULL;
@@ -70,6 +80,7 @@ void CWE667_Improper_Locking__basic_04_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             static stdThreadLock goodLock = NULL;

@@ -19,6 +19,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_block_14_bad()
 {
+    if(globalFive==5)
     {
         /* FLAW: An empty block has no effect */
         {
@@ -31,6 +32,15 @@ void CWE398_Poor_Code_Quality__empty_block_14_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Do not include an empty block */
         {
@@ -43,6 +53,7 @@ void CWE398_Poor_Code_Quality__empty_block_14_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         /* FIX: Do not include an empty block */
         {

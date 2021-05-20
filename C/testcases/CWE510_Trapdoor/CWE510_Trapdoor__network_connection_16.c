@@ -38,6 +38,7 @@ Template File: point-flaw-badonly-16.tmpl.c
 
 void CWE510_Trapdoor__network_connection_16_bad()
 {
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -83,6 +84,7 @@ void CWE510_Trapdoor__network_connection_16_bad()
             }
 #endif
         }
+        break;
     }
 }
 

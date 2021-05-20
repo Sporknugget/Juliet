@@ -38,6 +38,7 @@ void bad()
 {
     char * data;
     data = new char[100];
+    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         memset(data, 'A', 100-1); /* fill with 'A's */
@@ -61,6 +62,12 @@ static void goodG2B1()
 {
     char * data;
     data = new char[100];
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         memset(data, 'A', 50-1); /* fill with 'A's */
@@ -80,6 +87,7 @@ static void goodG2B2()
 {
     char * data;
     data = new char[100];
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         memset(data, 'A', 50-1); /* fill with 'A's */

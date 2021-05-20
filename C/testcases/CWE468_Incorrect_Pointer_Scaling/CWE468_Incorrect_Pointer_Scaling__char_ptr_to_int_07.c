@@ -24,6 +24,7 @@ static int staticFive = 5;
 
 void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_07_bad()
 {
+    if(staticFive==5)
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -40,6 +41,15 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };
@@ -55,6 +65,7 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             int intArray[5] = { 1, 2, 3, 4, 5 };

@@ -24,6 +24,8 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_wchar_t_loop_18_bad()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
     data = (wchar_t *)malloc(50*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
@@ -53,6 +55,8 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}

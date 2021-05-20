@@ -25,6 +25,7 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_11_bad()
 {
+    if(globalReturnsTrue())
     {
         {
             /* FLAW: encoded "calc.exe" */
@@ -79,6 +80,15 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_11_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: plaintext command */
@@ -95,6 +105,7 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_11_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         {
             /* FIX: plaintext command */

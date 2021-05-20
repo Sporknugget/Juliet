@@ -31,6 +31,8 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -118,6 +120,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: get the hostname from a string literal */
     strcpy(data, "hostname");
     /* POTENTIAL FLAW: set the hostname to data obtained from a potentially external source */

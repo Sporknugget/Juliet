@@ -23,6 +23,7 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_11_bad()
 {
+    if(globalReturnsTrue())
     {
         /* FLAW: RpcImpersonateClient() could fail and would not return RPC_S_OK, but we
          * are failing if the return value is RPC_S_OK */
@@ -39,6 +40,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)
@@ -53,6 +63,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)

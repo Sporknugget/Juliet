@@ -29,6 +29,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_07_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticFive==5)
     {
         /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
         data = INT_MAX / 2 + 2; /* 1073741825 */
@@ -61,6 +62,12 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
@@ -87,6 +94,7 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticFive==5)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

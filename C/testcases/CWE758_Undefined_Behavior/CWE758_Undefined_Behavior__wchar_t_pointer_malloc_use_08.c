@@ -32,6 +32,7 @@ static int staticReturnsFalse()
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
             wchar_t * * pointer = (wchar_t * *)malloc(sizeof(wchar_t *));
@@ -47,6 +48,15 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_08_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * data;
@@ -66,6 +76,7 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_08_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         {
             wchar_t * data;

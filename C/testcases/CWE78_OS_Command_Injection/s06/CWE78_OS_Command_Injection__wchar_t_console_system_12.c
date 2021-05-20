@@ -38,6 +38,7 @@ void CWE78_OS_Command_Injection__wchar_t_console_system_12_bad()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from the console */
@@ -65,6 +66,11 @@ void CWE78_OS_Command_Injection__wchar_t_console_system_12_bad()
             }
         }
     }
+    else
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        wcscat(data, L"*.*");
+    }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)
     {
@@ -84,6 +90,12 @@ static void goodG2B()
     wchar_t * data;
     wchar_t data_buf[100] = FULL_COMMAND;
     data = data_buf;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        wcscat(data, L"*.*");
+    }
+    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");

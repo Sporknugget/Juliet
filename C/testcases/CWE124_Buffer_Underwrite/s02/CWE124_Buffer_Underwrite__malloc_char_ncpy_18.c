@@ -24,6 +24,8 @@ void CWE124_Buffer_Underwrite__malloc_char_ncpy_18_bad()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     {
         char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
@@ -55,6 +57,8 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     {
         char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}

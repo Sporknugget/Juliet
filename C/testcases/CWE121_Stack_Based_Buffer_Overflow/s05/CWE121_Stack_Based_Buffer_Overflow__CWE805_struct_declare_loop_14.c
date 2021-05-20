@@ -23,6 +23,7 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_struct_declare_loop_14_bad()
     twoIntsStruct * data;
     twoIntsStruct dataBadBuffer[50];
     twoIntsStruct dataGoodBuffer[100];
+    if(globalFive==5)
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
@@ -61,6 +62,12 @@ static void goodG2B1()
     twoIntsStruct * data;
     twoIntsStruct dataBadBuffer[50];
     twoIntsStruct dataGoodBuffer[100];
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
@@ -94,6 +101,7 @@ static void goodG2B2()
     twoIntsStruct * data;
     twoIntsStruct dataBadBuffer[50];
     twoIntsStruct dataGoodBuffer[100];
+    if(globalFive==5)
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;

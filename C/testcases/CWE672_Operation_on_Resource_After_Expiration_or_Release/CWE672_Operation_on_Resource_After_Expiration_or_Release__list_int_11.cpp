@@ -30,11 +30,13 @@ namespace CWE672_Operation_on_Resource_After_Expiration_or_Release__list_int_11
 void bad()
 {
     list<int>  data;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    if(globalReturnsTrue())
     {
         {
             list<int> ::iterator i;
@@ -61,11 +63,18 @@ void bad()
 static void goodB2G1()
 {
     list<int>  data;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             list<int> ::iterator i;
@@ -84,11 +93,13 @@ static void goodB2G1()
 static void goodB2G2()
 {
     list<int>  data;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    if(globalReturnsTrue())
     {
         {
             list<int> ::iterator i;
@@ -107,11 +118,18 @@ static void goodB2G2()
 static void goodG2B1()
 {
     list<int>  data;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
     }
+    if(globalReturnsTrue())
     {
         {
             list<int> ::iterator i;
@@ -134,11 +152,13 @@ static void goodG2B1()
 static void goodG2B2()
 {
     list<int>  data;
+    if(globalReturnsTrue())
     {
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
     }
+    if(globalReturnsTrue())
     {
         {
             list<int> ::iterator i;

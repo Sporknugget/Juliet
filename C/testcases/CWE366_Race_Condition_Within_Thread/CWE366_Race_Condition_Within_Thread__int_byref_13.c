@@ -54,6 +54,7 @@ static void helperGood(void *args)
 
 void CWE366_Race_Condition_Within_Thread__int_byref_13_bad()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             stdThread threadA = NULL;
@@ -85,6 +86,15 @@ void CWE366_Race_Condition_Within_Thread__int_byref_13_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
+static void good1()
+{
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             stdThread threadA = NULL;
@@ -120,6 +130,7 @@ void CWE366_Race_Condition_Within_Thread__int_byref_13_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             stdThread threadA = NULL;

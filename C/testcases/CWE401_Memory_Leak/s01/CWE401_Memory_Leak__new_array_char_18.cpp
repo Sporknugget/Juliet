@@ -29,11 +29,15 @@ void bad()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new char[100];
     /* Initialize and make use of data */
     strcpy(data, "A String");
     printLine(data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
@@ -47,11 +51,15 @@ static void goodB2G()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new char[100];
     /* Initialize and make use of data */
     strcpy(data, "A String");
     printLine(data);
+    goto sink;
+sink:
     /* FIX: Deallocate memory */
     delete[] data;
 }
@@ -61,12 +69,16 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Use memory allocated on the stack */
     char dataGoodBuffer[100];
     data = dataGoodBuffer;
     /* Initialize and make use of data */
     strcpy(data, "A String");
     printLine(data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }

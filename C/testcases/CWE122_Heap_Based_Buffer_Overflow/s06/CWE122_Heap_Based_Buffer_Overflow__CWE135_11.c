@@ -25,6 +25,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_11_bad()
 {
     void * data;
     data = NULL;
+    if(globalReturnsTrue())
     {
         {
             wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -35,6 +36,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_11_bad()
             data = (void *)dataBadBuffer;
         }
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -57,6 +59,7 @@ static void goodB2G1()
 {
     void * data;
     data = NULL;
+    if(globalReturnsTrue())
     {
         {
             wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -67,6 +70,12 @@ static void goodB2G1()
             data = (void *)dataBadBuffer;
         }
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -85,6 +94,7 @@ static void goodB2G2()
 {
     void * data;
     data = NULL;
+    if(globalReturnsTrue())
     {
         {
             wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -95,6 +105,7 @@ static void goodB2G2()
             data = (void *)dataBadBuffer;
         }
     }
+    if(globalReturnsTrue())
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -113,6 +124,12 @@ static void goodG2B1()
 {
     void * data;
     data = NULL;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
@@ -123,6 +140,7 @@ static void goodG2B1()
             data = (void *)dataGoodBuffer;
         }
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -141,6 +159,7 @@ static void goodG2B2()
 {
     void * data;
     data = NULL;
+    if(globalReturnsTrue())
     {
         {
             char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
@@ -151,6 +170,7 @@ static void goodG2B2()
             data = (void *)dataGoodBuffer;
         }
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */

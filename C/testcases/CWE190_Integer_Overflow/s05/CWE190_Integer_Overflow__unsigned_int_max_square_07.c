@@ -30,10 +30,12 @@ void CWE190_Integer_Overflow__unsigned_int_max_square_07_bad()
 {
     unsigned int data;
     data = 0;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = UINT_MAX;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > UINT_MAX, this will overflow */
@@ -52,10 +54,17 @@ static void goodB2G1()
 {
     unsigned int data;
     data = 0;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = UINT_MAX;
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) < (long)sqrt((double)UINT_MAX))
@@ -75,10 +84,12 @@ static void goodB2G2()
 {
     unsigned int data;
     data = 0;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = UINT_MAX;
     }
+    if(staticFive==5)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) < (long)sqrt((double)UINT_MAX))
@@ -98,10 +109,17 @@ static void goodG2B1()
 {
     unsigned int data;
     data = 0;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > UINT_MAX, this will overflow */
@@ -116,10 +134,12 @@ static void goodG2B2()
 {
     unsigned int data;
     data = 0;
+    if(staticFive==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > UINT_MAX, this will overflow */

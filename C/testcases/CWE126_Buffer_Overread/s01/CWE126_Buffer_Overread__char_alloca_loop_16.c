@@ -29,9 +29,11 @@ void CWE126_Buffer_Overread__char_alloca_loop_16_bad()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
+    while(1)
     {
         /* FLAW: Set data pointer to a small buffer */
         data = dataBadBuffer;
+        break;
     }
     {
         size_t i, destLen;
@@ -64,9 +66,11 @@ static void goodG2B()
     dataBadBuffer[50-1] = '\0'; /* null terminate */
     memset(dataGoodBuffer, 'A', 100-1); /* fill with 'A's */
     dataGoodBuffer[100-1] = '\0'; /* null terminate */
+    while(1)
     {
         /* FIX: Set data pointer to a large buffer */
         data = dataGoodBuffer;
+        break;
     }
     {
         size_t i, destLen;

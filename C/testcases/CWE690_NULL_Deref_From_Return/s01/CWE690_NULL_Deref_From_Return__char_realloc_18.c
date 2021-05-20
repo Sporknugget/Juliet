@@ -26,6 +26,8 @@ void CWE690_NULL_Deref_From_Return__char_realloc_18_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)realloc(data, 20*sizeof(char));
+    goto sink;
+sink:
     /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
     strcpy(data, "Initialize");
     printLine(data);
@@ -43,6 +45,8 @@ static void goodB2G()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)realloc(data, 20*sizeof(char));
+    goto sink;
+sink:
     /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
     if (data != NULL)
     {

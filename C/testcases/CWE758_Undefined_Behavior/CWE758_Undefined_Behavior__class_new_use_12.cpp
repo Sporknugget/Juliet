@@ -22,6 +22,7 @@ namespace CWE758_Undefined_Behavior__class_new_use_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             TwoIntsClass * pointer = new TwoIntsClass;
@@ -29,6 +30,22 @@ void bad()
             delete pointer;
             printIntLine(data.intOne);
             printIntLine(data.intTwo);
+        }
+    }
+    else
+    {
+        {
+            TwoIntsClass data;
+            data.intOne = 1;
+            data.intTwo = 2;
+            TwoIntsClass * pointer = new TwoIntsClass;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                TwoIntsClass data = *pointer;
+                printIntLine(data.intOne);
+                printIntLine(data.intTwo);
+            }
+            delete pointer;
         }
     }
 }
@@ -40,6 +57,23 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            TwoIntsClass data;
+            data.intOne = 1;
+            data.intTwo = 2;
+            TwoIntsClass * pointer = new TwoIntsClass;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                TwoIntsClass data = *pointer;
+                printIntLine(data.intOne);
+                printIntLine(data.intTwo);
+            }
+            delete pointer;
+        }
+    }
+    else
     {
         {
             TwoIntsClass data;

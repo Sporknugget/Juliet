@@ -23,6 +23,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_14_bad()
 {
+    if(globalFive==5)
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -69,6 +70,15 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_14_b
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -116,6 +126,7 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_14_b
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));

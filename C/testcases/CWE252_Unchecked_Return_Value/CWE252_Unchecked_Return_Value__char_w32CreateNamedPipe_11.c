@@ -26,6 +26,7 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_11_bad()
 {
+    if(globalReturnsTrue())
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -55,6 +56,15 @@ void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_11_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -87,6 +97,7 @@ void CWE252_Unchecked_Return_Value__char_w32CreateNamedPipe_11_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";

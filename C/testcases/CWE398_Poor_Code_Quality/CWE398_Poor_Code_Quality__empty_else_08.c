@@ -32,6 +32,7 @@ static int staticReturnsFalse()
 
 void CWE398_Poor_Code_Quality__empty_else_08_bad()
 {
+    if(staticReturnsTrue())
     {
         /* FLAW: An empty else statement has no effect */
         {
@@ -53,6 +54,15 @@ void CWE398_Poor_Code_Quality__empty_else_08_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Do not include an empty else statement */
         {
@@ -74,6 +84,7 @@ void CWE398_Poor_Code_Quality__empty_else_08_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         /* FIX: Do not include an empty else statement */
         {

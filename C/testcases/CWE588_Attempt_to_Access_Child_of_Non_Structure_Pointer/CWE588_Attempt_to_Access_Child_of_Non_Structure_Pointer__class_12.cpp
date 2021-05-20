@@ -28,9 +28,15 @@ void bad()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Set data to point to an int */
         data = &dataBadBuffer;
+    }
+    else
+    {
+        /* FIX: Set data to point to a TwoIntsClass class */
+        data = &dataGoodBuffer;
     }
     /* POTENTIAL FLAW: Attempt to print a class member when data may be a non-object data type */
     printIntLine((reinterpret_cast<TwoIntsClass *>(data))->intTwo);
@@ -49,6 +55,12 @@ static void goodG2B()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Set data to point to a TwoIntsClass class */
+        data = &dataGoodBuffer;
+    }
+    else
     {
         /* FIX: Set data to point to a TwoIntsClass class */
         data = &dataGoodBuffer;

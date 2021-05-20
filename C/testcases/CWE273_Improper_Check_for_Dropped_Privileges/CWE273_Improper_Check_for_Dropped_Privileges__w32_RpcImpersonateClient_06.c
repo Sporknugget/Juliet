@@ -29,6 +29,7 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_06_bad()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         RpcImpersonateClient(0);
         /* FLAW: Do not check if RpcImpersonateClient() fails */
@@ -41,6 +42,15 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_06_b
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
+static void good1()
+{
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)
@@ -55,6 +65,7 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_06_b
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)

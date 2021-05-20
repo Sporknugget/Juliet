@@ -35,6 +35,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from the console */
@@ -61,6 +62,11 @@ void bad()
                 }
             }
         }
+    }
+    else
+    {
+        /* FIX: Use a fixed file name */
+        strcat(data, "file.txt");
     }
     {
         HANDLE hFile;
@@ -90,6 +96,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a fixed file name */
+        strcat(data, "file.txt");
+    }
+    else
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");

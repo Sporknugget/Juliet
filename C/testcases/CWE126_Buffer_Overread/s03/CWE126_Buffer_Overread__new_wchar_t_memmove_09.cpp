@@ -27,6 +27,7 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         /* FLAW: Use a small buffer */
         data = new wchar_t[50];
@@ -55,6 +56,12 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a large buffer */
         data = new wchar_t[100];
@@ -79,6 +86,7 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Use a large buffer */
         data = new wchar_t[100];

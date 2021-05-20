@@ -53,6 +53,7 @@ void CWE78_OS_Command_Injection__char_file_execlp_12_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from a file */
@@ -76,6 +77,11 @@ void CWE78_OS_Command_Injection__char_file_execlp_12_bad()
             }
         }
     }
+    else
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        strcat(data, "*.*");
+    }
     /* execlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -93,6 +99,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        strcat(data, "*.*");
+    }
+    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

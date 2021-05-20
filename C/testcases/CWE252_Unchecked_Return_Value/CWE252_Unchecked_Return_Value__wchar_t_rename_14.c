@@ -32,6 +32,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_rename_14_bad()
 {
+    if(globalFive==5)
     {
         /* FLAW: Do not check the return value */
         RENAME(OLD_BAD_FILE_NAME, L"newbadfilename.txt");
@@ -42,6 +43,15 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_14_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)
@@ -54,6 +64,7 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_14_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)

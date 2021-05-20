@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE546_Suspicious_Comment__FIXME_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: The following comment has the letters 'FIXME' in it*/
     /* FIXME: This comment has the letters 'FIXME' in it, which is certainly
      * suspicious, because it could indicate this code needs to be fixed.
@@ -33,6 +35,8 @@ void CWE546_Suspicious_Comment__FIXME_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: Removed the suspicious comments */
     printLine("Hello");
 }

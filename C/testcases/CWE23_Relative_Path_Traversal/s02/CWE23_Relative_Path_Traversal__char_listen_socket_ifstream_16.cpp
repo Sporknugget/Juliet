@@ -57,6 +57,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -137,6 +138,7 @@ void bad()
             }
 #endif
         }
+        break;
     }
     {
         ifstream inputFile;
@@ -156,9 +158,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
+        break;
     }
     {
         ifstream inputFile;

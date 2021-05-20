@@ -24,10 +24,19 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_15_bad()
 {
+    switch(6)
+    {
+    case 6:
         RpcImpersonateClient(0);
         /* FLAW: Do not check if RpcImpersonateClient() fails */
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -37,6 +46,13 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_15_b
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)
         {
@@ -44,11 +60,16 @@ static void good1()
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)
         {
@@ -56,6 +77,12 @@ static void good2()
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_15_good()

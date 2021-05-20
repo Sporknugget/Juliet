@@ -25,6 +25,7 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_16_bad()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    while(1)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -35,10 +36,13 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_16_bad()
                           NULL);
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
+        break;
     }
 }
 
@@ -51,6 +55,7 @@ static void goodB2G()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    while(1)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -61,11 +66,14 @@ static void goodB2G()
                           NULL);
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
+        break;
     }
+    while(1)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -74,6 +82,7 @@ static void goodG2B()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    while(1)
     {
         /* FIX: Open, but do not close the file in the source */
         data = CreateFile("GoodSource_w32CreateFile.txt",
@@ -83,10 +92,13 @@ static void goodG2B()
                           OPEN_ALWAYS,
                           FILE_ATTRIBUTE_NORMAL,
                           NULL);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
+        break;
     }
 }
 

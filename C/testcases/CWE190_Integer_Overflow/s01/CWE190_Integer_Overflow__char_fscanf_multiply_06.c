@@ -28,10 +28,12 @@ void CWE190_Integer_Overflow__char_fscanf_multiply_06_bad()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
     }
+    if(STATIC_CONST_FIVE==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -51,10 +53,17 @@ static void goodB2G1()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
     }
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -77,10 +86,12 @@ static void goodB2G2()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%c", &data);
     }
+    if(STATIC_CONST_FIVE==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -103,10 +114,17 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(STATIC_CONST_FIVE==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -122,10 +140,12 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(STATIC_CONST_FIVE==5)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

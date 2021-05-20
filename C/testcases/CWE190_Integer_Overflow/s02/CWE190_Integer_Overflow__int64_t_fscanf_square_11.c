@@ -26,10 +26,12 @@ void CWE190_Integer_Overflow__int64_t_fscanf_square_11_bad()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
@@ -48,10 +50,17 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
@@ -71,10 +80,12 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(globalReturnsTrue())
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
@@ -94,10 +105,17 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
@@ -112,10 +130,12 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */

@@ -25,12 +25,16 @@ void CWE401_Memory_Leak__int_malloc_18_bad()
 {
     int * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
     printIntLine(data[0]);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
@@ -44,12 +48,16 @@ static void goodB2G()
 {
     int * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
     printIntLine(data[0]);
+    goto sink;
+sink:
     /* FIX: Deallocate memory */
     free(data);
 }
@@ -59,11 +67,15 @@ static void goodG2B()
 {
     int * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Use memory allocated on the stack with ALLOCA */
     data = (int *)ALLOCA(100*sizeof(int));
     /* Initialize and make use of data */
     data[0] = 5;
     printIntLine(data[0]);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }

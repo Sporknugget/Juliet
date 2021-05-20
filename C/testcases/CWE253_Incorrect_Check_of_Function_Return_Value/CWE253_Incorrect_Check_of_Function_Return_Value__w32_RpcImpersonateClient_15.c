@@ -23,6 +23,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_15_bad()
 {
+    switch(6)
+    {
+    case 6:
         /* FLAW: RpcImpersonateClient() could fail and would not return RPC_S_OK, but we
          * are failing if the return value is RPC_S_OK */
         if (RpcImpersonateClient(0) == RPC_S_OK)
@@ -31,6 +34,12 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -40,6 +49,13 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)
         {
@@ -47,11 +63,16 @@ static void good1()
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)
         {
@@ -59,6 +80,12 @@ static void good2()
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_15_good()

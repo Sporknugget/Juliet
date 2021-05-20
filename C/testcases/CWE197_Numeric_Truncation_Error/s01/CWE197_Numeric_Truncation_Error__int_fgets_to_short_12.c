@@ -25,6 +25,7 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_short_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -39,6 +40,11 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_short_12_bad()
                 printLine("fgets() failed.");
             }
         }
+    }
+    else
+    {
+        /* FIX: Use a positive integer less than CHAR_MAX*/
+        data = CHAR_MAX-5;
     }
     {
         /* POTENTIAL FLAW: Convert data to a short, possibly causing a truncation error */
@@ -58,6 +64,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a positive integer less than CHAR_MAX*/
+        data = CHAR_MAX-5;
+    }
+    else
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;

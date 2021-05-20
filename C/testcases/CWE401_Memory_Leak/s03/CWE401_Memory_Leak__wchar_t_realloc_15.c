@@ -25,14 +25,32 @@ void CWE401_Memory_Leak__wchar_t_realloc_15_bad()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -44,14 +62,32 @@ static void goodB2G1()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Deallocate memory */
         free(data);
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -59,14 +95,32 @@ static void goodB2G2()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: Deallocate memory */
         free(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -74,13 +128,31 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -88,13 +160,31 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
         /* Initialize and make use of data */
         wcscpy(data, L"A String");
         printWLine(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE401_Memory_Leak__wchar_t_realloc_15_good()

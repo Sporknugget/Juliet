@@ -29,6 +29,7 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             FILETIME ftModified;
@@ -79,6 +80,15 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
@@ -99,6 +109,7 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_modified_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),

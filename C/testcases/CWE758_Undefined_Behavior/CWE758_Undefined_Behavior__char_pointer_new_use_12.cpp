@@ -22,12 +22,27 @@ namespace CWE758_Undefined_Behavior__char_pointer_new_use_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * * pointer = new char *;
             char * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             delete pointer;
             printLine(data);
+        }
+    }
+    else
+    {
+        {
+            char * data;
+            data = "string";
+            char * * pointer = new char *;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                char * data = *pointer;
+                printLine(data);
+            }
+            delete pointer;
         }
     }
 }
@@ -39,6 +54,21 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * data;
+            data = "string";
+            char * * pointer = new char *;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                char * data = *pointer;
+                printLine(data);
+            }
+            delete pointer;
+        }
+    }
+    else
     {
         {
             char * data;

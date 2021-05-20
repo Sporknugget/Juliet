@@ -22,9 +22,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE665_Improper_Initialization__char_ncat_17_bad()
 {
+    int i;
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Do not initialize data */
         ; /* empty statement needed for some flow variants */
@@ -48,9 +50,11 @@ void CWE665_Improper_Initialization__char_ncat_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Properly initialize data */
         data[0] = '\0'; /* null terminate */

@@ -27,6 +27,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPipeClient_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -53,6 +56,12 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPi
         }
         CloseHandle(hPipe);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -62,6 +71,13 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32ImpersonateNamedPi
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -87,11 +103,16 @@ static void good1()
         }
         CloseHandle(hPipe);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char * pipeName = "\\\\.\\pipe\\mypipe";
         HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -116,6 +137,12 @@ static void good2()
             exit(1);
         }
         CloseHandle(hPipe);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

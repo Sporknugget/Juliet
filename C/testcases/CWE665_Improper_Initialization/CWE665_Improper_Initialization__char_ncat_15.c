@@ -25,8 +25,17 @@ void CWE665_Improper_Initialization__char_ncat_15_bad()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Do not initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t sourceLen;
         char source[100];
@@ -49,8 +58,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Properly initialize data */
         data[0] = '\0'; /* null terminate */
+        break;
+    }
     {
         size_t sourceLen;
         char source[100];
@@ -69,8 +87,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Properly initialize data */
         data[0] = '\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t sourceLen;
         char source[100];

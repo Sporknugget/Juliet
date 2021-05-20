@@ -32,9 +32,11 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_rename_16_bad()
 {
+    while(1)
     {
         /* FLAW: Do not check the return value */
         RENAME(OLD_BAD_FILE_NAME, "newbadfilename.txt");
+        break;
     }
 }
 
@@ -45,12 +47,14 @@ void CWE252_Unchecked_Return_Value__char_rename_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: check the return value */
         if (RENAME(OLD_GOOD_FILE_NAME, "newgoodfilename.txt") != 0)
         {
             printLine("rename failed!");
         }
+        break;
     }
 }
 

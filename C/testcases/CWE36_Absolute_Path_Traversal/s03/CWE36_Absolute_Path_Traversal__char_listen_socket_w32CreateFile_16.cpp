@@ -52,6 +52,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -132,6 +133,7 @@ void bad()
             }
 #endif
         }
+        break;
     }
     {
         HANDLE hFile;
@@ -160,6 +162,7 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    while(1)
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */
@@ -168,6 +171,7 @@ static void goodG2B()
         /* FIX: Use a fixed, full path and file name */
         strcat(data, "/tmp/file.txt");
 #endif
+        break;
     }
     {
         HANDLE hFile;

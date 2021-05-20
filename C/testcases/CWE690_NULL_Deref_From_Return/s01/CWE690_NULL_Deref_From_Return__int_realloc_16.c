@@ -26,11 +26,13 @@ void CWE690_NULL_Deref_From_Return__int_realloc_16_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int *)realloc(data, 1*sizeof(int));
+    while(1)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0] = 5;
         printIntLine(data[0]);
         free(data);
+        break;
     }
 }
 
@@ -45,6 +47,7 @@ static void goodB2G()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int *)realloc(data, 1*sizeof(int));
+    while(1)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
@@ -53,6 +56,7 @@ static void goodB2G()
             printIntLine(data[0]);
             free(data);
         }
+        break;
     }
 }
 

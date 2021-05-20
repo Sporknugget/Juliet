@@ -28,6 +28,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE511_Logic_Time_Bomb__w32CompareFileTime_14_bad()
 {
+    if(globalFive==5)
     {
         {
             SYSTEMTIME setTime, currentTime;
@@ -58,6 +59,15 @@ void CWE511_Logic_Time_Bomb__w32CompareFileTime_14_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             SYSTEMTIME setTime, currentTime;
@@ -87,6 +97,7 @@ void CWE511_Logic_Time_Bomb__w32CompareFileTime_14_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         {
             SYSTEMTIME setTime, currentTime;

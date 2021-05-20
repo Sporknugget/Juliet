@@ -23,11 +23,29 @@ void CWE675_Duplicate_Operations_on_Resource__freopen_15_bad()
 {
     FILE * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -39,12 +57,30 @@ static void goodB2G1()
 {
     FILE * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
         ; /* empty statement needed for some flow variants */
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -52,12 +88,30 @@ static void goodB2G2()
 {
     FILE * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -65,10 +119,28 @@ static void goodG2B1()
 {
     FILE * data;
     data = NULL; /* Initialize data */
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Open, but do not close the file in the source */
         data = fopen("GoodSource_fopen.txt", "w+");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -76,10 +148,28 @@ static void goodG2B2()
 {
     FILE * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
         /* FIX: Open, but do not close the file in the source */
         data = fopen("GoodSource_fopen.txt", "w+");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE675_Duplicate_Operations_on_Resource__freopen_15_good()

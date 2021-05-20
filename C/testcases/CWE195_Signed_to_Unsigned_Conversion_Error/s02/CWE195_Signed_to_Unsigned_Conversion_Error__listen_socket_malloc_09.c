@@ -45,6 +45,7 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_09_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(GLOBAL_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -141,6 +142,12 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;
@@ -166,6 +173,7 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

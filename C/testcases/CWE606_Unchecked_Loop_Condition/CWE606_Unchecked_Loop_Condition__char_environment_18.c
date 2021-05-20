@@ -38,6 +38,8 @@ void CWE606_Unchecked_Loop_Condition__char_environment_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -49,6 +51,8 @@ void CWE606_Unchecked_Loop_Condition__char_environment_18_bad()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    goto sink;
+sink:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -75,6 +79,8 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -86,6 +92,8 @@ static void goodB2G()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    goto sink;
+sink:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -111,8 +119,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Set data to a number less than MAX_LOOP */
     strcpy(data, "15");
+    goto sink;
+sink:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)

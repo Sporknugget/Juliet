@@ -24,6 +24,7 @@ static int staticFive = 5;
 
 void CWE398_Poor_Code_Quality__addition_07_bad()
 {
+    if(staticFive==5)
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;
@@ -39,6 +40,15 @@ void CWE398_Poor_Code_Quality__addition_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;
@@ -53,6 +63,7 @@ void CWE398_Poor_Code_Quality__addition_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;

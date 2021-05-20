@@ -30,10 +30,12 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 void CWE457_Use_of_Uninitialized_Variable__int_pointer_04_bad()
 {
     int * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(*data);
@@ -48,10 +50,17 @@ void CWE457_Use_of_Uninitialized_Variable__int_pointer_04_bad()
 static void goodB2G1()
 {
     int * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
@@ -66,10 +75,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
@@ -84,6 +95,12 @@ static void goodB2G2()
 static void goodG2B1()
 {
     int * data;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
@@ -91,6 +108,7 @@ static void goodG2B1()
         if (data == NULL) {exit(-1);}
         *data = 5;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(*data);
@@ -101,6 +119,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     int * data;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
@@ -108,6 +127,7 @@ static void goodG2B2()
         if (data == NULL) {exit(-1);}
         *data = 5;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(*data);

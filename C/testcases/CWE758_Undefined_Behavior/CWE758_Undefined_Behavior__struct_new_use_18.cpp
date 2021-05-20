@@ -22,6 +22,8 @@ namespace CWE758_Undefined_Behavior__struct_new_use_18
 
 void bad()
 {
+    goto sink;
+sink:
     {
         twoIntsStruct * pointer = new twoIntsStruct;
         twoIntsStruct data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
@@ -38,6 +40,8 @@ void bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         twoIntsStruct data;
         data.intOne = 1;

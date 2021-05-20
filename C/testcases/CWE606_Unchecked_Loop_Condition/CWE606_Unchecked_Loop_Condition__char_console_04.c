@@ -36,6 +36,7 @@ void CWE606_Unchecked_Loop_Condition__char_console_04_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
             /* Read input from the console */
@@ -63,6 +64,7 @@ void CWE606_Unchecked_Loop_Condition__char_console_04_bad()
             }
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;
@@ -91,6 +93,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
             /* Read input from the console */
@@ -118,6 +121,12 @@ static void goodB2G1()
             }
         }
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int i, n, intVariable;
@@ -145,6 +154,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
             /* Read input from the console */
@@ -172,6 +182,7 @@ static void goodB2G2()
             }
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;
@@ -199,10 +210,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;
@@ -227,10 +245,12 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;

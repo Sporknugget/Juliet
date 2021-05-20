@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_18_bad()
 {
+    goto sink;
+sink:
     {
         wchar_t string1[] = SOURCE_STRING;
         wchar_t string2[] = SOURCE_STRING;
@@ -47,6 +49,8 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         wchar_t string1[] = SOURCE_STRING;
         wchar_t * slashInString1;

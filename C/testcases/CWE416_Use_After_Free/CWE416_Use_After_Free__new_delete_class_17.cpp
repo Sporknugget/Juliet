@@ -25,9 +25,11 @@ namespace CWE416_Use_After_Free__new_delete_class_17
 
 void bad()
 {
+    int i,j;
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         data = new TwoIntsClass;
         data->intOne = 1;
@@ -35,6 +37,7 @@ void bad()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printIntLine(data->intOne);
@@ -49,9 +52,11 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         data = new TwoIntsClass;
         data->intOne = 1;
@@ -59,6 +64,7 @@ static void goodB2G()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -70,15 +76,18 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         data = new TwoIntsClass;
         data->intOne = 1;
         data->intTwo = 2;
         /* FIX: Do not delete data in the source */
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printIntLine(data->intOne);

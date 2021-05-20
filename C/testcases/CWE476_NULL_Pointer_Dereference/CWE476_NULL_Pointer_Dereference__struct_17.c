@@ -23,11 +23,14 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__struct_17_bad()
 {
+    int i,j;
     twoIntsStruct * data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -41,11 +44,14 @@ void CWE476_NULL_Pointer_Dereference__struct_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     twoIntsStruct * data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -62,8 +68,10 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     twoIntsStruct * data;
     twoIntsStruct tmpData;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize data */
         {
@@ -72,6 +80,7 @@ static void goodG2B()
             data = &tmpData;
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

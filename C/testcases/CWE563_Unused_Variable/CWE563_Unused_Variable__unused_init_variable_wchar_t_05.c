@@ -31,6 +31,7 @@ void CWE563_Unused_Variable__unused_init_variable_wchar_t_05_bad()
     wchar_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = L'W';
+    if(staticTrue)
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -48,6 +49,12 @@ static void goodB2G1()
     wchar_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = L'W';
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data */
         printWcharLine(data);
@@ -60,6 +67,7 @@ static void goodB2G2()
     wchar_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = L'W';
+    if(staticTrue)
     {
         /* FIX: Use data */
         printWcharLine(data);

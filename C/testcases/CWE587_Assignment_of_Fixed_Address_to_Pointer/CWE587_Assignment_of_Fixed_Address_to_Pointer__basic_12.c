@@ -19,10 +19,20 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: Assigning fixed address to pointer */
             char *charPointer = (char*)0x400000;
+            printHexCharLine(*charPointer);
+        }
+    }
+    else
+    {
+        {
+            /* FIX: Assign the pointer to a stack variable */
+            char charStack = 'a';
+            char *charPointer = &charStack;
             printHexCharLine(*charPointer);
         }
     }
@@ -35,6 +45,16 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: Assign the pointer to a stack variable */
+            char charStack = 'a';
+            char *charPointer = &charStack;
+            printHexCharLine(*charPointer);
+        }
+    }
+    else
     {
         {
             /* FIX: Assign the pointer to a stack variable */

@@ -22,6 +22,7 @@ namespace CWE758_Undefined_Behavior__long_new_use_16
 
 void bad()
 {
+    while(1)
     {
         {
             long * pointer = new long;
@@ -29,6 +30,7 @@ void bad()
             delete pointer;
             printLongLine(data);
         }
+        break;
     }
 }
 
@@ -39,6 +41,7 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
+    while(1)
     {
         {
             long data;
@@ -51,6 +54,7 @@ static void good1()
             }
             delete pointer;
         }
+        break;
     }
 }
 

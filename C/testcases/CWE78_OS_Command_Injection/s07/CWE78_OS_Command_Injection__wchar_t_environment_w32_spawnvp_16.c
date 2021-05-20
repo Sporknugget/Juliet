@@ -50,6 +50,7 @@ void CWE78_OS_Command_Injection__wchar_t_environment_w32_spawnvp_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -62,6 +63,7 @@ void CWE78_OS_Command_Injection__wchar_t_environment_w32_spawnvp_16_bad()
                 wcsncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
+        break;
     }
     {
         wchar_t *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
@@ -82,9 +84,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
+        break;
     }
     {
         wchar_t *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};

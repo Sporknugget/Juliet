@@ -34,6 +34,7 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_16_bad()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    while(1)
     {
         /* FLAW: Assign data to another file descriptor without closing the descriptor from the source */
         data = OPEN("BadSink_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
@@ -42,6 +43,7 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_16_bad()
         {
             CLOSE(data);
         }
+        break;
     }
 }
 
@@ -57,6 +59,7 @@ static void goodB2G()
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    while(1)
     {
         /* FIX: Close the file from the source before reassigning data to a new file descriptor */
         if (data != -1)
@@ -69,6 +72,7 @@ static void goodB2G()
         {
             CLOSE(data);
         }
+        break;
     }
 }
 

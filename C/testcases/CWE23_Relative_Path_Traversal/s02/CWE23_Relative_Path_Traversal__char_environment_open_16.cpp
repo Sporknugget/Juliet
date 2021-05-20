@@ -50,6 +50,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -62,6 +63,7 @@ void bad()
                 strncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
             }
         }
+        break;
     }
     {
         int fileDesc;
@@ -84,9 +86,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
+        break;
     }
     {
         int fileDesc;

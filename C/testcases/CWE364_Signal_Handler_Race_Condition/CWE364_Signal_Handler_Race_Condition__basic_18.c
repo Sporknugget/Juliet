@@ -45,6 +45,8 @@ static void helperGood(int sig)
 
 void CWE364_Signal_Handler_Race_Condition__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         structSigAtomic *gStructSigAtomic = NULL;
         signal(SIGINT, SIG_DFL);
@@ -89,6 +91,8 @@ void CWE364_Signal_Handler_Race_Condition__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         structSigAtomic *gStructSigAtomic = NULL;
         signal(SIGINT, SIG_DFL);

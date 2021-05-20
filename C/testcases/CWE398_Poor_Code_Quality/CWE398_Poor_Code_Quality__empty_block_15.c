@@ -19,10 +19,19 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_block_15_bad()
 {
+    switch(6)
+    {
+    case 6:
         /* FLAW: An empty block has no effect */
     {
     }
     printLine("Hello from bad()");
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -32,21 +41,39 @@ void CWE398_Poor_Code_Quality__empty_block_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Do not include an empty block */
     {
         printLine("Inside the block");
     }
     printLine("Hello from good()");
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
         /* FIX: Do not include an empty block */
     {
         printLine("Inside the block");
     }
     printLine("Hello from good()");
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE398_Poor_Code_Quality__empty_block_15_good()

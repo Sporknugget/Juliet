@@ -38,6 +38,7 @@ void CWE563_Unused_Variable__unused_uninit_variable_struct_08_bad()
     twoIntsStruct data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    if(staticReturnsTrue())
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -55,6 +56,12 @@ static void goodB2G1()
     twoIntsStruct data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize then use data */
         data.intOne = 0;
@@ -69,6 +76,7 @@ static void goodB2G2()
     twoIntsStruct data;
     /* POTENTIAL FLAW: Do not initialize or use data */
     ; /* empty statement needed for some flow variants */
+    if(staticReturnsTrue())
     {
         /* FIX: Initialize then use data */
         data.intOne = 0;

@@ -30,10 +30,12 @@ namespace CWE476_NULL_Pointer_Dereference__class_07
 void bad()
 {
     TwoIntsClass * data;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -50,10 +52,17 @@ void bad()
 static void goodB2G1()
 {
     TwoIntsClass * data;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -72,10 +81,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     TwoIntsClass * data;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(staticFive==5)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -94,6 +105,12 @@ static void goodB2G2()
 static void goodG2B1()
 {
     TwoIntsClass * data;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             TwoIntsClass * tmpData = new TwoIntsClass;
@@ -103,6 +120,7 @@ static void goodG2B1()
             data = tmpData;
         }
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -115,6 +133,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     TwoIntsClass * data;
+    if(staticFive==5)
     {
         {
             TwoIntsClass * tmpData = new TwoIntsClass;
@@ -124,6 +143,7 @@ static void goodG2B2()
             data = tmpData;
         }
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

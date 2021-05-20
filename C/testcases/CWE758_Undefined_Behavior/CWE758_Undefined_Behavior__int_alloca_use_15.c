@@ -19,10 +19,19 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE758_Undefined_Behavior__int_alloca_use_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int * pointer = (int *)ALLOCA(sizeof(int));
         int data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         printIntLine(data);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -33,6 +42,13 @@ void CWE758_Undefined_Behavior__int_alloca_use_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int data;
         int * pointer = (int *)ALLOCA(sizeof(int));
@@ -43,11 +59,16 @@ static void good1()
             printIntLine(data);
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int data;
         int * pointer = (int *)ALLOCA(sizeof(int));
@@ -57,6 +78,12 @@ static void good2()
             int data = *pointer;
             printIntLine(data);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

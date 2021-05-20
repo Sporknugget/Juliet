@@ -30,6 +30,8 @@ void CWE259_Hard_Coded_Password__w32_char_18_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    goto source;
+source:
     /* FLAW: Use a hardcoded password */
     strcpy(password, PASSWORD);
     {
@@ -65,6 +67,8 @@ static void goodG2B()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    goto source;
+source:
     {
         size_t passwordLen = 0;
         /* FIX: Read the password from the console */

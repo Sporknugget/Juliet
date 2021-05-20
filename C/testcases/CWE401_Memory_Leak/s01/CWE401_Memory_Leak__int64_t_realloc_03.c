@@ -25,6 +25,7 @@ void CWE401_Memory_Leak__int64_t_realloc_03_bad()
 {
     int64_t * data;
     data = NULL;
+    if(5==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
@@ -33,6 +34,7 @@ void CWE401_Memory_Leak__int64_t_realloc_03_bad()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
+    if(5==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -48,6 +50,7 @@ static void goodB2G1()
 {
     int64_t * data;
     data = NULL;
+    if(5==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
@@ -56,6 +59,12 @@ static void goodB2G1()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -67,6 +76,7 @@ static void goodB2G2()
 {
     int64_t * data;
     data = NULL;
+    if(5==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = (int64_t *)realloc(data, 100*sizeof(int64_t));
@@ -75,6 +85,7 @@ static void goodB2G2()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
+    if(5==5)
     {
         /* FIX: Deallocate memory */
         free(data);
@@ -86,6 +97,12 @@ static void goodG2B1()
 {
     int64_t * data;
     data = NULL;
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (int64_t *)ALLOCA(100*sizeof(int64_t));
@@ -93,6 +110,7 @@ static void goodG2B1()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
+    if(5==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -104,6 +122,7 @@ static void goodG2B2()
 {
     int64_t * data;
     data = NULL;
+    if(5==5)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (int64_t *)ALLOCA(100*sizeof(int64_t));
@@ -111,6 +130,7 @@ static void goodG2B2()
         data[0] = 5LL;
         printLongLongLine(data[0]);
     }
+    if(5==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

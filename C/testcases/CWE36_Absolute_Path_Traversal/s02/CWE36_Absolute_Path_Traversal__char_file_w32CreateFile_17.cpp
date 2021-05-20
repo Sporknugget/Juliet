@@ -35,9 +35,11 @@ namespace CWE36_Absolute_Path_Traversal__char_file_w32CreateFile_17
 
 void bad()
 {
+    int i;
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
             /* Read input from a file */
@@ -85,9 +87,11 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */

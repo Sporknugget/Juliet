@@ -43,6 +43,7 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE367_TOC_TOU__access_10_bad()
 {
+    if(globalTrue)
     {
         {
             char filename[100] = "";
@@ -83,6 +84,15 @@ void CWE367_TOC_TOU__access_10_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char filename[100] = "";
@@ -118,6 +128,7 @@ void CWE367_TOC_TOU__access_10_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         {
             char filename[100] = "";

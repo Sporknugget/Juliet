@@ -25,15 +25,18 @@ namespace CWE416_Use_After_Free__new_delete_int64_t_17
 
 void bad()
 {
+    int i,j;
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);
@@ -48,15 +51,18 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         data = new int64_t;
         *data = 5LL;
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -68,14 +74,17 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         data = new int64_t;
         *data = 5LL;
         /* FIX: Do not delete data in the source */
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(*data);

@@ -27,6 +27,7 @@ namespace CWE390_Error_Without_Action__empty_catch_16
 
 void bad()
 {
+    while(1)
     {
         {
             try
@@ -40,6 +41,7 @@ void bad()
                 /* FLAW: Catch, but do not handle the out_of_range error */
             }
         }
+        break;
     }
 }
 
@@ -50,6 +52,7 @@ void bad()
 /* good1() changes the conditions on the while statements */
 static void good1()
 {
+    while(1)
     {
         {
             try
@@ -65,6 +68,7 @@ static void good1()
                 exit(1);
             }
         }
+        break;
     }
 }
 

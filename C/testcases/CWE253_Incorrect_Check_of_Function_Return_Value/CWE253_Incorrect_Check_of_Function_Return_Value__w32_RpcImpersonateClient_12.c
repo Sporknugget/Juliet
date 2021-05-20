@@ -23,10 +23,21 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: RpcImpersonateClient() could fail and would not return RPC_S_OK, but we
          * are failing if the return value is RPC_S_OK */
         if (RpcImpersonateClient(0) == RPC_S_OK)
+        {
+            exit(1);
+        }
+        /* We'll leave out most of the implementation since it has nothing to do with the CWE
+         * and since the checkers are looking for certain function calls anyway */
+    }
+    else
+    {
+        /* FIX: check for the correct return value */
+        if (RpcImpersonateClient(0) != RPC_S_OK)
         {
             exit(1);
         }
@@ -42,6 +53,17 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: check for the correct return value */
+        if (RpcImpersonateClient(0) != RPC_S_OK)
+        {
+            exit(1);
+        }
+        /* We'll leave out most of the implementation since it has nothing to do with the CWE
+         * and since the checkers are looking for certain function calls anyway */
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)

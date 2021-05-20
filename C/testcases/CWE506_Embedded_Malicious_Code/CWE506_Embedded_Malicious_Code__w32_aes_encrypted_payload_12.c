@@ -27,6 +27,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: encrytped "calc.exe" */
@@ -86,6 +87,18 @@ void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            /* FIX: plaintext command */
+            char * payload = "calc.exe";
+            if(system(payload) <= 0)
+            {
+                printLine("command execution failed!");
+                exit(1);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -95,6 +108,19 @@ void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: plaintext command */
+            char * payload = "calc.exe";
+            if(system(payload) <= 0)
+            {
+                printLine("command execution failed!");
+                exit(1);
+            }
+        }
+    }
+    else
     {
         {
             /* FIX: plaintext command */

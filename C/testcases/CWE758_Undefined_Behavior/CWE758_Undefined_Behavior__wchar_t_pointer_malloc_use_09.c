@@ -19,6 +19,7 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t * * pointer = (wchar_t * *)malloc(sizeof(wchar_t *));
@@ -34,6 +35,15 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * data;
@@ -53,6 +63,7 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t * data;

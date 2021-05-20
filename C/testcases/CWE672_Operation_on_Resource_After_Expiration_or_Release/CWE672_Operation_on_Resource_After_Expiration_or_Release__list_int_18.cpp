@@ -30,9 +30,13 @@ namespace CWE672_Operation_on_Resource_After_Expiration_or_Release__list_int_18
 void bad()
 {
     list<int>  data;
+    goto source;
+source:
     /* POTENTIAL FLAW: Insert a zero into the list */
     data.push_back(100);
     data.push_back(0);
+    goto sink;
+sink:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -57,9 +61,13 @@ void bad()
 static void goodB2G()
 {
     list<int>  data;
+    goto source;
+source:
     /* POTENTIAL FLAW: Insert a zero into the list */
     data.push_back(100);
     data.push_back(0);
+    goto sink;
+sink:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -76,9 +84,13 @@ static void goodB2G()
 static void goodG2B()
 {
     list<int>  data;
+    goto source;
+source:
     /* FIX: Insert non-zero values into the list */
     data.push_back(100);
     data.push_back(200);
+    goto sink;
+sink:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";

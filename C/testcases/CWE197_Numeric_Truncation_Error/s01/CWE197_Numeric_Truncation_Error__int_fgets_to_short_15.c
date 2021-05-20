@@ -25,6 +25,9 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_short_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -37,6 +40,12 @@ void CWE197_Numeric_Truncation_Error__int_fgets_to_short_15_bad()
         {
             printLine("fgets() failed.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     {
         /* POTENTIAL FLAW: Convert data to a short, possibly causing a truncation error */
@@ -55,8 +64,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
+        break;
+    }
     {
         /* POTENTIAL FLAW: Convert data to a short, possibly causing a truncation error */
         short shortData = (short)data;
@@ -70,8 +88,17 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         /* POTENTIAL FLAW: Convert data to a short, possibly causing a truncation error */
         short shortData = (short)data;

@@ -23,9 +23,15 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_strncpy_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
+    }
+    else
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
     }
     {
         char source[100];
@@ -54,6 +60,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
+    }
+    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

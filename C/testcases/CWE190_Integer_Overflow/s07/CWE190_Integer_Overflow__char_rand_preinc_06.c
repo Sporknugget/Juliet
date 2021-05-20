@@ -28,10 +28,12 @@ void CWE190_Integer_Overflow__char_rand_preinc_06_bad()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (char)RAND32();
     }
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -51,10 +53,17 @@ static void goodB2G1()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (char)RAND32();
     }
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < CHAR_MAX)
@@ -75,10 +84,12 @@ static void goodB2G2()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (char)RAND32();
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < CHAR_MAX)
@@ -99,10 +110,17 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -118,10 +136,12 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

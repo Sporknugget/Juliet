@@ -22,6 +22,7 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_RegCreateKey_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";
@@ -47,6 +48,15 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_RegCreateKey_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";
@@ -71,6 +81,7 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_RegCreateKey_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t * keyName = L"TEST\\TestKey";

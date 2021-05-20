@@ -21,6 +21,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_wchar_t_loop_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t src[150], dest[100];
@@ -36,6 +37,22 @@ void CWE126_Buffer_Overread__CWE170_wchar_t_loop_12_bad()
             printWLine(dest);
         }
     }
+    else
+    {
+        {
+            wchar_t src[150], dest[100];
+            int i;
+            /* Initialize src */
+            wmemset(src, L'A', 149);
+            src[149] = L'\0';
+            for(i=0; i < 99; i++)
+            {
+                dest[i] = src[i];
+            }
+            dest[99] = L'\0'; /* FIX: null terminate dest */
+            printWLine(dest);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -45,6 +62,23 @@ void CWE126_Buffer_Overread__CWE170_wchar_t_loop_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            wchar_t src[150], dest[100];
+            int i;
+            /* Initialize src */
+            wmemset(src, L'A', 149);
+            src[149] = L'\0';
+            for(i=0; i < 99; i++)
+            {
+                dest[i] = src[i];
+            }
+            dest[99] = L'\0'; /* FIX: null terminate dest */
+            printWLine(dest);
+        }
+    }
+    else
     {
         {
             wchar_t src[150], dest[100];

@@ -23,6 +23,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE244_Heap_Inspection__w32_wchar_t_free_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL) {exit(-1);}
@@ -63,6 +66,12 @@ void CWE244_Heap_Inspection__w32_wchar_t_free_15_bad()
         /* FLAW: free() password without clearing the password buffer */
         free(password);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -72,6 +81,13 @@ void CWE244_Heap_Inspection__w32_wchar_t_free_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL) {exit(-1);}
@@ -114,11 +130,16 @@ static void good1()
         SecureZeroMemory(password, passwordLen * sizeof(wchar_t));
         free(password);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL) {exit(-1);}
@@ -160,6 +181,12 @@ static void good2()
         /* FIX: Clear password prior to freeing */
         SecureZeroMemory(password, passwordLen * sizeof(wchar_t));
         free(password);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

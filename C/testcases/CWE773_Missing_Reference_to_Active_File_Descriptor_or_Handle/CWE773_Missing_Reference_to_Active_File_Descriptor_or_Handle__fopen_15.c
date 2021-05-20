@@ -24,6 +24,9 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__fopen_15_bad(
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
+    switch(6)
+    {
+    case 6:
         /* FLAW: Point data to another file handle without closing the handle from the source */
         data = fopen("BadSink_fopen.txt", "w+");
         /* avoid incidental for not closing the file handle */
@@ -31,6 +34,12 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__fopen_15_bad(
         {
             fclose(data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -44,6 +53,13 @@ static void goodB2G1()
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != NULL)
         {
@@ -55,6 +71,8 @@ static void goodB2G1()
         {
             fclose(data);
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -64,6 +82,9 @@ static void goodB2G2()
     data = NULL;
     /* POTENTIAL FLAW: Create a file handle using fopen() that may not be closed properly */
     data = fopen("BadSource_fopen.txt", "w+");
+    switch(6)
+    {
+    case 6:
         /* FIX: Close the file from the source before pointing data to a new file handle */
         if (data != NULL)
         {
@@ -75,6 +96,12 @@ static void goodB2G2()
         {
             fclose(data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__fopen_15_good()

@@ -23,10 +23,12 @@ void CWE191_Integer_Underflow__short_rand_postdec_11_bad()
 {
     short data;
     data = 0;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (short)RAND32();
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -46,10 +48,17 @@ static void goodB2G1()
 {
     short data;
     data = 0;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (short)RAND32();
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > SHRT_MIN)
@@ -70,10 +79,12 @@ static void goodB2G2()
 {
     short data;
     data = 0;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (short)RAND32();
     }
+    if(globalReturnsTrue())
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > SHRT_MIN)
@@ -94,10 +105,17 @@ static void goodG2B1()
 {
     short data;
     data = 0;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */
@@ -113,10 +131,12 @@ static void goodG2B2()
 {
     short data;
     data = 0;
+    if(globalReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Decrementing data could cause an underflow */

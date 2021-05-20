@@ -54,6 +54,8 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -123,6 +125,8 @@ void bad()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -153,6 +157,8 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -222,6 +228,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         wchar_t * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -248,8 +256,12 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a relatively small number for memory allocation */
     data = 20;
+    goto sink;
+sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough

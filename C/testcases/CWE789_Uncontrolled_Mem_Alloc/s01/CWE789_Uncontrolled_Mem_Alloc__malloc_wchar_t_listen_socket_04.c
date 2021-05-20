@@ -58,6 +58,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_listen_socket_04_bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -129,6 +130,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_listen_socket_04_bad()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t * myString;
@@ -162,6 +164,7 @@ static void goodB2G1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -233,6 +236,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * myString;
@@ -262,6 +271,7 @@ static void goodB2G2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -333,6 +343,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t * myString;
@@ -362,10 +373,17 @@ static void goodG2B1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t * myString;
@@ -395,10 +413,12 @@ static void goodG2B2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t * myString;

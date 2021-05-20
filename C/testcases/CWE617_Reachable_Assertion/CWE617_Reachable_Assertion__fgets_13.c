@@ -29,6 +29,7 @@ void CWE617_Reachable_Assertion__fgets_13_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -58,6 +59,12 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;
@@ -72,6 +79,7 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;

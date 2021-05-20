@@ -28,6 +28,8 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_18
 
 void bad()
 {
+    goto sink;
+sink:
     /* FLAW: throw std::exception class, which is very generic */
     throw exception();
 }
@@ -39,6 +41,8 @@ void bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: Throw a specific exception */
     throw range_error("Test");
 }

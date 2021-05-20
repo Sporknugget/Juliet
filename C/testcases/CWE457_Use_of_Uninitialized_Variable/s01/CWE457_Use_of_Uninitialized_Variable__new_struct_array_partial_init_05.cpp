@@ -32,6 +32,7 @@ void bad()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -43,6 +44,7 @@ void bad()
             }
         }
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -67,6 +69,7 @@ static void goodB2G1()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -78,6 +81,12 @@ static void goodB2G1()
             }
         }
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -106,6 +115,7 @@ static void goodB2G2()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -117,6 +127,7 @@ static void goodB2G2()
             }
         }
     }
+    if(staticTrue)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -145,6 +156,12 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -156,6 +173,7 @@ static void goodG2B1()
             }
         }
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -176,6 +194,7 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticTrue)
     {
         /* FIX: Completely initialize data */
         {
@@ -187,6 +206,7 @@ static void goodG2B2()
             }
         }
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

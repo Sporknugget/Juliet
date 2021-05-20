@@ -23,6 +23,8 @@ Template File: point-flaw-badonly-18.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_18_bad()
 {
+    goto sink;
+sink:
     {
         /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */
         HDC hdcWindow = NULL;

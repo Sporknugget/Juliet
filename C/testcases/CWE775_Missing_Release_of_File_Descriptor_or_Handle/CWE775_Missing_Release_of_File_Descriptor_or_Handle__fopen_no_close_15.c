@@ -24,8 +24,17 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__fopen_no_close_15_bad(
     data = NULL;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = fopen("BadSource_fopen.txt", "w+");
+    switch(6)
+    {
+    case 6:
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -39,11 +48,20 @@ static void goodB2G1()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = fopen("BadSource_fopen.txt", "w+");
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: If the file is still opened, close it */
         if (data != NULL)
         {
             fclose(data);
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the switch */
@@ -53,11 +71,20 @@ static void goodB2G2()
     data = NULL;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = fopen("BadSource_fopen.txt", "w+");
+    switch(6)
+    {
+    case 6:
         /* FIX: If the file is still opened, close it */
         if (data != NULL)
         {
             fclose(data);
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE775_Missing_Release_of_File_Descriptor_or_Handle__fopen_no_close_15_good()

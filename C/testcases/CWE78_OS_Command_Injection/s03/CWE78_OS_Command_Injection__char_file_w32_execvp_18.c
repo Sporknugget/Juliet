@@ -49,6 +49,8 @@ void CWE78_OS_Command_Injection__char_file_w32_execvp_18_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    goto source;
+source:
     {
         /* Read input from a file */
         size_t dataLen = strlen(data);
@@ -89,6 +91,8 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Append a fixed string to data (not user / external input) */
     strcat(data, "*.*");
     {

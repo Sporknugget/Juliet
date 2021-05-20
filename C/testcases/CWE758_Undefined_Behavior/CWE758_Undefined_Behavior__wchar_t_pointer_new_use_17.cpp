@@ -22,6 +22,8 @@ namespace CWE758_Undefined_Behavior__wchar_t_pointer_new_use_17
 
 void bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             wchar_t * * pointer = new wchar_t *;
@@ -39,6 +41,8 @@ void bad()
 /* good1() changes the conditions on the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             wchar_t * data;

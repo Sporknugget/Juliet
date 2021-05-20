@@ -28,8 +28,12 @@ void bad()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    goto source;
+source:
     /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
     data = dataBadBuffer;
+    goto sink;
+sink:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -58,8 +62,12 @@ static void goodB2G()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    goto source;
+source:
     /* POTENTIAL FLAW: Initialize data to a buffer small than the sizeof(TwoIntsClass) */
     data = dataBadBuffer;
+    goto sink;
+sink:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -82,8 +90,12 @@ static void goodG2B()
     if (dataBadBuffer == NULL) {exit(-1);}
     char * dataGoodBuffer = (char *)malloc(sizeof(TwoIntsClass));
     if (dataGoodBuffer == NULL) {exit(-1);}
+    goto source;
+source:
     /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
     data = dataGoodBuffer;
+    goto sink;
+sink:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.

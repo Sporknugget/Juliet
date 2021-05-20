@@ -29,6 +29,7 @@ Template File: point-flaw-13.tmpl.c
 
 void CWE223_Omission_of_Security_Relevant_Information__w32_13_bad()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             WSADATA wsaData;
@@ -118,6 +119,15 @@ void CWE223_Omission_of_Security_Relevant_Information__w32_13_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
+static void good1()
+{
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             WSADATA wsaData;
@@ -206,6 +216,7 @@ void CWE223_Omission_of_Security_Relevant_Information__w32_13_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             WSADATA wsaData;

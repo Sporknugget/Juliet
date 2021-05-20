@@ -22,9 +22,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE121_Stack_Based_Buffer_Overflow__src_char_declare_cpy_17_bad()
 {
+    int i;
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         memset(data, 'A', 100-1); /* fill with 'A's */
@@ -45,9 +47,11 @@ void CWE121_Stack_Based_Buffer_Overflow__src_char_declare_cpy_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         memset(data, 'A', 50-1); /* fill with 'A's */

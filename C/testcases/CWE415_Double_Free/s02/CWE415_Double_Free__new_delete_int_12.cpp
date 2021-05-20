@@ -28,14 +28,27 @@ void bad()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    else
+    {
+        data = new int;
+        /* FIX: Do NOT delete data in the source - the bad sink deletes data */
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
+    }
+    else
+    {
+        /* do nothing */
+        /* FIX: Don't attempt to delete the memory */
+        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -51,11 +64,25 @@ static void goodB2G()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = new int;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    else
+    {
+        data = new int;
+        /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
+        delete data;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* do nothing */
+        /* FIX: Don't attempt to delete the memory */
+        ; /* empty statement needed for some flow variants */
+    }
+    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -71,10 +98,22 @@ static void goodG2B()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = new int;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    else
+    {
+        data = new int;
+        /* FIX: Do NOT delete data in the source - the bad sink deletes data */
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Possibly deleting memory twice */
+        delete data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

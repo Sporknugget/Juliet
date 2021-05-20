@@ -26,8 +26,17 @@ void CWE127_Buffer_Underread__wchar_t_declare_cpy_15_bad()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    switch(6)
+    {
+    case 6:
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         wchar_t dest[100*2];
         wmemset(dest, L'C', 100*2-1); /* fill with 'C's */
@@ -49,8 +58,17 @@ static void goodG2B1()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
+        break;
+    }
     {
         wchar_t dest[100*2];
         wmemset(dest, L'C', 100*2-1); /* fill with 'C's */
@@ -68,8 +86,17 @@ static void goodG2B2()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         wchar_t dest[100*2];
         wmemset(dest, L'C', 100*2-1); /* fill with 'C's */

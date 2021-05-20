@@ -24,13 +24,17 @@ Template File: sources-sinks-16.tmpl.c
 void CWE476_NULL_Pointer_Dereference__int_16_bad()
 {
     int * data;
+    while(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
+        break;
     }
 }
 
@@ -42,10 +46,13 @@ void CWE476_NULL_Pointer_Dereference__int_16_bad()
 static void goodB2G()
 {
     int * data;
+    while(1)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
+        break;
     }
+    while(1)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -56,6 +63,7 @@ static void goodB2G()
         {
             printLine("data is NULL");
         }
+        break;
     }
 }
 
@@ -64,15 +72,19 @@ static void goodG2B()
 {
     int * data;
     int tmpData = 5;
+    while(1)
     {
         /* FIX: Initialize data */
         {
             data = &tmpData;
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(*data);
+        break;
     }
 }
 

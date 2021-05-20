@@ -28,6 +28,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE328_Reversible_One_Way_Hash__w32_MD2_16_bad()
 {
+    while(1)
     {
         {
             HCRYPTPROV hCryptProv;
@@ -120,6 +121,7 @@ void CWE328_Reversible_One_Way_Hash__w32_MD2_16_bad()
                 CryptReleaseContext(hCryptProv, 0);
             }
         }
+        break;
     }
 }
 
@@ -130,6 +132,7 @@ void CWE328_Reversible_One_Way_Hash__w32_MD2_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             HCRYPTPROV hCryptProv;
@@ -219,6 +222,7 @@ static void good1()
                 CryptReleaseContext(hCryptProv, 0);
             }
         }
+        break;
     }
 }
 

@@ -27,12 +27,14 @@ void CWE404_Improper_Resource_Shutdown__fopen_w32CloseHandle_16_bad()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = fopen("BadSource_fopen.txt", "w+");
+    while(1)
     {
         if (data != NULL)
         {
             /* FLAW: Attempt to close the file using CloseHandle() instead of fclose() */
             CloseHandle((HANDLE)data);
         }
+        break;
     }
 }
 
@@ -48,12 +50,14 @@ static void goodB2G()
     data = NULL;
     /* POTENTIAL FLAW: Open a file - need to make sure it is closed properly in the sink */
     data = fopen("BadSource_fopen.txt", "w+");
+    while(1)
     {
         if (data != NULL)
         {
             /* FIX: Close the file using fclose() */
             fclose(data);
         }
+        break;
     }
 }
 

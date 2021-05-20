@@ -22,6 +22,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_char_RegOpenKeyEx_16_bad()
 {
+    while(1)
     {
         {
             char * keyName = "TEST\\TestKey";
@@ -42,6 +43,7 @@ void CWE272_Least_Privilege_Violation__w32_char_RegOpenKeyEx_16_bad()
                 RegCloseKey(hKey);
             }
         }
+        break;
     }
 }
 
@@ -52,6 +54,7 @@ void CWE272_Least_Privilege_Violation__w32_char_RegOpenKeyEx_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char * keyName = "TEST\\TestKey";
@@ -72,6 +75,7 @@ static void good1()
                 RegCloseKey(hKey);
             }
         }
+        break;
     }
 }
 

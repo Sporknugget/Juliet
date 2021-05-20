@@ -25,6 +25,7 @@ void bad()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -36,8 +37,43 @@ void bad()
             }
         }
     }
+    else
+    {
+        /* FIX: Completely initialize data */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i].intOne = i;
+                data[i].intTwo = i;
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                printIntLine(data[i].intOne);
+                printIntLine(data[i].intTwo);
+            }
+        }
+        /* deallocate the memory */
+        delete [] data;
+    }
+    else
+    {
+        /* FIX: Ensure data is initialized before use */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i].intOne = i;
+                data[i].intTwo = i;
+            }
+        }
         {
             int i;
             for(i=0; i<10; i++)
@@ -62,6 +98,7 @@ static void goodB2G()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -73,6 +110,41 @@ static void goodB2G()
             }
         }
     }
+    else
+    {
+        /* POTENTIAL FLAW: Partially initialize data */
+        {
+            int i;
+            for(i=0; i<(10/2); i++)
+            {
+                data[i].intOne = i;
+                data[i].intTwo = i;
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Ensure data is initialized before use */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i].intOne = i;
+                data[i].intTwo = i;
+            }
+        }
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                printIntLine(data[i].intOne);
+                printIntLine(data[i].intTwo);
+            }
+        }
+        /* deallocate the memory */
+        delete [] data;
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -103,6 +175,7 @@ static void goodG2B()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Completely initialize data */
         {
@@ -114,6 +187,33 @@ static void goodG2B()
             }
         }
     }
+    else
+    {
+        /* FIX: Completely initialize data */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                data[i].intOne = i;
+                data[i].intTwo = i;
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use data without initializing it */
+        {
+            int i;
+            for(i=0; i<10; i++)
+            {
+                printIntLine(data[i].intOne);
+                printIntLine(data[i].intTwo);
+            }
+        }
+        /* deallocate the memory */
+        delete [] data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

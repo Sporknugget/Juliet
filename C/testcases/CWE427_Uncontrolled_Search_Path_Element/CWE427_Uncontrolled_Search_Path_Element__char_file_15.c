@@ -38,6 +38,9 @@ void CWE427_Uncontrolled_Search_Path_Element__char_file_15_bad()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Read input from a file */
         size_t dataLen = strlen(data);
@@ -59,6 +62,12 @@ void CWE427_Uncontrolled_Search_Path_Element__char_file_15_bad()
             }
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }
@@ -73,8 +82,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);
+        break;
+    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }
@@ -85,8 +103,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }

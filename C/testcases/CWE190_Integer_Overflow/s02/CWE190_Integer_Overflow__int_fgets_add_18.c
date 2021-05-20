@@ -26,6 +26,8 @@ void CWE190_Integer_Overflow__int_fgets_add_18_bad()
     int data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -39,6 +41,8 @@ void CWE190_Integer_Overflow__int_fgets_add_18_bad()
             printLine("fgets() failed.");
         }
     }
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         int result = data + 1;
@@ -56,6 +60,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -69,6 +75,8 @@ static void goodB2G()
             printLine("fgets() failed.");
         }
     }
+    goto sink;
+sink:
     /* FIX: Add a check to prevent an overflow from occurring */
     if (data < INT_MAX)
     {
@@ -87,8 +95,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
     data = 2;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
         int result = data + 1;

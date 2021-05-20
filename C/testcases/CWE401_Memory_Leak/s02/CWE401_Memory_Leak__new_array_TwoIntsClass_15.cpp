@@ -29,6 +29,9 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
         /* Initialize and make use of data */
@@ -36,8 +39,23 @@ void bad()
         data[0].intTwo = 0;
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -49,6 +67,9 @@ static void goodB2G1()
 {
     TwoIntsClass * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
         /* Initialize and make use of data */
@@ -56,8 +77,23 @@ static void goodB2G1()
         data[0].intTwo = 0;
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Deallocate memory */
         delete[] data;
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -65,6 +101,9 @@ static void goodB2G2()
 {
     TwoIntsClass * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass[100];
         /* Initialize and make use of data */
@@ -72,8 +111,23 @@ static void goodB2G2()
         data[0].intTwo = 0;
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: Deallocate memory */
         delete[] data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -81,6 +135,13 @@ static void goodG2B1()
 {
     TwoIntsClass * data;
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer[100];
         data = dataGoodBuffer;
@@ -89,8 +150,19 @@ static void goodG2B1()
         data[0].intTwo = 0;
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -98,6 +170,9 @@ static void goodG2B2()
 {
     TwoIntsClass * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer[100];
         data = dataGoodBuffer;
@@ -106,8 +181,23 @@ static void goodG2B2()
         data[0].intTwo = 0;
         printIntLine(data[0].intOne);
         printIntLine(data[0].intTwo);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void good()

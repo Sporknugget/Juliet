@@ -62,6 +62,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_listen_socket_printf_08_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -143,6 +144,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_listen_socket_printf_08_bad()
 #endif
         }
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         wprintf(data);
@@ -159,6 +161,7 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -240,6 +243,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         wprintf(L"%s\n", data);
@@ -252,6 +261,7 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -333,6 +343,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         wprintf(L"%s\n", data);
@@ -345,10 +356,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         wprintf(data);
@@ -361,10 +379,12 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         wprintf(data);

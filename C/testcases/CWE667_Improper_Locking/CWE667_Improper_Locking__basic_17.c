@@ -21,6 +21,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE667_Improper_Locking__basic_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             static stdThreadLock badLock = NULL;
@@ -44,6 +46,8 @@ void CWE667_Improper_Locking__basic_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             static stdThreadLock goodLock = NULL;

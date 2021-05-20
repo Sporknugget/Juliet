@@ -25,6 +25,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_loop_10_bad()
     wchar_t * data;
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
+    if(globalTrue)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         wmemset(data, L'A', 100-1); /* fill with L'A's */
@@ -55,6 +56,12 @@ static void goodG2B1()
     wchar_t * data;
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */
@@ -81,6 +88,7 @@ static void goodG2B2()
     wchar_t * data;
     data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
+    if(globalTrue)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */

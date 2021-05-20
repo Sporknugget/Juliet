@@ -19,12 +19,14 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE758_Undefined_Behavior__char_alloca_use_16_bad()
 {
+    while(1)
     {
         {
             char * pointer = (char *)ALLOCA(sizeof(char));
             char data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printHexCharLine(data);
         }
+        break;
     }
 }
 
@@ -35,6 +37,7 @@ void CWE758_Undefined_Behavior__char_alloca_use_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char data;
@@ -46,6 +49,7 @@ static void good1()
                 printHexCharLine(data);
             }
         }
+        break;
     }
 }
 

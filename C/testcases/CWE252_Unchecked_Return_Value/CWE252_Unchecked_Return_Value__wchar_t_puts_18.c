@@ -29,6 +29,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_puts_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: Do not check the return value */
     PUTS(L"string");
 }
@@ -40,6 +42,8 @@ void CWE252_Unchecked_Return_Value__wchar_t_puts_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: check the return value */
     if (PUTS(L"string") == WEOF)
     {

@@ -21,6 +21,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__wcstombs_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         size_t bytesTranslated = 0;
         char charString[100];
@@ -29,6 +32,12 @@ void CWE391_Unchecked_Error_Condition__wcstombs_15_bad()
         /* FLAW: Do not check to see if wcstombs() failed */
         printUnsignedLine(bytesTranslated);
         printLine(charString);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -39,6 +48,13 @@ void CWE391_Unchecked_Error_Condition__wcstombs_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         size_t bytesTranslated = 0;
         char charString[100];
@@ -54,11 +70,16 @@ static void good1()
         printUnsignedLine(bytesTranslated);
         printLine(charString);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         size_t bytesTranslated = 0;
         char charString[100];
@@ -73,6 +94,12 @@ static void good2()
         }
         printUnsignedLine(bytesTranslated);
         printLine(charString);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

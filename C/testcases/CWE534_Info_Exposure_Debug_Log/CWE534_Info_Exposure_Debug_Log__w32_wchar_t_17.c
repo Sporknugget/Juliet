@@ -24,6 +24,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             wchar_t password[100] = L"";
@@ -77,6 +79,8 @@ void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             wchar_t password[100] = L"";

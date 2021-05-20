@@ -26,10 +26,17 @@ void CWE400_Resource_Exhaustion__rand_fwrite_12_bad()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             size_t i = 0;
@@ -55,6 +62,31 @@ void CWE400_Resource_Exhaustion__rand_fwrite_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            size_t i = 0;
+            FILE *pFile = NULL;
+            const char *filename = "output_good.txt";
+            /* FIX: Validate count before using it as the for loop variant to write to a file */
+            if (count > 0 && count <= 20)
+            {
+                pFile = fopen(filename, "w+");
+                if (pFile == NULL)
+                {
+                    exit(1);
+                }
+                for (i = 0; i < (size_t)count; i++)
+                {
+                    if (strlen(SENTENCE) != fwrite(SENTENCE, sizeof(char), strlen(SENTENCE), pFile)) exit(1);
+                }
+                if (pFile)
+                {
+                    fclose(pFile);
+                }
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -69,10 +101,42 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    else
+    {
+        /* POTENTIAL FLAW: Set count to a random value */
+        count = RAND32();
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t i = 0;
+            FILE *pFile = NULL;
+            const char *filename = "output_good.txt";
+            /* FIX: Validate count before using it as the for loop variant to write to a file */
+            if (count > 0 && count <= 20)
+            {
+                pFile = fopen(filename, "w+");
+                if (pFile == NULL)
+                {
+                    exit(1);
+                }
+                for (i = 0; i < (size_t)count; i++)
+                {
+                    if (strlen(SENTENCE) != fwrite(SENTENCE, sizeof(char), strlen(SENTENCE), pFile)) exit(1);
+                }
+                if (pFile)
+                {
+                    fclose(pFile);
+                }
+            }
+        }
+    }
+    else
     {
         {
             size_t i = 0;
@@ -107,10 +171,43 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t i = 0;
+            FILE *pFile = NULL;
+            const char *filename = "output_bad.txt";
+            pFile = fopen(filename, "w+");
+            if (pFile == NULL)
+            {
+                exit(1);
+            }
+            /* POTENTIAL FLAW: For loop using count as the loop variant and no validation
+             * This can cause a file to become very large */
+            for (i = 0; i < (size_t)count; i++)
+            {
+                if (strlen(SENTENCE) != fwrite(SENTENCE, sizeof(char), strlen(SENTENCE), pFile))
+                {
+                    exit(1);
+                }
+            }
+            if (pFile)
+            {
+                fclose(pFile);
+            }
+        }
+    }
+    else
     {
         {
             size_t i = 0;

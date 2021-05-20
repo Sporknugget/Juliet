@@ -27,6 +27,7 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL; /* Initialize data */
+    while(1)
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -35,6 +36,7 @@ void bad()
             dataBuffer.intTwo = 1;
             data = &dataBuffer;
         }
+        break;
     }
     printIntLine(data->intOne);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -50,6 +52,7 @@ static void goodG2B()
 {
     TwoIntsClass * data;
     data = NULL; /* Initialize data */
+    while(1)
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
@@ -58,6 +61,7 @@ static void goodG2B()
             dataBuffer->intTwo = 2;
             data = dataBuffer;
         }
+        break;
     }
     printIntLine(data->intOne);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

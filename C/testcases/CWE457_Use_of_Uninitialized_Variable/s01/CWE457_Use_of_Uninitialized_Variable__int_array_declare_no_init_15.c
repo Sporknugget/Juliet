@@ -24,8 +24,20 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_declare_no_init_15_bad()
     int * data;
     int dataUninitArray[10];
     data = dataUninitArray;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -33,6 +45,12 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_declare_no_init_15_bad()
         {
             printIntLine(data[i]);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -46,8 +64,24 @@ static void goodB2G1()
     int * data;
     int dataUninitArray[10];
     data = dataUninitArray;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -62,6 +96,8 @@ static void goodB2G1()
         {
             printIntLine(data[i]);
         }
+    }
+    break;
     }
 }
 
@@ -71,8 +107,20 @@ static void goodB2G2()
     int * data;
     int dataUninitArray[10];
     data = dataUninitArray;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -88,6 +136,12 @@ static void goodB2G2()
             printIntLine(data[i]);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -96,6 +150,13 @@ static void goodG2B1()
     int * data;
     int dataUninitArray[10];
     data = dataUninitArray;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Completely initialize data */
     {
         int i;
@@ -104,6 +165,11 @@ static void goodG2B1()
             data[i] = i;
         }
     }
+    break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -111,6 +177,12 @@ static void goodG2B1()
         {
             printIntLine(data[i]);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -120,6 +192,9 @@ static void goodG2B2()
     int * data;
     int dataUninitArray[10];
     data = dataUninitArray;
+    switch(6)
+    {
+    case 6:
         /* FIX: Completely initialize data */
     {
         int i;
@@ -128,6 +203,15 @@ static void goodG2B2()
             data[i] = i;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -135,6 +219,12 @@ static void goodG2B2()
         {
             printIntLine(data[i]);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

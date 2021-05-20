@@ -25,6 +25,8 @@ void CWE563_Unused_Variable__unused_init_variable_int_18_bad()
     int data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
+    goto sink;
+sink:
     /* FLAW: Do not use the variable */
     /* do nothing */
     ; /* empty statement needed for some flow variants */
@@ -40,6 +42,8 @@ static void goodB2G()
     int data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5;
+    goto sink;
+sink:
     /* FIX: Use data */
     printIntLine(data);
 }

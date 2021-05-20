@@ -29,6 +29,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_remove_14_bad()
 {
+    if(globalFive==5)
     {
         /* FLAW: remove() might fail, in which case the return value will be non-zero, but
          * we are checking to see if the return value is 0 */
@@ -43,6 +44,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_remove_14_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (REMOVE("removemegood.txt") != 0)
@@ -55,6 +65,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_remove_14_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         /* FIX: check for the correct return value */
         if (REMOVE("removemegood.txt") != 0)

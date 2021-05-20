@@ -40,6 +40,7 @@ Template File: point-flaw-badonly-14.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__file_transfer_connect_socket_14_bad()
 {
+    if(globalFive==5)
     {
         {
 #ifdef _WIN32

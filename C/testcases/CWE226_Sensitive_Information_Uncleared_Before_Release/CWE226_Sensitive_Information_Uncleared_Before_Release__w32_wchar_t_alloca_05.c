@@ -29,6 +29,7 @@ static int staticFalse = 0; /* false */
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_05_bad()
 {
+    if(staticTrue)
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -75,6 +76,15 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_0
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -122,6 +132,7 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_0
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));

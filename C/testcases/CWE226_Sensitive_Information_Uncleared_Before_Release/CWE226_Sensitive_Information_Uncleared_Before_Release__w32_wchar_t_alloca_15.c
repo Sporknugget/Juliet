@@ -23,6 +23,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
         size_t passwordLen = 0;
@@ -61,6 +64,12 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_1
         }
         /* FLAW: Release password from the stack without first clearing the buffer */
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -70,6 +79,13 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_1
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
         size_t passwordLen = 0;
@@ -110,11 +126,16 @@ static void good1()
         /* FIX: Clear password prior to release from stack */
         SecureZeroMemory(password, passwordLen * sizeof(wchar_t));
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
         size_t passwordLen = 0;
@@ -154,6 +175,12 @@ static void good2()
         passwordLen = wcslen(password);
         /* FIX: Clear password prior to release from stack */
         SecureZeroMemory(password, passwordLen * sizeof(wchar_t));
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

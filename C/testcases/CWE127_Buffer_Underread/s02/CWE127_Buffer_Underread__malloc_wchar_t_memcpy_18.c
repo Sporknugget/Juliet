@@ -24,6 +24,8 @@ void CWE127_Buffer_Underread__malloc_wchar_t_memcpy_18_bad()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     {
         wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL) {exit(-1);}
@@ -55,6 +57,8 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     {
         wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL) {exit(-1);}

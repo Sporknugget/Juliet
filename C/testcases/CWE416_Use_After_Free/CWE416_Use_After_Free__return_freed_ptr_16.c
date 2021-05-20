@@ -68,6 +68,7 @@ static char * helperGood(char * aString)
 
 void CWE416_Use_After_Free__return_freed_ptr_16_bad()
 {
+    while(1)
     {
         {
             /* Call the bad helper function */
@@ -78,6 +79,7 @@ void CWE416_Use_After_Free__return_freed_ptr_16_bad()
              * but we don't want that function to be free(). Essentially we want to avoid a double free
              */
         }
+        break;
     }
 }
 
@@ -88,6 +90,7 @@ void CWE416_Use_After_Free__return_freed_ptr_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             /* Call the good helper function */
@@ -98,6 +101,7 @@ static void good1()
              * but we don't want that function to be free(). Essentially we want to avoid a double free
              */
         }
+        break;
     }
 }
 

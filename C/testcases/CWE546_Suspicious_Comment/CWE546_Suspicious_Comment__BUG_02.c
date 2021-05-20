@@ -19,6 +19,7 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE546_Suspicious_Comment__BUG_02_bad()
 {
+    if(1)
     {
         /* FLAW: The following comment has the letters 'BUG' in it*/
         /* BUG: This comment has the letters 'BUG' in it, which is certainly
@@ -32,6 +33,15 @@ void CWE546_Suspicious_Comment__BUG_02_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -41,6 +51,7 @@ void CWE546_Suspicious_Comment__BUG_02_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

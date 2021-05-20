@@ -27,6 +27,8 @@ namespace CWE390_Error_Without_Action__empty_catch_17
 
 void bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             try
@@ -50,6 +52,8 @@ void bad()
 /* good1() changes the conditions on the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             try

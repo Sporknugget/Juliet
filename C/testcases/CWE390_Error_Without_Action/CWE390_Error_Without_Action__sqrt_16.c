@@ -22,6 +22,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE390_Error_Without_Action__sqrt_16_bad()
 {
+    while(1)
     {
         {
             double doubleNumber;
@@ -34,6 +35,7 @@ void CWE390_Error_Without_Action__sqrt_16_bad()
             }
             printDoubleLine(doubleNumber);
         }
+        break;
     }
 }
 
@@ -44,6 +46,7 @@ void CWE390_Error_Without_Action__sqrt_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             double doubleNumber;
@@ -57,6 +60,7 @@ static void good1()
             }
             printDoubleLine(doubleNumber);
         }
+        break;
     }
 }
 

@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE481_Assigning_Instead_of_Comparing__basic_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int intRand = rand();
         /* FLAW: should be == and INCIDENTIAL CWE 571 Expression Is Always True */
@@ -26,6 +29,12 @@ void CWE481_Assigning_Instead_of_Comparing__basic_15_bad()
         {
             printLine("i was 5");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -36,6 +45,13 @@ void CWE481_Assigning_Instead_of_Comparing__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int intRand = rand();
         /* FIX: used == instead of = */
@@ -44,11 +60,16 @@ static void good1()
             printLine("i was 5");
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int intRand = rand();
         /* FIX: used == instead of = */
@@ -56,6 +77,12 @@ static void good2()
         {
             printLine("i was 5");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

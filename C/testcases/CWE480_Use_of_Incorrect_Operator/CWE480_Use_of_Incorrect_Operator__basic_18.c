@@ -48,6 +48,8 @@ static char * helperGood()
 
 void CWE480_Use_of_Incorrect_Operator__basic_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: This will never be true becuase the () was omitted.  Also INCIDENTAL CWE 570 Expression Is Always False */
     if(helperBad == NULL)
     {
@@ -62,6 +64,8 @@ void CWE480_Use_of_Incorrect_Operator__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: add () to function call */
     if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */
     {

@@ -26,9 +26,13 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
     data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete data;
@@ -44,9 +48,13 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
     data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    goto sink;
+sink:
     /* FIX: Deallocate the memory using free() */
     free(data);
 }
@@ -57,8 +65,12 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* FIX: Allocate memory from the heap using new */
     data = new twoIntsStruct;
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
      * require a call to free() to deallocate the memory */
     delete data;

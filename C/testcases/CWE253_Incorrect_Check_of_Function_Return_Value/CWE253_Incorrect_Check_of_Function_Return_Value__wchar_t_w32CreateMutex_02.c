@@ -26,6 +26,7 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_02_bad()
 {
+    if(1)
     {
         {
             HANDLE hMutex = NULL;
@@ -47,6 +48,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_02_
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE hMutex = NULL;
@@ -66,6 +76,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_02_
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         {
             HANDLE hMutex = NULL;

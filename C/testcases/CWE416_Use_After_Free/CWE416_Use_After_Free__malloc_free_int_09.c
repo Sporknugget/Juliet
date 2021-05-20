@@ -26,6 +26,7 @@ void CWE416_Use_After_Free__malloc_free_int_09_bad()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -39,6 +40,7 @@ void CWE416_Use_After_Free__malloc_free_int_09_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printIntLine(data[0]);
@@ -56,6 +58,7 @@ static void goodB2G1()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -69,6 +72,12 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -83,6 +92,7 @@ static void goodB2G2()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -96,6 +106,7 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -110,6 +121,12 @@ static void goodG2B1()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -122,6 +139,7 @@ static void goodG2B1()
         }
         /* FIX: Do not free data in the source */
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printIntLine(data[0]);
@@ -135,6 +153,7 @@ static void goodG2B2()
     int * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = (int *)malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
@@ -147,6 +166,7 @@ static void goodG2B2()
         }
         /* FIX: Do not free data in the source */
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printIntLine(data[0]);

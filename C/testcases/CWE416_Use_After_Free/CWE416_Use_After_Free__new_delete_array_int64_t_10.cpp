@@ -29,6 +29,7 @@ void bad()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalTrue)
     {
         data = new int64_t[100];
         {
@@ -41,6 +42,7 @@ void bad()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(data[0]);
@@ -58,6 +60,7 @@ static void goodB2G1()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalTrue)
     {
         data = new int64_t[100];
         {
@@ -70,6 +73,12 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -84,6 +93,7 @@ static void goodB2G2()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalTrue)
     {
         data = new int64_t[100];
         {
@@ -96,6 +106,7 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
+    if(globalTrue)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -110,6 +121,12 @@ static void goodG2B1()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = new int64_t[100];
         {
@@ -121,6 +138,7 @@ static void goodG2B1()
         }
         /* FIX: Do not delete data in the source */
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(data[0]);
@@ -134,6 +152,7 @@ static void goodG2B2()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalTrue)
     {
         data = new int64_t[100];
         {
@@ -145,6 +164,7 @@ static void goodG2B2()
         }
         /* FIX: Do not delete data in the source */
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLongLongLine(data[0]);

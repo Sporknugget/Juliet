@@ -23,6 +23,7 @@ Template File: point-flaw-11.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_int_11_bad()
 {
+    if(globalReturnsTrue())
     {
         {
             int * data = (int *)malloc(100*sizeof(int));
@@ -47,6 +48,15 @@ void CWE401_Memory_Leak__malloc_realloc_int_11_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int * data = (int *)malloc(100*sizeof(int));
@@ -73,6 +83,7 @@ void CWE401_Memory_Leak__malloc_realloc_int_11_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         {
             int * data = (int *)malloc(100*sizeof(int));

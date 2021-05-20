@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__char_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char * badChar = NULL;
         /* FLAW: Using sizeof the pointer and not the data type in malloc() */
@@ -27,6 +30,12 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__char_15_bad()
         *badChar = 'B';
         printHexCharLine(*badChar);
         free(badChar);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -37,6 +46,13 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__char_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char * goodChar = NULL;
         /* FIX: Using sizeof the data type in malloc() */
@@ -46,11 +62,16 @@ static void good1()
         printHexCharLine(*goodChar);
         free(goodChar);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char * goodChar = NULL;
         /* FIX: Using sizeof the data type in malloc() */
@@ -59,6 +80,12 @@ static void good2()
         *goodChar = 'G';
         printHexCharLine(*goodChar);
         free(goodChar);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

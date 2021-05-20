@@ -45,6 +45,7 @@ static void helperGood(int sig)
 
 void CWE364_Signal_Handler_Race_Condition__basic_16_bad()
 {
+    while(1)
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;
@@ -81,6 +82,7 @@ void CWE364_Signal_Handler_Race_Condition__basic_16_bad()
                 CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicBad = NULL;
             }
         }
+        break;
     }
 }
 
@@ -91,6 +93,7 @@ void CWE364_Signal_Handler_Race_Condition__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;
@@ -125,6 +128,7 @@ static void good1()
             }
             signal(SIGINT, helperGood);
         }
+        break;
     }
 }
 

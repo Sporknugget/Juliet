@@ -26,16 +26,28 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new */
+        data = new wchar_t;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+    }
+    else
+    {
+        /* FIX: Deallocate the memory using free() */
+        free(data);
     }
 }
 
@@ -51,12 +63,26 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
+    else
+    {
+        data = NULL;
+        /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
+        data = (wchar_t *)realloc(data, 100*sizeof(wchar_t));
+        if (data == NULL) {exit(-1);}
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate the memory using free() */
+        free(data);
+    }
+    else
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
@@ -71,10 +97,23 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate memory from the heap using new */
         data = new wchar_t;
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new */
+        data = new wchar_t;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
+         * require a call to free() to deallocate the memory */
+        delete data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */

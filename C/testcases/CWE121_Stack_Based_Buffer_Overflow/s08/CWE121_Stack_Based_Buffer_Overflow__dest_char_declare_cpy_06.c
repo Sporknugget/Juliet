@@ -29,6 +29,7 @@ void CWE121_Stack_Based_Buffer_Overflow__dest_char_declare_cpy_06_bad()
     char * data;
     char dataBadBuffer[50];
     char dataGoodBuffer[100];
+    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
@@ -55,6 +56,12 @@ static void goodG2B1()
     char * data;
     char dataBadBuffer[50];
     char dataGoodBuffer[100];
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
@@ -76,6 +83,7 @@ static void goodG2B2()
     char * data;
     char dataBadBuffer[50];
     char dataGoodBuffer[100];
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;

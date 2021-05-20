@@ -29,6 +29,7 @@ void bad()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char;
@@ -36,9 +37,24 @@ void bad()
         *data = 'A';
         printHexCharLine(*data);
     }
+    else
+    {
+        /* FIX: Use memory allocated on the stack */
+        char dataGoodBuffer;
+        data = &dataGoodBuffer;
+        /* Initialize and make use of data */
+        *data = 'A';
+        printHexCharLine(*data);
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+    }
+    else
+    {
+        /* FIX: Deallocate memory */
+        delete data;
     }
 }
 
@@ -53,6 +69,7 @@ static void goodB2G()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new char;
@@ -60,6 +77,20 @@ static void goodB2G()
         *data = 'A';
         printHexCharLine(*data);
     }
+    else
+    {
+        /* POTENTIAL FLAW: Allocate memory on the heap */
+        data = new char;
+        /* Initialize and make use of data */
+        *data = 'A';
+        printHexCharLine(*data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate memory */
+        delete data;
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -73,6 +104,7 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         char dataGoodBuffer;
@@ -81,6 +113,21 @@ static void goodG2B()
         *data = 'A';
         printHexCharLine(*data);
     }
+    else
+    {
+        /* FIX: Use memory allocated on the stack */
+        char dataGoodBuffer;
+        data = &dataGoodBuffer;
+        /* Initialize and make use of data */
+        *data = 'A';
+        printHexCharLine(*data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: No deallocation */
+        ; /* empty statement needed for some flow variants */
+    }
+    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

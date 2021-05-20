@@ -43,6 +43,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__accept_bind_listen_16_bad()
 {
+    while(1)
     {
         {
             char data[100] = "";
@@ -125,6 +126,7 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__accept_bind_listen
 #endif
             printLine(data);
         }
+        break;
     }
 }
 
@@ -135,6 +137,7 @@ void CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime__accept_bind_listen
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char data[100] = "";
@@ -217,6 +220,7 @@ static void good1()
 #endif
             printLine(data);
         }
+        break;
     }
 }
 

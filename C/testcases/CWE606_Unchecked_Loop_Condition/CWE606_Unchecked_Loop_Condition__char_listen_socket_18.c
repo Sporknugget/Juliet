@@ -51,6 +51,8 @@ void CWE606_Unchecked_Loop_Condition__char_listen_socket_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -130,6 +132,8 @@ void CWE606_Unchecked_Loop_Condition__char_listen_socket_18_bad()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -156,6 +160,8 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -235,6 +241,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -260,8 +268,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Set data to a number less than MAX_LOOP */
     strcpy(data, "15");
+    goto sink;
+sink:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)

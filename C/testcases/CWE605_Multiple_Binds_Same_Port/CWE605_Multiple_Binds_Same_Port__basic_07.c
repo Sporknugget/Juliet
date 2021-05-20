@@ -48,6 +48,7 @@ static int staticFive = 5;
 
 void CWE605_Multiple_Binds_Same_Port__basic_07_bad()
 {
+    if(staticFive==5)
     {
         {
             char data[100] = "";
@@ -148,6 +149,15 @@ void CWE605_Multiple_Binds_Same_Port__basic_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char data[100] = "";
@@ -236,6 +246,7 @@ void CWE605_Multiple_Binds_Same_Port__basic_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             char data[100] = "";

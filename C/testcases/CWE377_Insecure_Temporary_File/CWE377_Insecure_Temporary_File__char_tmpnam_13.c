@@ -49,6 +49,7 @@ static int _mkstemp(const char * t){
 
 void CWE377_Insecure_Temporary_File__char_tmpnam_13_bad()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             char * filename;
@@ -74,6 +75,15 @@ void CWE377_Insecure_Temporary_File__char_tmpnam_13_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FIVE!=5) instead of if(GLOBAL_CONST_FIVE==5) */
+static void good1()
+{
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename
@@ -93,6 +103,7 @@ void CWE377_Insecure_Temporary_File__char_tmpnam_13_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             char filename[] = "/tmp/fileXXXXXX"; // mutable store for filename

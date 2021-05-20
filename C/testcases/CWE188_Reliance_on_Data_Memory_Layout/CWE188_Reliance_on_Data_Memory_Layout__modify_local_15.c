@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__modify_local_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         struct
         {
@@ -34,6 +37,12 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_15_bad()
         printIntLine(structCharInt.charFirst);
         printIntLine(structCharInt.intSecond);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -43,6 +52,13 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         struct
         {
@@ -56,11 +72,16 @@ static void good1()
         printIntLine(structCharInt.charFirst);
         printIntLine(structCharInt.intSecond);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         struct
         {
@@ -73,6 +94,12 @@ static void good2()
         structCharInt.intSecond = 5;
         printIntLine(structCharInt.charFirst);
         printIntLine(structCharInt.intSecond);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

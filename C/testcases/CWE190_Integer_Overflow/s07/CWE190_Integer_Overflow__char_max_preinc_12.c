@@ -23,16 +23,37 @@ void CWE190_Integer_Overflow__char_max_preinc_12_bad()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
             ++data;
             char result = data;
             printHexCharLine(result);
+        }
+    }
+    else
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (data < CHAR_MAX)
+        {
+            ++data;
+            char result = data;
+            printHexCharLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -48,10 +69,31 @@ static void goodB2G()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Use the maximum size of the data type */
+        data = CHAR_MAX;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (data < CHAR_MAX)
+        {
+            ++data;
+            char result = data;
+            printHexCharLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
+        }
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < CHAR_MAX)
@@ -74,10 +116,26 @@ static void goodG2B()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* POTENTIAL FLAW: Incrementing data could cause an overflow */
+            ++data;
+            char result = data;
+            printHexCharLine(result);
+        }
+    }
+    else
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

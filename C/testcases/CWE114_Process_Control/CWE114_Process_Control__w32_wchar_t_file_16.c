@@ -33,6 +33,7 @@ void CWE114_Process_Control__w32_wchar_t_file_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from a file */
@@ -55,6 +56,7 @@ void CWE114_Process_Control__w32_wchar_t_file_16_bad()
                 }
             }
         }
+        break;
     }
     {
         HMODULE hModule;
@@ -83,9 +85,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Specify the full pathname for the library */
         wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");
+        break;
     }
     {
         HMODULE hModule;

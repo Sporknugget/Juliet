@@ -24,16 +24,20 @@ Template File: sources-sinks-16.tmpl.c
 void CWE563_Unused_Variable__unused_value_struct_16_bad()
 {
     twoIntsStruct data;
+    while(1)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data.intOne = 0;
         data.intTwo = 0;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data.intOne = 1;
         data.intTwo = 1;
         printStructLine(&data);
+        break;
     }
 }
 
@@ -45,14 +49,18 @@ void CWE563_Unused_Variable__unused_value_struct_16_bad()
 static void goodB2G()
 {
     twoIntsStruct data;
+    while(1)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data.intOne = 0;
         data.intTwo = 0;
+        break;
     }
+    while(1)
     {
         /* FIX: Use data without over-writing its value */
         printStructLine(&data);
+        break;
     }
 }
 
@@ -60,17 +68,21 @@ static void goodB2G()
 static void goodG2B()
 {
     twoIntsStruct data;
+    while(1)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data.intOne = 0;
         data.intTwo = 0;
         printStructLine(&data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data.intOne = 1;
         data.intTwo = 1;
         printStructLine(&data);
+        break;
     }
 }
 

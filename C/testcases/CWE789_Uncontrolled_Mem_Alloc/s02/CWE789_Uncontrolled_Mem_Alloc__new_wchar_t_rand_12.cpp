@@ -32,10 +32,17 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    else
+    {
+        /* FIX: Use a relatively small number for memory allocation */
+        data = 20;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t * myString;
@@ -56,6 +63,27 @@ void bad()
             }
         }
     }
+    else
+    {
+        {
+            wchar_t * myString;
+            /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
+             * for the wcscpy() function to not cause a buffer overflow */
+            /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
+            if (data > wcslen(HELLO_STRING) && data < 100)
+            {
+                myString = new wchar_t[data];
+                /* Copy a small string into myString */
+                wcscpy(myString, HELLO_STRING);
+                printWLine(myString);
+                delete [] myString;
+            }
+            else
+            {
+                printLine("Input is less than the length of the source string or too large");
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -70,10 +98,38 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    else
+    {
+        /* POTENTIAL FLAW: Set data to a random value */
+        data = rand();
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            wchar_t * myString;
+            /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
+             * for the wcscpy() function to not cause a buffer overflow */
+            /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
+            if (data > wcslen(HELLO_STRING) && data < 100)
+            {
+                myString = new wchar_t[data];
+                /* Copy a small string into myString */
+                wcscpy(myString, HELLO_STRING);
+                printWLine(myString);
+                delete [] myString;
+            }
+            else
+            {
+                printLine("Input is less than the length of the source string or too large");
+            }
+        }
+    }
+    else
     {
         {
             wchar_t * myString;
@@ -104,10 +160,38 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    else
+    {
+        /* FIX: Use a relatively small number for memory allocation */
+        data = 20;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            wchar_t * myString;
+            /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
+             * for the wcscpy() function to not cause a buffer overflow */
+            /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
+            if (data > wcslen(HELLO_STRING))
+            {
+                myString = new wchar_t[data];
+                /* Copy a small string into myString */
+                wcscpy(myString, HELLO_STRING);
+                printWLine(myString);
+                delete [] myString;
+            }
+            else
+            {
+                printLine("Input is less than the length of the source string");
+            }
+        }
+    }
+    else
     {
         {
             wchar_t * myString;

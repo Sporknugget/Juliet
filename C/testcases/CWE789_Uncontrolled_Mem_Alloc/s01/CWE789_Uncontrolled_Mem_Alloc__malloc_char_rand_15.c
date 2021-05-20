@@ -30,8 +30,20 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_rand_15_bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         char * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -50,6 +62,12 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_rand_15_bad()
         {
             printLine("Input is less than the length of the source string");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -63,8 +81,24 @@ static void goodB2G1()
     size_t data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -83,6 +117,8 @@ static void goodB2G1()
         {
             printLine("Input is less than the length of the source string or too large");
         }
+    }
+    break;
     }
 }
 
@@ -92,8 +128,20 @@ static void goodB2G2()
     size_t data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         char * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -113,6 +161,12 @@ static void goodB2G2()
             printLine("Input is less than the length of the source string or too large");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -121,8 +175,20 @@ static void goodG2B1()
     size_t data;
     /* Initialize data */
     data = 0;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         char * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -142,6 +208,12 @@ static void goodG2B1()
             printLine("Input is less than the length of the source string");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -150,8 +222,20 @@ static void goodG2B2()
     size_t data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         char * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -170,6 +254,12 @@ static void goodG2B2()
         {
             printLine("Input is less than the length of the source string");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

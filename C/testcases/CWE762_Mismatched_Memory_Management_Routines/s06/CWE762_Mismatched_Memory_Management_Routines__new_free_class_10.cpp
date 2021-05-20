@@ -27,10 +27,12 @@ void bad()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new TwoIntsClass;
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -48,10 +50,17 @@ static void goodB2G1()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new TwoIntsClass;
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -64,10 +73,12 @@ static void goodB2G2()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new TwoIntsClass;
     }
+    if(globalTrue)
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -80,11 +91,18 @@ static void goodG2B1()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (TwoIntsClass *)malloc(100*sizeof(TwoIntsClass));
         if (data == NULL) {exit(-1);}
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -98,11 +116,13 @@ static void goodG2B2()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    if(globalTrue)
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (TwoIntsClass *)malloc(100*sizeof(TwoIntsClass));
         if (data == NULL) {exit(-1);}
     }
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */

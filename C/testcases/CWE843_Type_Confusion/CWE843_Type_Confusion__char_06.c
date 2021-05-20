@@ -27,6 +27,7 @@ void CWE843_Type_Confusion__char_06_bad()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* FLAW: Point data to a char */
@@ -48,6 +49,12 @@ static void goodG2B1()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: Point data to an int */
@@ -65,6 +72,7 @@ static void goodG2B2()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* FIX: Point data to an int */

@@ -30,10 +30,19 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_15_bad()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA((10)*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof(char));
+    switch(6)
+    {
+    case 6:
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
         data = dataBadBuffer;
         data[0] = '\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         char source[10+1] = SRC_STRING;
         /* POTENTIAL FLAW: data may not have enough space to hold source */
@@ -52,10 +61,19 @@ static void goodG2B1()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA((10)*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof(char));
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
         data = dataGoodBuffer;
         data[0] = '\0'; /* null terminate */
+        break;
+    }
     {
         char source[10+1] = SRC_STRING;
         /* POTENTIAL FLAW: data may not have enough space to hold source */
@@ -70,10 +88,19 @@ static void goodG2B2()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA((10)*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof(char));
+    switch(6)
+    {
+    case 6:
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
         data = dataGoodBuffer;
         data[0] = '\0'; /* null terminate */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         char source[10+1] = SRC_STRING;
         /* POTENTIAL FLAW: data may not have enough space to hold source */

@@ -19,6 +19,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE398_Poor_Code_Quality__addition_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;
@@ -37,6 +39,8 @@ void CWE398_Poor_Code_Quality__addition_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;

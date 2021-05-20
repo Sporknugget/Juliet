@@ -22,6 +22,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_16_bad()
 {
+    while(1)
     {
         /* FLAW: ImpersonateSelf() could fail and would return 0 (false), but we are checking to see
          * if the return value is greater than zero (true) */
@@ -29,6 +30,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_16_bad
         {
             exit(1);
         }
+        break;
     }
 }
 
@@ -39,12 +41,14 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_ImpersonateSelf_16_bad
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: check for the correct return value */
         if (!ImpersonateSelf(SecurityImpersonation))
         {
             exit(1);
         }
+        break;
     }
 }
 

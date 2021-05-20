@@ -59,9 +59,11 @@ namespace CWE23_Relative_Path_Traversal__char_connect_socket_open_17
 
 void bad()
 {
+    int i;
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -149,9 +151,11 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");

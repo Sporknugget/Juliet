@@ -43,6 +43,7 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -52,6 +53,7 @@ void bad()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -67,6 +69,7 @@ static void goodB2G1()
 {
     TwoIntsClass * data;
     data = NULL;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -76,6 +79,12 @@ static void goodB2G1()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -87,6 +96,7 @@ static void goodB2G2()
 {
     TwoIntsClass * data;
     data = NULL;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new TwoIntsClass;
@@ -96,6 +106,7 @@ static void goodB2G2()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -107,6 +118,12 @@ static void goodG2B1()
 {
     TwoIntsClass * data;
     data = NULL;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer;
@@ -117,6 +134,7 @@ static void goodG2B1()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -128,6 +146,7 @@ static void goodG2B2()
 {
     TwoIntsClass * data;
     data = NULL;
+    if(staticReturnsTrue())
     {
         /* FIX: Use memory allocated on the stack */
         TwoIntsClass dataGoodBuffer;
@@ -138,6 +157,7 @@ static void goodG2B2()
         printIntLine(data->intOne);
         printIntLine(data->intTwo);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

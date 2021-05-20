@@ -23,6 +23,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE244_Heap_Inspection__w32_char_realloc_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char * password = (char *)malloc(100*sizeof(char));
         if (password == NULL) {exit(-1);}
@@ -71,6 +74,12 @@ void CWE244_Heap_Inspection__w32_char_realloc_15_bad()
         printLine(password);
         free(password);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -80,6 +89,13 @@ void CWE244_Heap_Inspection__w32_char_realloc_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char * password = (char *)malloc(100*sizeof(char));
         if (password == NULL) {exit(-1);}
@@ -126,11 +142,16 @@ static void good1()
         printLine(password);
         free(password);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char * password = (char *)malloc(100*sizeof(char));
         if (password == NULL) {exit(-1);}
@@ -176,6 +197,12 @@ static void good2()
         strcpy(password, "Nothing to see here");
         printLine(password);
         free(password);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

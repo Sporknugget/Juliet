@@ -30,10 +30,12 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 void CWE457_Use_of_Uninitialized_Variable__char_pointer_04_bad()
 {
     char * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLine(data);
@@ -48,10 +50,17 @@ void CWE457_Use_of_Uninitialized_Variable__char_pointer_04_bad()
 static void goodB2G1()
 {
     char * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         data = "string";
@@ -63,10 +72,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     char * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Ensure data is initialized before use */
         data = "string";
@@ -78,10 +89,17 @@ static void goodB2G2()
 static void goodG2B1()
 {
     char * data;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data */
         data = "string";
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLine(data);
@@ -92,10 +110,12 @@ static void goodG2B1()
 static void goodG2B2()
 {
     char * data;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Initialize data */
         data = "string";
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printLine(data);

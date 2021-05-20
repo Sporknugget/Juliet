@@ -24,6 +24,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE535_Info_Exposure_Shell_Error__w32_char_18_bad()
 {
+    goto sink;
+sink:
     {
         char password[100] = "";
         size_t passwordLen = 0;
@@ -70,6 +72,8 @@ void CWE535_Info_Exposure_Shell_Error__w32_char_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char password[100] = "";
         size_t passwordLen = 0;

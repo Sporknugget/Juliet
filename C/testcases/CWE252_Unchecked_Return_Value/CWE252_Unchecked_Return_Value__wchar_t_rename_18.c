@@ -32,6 +32,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_rename_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: Do not check the return value */
     RENAME(OLD_BAD_FILE_NAME, L"newbadfilename.txt");
 }
@@ -43,6 +45,8 @@ void CWE252_Unchecked_Return_Value__wchar_t_rename_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: check the return value */
     if (RENAME(OLD_GOOD_FILE_NAME, L"newgoodfilename.txt") != 0)
     {

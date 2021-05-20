@@ -46,6 +46,8 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_strncpy_18_bad()
     short data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -138,6 +140,8 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     {

@@ -48,6 +48,8 @@ void CWE90_LDAP_Injection__w32_wchar_t_connect_socket_18_bad()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -177,6 +179,8 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[256] = L"";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Use a fixed file name */
     wcscat(data, L"Doe, XXXXX");
     {

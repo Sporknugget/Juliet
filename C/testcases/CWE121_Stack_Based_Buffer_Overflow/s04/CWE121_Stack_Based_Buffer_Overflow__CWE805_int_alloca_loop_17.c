@@ -23,6 +23,8 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_int_alloca_loop_17_bad()
     int i;
     int * data;
     int * dataBadBuffer = (int *)ALLOCA(50*sizeof(int));
+    int * dataGoodBuffer = (int *)ALLOCA(100*sizeof(int));
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
@@ -49,9 +51,11 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_int_alloca_loop_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     int * data;
     int * dataBadBuffer = (int *)ALLOCA(50*sizeof(int));
     int * dataGoodBuffer = (int *)ALLOCA(100*sizeof(int));
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;

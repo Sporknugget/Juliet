@@ -27,9 +27,11 @@ void CWE617_Reachable_Assertion__fscanf_16_bad()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
+        break;
     }
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
     assert(data > ASSERT_VALUE);
@@ -45,9 +47,11 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* FIX: Use a value greater than the assert value */
         data = ASSERT_VALUE+1;
+        break;
     }
     /* POTENTIAL FLAW: this assertion could trigger if n <= ASSERT_VALUE */
     assert(data > ASSERT_VALUE);

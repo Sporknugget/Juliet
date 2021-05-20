@@ -38,6 +38,7 @@ static int _mkstemp(const char * t){
 
 void CWE459_Incomplete_Cleanup__char_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char filename[] = "badXXXXXX";
@@ -56,6 +57,26 @@ void CWE459_Incomplete_Cleanup__char_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            char filename[] = "badXXXXXX";
+            FILE *pFile;
+            /* Establish that this is a temporary file and that it should be deleted */
+            int fileDesc = MKSTEMP(filename);
+            if (fileDesc != -1)
+            {
+                pFile = FDOPEN(fileDesc, "w");
+                if (pFile != NULL)
+                {
+                    fprintf(pFile, "Temporary file");
+                    fclose(pFile);
+                    /* FIX: Unlink the temporary file */
+                    UNLINK(filename); /* EXPECTED INCIDENTAL: CWE367 TOCTOU - This POSIX API is essentially insecure by design */
+                }
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -65,6 +86,27 @@ void CWE459_Incomplete_Cleanup__char_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char filename[] = "goodXXXXXX";
+            FILE *pFile;
+            /* Establish that this is a temporary file and that it should be deleted */
+            int fileDesc = MKSTEMP(filename);
+            if (fileDesc != -1)
+            {
+                pFile = FDOPEN(fileDesc, "w");
+                if (pFile != NULL)
+                {
+                    fprintf(pFile, "Temporary file");
+                    fclose(pFile);
+                    /* FIX: Unlink the temporary file */
+                    UNLINK(filename); /* EXPECTED INCIDENTAL: CWE367 TOCTOU - This POSIX API is essentially insecure by design */
+                }
+            }
+        }
+    }
+    else
     {
         {
             char filename[] = "goodXXXXXX";

@@ -29,10 +29,12 @@ void CWE191_Integer_Underflow__int64_t_min_multiply_05_bad()
 {
     int64_t data;
     data = 0LL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -52,10 +54,17 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -78,10 +87,12 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = LLONG_MIN;
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -104,10 +115,17 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -123,10 +141,12 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
+    if(staticTrue)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

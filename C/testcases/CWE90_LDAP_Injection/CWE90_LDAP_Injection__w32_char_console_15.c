@@ -28,6 +28,9 @@ void CWE90_LDAP_Injection__w32_char_console_15_bad()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Read input from the console */
         size_t dataLen = strlen(data);
@@ -52,6 +55,12 @@ void CWE90_LDAP_Injection__w32_char_console_15_bad()
                 data[dataLen] = '\0';
             }
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     {
         LDAP* pLdapConnection = NULL;
@@ -115,8 +124,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");
+        break;
+    }
     {
         LDAP* pLdapConnection = NULL;
         ULONG connectSuccess = 0L;
@@ -175,8 +193,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[256] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a fixed file name */
         strcat(data, "Doe, XXXXX");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         LDAP* pLdapConnection = NULL;
         ULONG connectSuccess = 0L;

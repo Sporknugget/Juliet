@@ -25,16 +25,20 @@ void CWE190_Integer_Overflow__short_fscanf_square_16_bad()
 {
     short data;
     data = 0;
+    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%hd", &data);
+        break;
     }
+    while(1)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
             short result = data * data;
             printIntLine(result);
         }
+        break;
     }
 }
 
@@ -47,10 +51,13 @@ static void goodB2G()
 {
     short data;
     data = 0;
+    while(1)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%hd", &data);
+        break;
     }
+    while(1)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)SHRT_MAX))
@@ -62,6 +69,7 @@ static void goodB2G()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
+        break;
     }
 }
 
@@ -70,16 +78,20 @@ static void goodG2B()
 {
     short data;
     data = 0;
+    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
+        break;
     }
+    while(1)
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
             short result = data * data;
             printIntLine(result);
         }
+        break;
     }
 }
 

@@ -25,6 +25,7 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE805_wchar_t_alloca_loop_11_bad()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA(50*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
+    if(globalReturnsTrue())
     {
         /* FLAW: Set a pointer to a "small" buffer. This buffer will be used in the sinks as a destination
          * buffer in various memory copying functions using a "large" source buffer. */
@@ -56,6 +57,12 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA(50*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;
@@ -82,6 +89,7 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA(50*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
+    if(globalReturnsTrue())
     {
         /* FIX: Set a pointer to a "large" buffer, thus avoiding buffer overflows in the sinks. */
         data = dataGoodBuffer;

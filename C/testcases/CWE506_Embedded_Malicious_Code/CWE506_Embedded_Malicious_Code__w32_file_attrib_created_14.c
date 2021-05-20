@@ -30,6 +30,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_file_attrib_created_14_bad()
 {
+    if(globalFive==5)
     {
         {
             FILETIME ftCreate;
@@ -80,6 +81,15 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_created_14_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),
@@ -100,6 +110,7 @@ void CWE506_Embedded_Malicious_Code__w32_file_attrib_created_14_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         {
             HANDLE hFile = CreateFile(TEXT("goodFile.txt"),

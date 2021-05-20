@@ -45,6 +45,7 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_connect_socket_17_bad()
 {
+    int j;
     char * data;
     data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
@@ -116,6 +117,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_connect_socket_17_bad()
         }
 #endif
     }
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
          * memory block not at the start of the buffer */
@@ -138,6 +140,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_connect_socket_17_bad()
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
+    int k;
     char * data;
     data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
@@ -209,6 +212,7 @@ static void goodB2G()
         }
 #endif
     }
+    for(k = 0; k < 1; k++)
     {
         {
             size_t i;

@@ -36,6 +36,9 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_15_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    switch(6)
+    {
+    case 6:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;
@@ -96,6 +99,15 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_15_bad()
             WSACleanup();
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -117,6 +129,12 @@ void CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_15_bad()
         {
             printLine("Unable to login.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -130,6 +148,9 @@ static void goodB2G1()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    switch(6)
+    {
+    case 6:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;
@@ -190,6 +211,19 @@ static void goodB2G1()
             WSACleanup();
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         HCRYPTPROV hCryptProv = 0;
         HCRYPTHASH hHash = 0;
@@ -265,6 +299,8 @@ static void goodB2G1()
         {
             printLine("Unable to login.");
         }
+    }
+    break;
     }
 }
 
@@ -274,6 +310,9 @@ static void goodB2G2()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    switch(6)
+    {
+    case 6:
     {
         WSADATA wsaData;
         int wsaDataInit = 0;
@@ -334,6 +373,15 @@ static void goodB2G2()
             WSACleanup();
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         HCRYPTPROV hCryptProv = 0;
         HCRYPTHASH hHash = 0;
@@ -410,6 +458,12 @@ static void goodB2G2()
             printLine("Unable to login.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -418,9 +472,21 @@ static void goodG2B1()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         strcpy(password, "Password1234!");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -443,6 +509,12 @@ static void goodG2B1()
             printLine("Unable to login.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -451,9 +523,21 @@ static void goodG2B2()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a hardcoded password (it was not sent over the network)
         * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
         strcpy(password, "Password1234!");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         HANDLE pHandle;
         char * username = "User";
@@ -475,6 +559,12 @@ static void goodG2B2()
         {
             printLine("Unable to login.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

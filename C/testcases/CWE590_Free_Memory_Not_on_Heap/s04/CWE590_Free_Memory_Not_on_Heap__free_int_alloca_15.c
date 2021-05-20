@@ -24,6 +24,9 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_alloca_15_bad()
 {
     int * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         int * dataBuffer = (int *)ALLOCA(100*sizeof(int));
@@ -35,6 +38,12 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_alloca_15_bad()
             }
         }
         data = dataBuffer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     printIntLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
@@ -50,6 +59,13 @@ static void goodG2B1()
 {
     int * data;
     data = NULL; /* Initialize data */
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int * dataBuffer = (int *)malloc(100*sizeof(int));
@@ -67,6 +83,8 @@ static void goodG2B1()
         }
         data = dataBuffer;
     }
+    break;
+    }
     printIntLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
     free(data);
@@ -77,6 +95,9 @@ static void goodG2B2()
 {
     int * data;
     data = NULL; /* Initialize data */
+    switch(6)
+    {
+    case 6:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int * dataBuffer = (int *)malloc(100*sizeof(int));
@@ -93,6 +114,12 @@ static void goodG2B2()
             }
         }
         data = dataBuffer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     printIntLine(data[0]);
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */

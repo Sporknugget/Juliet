@@ -38,6 +38,7 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_wchar_t_04_bad()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
+    if(STATIC_CONST_TRUE)
     {
         /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
         wcscpy(cryptoKey, CRYPTO_KEY);
@@ -112,6 +113,12 @@ static void goodG2B1()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             size_t cryptoKeyLen = wcslen(cryptoKey);
@@ -201,6 +208,7 @@ static void goodG2B2()
     wchar_t * cryptoKey;
     wchar_t cryptoKeyBuffer[100] = L"";
     cryptoKey = cryptoKeyBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
             size_t cryptoKeyLen = wcslen(cryptoKey);

@@ -21,6 +21,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_wchar_t_strncpy_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             wchar_t data[150], dest[100];
@@ -34,6 +35,20 @@ void CWE126_Buffer_Overread__CWE170_wchar_t_strncpy_12_bad()
             printWLine(dest);
         }
     }
+    else
+    {
+        {
+            wchar_t data[150], dest[100];
+            /* Initialize data */
+            wmemset(data, L'A', 149);
+            data[149] = L'\0';
+            /* wcsncpy() does not null terminate if the string in the src buffer is larger than
+             * the number of characters being copied to the dest buffer */
+            wcsncpy(dest, data, 99);
+            dest[99] = L'\0'; /* FIX: Explicitly null terminate dest after the use of wcsncpy() */
+            printWLine(dest);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -43,6 +58,21 @@ void CWE126_Buffer_Overread__CWE170_wchar_t_strncpy_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            wchar_t data[150], dest[100];
+            /* Initialize data */
+            wmemset(data, L'A', 149);
+            data[149] = L'\0';
+            /* wcsncpy() does not null terminate if the string in the src buffer is larger than
+             * the number of characters being copied to the dest buffer */
+            wcsncpy(dest, data, 99);
+            dest[99] = L'\0'; /* FIX: Explicitly null terminate dest after the use of wcsncpy() */
+            printWLine(dest);
+        }
+    }
+    else
     {
         {
             wchar_t data[150], dest[100];

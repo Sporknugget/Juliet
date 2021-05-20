@@ -28,6 +28,7 @@ static int staticTrue = 1; /* true */
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_05_bad()
 {
+    if(staticTrue)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

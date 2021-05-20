@@ -29,12 +29,15 @@ namespace CWE672_Operation_on_Resource_After_Expiration_or_Release__list_int_17
 
 void bad()
 {
+    int i,j;
     list<int>  data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    for(j = 0; j < 1; j++)
     {
         {
             list<int> ::iterator i;
@@ -60,12 +63,15 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     list<int>  data;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
     }
+    for(k = 0; k < 1; k++)
     {
         {
             list<int> ::iterator i;
@@ -83,12 +89,15 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     list<int>  data;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
     }
+    for(j = 0; j < 1; j++)
     {
         {
             list<int> ::iterator i;

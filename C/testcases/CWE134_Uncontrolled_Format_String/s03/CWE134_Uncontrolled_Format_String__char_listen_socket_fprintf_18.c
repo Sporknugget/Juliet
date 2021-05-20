@@ -49,6 +49,8 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_fprintf_18_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -128,6 +130,8 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_fprintf_18_bad()
         }
 #endif
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
     fprintf(stdout, data);
 }
@@ -142,6 +146,8 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -221,6 +227,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     /* FIX: Specify the format disallowing a format string vulnerability */
     fprintf(stdout, "%s\n", data);
 }
@@ -231,8 +239,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    goto source;
+source:
     /* FIX: Use a fixed string that does not contain a format specifier */
     strcpy(data, "fixedstringtest");
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
     fprintf(stdout, data);
 }

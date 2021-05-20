@@ -38,10 +38,12 @@ void CWE400_Resource_Exhaustion__rand_sleep_04_bad()
     int count;
     /* Initialize count */
     count = -1;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
@@ -59,10 +61,17 @@ static void goodB2G1()
     int count;
     /* Initialize count */
     count = -1;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -83,10 +92,12 @@ static void goodB2G2()
     int count;
     /* Initialize count */
     count = -1;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -107,10 +118,17 @@ static void goodG2B1()
     int count;
     /* Initialize count */
     count = -1;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
@@ -124,10 +142,12 @@ static void goodG2B2()
     int count;
     /* Initialize count */
     count = -1;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);

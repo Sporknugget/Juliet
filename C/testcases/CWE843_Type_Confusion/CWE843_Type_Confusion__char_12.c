@@ -23,11 +23,20 @@ void CWE843_Type_Confusion__char_12_bad()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: Point data to a char */
             char charBuffer = 'a';
             data = &charBuffer;
+        }
+    }
+    else
+    {
+        {
+            /* FIX: Point data to an int */
+            int intBuffer = 8;
+            data = &intBuffer;
         }
     }
     /* POTENTIAL FLAW: Attempt to access data as an int */
@@ -45,6 +54,15 @@ static void goodG2B()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: Point data to an int */
+            int intBuffer = 8;
+            data = &intBuffer;
+        }
+    }
+    else
     {
         {
             /* FIX: Point data to an int */

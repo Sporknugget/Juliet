@@ -26,6 +26,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_w32CreateMutex_18_bad()
 {
+    goto sink;
+sink:
     {
         HANDLE hMutex = NULL;
         hMutex = CreateMutexW(NULL, FALSE, NULL);
@@ -43,6 +45,8 @@ void CWE252_Unchecked_Return_Value__wchar_t_w32CreateMutex_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         HANDLE hMutex = NULL;
         hMutex = CreateMutexW(NULL, FALSE, NULL);

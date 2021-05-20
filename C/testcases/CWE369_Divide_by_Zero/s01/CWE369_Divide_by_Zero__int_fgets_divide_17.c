@@ -23,9 +23,11 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE369_Divide_by_Zero__int_fgets_divide_17_bad()
 {
+    int i,j;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -41,6 +43,7 @@ void CWE369_Divide_by_Zero__int_fgets_divide_17_bad()
             }
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 / data);
@@ -54,9 +57,11 @@ void CWE369_Divide_by_Zero__int_fgets_divide_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -72,6 +77,7 @@ static void goodB2G()
             }
         }
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -88,13 +94,16 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int data;
     /* Initialize data */
     data = -1;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 / data);

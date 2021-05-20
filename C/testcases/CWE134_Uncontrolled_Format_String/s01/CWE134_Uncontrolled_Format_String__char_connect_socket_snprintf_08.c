@@ -68,6 +68,7 @@ void CWE134_Uncontrolled_Format_String__char_connect_socket_snprintf_08_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -137,6 +138,7 @@ void CWE134_Uncontrolled_Format_String__char_connect_socket_snprintf_08_bad()
 #endif
         }
     }
+    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -157,6 +159,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -226,6 +229,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char dest[100] = "";
@@ -242,6 +251,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -311,6 +321,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -327,10 +338,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";
@@ -347,10 +365,12 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(staticReturnsTrue())
     {
         {
             char dest[100] = "";

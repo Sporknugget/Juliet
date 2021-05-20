@@ -32,6 +32,7 @@ static int staticFalse = 0; /* false */
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_05_bad()
 {
+    if(staticTrue)
     {
         {
             HANDLE hMutex = NULL;
@@ -53,6 +54,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_05_
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE hMutex = NULL;
@@ -72,6 +82,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_w32CreateMutex_05_
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             HANDLE hMutex = NULL;

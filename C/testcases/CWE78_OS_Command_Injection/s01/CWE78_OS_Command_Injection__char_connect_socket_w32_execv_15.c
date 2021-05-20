@@ -63,6 +63,9 @@ void CWE78_OS_Command_Injection__char_connect_socket_w32_execv_15_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -130,6 +133,12 @@ void CWE78_OS_Command_Injection__char_connect_socket_w32_execv_15_bad()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
         /* execv - specify the path where the command is located */
@@ -148,8 +157,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
+        break;
+    }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
         /* execv - specify the path where the command is located */
@@ -164,8 +182,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
         /* execv - specify the path where the command is located */

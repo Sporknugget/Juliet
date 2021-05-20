@@ -29,11 +29,15 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new wchar_t[100];
     /* Initialize and make use of data */
     wcscpy(data, L"A String");
     printWLine(data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
@@ -47,11 +51,15 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new wchar_t[100];
     /* Initialize and make use of data */
     wcscpy(data, L"A String");
     printWLine(data);
+    goto sink;
+sink:
     /* FIX: Deallocate memory */
     delete[] data;
 }
@@ -61,12 +69,16 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Use memory allocated on the stack */
     wchar_t dataGoodBuffer[100];
     data = dataGoodBuffer;
     /* Initialize and make use of data */
     wcscpy(data, L"A String");
     printWLine(data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }

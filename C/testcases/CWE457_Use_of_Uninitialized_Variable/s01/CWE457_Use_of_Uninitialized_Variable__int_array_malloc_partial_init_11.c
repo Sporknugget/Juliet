@@ -24,6 +24,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_11_bad(
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -34,6 +35,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_11_bad(
             }
         }
     }
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -56,6 +58,7 @@ static void goodB2G1()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -66,6 +69,12 @@ static void goodB2G1()
             }
         }
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -91,6 +100,7 @@ static void goodB2G2()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -101,6 +111,7 @@ static void goodB2G2()
             }
         }
     }
+    if(globalReturnsTrue())
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -126,6 +137,12 @@ static void goodG2B1()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -136,6 +153,7 @@ static void goodG2B1()
             }
         }
     }
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -154,6 +172,7 @@ static void goodG2B2()
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    if(globalReturnsTrue())
     {
         /* FIX: Completely initialize data */
         {
@@ -164,6 +183,7 @@ static void goodG2B2()
             }
         }
     }
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

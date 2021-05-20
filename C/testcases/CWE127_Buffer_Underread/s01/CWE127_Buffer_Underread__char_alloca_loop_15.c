@@ -26,8 +26,17 @@ void CWE127_Buffer_Underread__char_alloca_loop_15_bad()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
+    switch(6)
+    {
+    case 6:
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i;
         char dest[100];
@@ -55,8 +64,17 @@ static void goodG2B1()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
+        break;
+    }
     {
         size_t i;
         char dest[100];
@@ -80,8 +98,17 @@ static void goodG2B2()
     char * dataBuffer = (char *)ALLOCA(100*sizeof(char));
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i;
         char dest[100];

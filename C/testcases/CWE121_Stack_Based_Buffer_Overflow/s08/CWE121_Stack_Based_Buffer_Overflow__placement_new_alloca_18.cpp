@@ -26,8 +26,12 @@ void bad()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    goto source;
+source:
     /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
     data = dataBadBuffer;
+    goto sink;
+sink:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -53,8 +57,12 @@ static void goodB2G()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    goto source;
+source:
     /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
     data = dataBadBuffer;
+    goto sink;
+sink:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -74,8 +82,12 @@ static void goodG2B()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    goto source;
+source:
     /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
     data = dataGoodBuffer;
+    goto sink;
+sink:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.

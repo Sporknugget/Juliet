@@ -45,6 +45,7 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_08_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
             FILE *pFile;
@@ -64,6 +65,7 @@ void CWE256_Plaintext_Storage_of_Password__w32_char_08_bad()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         {
             HANDLE pHandle;
@@ -99,6 +101,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
             FILE *pFile;
@@ -118,6 +121,12 @@ static void goodB2G1()
             }
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE pHandle;
@@ -203,6 +212,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
             FILE *pFile;
@@ -222,6 +232,7 @@ static void goodB2G2()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         {
             HANDLE pHandle;
@@ -307,6 +318,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             FILE *pFile;
@@ -380,6 +397,7 @@ static void goodG2B1()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         {
             HANDLE pHandle;
@@ -411,6 +429,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
             FILE *pFile;
@@ -484,6 +503,7 @@ static void goodG2B2()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         {
             HANDLE pHandle;

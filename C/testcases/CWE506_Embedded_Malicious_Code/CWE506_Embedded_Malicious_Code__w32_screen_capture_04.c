@@ -28,6 +28,7 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

@@ -30,9 +30,21 @@ namespace CWE672_Operation_on_Resource_After_Expiration_or_Release__list_int_15
 void bad()
 {
     list<int>  data;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -46,6 +58,12 @@ void bad()
             cout << " " << *i;
         }
         cout << endl;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -57,9 +75,25 @@ void bad()
 static void goodB2G1()
 {
     list<int>  data;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -69,6 +103,8 @@ static void goodB2G1()
             cout << " " << *i;
         }
         cout << endl;
+    }
+    break;
     }
 }
 
@@ -76,9 +112,21 @@ static void goodB2G1()
 static void goodB2G2()
 {
     list<int>  data;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Insert a zero into the list */
         data.push_back(100);
         data.push_back(0);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -89,15 +137,33 @@ static void goodB2G2()
         }
         cout << endl;
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
 static void goodG2B1()
 {
     list<int>  data;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -112,15 +178,33 @@ static void goodG2B1()
         }
         cout << endl;
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
 static void goodG2B2()
 {
     list<int>  data;
+    switch(6)
+    {
+    case 6:
         /* FIX: Insert non-zero values into the list */
         data.push_back(100);
         data.push_back(200);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         list<int> ::iterator i;
         cout << "The list contains: ";
@@ -134,6 +218,12 @@ static void goodG2B2()
             cout << " " << *i;
         }
         cout << endl;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

@@ -38,10 +38,12 @@ void CWE190_Integer_Overflow__short_rand_square_08_bad()
 {
     short data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (short)RAND32();
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
@@ -60,10 +62,17 @@ static void goodB2G1()
 {
     short data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (short)RAND32();
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)SHRT_MAX))
@@ -83,10 +92,12 @@ static void goodB2G2()
 {
     short data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (short)RAND32();
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)SHRT_MAX))
@@ -106,10 +117,17 @@ static void goodG2B1()
 {
     short data;
     data = 0;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */
@@ -124,10 +142,12 @@ static void goodG2B2()
 {
     short data;
     data = 0;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > SHRT_MAX, this will overflow */

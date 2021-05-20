@@ -45,9 +45,11 @@ void CWE426_Untrusted_Search_Path__wchar_t_system_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FLAW: the full path is not specified */
         wcscpy(data, BAD_OS_COMMAND);
+        break;
     }
     /* POTENTIAL FLAW: Executing the _wsystem() function without specifying the full path to the executable
      * can allow an attacker to run their own program */
@@ -68,9 +70,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: full path is specified */
         wcscpy(data, GOOD_OS_COMMAND);
+        break;
     }
     /* POTENTIAL FLAW: Executing the _wsystem() function without specifying the full path to the executable
      * can allow an attacker to run their own program */

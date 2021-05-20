@@ -26,6 +26,8 @@ void CWE194_Unexpected_Sign_Extension__fgets_malloc_18_bad()
     short data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* FLAW: Use a value input from the console using fgets() */
@@ -64,6 +66,8 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     /* Assume we want to allocate a relatively small buffer */

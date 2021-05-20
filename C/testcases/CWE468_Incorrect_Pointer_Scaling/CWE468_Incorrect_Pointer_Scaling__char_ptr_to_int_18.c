@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_18_bad()
 {
+    goto sink;
+sink:
     {
         int intArray[5] = { 1, 2, 3, 4, 5 };
         char *charPointer = (char *)intArray; /* get a char pointer to intArray - common idiom in file and network packet parsing */
@@ -36,6 +38,8 @@ void CWE468_Incorrect_Pointer_Scaling__char_ptr_to_int_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         int intArray[5] = { 1, 2, 3, 4, 5 };
         char *charPointer = (char *)intArray; /* get a char pointer to intArray - common idiom in file and network packet parsing */

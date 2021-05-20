@@ -26,10 +26,12 @@ void bad()
 {
     double * data;
     data = new double[10];
+    if(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -53,10 +55,17 @@ static void goodB2G1()
 {
     double * data;
     data = new double[10];
+    if(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -83,10 +92,12 @@ static void goodB2G2()
 {
     double * data;
     data = new double[10];
+    if(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -113,6 +124,12 @@ static void goodG2B1()
 {
     double * data;
     data = new double[10];
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -123,6 +140,7 @@ static void goodG2B1()
             }
         }
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -142,6 +160,7 @@ static void goodG2B2()
 {
     double * data;
     data = new double[10];
+    if(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -152,6 +171,7 @@ static void goodG2B2()
             }
         }
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

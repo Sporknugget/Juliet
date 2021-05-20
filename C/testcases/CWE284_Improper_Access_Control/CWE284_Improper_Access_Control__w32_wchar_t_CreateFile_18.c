@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_18_bad()
 {
+    goto sink;
+sink:
     {
         HANDLE hFile;
         wchar_t * fileName = L"C:\\temp\\file.txt";
@@ -52,6 +54,8 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateFile_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         HANDLE hFile;
         wchar_t * fileName = L"C:\\temp\\file.txt";

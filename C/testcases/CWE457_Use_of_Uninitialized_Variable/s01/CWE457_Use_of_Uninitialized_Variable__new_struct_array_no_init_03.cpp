@@ -26,10 +26,12 @@ void bad()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(5==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(5==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -54,10 +56,17 @@ static void goodB2G1()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(5==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -86,10 +95,12 @@ static void goodB2G2()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(5==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(5==5)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -118,6 +129,12 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -129,6 +146,7 @@ static void goodG2B1()
             }
         }
     }
+    if(5==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -149,6 +167,7 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(5==5)
     {
         /* FIX: Completely initialize data */
         {
@@ -160,6 +179,7 @@ static void goodG2B2()
             }
         }
     }
+    if(5==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

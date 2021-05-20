@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_putc_16_bad()
 {
+    while(1)
     {
         /* FLAW: putc() might fail, in which case the return value will be EOF (-1), but
          * we are checking to see if the return value is 0 */
@@ -30,6 +31,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_putc_16_bad()
         {
             printLine("putc failed!");
         }
+        break;
     }
 }
 
@@ -40,12 +42,14 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_putc_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: check for the correct return value */
         if (putc((int)'A', stdout) == EOF)
         {
             printLine("putc failed!");
         }
+        break;
     }
 }
 

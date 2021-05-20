@@ -24,6 +24,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE620_Unverified_Password_Change__w32_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t newPassword[256];
         USER_INFO_1003 myUserInfo;
@@ -45,6 +48,12 @@ void CWE620_Unverified_Password_Change__w32_15_bad()
             wprintf(L"NetUserSetInfo failed.  Status = %u = 0x%x\n", status, status);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -54,6 +63,13 @@ void CWE620_Unverified_Password_Change__w32_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         wchar_t oldPassword[256];
         wchar_t newPassword[256];
@@ -79,11 +95,16 @@ static void good1()
             wprintf(L"NetUserChangePassword failed.  Status = %u = 0x%x\n", status, status);
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t oldPassword[256];
         wchar_t newPassword[256];
@@ -108,6 +129,12 @@ static void good2()
         {
             wprintf(L"NetUserChangePassword failed.  Status = %u = 0x%x\n", status, status);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

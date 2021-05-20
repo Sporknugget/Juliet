@@ -25,9 +25,11 @@ void CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer__struct_16_bad()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    while(1)
     {
         /* FLAW: Set data to point to an int */
         data = &dataBadBuffer;
+        break;
     }
     /* POTENTIAL FLAW: Attempt to print a struct when data may be a non-struct data type */
     printStructLine((twoIntsStruct *)data);
@@ -45,9 +47,11 @@ static void goodG2B()
     int dataBadBuffer = 100;
     dataGoodBuffer.intOne = 0;
     dataGoodBuffer.intTwo = 0;
+    while(1)
     {
         /* FIX: Set data to point to a twoIntsStruct struct */
         data = &dataGoodBuffer;
+        break;
     }
     /* POTENTIAL FLAW: Attempt to print a struct when data may be a non-struct data type */
     printStructLine((twoIntsStruct *)data);

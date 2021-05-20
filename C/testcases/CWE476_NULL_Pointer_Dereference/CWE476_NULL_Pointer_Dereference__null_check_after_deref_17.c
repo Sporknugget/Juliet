@@ -19,6 +19,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__null_check_after_deref_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             int *intPointer = NULL;
@@ -42,6 +44,8 @@ void CWE476_NULL_Pointer_Dereference__null_check_after_deref_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             int *intPointer = NULL;

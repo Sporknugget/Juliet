@@ -20,8 +20,10 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE464_Addition_of_Data_Structure_Sentinel__basic_17_bad()
 {
+    int i;
     char data;
     data = ' ';
+    for(i = 0; i < 1; i++)
     {
         {
             char charArraySource[2];
@@ -50,8 +52,10 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char data;
     data = ' ';
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data to be a char */
         data = 'a';

@@ -50,6 +50,9 @@ void CWE78_OS_Command_Injection__wchar_t_environment_w32spawnl_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = wcslen(data);
@@ -60,6 +63,12 @@ void CWE78_OS_Command_Injection__wchar_t_environment_w32spawnl_15_bad()
             /* POTENTIAL FLAW: Read data from an environment variable */
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     /* wspawnl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
@@ -76,8 +85,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
+        break;
+    }
     /* wspawnl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
     _wspawnl(_P_WAIT, COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);
@@ -89,8 +107,17 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Append a fixed string to data (not user / external input) */
         wcscat(data, L"*.*");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* wspawnl - specify the path where the command is located */
     /* POTENTIAL FLAW: Execute command without validating input possibly leading to command injection */
     _wspawnl(_P_WAIT, COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);

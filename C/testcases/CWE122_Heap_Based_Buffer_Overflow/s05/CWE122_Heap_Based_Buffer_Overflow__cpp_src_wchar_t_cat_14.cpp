@@ -27,6 +27,7 @@ void bad()
 {
     wchar_t * data;
     data = new wchar_t[100];
+    if(globalFive==5)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         wmemset(data, L'A', 100-1); /* fill with L'A's */
@@ -50,6 +51,12 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = new wchar_t[100];
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */
@@ -69,6 +76,7 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = new wchar_t[100];
+    if(globalFive==5)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         wmemset(data, L'A', 50-1); /* fill with L'A's */

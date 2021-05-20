@@ -30,10 +30,17 @@ void CWE176_Improper_Handling_of_Unicode_Encoding__w32_12_bad()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
     }
+    else
+    {
+        /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
+        wcscpy(data, L"\\u9580");
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             char convertedText[10] = "";
@@ -41,6 +48,23 @@ void CWE176_Improper_Handling_of_Unicode_Encoding__w32_12_bad()
             requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
             /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
             WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
+        }
+    }
+    else
+    {
+        {
+            char convertedText[10] = "";
+            int requiredSize;
+            requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
+            /* FIX: Check that the size of the destination buffer for the conversion is large enough. */
+            if (requiredSize < 10)
+            {
+                WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
+            }
+            else
+            {
+                printLine("Destination buffer not large enough to perform conversion.");
+            }
         }
     }
 }
@@ -57,10 +81,34 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
     }
+    else
+    {
+        /* POTENTIAL FLAW: Initialize data as a large unicode string that will cause a buffer overflow in the bad sink */
+        wcscpy(data, L"\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644\\u9580\\u961c\\u9640\\u963f\\u963b\\u9644");
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char convertedText[10] = "";
+            int requiredSize;
+            requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
+            /* FIX: Check that the size of the destination buffer for the conversion is large enough. */
+            if (requiredSize < 10)
+            {
+                WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
+            }
+            else
+            {
+                printLine("Destination buffer not large enough to perform conversion.");
+            }
+        }
+    }
+    else
     {
         {
             char convertedText[10] = "";
@@ -87,10 +135,27 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100];
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
         wcscpy(data, L"\\u9580");
     }
+    else
+    {
+        /* FIX: Initialize data as a small unicode string that will NOT cause a buffer overflow in the bad sink */
+        wcscpy(data, L"\\u9580");
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char convertedText[10] = "";
+            int requiredSize;
+            requiredSize = WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, 0, 0, 0);
+            /* POTENTIAL FLAW: Do not check that the size of the destination buffer for the conversion is large enough. */
+            WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, data, -1, convertedText, requiredSize , 0, 0);
+        }
+    }
+    else
     {
         {
             char convertedText[10] = "";

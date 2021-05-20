@@ -45,6 +45,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Read input from a file */
@@ -68,6 +69,16 @@ void bad()
             }
         }
     }
+    else
+    {
+#ifdef _WIN32
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "c:\\temp\\file.txt");
+#else
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "/tmp/file.txt");
+#endif
+    }
     {
         int fileDesc;
         /* POTENTIAL FLAW: Possibly opening a file without validating the file name or path */
@@ -90,6 +101,17 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+#ifdef _WIN32
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "c:\\temp\\file.txt");
+#else
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "/tmp/file.txt");
+#endif
+    }
+    else
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */

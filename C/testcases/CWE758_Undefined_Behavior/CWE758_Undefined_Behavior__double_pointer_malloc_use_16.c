@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE758_Undefined_Behavior__double_pointer_malloc_use_16_bad()
 {
+    while(1)
     {
         {
             double * * pointer = (double * *)malloc(sizeof(double *));
@@ -27,6 +28,7 @@ void CWE758_Undefined_Behavior__double_pointer_malloc_use_16_bad()
             free(pointer);
             printDoubleLine(*data);
         }
+        break;
     }
 }
 
@@ -37,6 +39,7 @@ void CWE758_Undefined_Behavior__double_pointer_malloc_use_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             double * data;
@@ -53,6 +56,7 @@ static void good1()
             }
             free(pointer);
         }
+        break;
     }
 }
 

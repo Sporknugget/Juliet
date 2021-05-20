@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE484_Omitted_Break_Statement_in_Switch__basic_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int x = (rand() % 3);
         /* FLAW: Missing break in first case */
@@ -37,6 +40,12 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_15_bad()
             break;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -46,6 +55,13 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int x = (rand() % 3);
         /* FIX: Use break in all cases that you do not intend "fall-through"
@@ -66,11 +82,16 @@ static void good1()
             break;
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int x = (rand() % 3);
         /* FIX: Use break in all cases that you do not intend "fall-through"
@@ -90,6 +111,12 @@ static void good2()
             printLine("Invalid Number");
             break;
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

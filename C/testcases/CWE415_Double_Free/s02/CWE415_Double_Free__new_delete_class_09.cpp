@@ -29,11 +29,13 @@ void bad()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -50,11 +52,18 @@ static void goodB2G1()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -68,11 +77,13 @@ static void goodB2G2()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
@@ -86,10 +97,17 @@ static void goodG2B1()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = new TwoIntsClass;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
@@ -102,10 +120,12 @@ static void goodG2B2()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    if(GLOBAL_CONST_TRUE)
     {
         data = new TwoIntsClass;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
     }
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;

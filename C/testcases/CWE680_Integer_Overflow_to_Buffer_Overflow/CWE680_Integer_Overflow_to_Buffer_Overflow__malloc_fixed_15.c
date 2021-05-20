@@ -23,10 +23,19 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
         data = INT_MAX / 2 + 2; /* 1073741825 */
         /* NOTE: This value will cause the sink to only allocate 4 bytes of memory, however
          * the for loop will attempt to access indices 0-1073741824 */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i;
         int *intPointer;
@@ -53,8 +62,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
+        break;
+    }
     {
         size_t i;
         int *intPointer;
@@ -77,8 +95,17 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i;
         int *intPointer;

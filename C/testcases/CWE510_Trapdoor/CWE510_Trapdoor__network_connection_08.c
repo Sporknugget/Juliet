@@ -46,6 +46,7 @@ static int staticReturnsTrue()
 
 void CWE510_Trapdoor__network_connection_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32

@@ -24,12 +24,25 @@ Template File: sources-sinks-12.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__double_12_bad()
 {
     double data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    else
+    {
+        /* FIX: Initialize data */
+        data = 5.0;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
+        printDoubleLine(data);
+    }
+    else
+    {
+        /* FIX: Ensure data is initialized before use */
+        data = 5.0;
         printDoubleLine(data);
     }
 }
@@ -44,10 +57,23 @@ void CWE457_Use_of_Uninitialized_Variable__double_12_bad()
 static void goodB2G()
 {
     double data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    else
+    {
+        /* POTENTIAL FLAW: Don't initialize data */
+        ; /* empty statement needed for some flow variants */
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Ensure data is initialized before use */
+        data = 5.0;
+        printDoubleLine(data);
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         data = 5.0;
@@ -61,10 +87,22 @@ static void goodB2G()
 static void goodG2B()
 {
     double data;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Initialize data */
         data = 5.0;
     }
+    else
+    {
+        /* FIX: Initialize data */
+        data = 5.0;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use data without initializing it */
+        printDoubleLine(data);
+    }
+    else
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printDoubleLine(data);

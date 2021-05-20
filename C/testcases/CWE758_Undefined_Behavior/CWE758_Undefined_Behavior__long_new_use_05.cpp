@@ -28,6 +28,7 @@ namespace CWE758_Undefined_Behavior__long_new_use_05
 
 void bad()
 {
+    if(staticTrue)
     {
         {
             long * pointer = new long;
@@ -42,6 +43,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             long data;
@@ -60,6 +70,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             long data;

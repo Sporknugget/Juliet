@@ -24,8 +24,12 @@ Template File: sources-sinks-18.tmpl.c
 void CWE563_Unused_Variable__unused_value_int64_t_18_bad()
 {
     int64_t data;
+    goto source;
+source:
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
     data = 10LL;
     printLongLongLine(data);
@@ -39,8 +43,12 @@ void CWE563_Unused_Variable__unused_value_int64_t_18_bad()
 static void goodB2G()
 {
     int64_t data;
+    goto source;
+source:
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    goto sink;
+sink:
     /* FIX: Use data without over-writing its value */
     printLongLongLine(data);
 }
@@ -49,9 +57,13 @@ static void goodB2G()
 static void goodG2B()
 {
     int64_t data;
+    goto source;
+source:
     /* FIX: Initialize and use data before it is overwritten */
     data = 5LL;
     printLongLongLine(data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
     data = 10LL;
     printLongLongLine(data);

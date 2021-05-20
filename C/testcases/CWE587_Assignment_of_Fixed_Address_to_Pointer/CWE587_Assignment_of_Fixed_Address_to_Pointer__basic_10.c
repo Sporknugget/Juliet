@@ -19,6 +19,7 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_10_bad()
 {
+    if(globalTrue)
     {
         {
             /* FLAW: Assigning fixed address to pointer */
@@ -32,6 +33,15 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_10_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: Assign the pointer to a stack variable */
@@ -45,6 +55,7 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_10_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         {
             /* FIX: Assign the pointer to a stack variable */

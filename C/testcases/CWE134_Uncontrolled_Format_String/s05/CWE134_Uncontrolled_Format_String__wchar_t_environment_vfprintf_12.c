@@ -59,6 +59,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_vfprintf_12_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -72,8 +73,18 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_vfprintf_12_bad()
             }
         }
     }
+    else
+    {
+        /* FIX: Use a fixed string that does not contain a format specifier */
+        wcscpy(data, L"fixedstringtest");
+    }
+    if(globalReturnsTrueOrFalse())
     {
         badVaSinkB(data, data);
+    }
+    else
+    {
+        badVaSinkG(data, data);
     }
 }
 
@@ -112,6 +123,7 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -125,6 +137,25 @@ static void goodB2G()
             }
         }
     }
+    else
+    {
+        {
+            /* Append input from an environment variable to data */
+            size_t dataLen = wcslen(data);
+            wchar_t * environment = GETENV(ENV_VARIABLE);
+            /* If there is data in the environment variable */
+            if (environment != NULL)
+            {
+                /* POTENTIAL FLAW: Read data from an environment variable */
+                wcsncat(data+dataLen, environment, 100-dataLen-1);
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        goodB2GVaSinkG(data, data);
+    }
+    else
     {
         goodB2GVaSinkG(data, data);
     }
@@ -161,10 +192,21 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
+    else
+    {
+        /* FIX: Use a fixed string that does not contain a format specifier */
+        wcscpy(data, L"fixedstringtest");
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        goodG2BVaSinkB(data, data);
+    }
+    else
     {
         goodG2BVaSinkB(data, data);
     }

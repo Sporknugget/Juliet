@@ -55,6 +55,7 @@ void CWE78_OS_Command_Injection__char_environment_execlp_12_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -67,6 +68,11 @@ void CWE78_OS_Command_Injection__char_environment_execlp_12_bad()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
+    }
+    else
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        strcat(data, "*.*");
     }
     /* execlp - searches for the location of the command among
      * the directories specified by the PATH environment variable */
@@ -85,6 +91,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        strcat(data, "*.*");
+    }
+    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

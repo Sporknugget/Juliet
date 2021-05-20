@@ -24,15 +24,40 @@ namespace CWE476_NULL_Pointer_Dereference__class_12
 void bad()
 {
     TwoIntsClass * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    else
+    {
+        {
+            TwoIntsClass * tmpData = new TwoIntsClass;
+            tmpData->intOne = 0;
+            tmpData->intTwo = 0;
+            /* FIX: Initialize data */
+            data = tmpData;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
         /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
         delete data;
+    }
+    else
+    {
+        /* FIX: Check for NULL before attempting to print data */
+        if (data != NULL)
+        {
+            printIntLine(data->intOne);
+            delete data;
+        }
+        else
+        {
+            printLine("data is NULL");
+        }
     }
 }
 
@@ -46,10 +71,30 @@ void bad()
 static void goodB2G()
 {
     TwoIntsClass * data;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Set data to NULL */
+        data = NULL;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Check for NULL before attempting to print data */
+        if (data != NULL)
+        {
+            printIntLine(data->intOne);
+            delete data;
+        }
+        else
+        {
+            printLine("data is NULL");
+        }
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -70,6 +115,7 @@ static void goodB2G()
 static void goodG2B()
 {
     TwoIntsClass * data;
+    if(globalReturnsTrueOrFalse())
     {
         {
             TwoIntsClass * tmpData = new TwoIntsClass;
@@ -79,6 +125,24 @@ static void goodG2B()
             data = tmpData;
         }
     }
+    else
+    {
+        {
+            TwoIntsClass * tmpData = new TwoIntsClass;
+            tmpData->intOne = 0;
+            tmpData->intTwo = 0;
+            /* FIX: Initialize data */
+            data = tmpData;
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
+        printIntLine(data->intOne);
+        /* avoid memory leak - deleting a NULL pointer is a no-op in C++ so no need to check for NULL */
+        delete data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

@@ -24,14 +24,18 @@ Template File: sources-sinks-16.tmpl.c
 void CWE563_Unused_Variable__unused_value_char_16_bad()
 {
     char data;
+    while(1)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';
         printHexCharLine(data);
+        break;
     }
 }
 
@@ -43,13 +47,17 @@ void CWE563_Unused_Variable__unused_value_char_16_bad()
 static void goodB2G()
 {
     char data;
+    while(1)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
+        break;
     }
+    while(1)
     {
         /* FIX: Use data without over-writing its value */
         printHexCharLine(data);
+        break;
     }
 }
 
@@ -57,15 +65,19 @@ static void goodB2G()
 static void goodG2B()
 {
     char data;
+    while(1)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 'C';
         printHexCharLine(data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';
         printHexCharLine(data);
+        break;
     }
 }
 

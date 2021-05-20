@@ -45,6 +45,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_connect_socket_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -103,6 +104,11 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_connect_socket_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Set data to a relatively small number greater than zero */
+        data = 20;
+    }
     {
         size_t i;
         int *intPointer;
@@ -130,6 +136,12 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Set data to a relatively small number greater than zero */
+        data = 20;
+    }
+    else
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

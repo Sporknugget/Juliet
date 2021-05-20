@@ -30,6 +30,7 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_05_bad()
     double * data;
     /* Initialize data */
     data = NULL;
+    if(staticTrue)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
         /* FLAW: Using sizeof the pointer and not the data type in malloc() */
@@ -52,6 +53,12 @@ static void goodG2B1()
     double * data;
     /* Initialize data */
     data = NULL;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Using sizeof the data type in malloc() */
         data = (double *)malloc(sizeof(*data));
@@ -69,6 +76,7 @@ static void goodG2B2()
     double * data;
     /* Initialize data */
     data = NULL;
+    if(staticTrue)
     {
         /* FIX: Using sizeof the data type in malloc() */
         data = (double *)malloc(sizeof(*data));

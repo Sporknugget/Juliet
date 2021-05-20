@@ -29,6 +29,7 @@ static int staticFalse = 0; /* false */
 
 void CWE401_Memory_Leak__malloc_realloc_wchar_t_05_bad()
 {
+    if(staticTrue)
     {
         {
             wchar_t * data = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -53,6 +54,15 @@ void CWE401_Memory_Leak__malloc_realloc_wchar_t_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * data = (wchar_t *)malloc(100*sizeof(wchar_t));
@@ -79,6 +89,7 @@ void CWE401_Memory_Leak__malloc_realloc_wchar_t_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             wchar_t * data = (wchar_t *)malloc(100*sizeof(wchar_t));

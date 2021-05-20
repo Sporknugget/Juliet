@@ -34,6 +34,7 @@ void CWE400_Resource_Exhaustion__fgets_sleep_16_bad()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -48,11 +49,14 @@ void CWE400_Resource_Exhaustion__fgets_sleep_16_bad()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
         printLine("Sleep time possibly too long");
+        break;
     }
 }
 
@@ -66,6 +70,7 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -80,7 +85,9 @@ static void goodB2G()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -92,6 +99,7 @@ static void goodB2G()
         {
             printLine("Sleep time too long");
         }
+        break;
     }
 }
 
@@ -101,14 +109,18 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         /* FIX: Use a relatively small number */
         count = 20;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
         printLine("Sleep time possibly too long");
+        break;
     }
 }
 

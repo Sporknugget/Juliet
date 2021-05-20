@@ -24,6 +24,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE535_Info_Exposure_Shell_Error__w32_char_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char password[100] = "";
         size_t passwordLen = 0;
@@ -61,6 +64,12 @@ void CWE535_Info_Exposure_Shell_Error__w32_char_15_bad()
         /* FLAW: Write sensitive data to stderr */
         fprintf(stderr, "User attempted access with password: %s\n", password);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -70,6 +79,13 @@ void CWE535_Info_Exposure_Shell_Error__w32_char_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char password[100] = "";
         size_t passwordLen = 0;
@@ -107,11 +123,16 @@ static void good1()
         /* FIX: Do not write sensitive data to stderr */
         fprintf(stderr, "User attempted access\n");
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char password[100] = "";
         size_t passwordLen = 0;
@@ -148,6 +169,12 @@ static void good2()
         }
         /* FIX: Do not write sensitive data to stderr */
         fprintf(stderr, "User attempted access\n");
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

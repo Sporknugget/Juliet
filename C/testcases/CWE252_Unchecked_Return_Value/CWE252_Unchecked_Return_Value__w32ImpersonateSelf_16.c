@@ -22,9 +22,11 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE252_Unchecked_Return_Value__w32ImpersonateSelf_16_bad()
 {
+    while(1)
     {
         /* FLAW: Do not check if ImpersonateSelf() fails */
         ImpersonateSelf(SecurityImpersonation);
+        break;
     }
 }
 
@@ -35,12 +37,14 @@ void CWE252_Unchecked_Return_Value__w32ImpersonateSelf_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: Check to see if ImpersonateSelf() fails */
         if (!ImpersonateSelf(SecurityImpersonation))
         {
             exit(1);
         }
+        break;
     }
 }
 

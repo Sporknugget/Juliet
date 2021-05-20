@@ -23,6 +23,8 @@ void CWE843_Type_Confusion__char_18_bad()
     void * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     {
         /* FLAW: Point data to a char */
         char charBuffer = 'a';
@@ -42,6 +44,8 @@ static void goodG2B()
     void * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     {
         /* FIX: Point data to an int */
         int intBuffer = 8;

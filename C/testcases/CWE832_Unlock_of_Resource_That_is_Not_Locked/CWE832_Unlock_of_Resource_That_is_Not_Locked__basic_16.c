@@ -21,6 +21,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_16_bad()
 {
+    while(1)
     {
         {
             static stdThreadLock badLock = NULL;
@@ -36,6 +37,7 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_16_bad()
             printLine("Destroying lock...");
             stdThreadLockDestroy(badLock);
         }
+        break;
     }
 }
 
@@ -46,6 +48,7 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             static stdThreadLock goodLock = NULL;
@@ -63,6 +66,7 @@ static void good1()
             printLine("Destroying lock...");
             stdThreadLockDestroy(goodLock);
         }
+        break;
     }
 }
 

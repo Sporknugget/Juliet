@@ -28,6 +28,7 @@ void bad()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -42,7 +43,9 @@ void bad()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         {
             int i;
@@ -69,6 +72,7 @@ void bad()
             }
             delete[] buffer;
         }
+        break;
     }
 }
 
@@ -82,6 +86,7 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -96,7 +101,9 @@ static void goodB2G()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         {
             int i;
@@ -122,6 +129,7 @@ static void goodB2G()
             }
             delete[] buffer;
         }
+        break;
     }
 }
 
@@ -131,11 +139,14 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
     }
+    while(1)
     {
         {
             int i;
@@ -162,6 +173,7 @@ static void goodG2B()
             }
             delete[] buffer;
         }
+        break;
     }
 }
 

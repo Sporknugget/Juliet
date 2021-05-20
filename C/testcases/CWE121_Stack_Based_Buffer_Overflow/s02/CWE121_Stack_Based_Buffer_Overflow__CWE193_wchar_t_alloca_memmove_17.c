@@ -27,9 +27,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE121_Stack_Based_Buffer_Overflow__CWE193_wchar_t_alloca_memmove_17_bad()
 {
+    int i;
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -52,9 +54,11 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_wchar_t_alloca_memmove_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     wchar_t * data;
     wchar_t * dataBadBuffer = (wchar_t *)ALLOCA((10)*sizeof(wchar_t));
     wchar_t * dataGoodBuffer = (wchar_t *)ALLOCA((10+1)*sizeof(wchar_t));
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */

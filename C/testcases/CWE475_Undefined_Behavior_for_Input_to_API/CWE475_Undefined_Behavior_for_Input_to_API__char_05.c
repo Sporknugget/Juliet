@@ -27,6 +27,7 @@ static int staticFalse = 0; /* false */
 
 void CWE475_Undefined_Behavior_for_Input_to_API__char_05_bad()
 {
+    if(staticTrue)
     {
         {
             char dataBuffer[100] = "";
@@ -43,6 +44,15 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char dataBuffer[100] = "";
@@ -58,6 +68,7 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             char dataBuffer[100] = "";

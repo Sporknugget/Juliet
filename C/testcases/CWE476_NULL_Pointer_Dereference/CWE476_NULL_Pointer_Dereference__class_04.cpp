@@ -31,10 +31,12 @@ namespace CWE476_NULL_Pointer_Dereference__class_04
 void bad()
 {
     TwoIntsClass * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -51,10 +53,17 @@ void bad()
 static void goodB2G1()
 {
     TwoIntsClass * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -73,10 +82,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     TwoIntsClass * data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Set data to NULL */
         data = NULL;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Check for NULL before attempting to print data */
         if (data != NULL)
@@ -95,6 +106,12 @@ static void goodB2G2()
 static void goodG2B1()
 {
     TwoIntsClass * data;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             TwoIntsClass * tmpData = new TwoIntsClass;
@@ -104,6 +121,7 @@ static void goodG2B1()
             data = tmpData;
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);
@@ -116,6 +134,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     TwoIntsClass * data;
+    if(STATIC_CONST_TRUE)
     {
         {
             TwoIntsClass * tmpData = new TwoIntsClass;
@@ -125,6 +144,7 @@ static void goodG2B2()
             data = tmpData;
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Attempt to use data, which may be NULL */
         printIntLine(data->intOne);

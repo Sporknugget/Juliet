@@ -23,10 +23,19 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_fputs_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: fputs() might fail, in which case the return value will be EOF (-1), but
          * we are checking to see if the return value is 0 */
         if (fputs("string", stdout) == 0)
+        {
+            printLine("fputs failed!");
+        }
+    }
+    else
+    {
+        /* FIX: check for the correct return value */
+        if (fputs("string", stdout) == EOF)
         {
             printLine("fputs failed!");
         }
@@ -40,6 +49,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_fputs_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: check for the correct return value */
+        if (fputs("string", stdout) == EOF)
+        {
+            printLine("fputs failed!");
+        }
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (fputs("string", stdout) == EOF)

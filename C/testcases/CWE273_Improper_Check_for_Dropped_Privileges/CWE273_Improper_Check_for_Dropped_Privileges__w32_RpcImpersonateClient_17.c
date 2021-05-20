@@ -24,6 +24,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         RpcImpersonateClient(0);
         /* FLAW: Do not check if RpcImpersonateClient() fails */
@@ -39,6 +41,8 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_RpcImpersonateClient_17_b
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Check the return value of RpcImpersonateClient() for RPC_S_OK */
         if (RpcImpersonateClient(0) != RPC_S_OK)

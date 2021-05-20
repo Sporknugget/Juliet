@@ -23,12 +23,15 @@ namespace CWE457_Use_of_Uninitialized_Variable__twointsclass_array_new_no_init_1
 
 void bad()
 {
+    int i,j;
     TwoIntsClass * data;
     data = new TwoIntsClass[10];
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -46,12 +49,15 @@ void bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     TwoIntsClass * data;
     data = new TwoIntsClass[10];
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Ensure data is initialized before use */
         for(int i=0; i<10; i++)
@@ -70,8 +76,10 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     TwoIntsClass * data;
     data = new TwoIntsClass[10];
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Completely initialize data */
         for(int i=0; i<10; i++)
@@ -80,6 +88,7 @@ static void goodG2B()
             data[i].intTwo = i;
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)

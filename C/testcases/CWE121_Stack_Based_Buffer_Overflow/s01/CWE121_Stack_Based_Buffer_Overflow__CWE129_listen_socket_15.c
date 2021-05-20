@@ -46,6 +46,9 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE129_listen_socket_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -115,6 +118,15 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE129_listen_socket_15_bad()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int buffer[10] = { 0 };
@@ -133,6 +145,12 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE129_listen_socket_15_bad()
         {
             printLine("ERROR: Array index is negative.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -146,6 +164,9 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -215,6 +236,19 @@ static void goodB2G1()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int i;
         int buffer[10] = { 0 };
@@ -232,6 +266,8 @@ static void goodB2G1()
         {
             printLine("ERROR: Array index is out-of-bounds");
         }
+    }
+    break;
     }
 }
 
@@ -241,6 +277,9 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -310,6 +349,15 @@ static void goodB2G2()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int buffer[10] = { 0 };
@@ -328,6 +376,12 @@ static void goodB2G2()
             printLine("ERROR: Array index is out-of-bounds");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -336,9 +390,21 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int buffer[10] = { 0 };
@@ -358,6 +424,12 @@ static void goodG2B1()
             printLine("ERROR: Array index is negative.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -366,9 +438,21 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int buffer[10] = { 0 };
@@ -387,6 +471,12 @@ static void goodG2B2()
         {
             printLine("ERROR: Array index is negative.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

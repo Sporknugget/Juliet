@@ -19,12 +19,14 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_16_bad()
 {
+    while(1)
     {
         {
             wchar_t * * pointer = (wchar_t * *)ALLOCA(sizeof(wchar_t *));
             wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printWLine(data);
         }
+        break;
     }
 }
 
@@ -35,6 +37,7 @@ void CWE758_Undefined_Behavior__wchar_t_pointer_alloca_use_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             wchar_t * data;
@@ -46,6 +49,7 @@ static void good1()
                 printWLine(data);
             }
         }
+        break;
     }
 }
 

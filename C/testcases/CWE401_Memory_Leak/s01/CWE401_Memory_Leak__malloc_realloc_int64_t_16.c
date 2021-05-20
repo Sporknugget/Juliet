@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_int64_t_16_bad()
 {
+    while(1)
     {
         {
             int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -40,6 +41,7 @@ void CWE401_Memory_Leak__malloc_realloc_int64_t_16_bad()
                 free(data);
             }
         }
+        break;
     }
 }
 
@@ -50,6 +52,7 @@ void CWE401_Memory_Leak__malloc_realloc_int64_t_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
@@ -70,6 +73,7 @@ static void good1()
             }
             free(data);
         }
+        break;
     }
 }
 

@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_16_bad()
 {
+    while(1)
     {
         {
             wchar_t string1[] = SOURCE_STRING;
@@ -39,6 +40,7 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_16_bad()
             /* print the index of where the slash was found */
             printUnsignedLine(indexOfSlashInString1);
         }
+        break;
     }
 }
 
@@ -49,6 +51,7 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             wchar_t string1[] = SOURCE_STRING;
@@ -64,6 +67,7 @@ static void good1()
             /* print the index of where the slash was found */
             printUnsignedLine(indexOfSlashInString1);
         }
+        break;
     }
 }
 

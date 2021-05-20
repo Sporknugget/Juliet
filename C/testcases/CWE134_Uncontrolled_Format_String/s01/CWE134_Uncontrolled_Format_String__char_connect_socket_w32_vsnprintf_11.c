@@ -63,6 +63,7 @@ void CWE134_Uncontrolled_Format_String__char_connect_socket_w32_vsnprintf_11_bad
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -132,6 +133,7 @@ void CWE134_Uncontrolled_Format_String__char_connect_socket_w32_vsnprintf_11_bad
 #endif
         }
     }
+    if(globalReturnsTrue())
     {
         badVaSinkB(data, data);
     }
@@ -160,6 +162,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -229,6 +232,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         goodB2G1VaSinkG(data, data);
     }
@@ -253,6 +262,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -322,6 +332,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(globalReturnsTrue())
     {
         goodB2G2VaSinkG(data, data);
     }
@@ -346,10 +357,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(globalReturnsTrue())
     {
         goodG2B1VaSinkB(data, data);
     }
@@ -374,10 +392,12 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalReturnsTrue())
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(globalReturnsTrue())
     {
         goodG2B2VaSinkB(data, data);
     }

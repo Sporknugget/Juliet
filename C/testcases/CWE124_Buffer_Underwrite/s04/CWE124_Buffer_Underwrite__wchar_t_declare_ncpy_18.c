@@ -26,6 +26,8 @@ void CWE124_Buffer_Underwrite__wchar_t_declare_ncpy_18_bad()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    goto source;
+source:
     /* FLAW: Set data pointer to before the allocated memory buffer */
     data = dataBuffer - 8;
     {
@@ -51,6 +53,8 @@ static void goodG2B()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    goto source;
+source:
     /* FIX: Set data pointer to the allocated memory buffer */
     data = dataBuffer;
     {

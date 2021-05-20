@@ -24,6 +24,9 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_15_b
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -33,6 +36,15 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_15_b
             data[i].intTwo = i;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -41,6 +53,12 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_15_b
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -54,6 +72,9 @@ static void goodB2G1()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -63,6 +84,19 @@ static void goodB2G1()
             data[i].intTwo = i;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -79,6 +113,8 @@ static void goodB2G1()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+    }
+    break;
     }
 }
 
@@ -88,6 +124,9 @@ static void goodB2G2()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -97,6 +136,15 @@ static void goodB2G2()
             data[i].intTwo = i;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -114,6 +162,12 @@ static void goodB2G2()
             printIntLine(data[i].intTwo);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -122,6 +176,13 @@ static void goodG2B1()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Completely initialize data */
     {
         int i;
@@ -131,6 +192,11 @@ static void goodG2B1()
             data[i].intTwo = i;
         }
     }
+    break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -139,6 +205,12 @@ static void goodG2B1()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -148,6 +220,9 @@ static void goodG2B2()
     twoIntsStruct * data;
     data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
+    switch(6)
+    {
+    case 6:
         /* FIX: Completely initialize data */
     {
         int i;
@@ -157,6 +232,15 @@ static void goodG2B2()
             data[i].intTwo = i;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -165,6 +249,12 @@ static void goodG2B2()
             printIntLine(data[i].intOne);
             printIntLine(data[i].intTwo);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

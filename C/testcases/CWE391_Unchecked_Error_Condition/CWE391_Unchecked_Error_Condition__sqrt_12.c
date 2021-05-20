@@ -23,11 +23,27 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__sqrt_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             double doubleNumber;
             doubleNumber = (double)sqrt((double)-1);
             /* FLAW: Do not check to see if sqrt() failed */
+            printDoubleLine(doubleNumber);
+        }
+    }
+    else
+    {
+        {
+            double doubleNumber;
+            errno = 0; /* set errno to zero before calling sqrt(), which can change its value */
+            doubleNumber = (double)sqrt((double)-1);
+            /* FIX: Check errno to see if sqrt() failed */
+            if (errno == EDOM)
+            {
+                printLine("sqrt() failed");
+                exit(1);
+            }
             printDoubleLine(doubleNumber);
         }
     }
@@ -40,6 +56,22 @@ void CWE391_Unchecked_Error_Condition__sqrt_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            double doubleNumber;
+            errno = 0; /* set errno to zero before calling sqrt(), which can change its value */
+            doubleNumber = (double)sqrt((double)-1);
+            /* FIX: Check errno to see if sqrt() failed */
+            if (errno == EDOM)
+            {
+                printLine("sqrt() failed");
+                exit(1);
+            }
+            printDoubleLine(doubleNumber);
+        }
+    }
+    else
     {
         {
             double doubleNumber;

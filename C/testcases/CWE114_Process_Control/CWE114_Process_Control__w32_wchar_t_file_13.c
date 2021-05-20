@@ -33,6 +33,7 @@ void CWE114_Process_Control__w32_wchar_t_file_13_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* Read input from a file */
@@ -83,6 +84,12 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Specify the full pathname for the library */
         wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");
@@ -110,6 +117,7 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Specify the full pathname for the library */
         wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");

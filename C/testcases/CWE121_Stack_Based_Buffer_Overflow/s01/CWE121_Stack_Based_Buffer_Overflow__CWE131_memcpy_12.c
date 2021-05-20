@@ -22,9 +22,15 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE131_memcpy_12_bad()
 {
     int * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Allocate memory without using sizeof(int) */
         data = (int *)ALLOCA(10);
+    }
+    else
+    {
+        /* FIX: Allocate memory using sizeof(int) */
+        data = (int *)ALLOCA(10*sizeof(int));
     }
     {
         int source[10] = {0};
@@ -44,6 +50,12 @@ static void goodG2B()
 {
     int * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Allocate memory using sizeof(int) */
+        data = (int *)ALLOCA(10*sizeof(int));
+    }
+    else
     {
         /* FIX: Allocate memory using sizeof(int) */
         data = (int *)ALLOCA(10*sizeof(int));

@@ -28,6 +28,7 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_11
 
 void bad()
 {
+    if(globalReturnsTrue())
     {
         /* FLAW: throw std::exception class, which is very generic */
         throw exception();
@@ -38,6 +39,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");
@@ -47,6 +57,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");

@@ -24,6 +24,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_16_bad()
 {
+    while(1)
     {
         {
             HANDLE hPipe;
@@ -49,6 +50,7 @@ void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_16_bad()
                 CloseHandle(hPipe);
             }
         }
+        break;
     }
 }
 
@@ -59,6 +61,7 @@ void CWE284_Improper_Access_Control__w32_char_CreateNamedPipe_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             HANDLE hPipe;
@@ -83,6 +86,7 @@ static void good1()
                 CloseHandle(hPipe);
             }
         }
+        break;
     }
 }
 

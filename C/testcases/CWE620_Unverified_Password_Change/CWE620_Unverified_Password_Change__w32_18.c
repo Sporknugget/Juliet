@@ -24,6 +24,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE620_Unverified_Password_Change__w32_18_bad()
 {
+    goto sink;
+sink:
     {
         wchar_t newPassword[256];
         USER_INFO_1003 myUserInfo;
@@ -54,6 +56,8 @@ void CWE620_Unverified_Password_Change__w32_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         wchar_t oldPassword[256];
         wchar_t newPassword[256];

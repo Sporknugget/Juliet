@@ -35,6 +35,7 @@ void CWE114_Process_Control__w32_char_environment_02_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -75,6 +76,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
@@ -102,6 +109,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(1)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");

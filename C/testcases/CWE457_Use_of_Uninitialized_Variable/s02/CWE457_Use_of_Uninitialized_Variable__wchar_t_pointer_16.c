@@ -24,13 +24,17 @@ Template File: sources-sinks-16.tmpl.c
 void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_16_bad()
 {
     wchar_t * data;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printWLine(data);
+        break;
     }
 }
 
@@ -42,14 +46,18 @@ void CWE457_Use_of_Uninitialized_Variable__wchar_t_pointer_16_bad()
 static void goodB2G()
 {
     wchar_t * data;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         data = L"string";
         printWLine(data);
+        break;
     }
 }
 
@@ -57,13 +65,17 @@ static void goodB2G()
 static void goodG2B()
 {
     wchar_t * data;
+    while(1)
     {
         /* FIX: Initialize data */
         data = L"string";
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printWLine(data);
+        break;
     }
 }
 

@@ -30,9 +30,29 @@ void CWE259_Hard_Coded_Password__w32_char_12_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a hardcoded password */
         strcpy(password, PASSWORD);
+    }
+    else
+    {
+        {
+            size_t passwordLen = 0;
+            /* FIX: Read the password from the console */
+            if (fgets(password, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                password[0] = '\0';
+            }
+            /* Remove the carriage return from the string that is inserted by fgets() */
+            passwordLen = strlen(password);
+            if (passwordLen > 0)
+            {
+                password[passwordLen-1] = '\0';
+            }
+        }
     }
     {
         HANDLE pHandle;
@@ -68,6 +88,26 @@ static void goodG2B()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t passwordLen = 0;
+            /* FIX: Read the password from the console */
+            if (fgets(password, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                password[0] = '\0';
+            }
+            /* Remove the carriage return from the string that is inserted by fgets() */
+            passwordLen = strlen(password);
+            if (passwordLen > 0)
+            {
+                password[passwordLen-1] = '\0';
+            }
+        }
+    }
+    else
     {
         {
             size_t passwordLen = 0;

@@ -28,6 +28,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE511_Logic_Time_Bomb__counter_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int count = 0;
         do
@@ -41,6 +44,12 @@ void CWE511_Logic_Time_Bomb__counter_15_bad()
         }
         while(1 == 1);   /* infinite loop */
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -50,6 +59,13 @@ void CWE511_Logic_Time_Bomb__counter_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int count = 0;
         do
@@ -63,11 +79,16 @@ static void good1()
         }
         while(1 == 1);   /* infinite loop */
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int count = 0;
         do
@@ -80,6 +101,12 @@ static void good2()
             count++;
         }
         while(1 == 1);   /* infinite loop */
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

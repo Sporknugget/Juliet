@@ -40,6 +40,9 @@ void CWE134_Uncontrolled_Format_String__wchar_t_file_snprintf_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Read input from a file */
         size_t dataLen = wcslen(data);
@@ -61,11 +64,26 @@ void CWE134_Uncontrolled_Format_String__wchar_t_file_snprintf_15_bad()
             }
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         wchar_t dest[100] = L"";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         SNPRINTF(dest, 100-1, data);
         printWLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -79,6 +97,9 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Read input from a file */
         size_t dataLen = wcslen(data);
@@ -100,11 +121,26 @@ static void goodB2G1()
             }
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         wchar_t dest[100] = L"";
         /* FIX: Specify the format disallowing a format string vulnerability */
         SNPRINTF(dest, 100-1, L"%s", data);
         printWLine(dest);
+    }
+    break;
     }
 }
 
@@ -114,6 +150,9 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Read input from a file */
         size_t dataLen = wcslen(data);
@@ -135,11 +174,26 @@ static void goodB2G2()
             }
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         wchar_t dest[100] = L"";
         /* FIX: Specify the format disallowing a format string vulnerability */
         SNPRINTF(dest, 100-1, L"%s", data);
         printWLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -149,13 +203,31 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         wchar_t dest[100] = L"";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         SNPRINTF(dest, 100-1, data);
         printWLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -165,13 +237,31 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         wchar_t dest[100] = L"";
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         SNPRINTF(dest, 100-1, data);
         printWLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

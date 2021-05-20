@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_block_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: An empty block has no effect */
     {
     }
@@ -32,6 +34,8 @@ void CWE398_Poor_Code_Quality__empty_block_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: Do not include an empty block */
     {
         printLine("Inside the block");

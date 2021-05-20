@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         char dest[DEST_SIZE];
         int intFive = 5;
@@ -37,6 +39,8 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char dest[DEST_SIZE];
         int intFive = 5;

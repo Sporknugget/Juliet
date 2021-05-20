@@ -24,6 +24,7 @@ static int staticFive = 5;
 
 void CWE758_Undefined_Behavior__int_pointer_malloc_use_07_bad()
 {
+    if(staticFive==5)
     {
         {
             int * * pointer = (int * *)malloc(sizeof(int *));
@@ -39,6 +40,15 @@ void CWE758_Undefined_Behavior__int_pointer_malloc_use_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int * data;
@@ -61,6 +71,7 @@ void CWE758_Undefined_Behavior__int_pointer_malloc_use_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             int * data;

@@ -24,10 +24,28 @@ void CWE369_Divide_by_Zero__int_zero_modulo_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to zero */
         data = 0;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -40,8 +58,24 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to zero */
         data = 0;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: test for a zero denominator */
         if( data != 0 )
         {
@@ -51,6 +85,8 @@ static void goodB2G1()
         {
             printLine("This would result in a divide by zero");
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -59,8 +95,20 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to zero */
         data = 0;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: test for a zero denominator */
         if( data != 0 )
         {
@@ -70,6 +118,12 @@ static void goodB2G2()
         {
             printLine("This would result in a divide by zero");
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -78,10 +132,28 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a value not equal to zero */
         data = 7;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -90,10 +162,28 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a value not equal to zero */
         data = 7;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void CWE369_Divide_by_Zero__int_zero_modulo_15_good()

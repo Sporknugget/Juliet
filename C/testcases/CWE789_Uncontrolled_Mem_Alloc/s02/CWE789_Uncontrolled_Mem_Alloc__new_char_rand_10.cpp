@@ -33,10 +33,12 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    if(globalTrue)
     {
         {
             char * myString;
@@ -69,10 +71,17 @@ static void goodB2G1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * myString;
@@ -101,10 +110,12 @@ static void goodB2G2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    if(globalTrue)
     {
         {
             char * myString;
@@ -133,10 +144,17 @@ static void goodG2B1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(globalTrue)
     {
         {
             char * myString;
@@ -165,10 +183,12 @@ static void goodG2B2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(globalTrue)
     {
         {
             char * myString;

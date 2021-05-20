@@ -33,6 +33,7 @@ static int staticFalse = 0; /* false */
 
 void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_05_bad()
 {
+    if(staticTrue)
     {
         {
             /* FLAW: encrytped "calc.exe" */
@@ -98,6 +99,15 @@ void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: plaintext command */
@@ -114,6 +124,7 @@ void CWE506_Embedded_Malicious_Code__w32_aes_encrypted_payload_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             /* FIX: plaintext command */

@@ -27,9 +27,11 @@ void CWE114_Process_Control__w32_char_relativePath_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         /* FLAW: Specify just the file name for the library, not the full path */
         strcpy(data, "winsrv.dll");
+        break;
     }
     {
         HMODULE hModule;
@@ -58,9 +60,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");
+        break;
     }
     {
         HMODULE hModule;

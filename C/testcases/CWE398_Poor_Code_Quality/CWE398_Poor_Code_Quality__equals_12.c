@@ -19,12 +19,23 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE398_Poor_Code_Quality__equals_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             int intOne = 1;
             printIntLine(intOne);
             /* FLAW: the statement has no effect */
             intOne = intOne;
+            printIntLine(intOne);
+        }
+    }
+    else
+    {
+        {
+            int intOne = 1, intFive = 5;
+            printIntLine(intOne);
+            /* FIX: Do not include a statement that has no effect */
+            intOne = intFive;
             printIntLine(intOne);
         }
     }
@@ -37,6 +48,17 @@ void CWE398_Poor_Code_Quality__equals_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int intOne = 1, intFive = 5;
+            printIntLine(intOne);
+            /* FIX: Do not include a statement that has no effect */
+            intOne = intFive;
+            printIntLine(intOne);
+        }
+    }
+    else
     {
         {
             int intOne = 1, intFive = 5;

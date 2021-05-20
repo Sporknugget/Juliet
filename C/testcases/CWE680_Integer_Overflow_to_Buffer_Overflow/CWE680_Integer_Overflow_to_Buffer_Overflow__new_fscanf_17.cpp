@@ -23,9 +23,11 @@ namespace CWE680_Integer_Overflow_to_Buffer_Overflow__new_fscanf_17
 
 void bad()
 {
+    int i;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
@@ -52,9 +54,11 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
+    int h;
     int data;
     /* Initialize data */
     data = -1;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

@@ -23,6 +23,7 @@ void CWE843_Type_Confusion__short_10_bad()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(globalTrue)
     {
         {
             /* FLAW: Point data to a short */
@@ -44,6 +45,12 @@ static void goodG2B1()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: Point data to an int */
@@ -61,6 +68,7 @@ static void goodG2B2()
     void * data;
     /* Initialize data */
     data = NULL;
+    if(globalTrue)
     {
         {
             /* FIX: Point data to an int */

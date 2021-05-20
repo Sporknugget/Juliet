@@ -19,6 +19,7 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE482_Comparing_Instead_of_Assigning__basic_03_bad()
 {
+    if(5==5)
     {
         {
             int intBadSink = 0;
@@ -35,6 +36,15 @@ void CWE482_Comparing_Instead_of_Assigning__basic_03_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(5!=5) instead of if(5==5) */
+static void good1()
+{
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int intGoodSink = 0;
@@ -50,6 +60,7 @@ void CWE482_Comparing_Instead_of_Assigning__basic_03_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(5==5)
     {
         {
             int intGoodSink = 0;

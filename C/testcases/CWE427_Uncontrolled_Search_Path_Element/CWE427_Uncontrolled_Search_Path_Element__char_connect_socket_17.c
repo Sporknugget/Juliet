@@ -50,9 +50,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE427_Uncontrolled_Search_Path_Element__char_connect_socket_17_bad()
 {
+    int i;
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -133,9 +135,11 @@ void CWE427_Uncontrolled_Search_Path_Element__char_connect_socket_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);

@@ -46,6 +46,7 @@ void CWE127_Buffer_Underread__CWE839_connect_socket_12_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -104,6 +105,13 @@ void CWE127_Buffer_Underread__CWE839_connect_socket_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
+         * access an index of the array in the sink that is out-of-bounds */
+        data = 7;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             int buffer[10] = { 0 };
@@ -116,6 +124,21 @@ void CWE127_Buffer_Underread__CWE839_connect_socket_12_bad()
             else
             {
                 printLine("ERROR: Array index is too big.");
+            }
+        }
+    }
+    else
+    {
+        {
+            int buffer[10] = { 0 };
+            /* FIX: Properly validate the array index and prevent a buffer underread */
+            if (data >= 0 && data < (10))
+            {
+                printIntLine(buffer[data]);
+            }
+            else
+            {
+                printLine("ERROR: Array index is out-of-bounds");
             }
         }
     }
@@ -133,6 +156,7 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -191,6 +215,81 @@ static void goodB2G()
 #endif
         }
     }
+    else
+    {
+        {
+#ifdef _WIN32
+            WSADATA wsaData;
+            int wsaDataInit = 0;
+#endif
+            int recvResult;
+            struct sockaddr_in service;
+            SOCKET connectSocket = INVALID_SOCKET;
+            char inputBuffer[CHAR_ARRAY_SIZE];
+            do
+            {
+#ifdef _WIN32
+                if (WSAStartup(MAKEWORD(2,2), &wsaData) != NO_ERROR)
+                {
+                    break;
+                }
+                wsaDataInit = 1;
+#endif
+                /* POTENTIAL FLAW: Read data using a connect socket */
+                connectSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+                if (connectSocket == INVALID_SOCKET)
+                {
+                    break;
+                }
+                memset(&service, 0, sizeof(service));
+                service.sin_family = AF_INET;
+                service.sin_addr.s_addr = inet_addr(IP_ADDRESS);
+                service.sin_port = htons(TCP_PORT);
+                if (connect(connectSocket, (struct sockaddr*)&service, sizeof(service)) == SOCKET_ERROR)
+                {
+                    break;
+                }
+                /* Abort on error or the connection was closed, make sure to recv one
+                 * less char than is in the recv_buf in order to append a terminator */
+                recvResult = recv(connectSocket, inputBuffer, CHAR_ARRAY_SIZE - 1, 0);
+                if (recvResult == SOCKET_ERROR || recvResult == 0)
+                {
+                    break;
+                }
+                /* NUL-terminate the string */
+                inputBuffer[recvResult] = '\0';
+                /* Convert to int */
+                data = atoi(inputBuffer);
+            }
+            while (0);
+            if (connectSocket != INVALID_SOCKET)
+            {
+                CLOSE_SOCKET(connectSocket);
+            }
+#ifdef _WIN32
+            if (wsaDataInit)
+            {
+                WSACleanup();
+            }
+#endif
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int buffer[10] = { 0 };
+            /* FIX: Properly validate the array index and prevent a buffer underread */
+            if (data >= 0 && data < (10))
+            {
+                printIntLine(buffer[data]);
+            }
+            else
+            {
+                printLine("ERROR: Array index is out-of-bounds");
+            }
+        }
+    }
+    else
     {
         {
             int buffer[10] = { 0 };
@@ -215,11 +314,35 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    else
+    {
+        /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
+         * access an index of the array in the sink that is out-of-bounds */
+        data = 7;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int buffer[10] = { 0 };
+            /* POTENTIAL FLAW: Attempt to access a negative index of the array
+             * This check does not check to see if the array index is negative */
+            if (data < 10)
+            {
+                printIntLine(buffer[data]);
+            }
+            else
+            {
+                printLine("ERROR: Array index is too big.");
+            }
+        }
+    }
+    else
     {
         {
             int buffer[10] = { 0 };

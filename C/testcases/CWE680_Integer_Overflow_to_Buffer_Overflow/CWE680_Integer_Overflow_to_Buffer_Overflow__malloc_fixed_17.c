@@ -20,9 +20,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_17_bad()
 {
+    int i;
     int data;
     /* Initialize data */
     data = -1;
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
         data = INT_MAX / 2 + 2; /* 1073741825 */
@@ -52,9 +54,11 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     int data;
     /* Initialize data */
     data = -1;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;

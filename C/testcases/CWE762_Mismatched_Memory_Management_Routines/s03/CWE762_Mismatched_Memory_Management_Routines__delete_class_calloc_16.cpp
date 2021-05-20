@@ -26,15 +26,19 @@ void bad()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (TwoIntsClass *)calloc(100, sizeof(TwoIntsClass));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+        break;
     }
 }
 
@@ -48,14 +52,18 @@ static void goodB2G()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (TwoIntsClass *)calloc(100, sizeof(TwoIntsClass));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
+        break;
     }
 }
 
@@ -65,14 +73,18 @@ static void goodG2B()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* FIX: Allocate memory from the heap using new */
         data = new TwoIntsClass;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+        break;
     }
 }
 

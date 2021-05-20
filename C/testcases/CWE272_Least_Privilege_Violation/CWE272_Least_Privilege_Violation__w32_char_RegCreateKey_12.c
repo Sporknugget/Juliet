@@ -22,6 +22,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_char_RegCreateKey_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * keyName = "TEST\\TestKey";
@@ -29,6 +30,26 @@ void CWE272_Least_Privilege_Violation__w32_char_RegCreateKey_12_bad()
             /* FLAW: Call RegCreateKeyA() with HKEY_LOCAL_MACHINE violating the least privilege principal */
             if (RegCreateKeyA(
                         HKEY_LOCAL_MACHINE,
+                        keyName,
+                        &hKey) != ERROR_SUCCESS)
+            {
+                printLine("Registry key could not be created");
+            }
+            else
+            {
+                printLine("Registry key created successfully");
+                RegCloseKey(hKey);
+            }
+        }
+    }
+    else
+    {
+        {
+            char * keyName = "TEST\\TestKey";
+            HKEY hKey;
+            /* FIX: Call RegCreateKeyA() with HKEY_CURRENT_USER */
+            if (RegCreateKeyA(
+                        HKEY_CURRENT_USER,
                         keyName,
                         &hKey) != ERROR_SUCCESS)
             {
@@ -50,6 +71,27 @@ void CWE272_Least_Privilege_Violation__w32_char_RegCreateKey_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * keyName = "TEST\\TestKey";
+            HKEY hKey;
+            /* FIX: Call RegCreateKeyA() with HKEY_CURRENT_USER */
+            if (RegCreateKeyA(
+                        HKEY_CURRENT_USER,
+                        keyName,
+                        &hKey) != ERROR_SUCCESS)
+            {
+                printLine("Registry key could not be created");
+            }
+            else
+            {
+                printLine("Registry key created successfully");
+                RegCloseKey(hKey);
+            }
+        }
+    }
+    else
     {
         {
             char * keyName = "TEST\\TestKey";

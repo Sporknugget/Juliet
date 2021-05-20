@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE617_Reachable_Assertion__zero_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: this assertion can be reached, and will always trigger */
     assert(0); /* INCIDENTAL: CWE 571 - expression is always true - it's "true" because assert(e) basically does if (!(e)) */
 }
@@ -32,6 +34,8 @@ void CWE617_Reachable_Assertion__zero_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
     * function, assert(1)
     */

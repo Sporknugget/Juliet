@@ -23,10 +23,19 @@ void CWE843_Type_Confusion__short_15_bad()
     void * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         /* FLAW: Point data to a short */
         short shortBuffer = 8;
         data = &shortBuffer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     /* POTENTIAL FLAW: Attempt to access data as an int */
     printIntLine(*((int*)data));
@@ -42,10 +51,19 @@ static void goodG2B1()
     void * data;
     /* Initialize data */
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* FIX: Point data to an int */
         int intBuffer = 8;
         data = &intBuffer;
+    }
+    break;
     }
     /* POTENTIAL FLAW: Attempt to access data as an int */
     printIntLine(*((int*)data));
@@ -57,10 +75,19 @@ static void goodG2B2()
     void * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         /* FIX: Point data to an int */
         int intBuffer = 8;
         data = &intBuffer;
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
     /* POTENTIAL FLAW: Attempt to access data as an int */
     printIntLine(*((int*)data));

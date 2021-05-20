@@ -25,9 +25,15 @@ void CWE665_Improper_Initialization__char_cat_12_bad()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Do not initialize data */
         ; /* empty statement needed for some flow variants */
+    }
+    else
+    {
+        /* FIX: Properly initialize data */
+        data[0] = '\0'; /* null terminate */
     }
     {
         char source[100];
@@ -50,6 +56,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100];
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Properly initialize data */
+        data[0] = '\0'; /* null terminate */
+    }
+    else
     {
         /* FIX: Properly initialize data */
         data[0] = '\0'; /* null terminate */

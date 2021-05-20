@@ -19,9 +19,15 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE526_Info_Exposure_Environment_Variables__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: environment variable exposed */
         printLine(getenv("PATH"));
+    }
+    else
+    {
+        /* FIX: error message is general */
+        printLine("Not in path");
     }
 }
 
@@ -32,6 +38,12 @@ void CWE526_Info_Exposure_Environment_Variables__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: error message is general */
+        printLine("Not in path");
+    }
+    else
     {
         /* FIX: error message is general */
         printLine("Not in path");

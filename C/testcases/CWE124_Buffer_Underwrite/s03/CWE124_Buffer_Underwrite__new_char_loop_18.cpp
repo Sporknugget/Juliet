@@ -27,6 +27,8 @@ void bad()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     {
         char * dataBuffer = new char[100];
         memset(dataBuffer, 'A', 100-1);
@@ -61,6 +63,8 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     {
         char * dataBuffer = new char[100];
         memset(dataBuffer, 'A', 100-1);

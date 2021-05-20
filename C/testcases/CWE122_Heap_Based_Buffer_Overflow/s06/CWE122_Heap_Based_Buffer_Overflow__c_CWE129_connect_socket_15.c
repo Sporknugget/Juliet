@@ -46,6 +46,9 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -102,6 +105,15 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_15_bad()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -127,6 +139,12 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_15_bad()
             printLine("ERROR: Array index is negative.");
         }
         free(buffer);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -140,6 +158,9 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -196,6 +217,19 @@ static void goodB2G1()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -220,6 +254,8 @@ static void goodB2G1()
             printLine("ERROR: Array index is out-of-bounds");
         }
         free(buffer);
+    }
+    break;
     }
 }
 
@@ -229,6 +265,9 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -285,6 +324,15 @@ static void goodB2G2()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -310,6 +358,12 @@ static void goodB2G2()
         }
         free(buffer);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -318,9 +372,21 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -347,6 +413,12 @@ static void goodG2B1()
         }
         free(buffer);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -355,9 +427,21 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -383,6 +467,12 @@ static void goodG2B2()
             printLine("ERROR: Array index is negative.");
         }
         free(buffer);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

@@ -25,15 +25,35 @@ void CWE190_Integer_Overflow__char_max_square_12_bad()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > CHAR_MAX, this will overflow */
             char result = data * data;
             printHexCharLine(result);
+        }
+    }
+    else
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (abs((long)data) <= (long)sqrt((double)CHAR_MAX))
+        {
+            char result = data * data;
+            printHexCharLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -49,10 +69,30 @@ static void goodB2G()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = CHAR_MAX;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Use the maximum size of the data type */
+        data = CHAR_MAX;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (abs((long)data) <= (long)sqrt((double)CHAR_MAX))
+        {
+            char result = data * data;
+            printHexCharLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
+        }
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (abs((long)data) <= (long)sqrt((double)CHAR_MAX))
@@ -74,10 +114,25 @@ static void goodG2B()
 {
     char data;
     data = ' ';
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* POTENTIAL FLAW: if (data*data) > CHAR_MAX, this will overflow */
+            char result = data * data;
+            printHexCharLine(result);
+        }
+    }
+    else
     {
         {
             /* POTENTIAL FLAW: if (data*data) > CHAR_MAX, this will overflow */

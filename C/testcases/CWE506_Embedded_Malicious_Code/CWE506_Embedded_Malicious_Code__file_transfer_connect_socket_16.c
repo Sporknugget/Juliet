@@ -40,6 +40,7 @@ Template File: point-flaw-badonly-16.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__file_transfer_connect_socket_16_bad()
 {
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -101,6 +102,7 @@ void CWE506_Embedded_Malicious_Code__file_transfer_connect_socket_16_bad()
             }
 #endif
         }
+        break;
     }
 }
 

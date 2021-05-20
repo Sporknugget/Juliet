@@ -29,6 +29,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_remove_16_bad()
 {
+    while(1)
     {
         /* FLAW: remove() might fail, in which case the return value will be non-zero, but
          * we are checking to see if the return value is 0 */
@@ -36,6 +37,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_remove_16_bad()
         {
             printLine("remove failed!");
         }
+        break;
     }
 }
 
@@ -46,12 +48,14 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_remove_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: check for the correct return value */
         if (REMOVE("removemegood.txt") != 0)
         {
             printLine("remove failed!");
         }
+        break;
     }
 }
 

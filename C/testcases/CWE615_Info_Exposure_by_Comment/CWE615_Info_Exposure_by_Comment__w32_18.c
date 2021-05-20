@@ -25,6 +25,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE615_Info_Exposure_by_Comment__w32_18_bad()
 {
+    goto sink;
+sink:
     {
         size_t passwordLen = 0;
         HANDLE hUser;
@@ -57,6 +59,8 @@ void CWE615_Info_Exposure_by_Comment__w32_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         size_t passwordLen = 0;
         HANDLE hUser;

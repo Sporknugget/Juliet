@@ -33,6 +33,7 @@ static int staticFive = 5;
 
 void CWE328_Reversible_One_Way_Hash__w32_MD2_07_bad()
 {
+    if(staticFive==5)
     {
         {
             HCRYPTPROV hCryptProv;
@@ -132,6 +133,15 @@ void CWE328_Reversible_One_Way_Hash__w32_MD2_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HCRYPTPROV hCryptProv;
@@ -227,6 +237,7 @@ void CWE328_Reversible_One_Way_Hash__w32_MD2_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             HCRYPTPROV hCryptProv;

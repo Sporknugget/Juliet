@@ -21,6 +21,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE242_Use_of_Inherently_Dangerous_Function__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char dest[DEST_SIZE];
@@ -29,6 +30,24 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_12_bad()
             /* INCIDENTAL CWE120 Buffer Overflow since gets is inherently dangerous and is
              * an unbounded copy. */
             result = gets(dest);
+            /* Verify return value */
+            if (result == NULL)
+            {
+                /* error condition */
+                printLine("Error Condition: alter control flow to indicate action taken");
+                exit(1);
+            }
+            dest[DEST_SIZE-1] = '\0';
+            printLine(dest);
+        }
+    }
+    else
+    {
+        {
+            char dest[DEST_SIZE];
+            char *result;
+            /* FIX: use fgets for bounded read from stdin*/
+            result = fgets(dest, DEST_SIZE, stdin);
             /* Verify return value */
             if (result == NULL)
             {
@@ -49,6 +68,25 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char dest[DEST_SIZE];
+            char *result;
+            /* FIX: use fgets for bounded read from stdin*/
+            result = fgets(dest, DEST_SIZE, stdin);
+            /* Verify return value */
+            if (result == NULL)
+            {
+                /* error condition */
+                printLine("Error Condition: alter control flow to indicate action taken");
+                exit(1);
+            }
+            dest[DEST_SIZE-1] = '\0';
+            printLine(dest);
+        }
+    }
+    else
     {
         {
             char dest[DEST_SIZE];

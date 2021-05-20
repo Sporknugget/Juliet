@@ -23,15 +23,35 @@ void CWE190_Integer_Overflow__short_max_add_12_bad()
 {
     short data;
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
             short result = data + 1;
             printIntLine(result);
+        }
+    }
+    else
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (data < SHRT_MAX)
+        {
+            short result = data + 1;
+            printIntLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -47,10 +67,30 @@ static void goodB2G()
 {
     short data;
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use the maximum size of the data type */
         data = SHRT_MAX;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Use the maximum size of the data type */
+        data = SHRT_MAX;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (data < SHRT_MAX)
+        {
+            short result = data + 1;
+            printIntLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
+        }
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < SHRT_MAX)
@@ -72,10 +112,25 @@ static void goodG2B()
 {
     short data;
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */
+            short result = data + 1;
+            printIntLine(result);
+        }
+    }
+    else
     {
         {
             /* POTENTIAL FLAW: Adding 1 to data could cause an overflow */

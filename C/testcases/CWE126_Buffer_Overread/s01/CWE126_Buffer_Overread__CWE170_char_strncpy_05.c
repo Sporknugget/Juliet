@@ -27,6 +27,7 @@ static int staticFalse = 0; /* false */
 
 void CWE126_Buffer_Overread__CWE170_char_strncpy_05_bad()
 {
+    if(staticTrue)
     {
         {
             char data[150], dest[100];
@@ -46,6 +47,15 @@ void CWE126_Buffer_Overread__CWE170_char_strncpy_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char data[150], dest[100];
@@ -64,6 +74,7 @@ void CWE126_Buffer_Overread__CWE170_char_strncpy_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             char data[150], dest[100];

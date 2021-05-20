@@ -68,6 +68,7 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -126,6 +127,7 @@ void bad()
 #endif
         }
     }
+    if(staticReturnsTrue())
     {
         {
             wchar_t * myString;
@@ -158,6 +160,7 @@ static void goodB2G1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -216,6 +219,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * myString;
@@ -244,6 +253,7 @@ static void goodB2G2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticReturnsTrue())
     {
         {
 #ifdef _WIN32
@@ -302,6 +312,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(staticReturnsTrue())
     {
         {
             wchar_t * myString;
@@ -330,10 +341,17 @@ static void goodG2B1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(staticReturnsTrue())
     {
         {
             wchar_t * myString;
@@ -362,10 +380,12 @@ static void goodG2B2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(staticReturnsTrue())
     {
         {
             wchar_t * myString;

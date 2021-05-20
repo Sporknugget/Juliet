@@ -26,11 +26,22 @@ void CWE690_NULL_Deref_From_Return__wchar_t_malloc_12_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (wchar_t *)malloc(20*sizeof(wchar_t));
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         wcscpy(data, L"Initialize");
         printWLine(data);
         free(data);
+    }
+    else
+    {
+        /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
+        if (data != NULL)
+        {
+            wcscpy(data, L"Initialize");
+            printWLine(data);
+            free(data);
+        }
     }
 }
 
@@ -46,6 +57,17 @@ static void goodB2G()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (wchar_t *)malloc(20*sizeof(wchar_t));
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
+        if (data != NULL)
+        {
+            wcscpy(data, L"Initialize");
+            printWLine(data);
+            free(data);
+        }
+    }
+    else
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)

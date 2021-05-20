@@ -21,6 +21,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_16_bad()
 {
+    while(1)
     {
         {
             char dest[DEST_SIZE];
@@ -29,6 +30,7 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
             sprintf(dest, "%s", intFive);
             printLine(dest);
         }
+        break;
     }
 }
 
@@ -39,6 +41,7 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char dest[DEST_SIZE];
@@ -47,6 +50,7 @@ static void good1()
             sprintf(dest, "%d", intFive);
             printLine(dest);
         }
+        break;
     }
 }
 

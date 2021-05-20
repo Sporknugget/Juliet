@@ -27,10 +27,12 @@ void bad()
 {
     char * data;
     data = new char[100];
+    while(1)
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
+        break;
     }
     {
         char dest[50] = "";
@@ -51,10 +53,12 @@ static void goodG2B()
 {
     char * data;
     data = new char[100];
+    while(1)
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
+        break;
     }
     {
         char dest[50] = "";

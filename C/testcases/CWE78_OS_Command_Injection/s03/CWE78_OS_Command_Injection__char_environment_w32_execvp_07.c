@@ -57,6 +57,7 @@ void CWE78_OS_Command_Injection__char_environment_w32_execvp_07_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(staticFive==5)
     {
         {
             /* Append input from an environment variable to data */
@@ -89,6 +90,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
@@ -108,6 +115,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(staticFive==5)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

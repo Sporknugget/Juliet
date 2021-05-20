@@ -26,6 +26,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_18_bad()
 {
+    goto sink;
+sink:
     {
         char path[BAD_PATH_SIZE];
         DWORD length;
@@ -54,6 +56,8 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         /* FIX: ensure MAX_PATH allocated in 'path' */
         char path[MAX_PATH];

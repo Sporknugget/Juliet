@@ -26,6 +26,7 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_12_bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -34,10 +35,26 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_12_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    else
+    {
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
+        if (data == NULL) {exit(-1);}
+        wmemset(data, L'A', 100-1);
+        data[100-1] = L'\0';
+        /* FIX: Do not free data in the source */
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+    }
+    else
+    {
+        /* FIX: Don't use data that may have been freed already */
+        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+        /* do nothing */
+        ; /* empty statement needed for some flow variants */
     }
 }
 
@@ -53,6 +70,7 @@ static void goodB2G()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -61,6 +79,23 @@ static void goodB2G()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    else
+    {
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
+        if (data == NULL) {exit(-1);}
+        wmemset(data, L'A', 100-1);
+        data[100-1] = L'\0';
+        /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
+        free(data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Don't use data that may have been freed already */
+        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+        /* do nothing */
+        ; /* empty statement needed for some flow variants */
+    }
+    else
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -77,6 +112,7 @@ static void goodG2B()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
@@ -84,6 +120,21 @@ static void goodG2B()
         data[100-1] = L'\0';
         /* FIX: Do not free data in the source */
     }
+    else
+    {
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
+        if (data == NULL) {exit(-1);}
+        wmemset(data, L'A', 100-1);
+        data[100-1] = L'\0';
+        /* FIX: Do not free data in the source */
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Use of data that may have been freed */
+        printWLine(data);
+        /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+    }
+    else
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printWLine(data);

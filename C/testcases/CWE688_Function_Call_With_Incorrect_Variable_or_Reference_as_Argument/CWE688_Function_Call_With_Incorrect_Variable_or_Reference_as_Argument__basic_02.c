@@ -21,6 +21,7 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_02_bad()
 {
+    if(1)
     {
         {
             char dest[DEST_SIZE];
@@ -36,6 +37,15 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char dest[DEST_SIZE];
@@ -50,6 +60,7 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         {
             char dest[DEST_SIZE];

@@ -24,14 +24,18 @@ namespace CWE457_Use_of_Uninitialized_Variable__twointsclass_16
 void bad()
 {
     TwoIntsClass data;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);
         printIntLine(data.intTwo);
+        break;
     }
 }
 
@@ -43,16 +47,20 @@ void bad()
 static void goodB2G()
 {
     TwoIntsClass data;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         data.intOne = 1;
         data.intTwo = 2;
         printIntLine(data.intOne);
         printIntLine(data.intTwo);
+        break;
     }
 }
 
@@ -60,15 +68,19 @@ static void goodB2G()
 static void goodG2B()
 {
     TwoIntsClass data;
+    while(1)
     {
         /* FIX: Initialize data */
         data.intOne = 1;
         data.intTwo = 2;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         printIntLine(data.intOne);
         printIntLine(data.intTwo);
+        break;
     }
 }
 

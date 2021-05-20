@@ -21,6 +21,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__strtol_16_bad()
 {
+    while(1)
     {
         {
             long longNumber;
@@ -28,6 +29,7 @@ void CWE391_Unchecked_Error_Condition__strtol_16_bad()
             /* FLAW: Do not check to see if strtol() failed */
             printf("%li\n", longNumber);
         }
+        break;
     }
 }
 
@@ -38,6 +40,7 @@ void CWE391_Unchecked_Error_Condition__strtol_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             long longNumber;
@@ -51,6 +54,7 @@ static void good1()
             }
             printf("%li\n", longNumber);
         }
+        break;
     }
 }
 

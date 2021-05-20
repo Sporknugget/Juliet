@@ -45,6 +45,7 @@ static void helperGood(int sig)
 
 void CWE364_Signal_Handler_Race_Condition__basic_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;
@@ -88,6 +89,15 @@ void CWE364_Signal_Handler_Race_Condition__basic_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;
@@ -128,6 +138,7 @@ void CWE364_Signal_Handler_Race_Condition__basic_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             structSigAtomic *gStructSigAtomic = NULL;

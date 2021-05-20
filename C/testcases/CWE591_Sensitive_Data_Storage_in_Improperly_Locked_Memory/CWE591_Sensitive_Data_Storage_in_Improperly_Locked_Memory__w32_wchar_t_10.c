@@ -28,6 +28,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_10_b
     wchar_t * password;
     /* Initialize Data */
     password = L"";
+    if(globalTrue)
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
@@ -74,6 +75,12 @@ static void goodG2B1()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
@@ -121,6 +128,7 @@ static void goodG2B2()
     wchar_t * password;
     /* Initialize Data */
     password = L"";
+    if(globalTrue)
     {
         password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)

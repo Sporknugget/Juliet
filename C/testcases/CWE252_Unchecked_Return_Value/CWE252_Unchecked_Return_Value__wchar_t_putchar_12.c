@@ -23,9 +23,18 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__wchar_t_putchar_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Do not check the return value */
         putwchar((wchar_t)L'A');
+    }
+    else
+    {
+        /* FIX: check the return value */
+        if (putwchar((wchar_t)L'A') == WEOF)
+        {
+            printLine("putwchar failed!");
+        }
     }
 }
 
@@ -36,6 +45,15 @@ void CWE252_Unchecked_Return_Value__wchar_t_putchar_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: check the return value */
+        if (putwchar((wchar_t)L'A') == WEOF)
+        {
+            printLine("putwchar failed!");
+        }
+    }
+    else
     {
         /* FIX: check the return value */
         if (putwchar((wchar_t)L'A') == WEOF)

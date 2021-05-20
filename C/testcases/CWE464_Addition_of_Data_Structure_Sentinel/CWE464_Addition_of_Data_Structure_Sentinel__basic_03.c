@@ -22,6 +22,7 @@ void CWE464_Addition_of_Data_Structure_Sentinel__basic_03_bad()
 {
     char data;
     data = ' ';
+    if(5==5)
     {
         {
             char charArraySource[2];
@@ -52,6 +53,12 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to be a char */
         data = 'a';
@@ -72,6 +79,7 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
+    if(5==5)
     {
         /* FIX: Set data to be a char */
         data = 'a';

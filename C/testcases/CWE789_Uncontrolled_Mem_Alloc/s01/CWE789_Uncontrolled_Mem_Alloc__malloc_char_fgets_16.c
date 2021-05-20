@@ -32,6 +32,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_16_bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -46,7 +47,9 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_16_bad()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         {
             char * myString;
@@ -67,6 +70,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_16_bad()
                 printLine("Input is less than the length of the source string");
             }
         }
+        break;
     }
 }
 
@@ -80,6 +84,7 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -94,7 +99,9 @@ static void goodB2G()
                 printLine("fgets() failed.");
             }
         }
+        break;
     }
+    while(1)
     {
         {
             char * myString;
@@ -115,6 +122,7 @@ static void goodB2G()
                 printLine("Input is less than the length of the source string or too large");
             }
         }
+        break;
     }
 }
 
@@ -124,10 +132,13 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
+        break;
     }
+    while(1)
     {
         {
             char * myString;
@@ -148,6 +159,7 @@ static void goodG2B()
                 printLine("Input is less than the length of the source string");
             }
         }
+        break;
     }
 }
 

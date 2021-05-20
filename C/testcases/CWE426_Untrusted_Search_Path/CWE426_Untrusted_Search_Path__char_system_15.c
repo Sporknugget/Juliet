@@ -45,8 +45,17 @@ void CWE426_Untrusted_Search_Path__char_system_15_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FLAW: the full path is not specified */
         strcpy(data, BAD_OS_COMMAND);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Executing the system() function without specifying the full path to the executable
      * can allow an attacker to run their own program */
     if (SYSTEM(data) <= 0)
@@ -66,8 +75,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);
+        break;
+    }
     /* POTENTIAL FLAW: Executing the system() function without specifying the full path to the executable
      * can allow an attacker to run their own program */
     if (SYSTEM(data) <= 0)
@@ -83,8 +101,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: full path is specified */
         strcpy(data, GOOD_OS_COMMAND);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Executing the system() function without specifying the full path to the executable
      * can allow an attacker to run their own program */
     if (SYSTEM(data) <= 0)

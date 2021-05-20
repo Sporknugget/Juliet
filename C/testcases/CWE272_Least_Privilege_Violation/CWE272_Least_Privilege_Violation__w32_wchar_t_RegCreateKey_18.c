@@ -22,6 +22,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_RegCreateKey_18_bad()
 {
+    goto sink;
+sink:
     {
         wchar_t * keyName = L"TEST\\TestKey";
         HKEY hKey;
@@ -48,6 +50,8 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_RegCreateKey_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         wchar_t * keyName = L"TEST\\TestKey";
         HKEY hKey;

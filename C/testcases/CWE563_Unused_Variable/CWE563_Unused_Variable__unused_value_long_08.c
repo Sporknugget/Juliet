@@ -37,10 +37,12 @@ static int staticReturnsFalse()
 void CWE563_Unused_Variable__unused_value_long_08_bad()
 {
     long data;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;
@@ -56,10 +58,17 @@ void CWE563_Unused_Variable__unused_value_long_08_bad()
 static void goodB2G1()
 {
     long data;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data without over-writing its value */
         printLongLine(data);
@@ -70,10 +79,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     long data;
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 5L;
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Use data without over-writing its value */
         printLongLine(data);
@@ -84,11 +95,18 @@ static void goodB2G2()
 static void goodG2B1()
 {
     long data;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5L;
         printLongLine(data);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;
@@ -100,11 +118,13 @@ static void goodG2B1()
 static void goodG2B2()
 {
     long data;
+    if(staticReturnsTrue())
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 5L;
         printLongLine(data);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 10L;

@@ -23,6 +23,8 @@ void CWE197_Numeric_Truncation_Error__short_rand_18_bad()
     short data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FLAW: Use a random number */
     data = (short)RAND32();
     {
@@ -42,6 +44,8 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Use a positive integer less than CHAR_MAX*/
     data = CHAR_MAX-5;
     {

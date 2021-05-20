@@ -30,6 +30,7 @@ static int staticFalse = 0; /* false */
 
 void CWE534_Info_Exposure_Debug_Log__w32_char_05_bad()
 {
+    if(staticTrue)
     {
         {
             char password[100] = "";
@@ -80,6 +81,15 @@ void CWE534_Info_Exposure_Debug_Log__w32_char_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char password[100] = "";
@@ -129,6 +139,7 @@ void CWE534_Info_Exposure_Debug_Log__w32_char_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             char password[100] = "";

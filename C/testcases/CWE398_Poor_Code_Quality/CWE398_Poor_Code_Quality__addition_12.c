@@ -19,12 +19,23 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE398_Poor_Code_Quality__addition_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;
             printIntLine(intSum);
             /* FLAW: the statement has no effect */
             intOne + intTwo; /* This generates a compiler warning, but we expect it to */
+            printIntLine(intSum);
+        }
+    }
+    else
+    {
+        {
+            int intOne = 1, intTwo = 1, intSum = 0;
+            printIntLine(intSum);
+            /* FIX: Do not include a statement that has no effect */
+            intSum = intOne + intTwo;
             printIntLine(intSum);
         }
     }
@@ -37,6 +48,17 @@ void CWE398_Poor_Code_Quality__addition_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int intOne = 1, intTwo = 1, intSum = 0;
+            printIntLine(intSum);
+            /* FIX: Do not include a statement that has no effect */
+            intSum = intOne + intTwo;
+            printIntLine(intSum);
+        }
+    }
+    else
     {
         {
             int intOne = 1, intTwo = 1, intSum = 0;

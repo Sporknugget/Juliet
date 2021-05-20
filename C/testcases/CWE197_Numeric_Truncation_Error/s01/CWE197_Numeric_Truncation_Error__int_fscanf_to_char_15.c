@@ -23,8 +23,17 @@ void CWE197_Numeric_Truncation_Error__int_fscanf_to_char_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Read data from the console using fscanf() */
         fscanf(stdin, "%d", &data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
         char charData = (char)data;
@@ -42,8 +51,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
+        break;
+    }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
         char charData = (char)data;
@@ -57,8 +75,17 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         /* POTENTIAL FLAW: Convert data to a char, possibly causing a truncation error */
         char charData = (char)data;

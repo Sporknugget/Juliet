@@ -27,10 +27,12 @@ void bad()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -58,10 +60,17 @@ static void goodB2G1()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -83,10 +92,12 @@ static void goodB2G2()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    if(GLOBAL_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -108,10 +119,17 @@ static void goodG2B1()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().
@@ -135,10 +153,12 @@ static void goodG2B2()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* The Visual C++ compiler generates a warning if you initialize the class with ().

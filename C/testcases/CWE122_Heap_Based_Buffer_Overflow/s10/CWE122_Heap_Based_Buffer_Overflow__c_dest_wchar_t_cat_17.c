@@ -22,8 +22,10 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE122_Heap_Based_Buffer_Overflow__c_dest_wchar_t_cat_17_bad()
 {
+    int i;
     wchar_t * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
         data = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -48,8 +50,10 @@ void CWE122_Heap_Based_Buffer_Overflow__c_dest_wchar_t_cat_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     wchar_t * data;
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
         data = (wchar_t *)malloc(100*sizeof(wchar_t));

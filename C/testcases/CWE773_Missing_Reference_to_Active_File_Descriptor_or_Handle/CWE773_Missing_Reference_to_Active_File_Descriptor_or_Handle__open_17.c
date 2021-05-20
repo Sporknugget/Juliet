@@ -29,11 +29,13 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_17_bad()
 {
+    int j;
     int data;
     /* Initialize data */
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: Assign data to another file descriptor without closing the descriptor from the source */
         data = OPEN("BadSink_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
@@ -52,11 +54,13 @@ void CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle__open_17_bad()
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
+    int k;
     int data;
     /* Initialize data */
     data = -1;
     /* POTENTIAL FLAW: Create a file descriptor using open() that may not be closed properly */
     data = OPEN("BadSource_open.txt", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Close the file from the source before reassigning data to a new file descriptor */
         if (data != -1)

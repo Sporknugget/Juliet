@@ -23,8 +23,17 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_rand_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Set data to a random value */
         data = RAND32();
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i;
         int *intPointer;
@@ -51,8 +60,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
+        break;
+    }
     {
         size_t i;
         int *intPointer;
@@ -75,8 +93,17 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data to a relatively small number greater than zero */
         data = 20;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         size_t i;
         int *intPointer;

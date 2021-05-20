@@ -32,6 +32,7 @@ static int staticReturnsFalse()
 
 void CWE758_Undefined_Behavior__int64_t_alloca_use_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
             int64_t * pointer = (int64_t *)ALLOCA(sizeof(int64_t));
@@ -45,6 +46,15 @@ void CWE758_Undefined_Behavior__int64_t_alloca_use_08_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int64_t data;
@@ -62,6 +72,7 @@ void CWE758_Undefined_Behavior__int64_t_alloca_use_08_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         {
             int64_t data;

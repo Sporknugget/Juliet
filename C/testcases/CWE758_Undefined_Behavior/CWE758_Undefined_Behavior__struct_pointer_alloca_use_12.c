@@ -19,12 +19,31 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE758_Undefined_Behavior__struct_pointer_alloca_use_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));
             twoIntsStruct * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printIntLine(data->intOne);
             printIntLine(data->intTwo);
+        }
+    }
+    else
+    {
+        {
+            twoIntsStruct * data;
+            twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));
+            /* initialize both the pointer and the data pointed to */
+            data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
+            if (data == NULL) {exit(-1);}
+            data->intOne = 5;
+            data->intTwo = 6;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                twoIntsStruct * data = *pointer;
+                printIntLine(data->intOne);
+                printIntLine(data->intTwo);
+            }
         }
     }
 }
@@ -36,6 +55,25 @@ void CWE758_Undefined_Behavior__struct_pointer_alloca_use_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            twoIntsStruct * data;
+            twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));
+            /* initialize both the pointer and the data pointed to */
+            data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
+            if (data == NULL) {exit(-1);}
+            data->intOne = 5;
+            data->intTwo = 6;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                twoIntsStruct * data = *pointer;
+                printIntLine(data->intOne);
+                printIntLine(data->intTwo);
+            }
+        }
+    }
+    else
     {
         {
             twoIntsStruct * data;

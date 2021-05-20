@@ -31,6 +31,7 @@ void CWE416_Use_After_Free__malloc_free_char_06_bad()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE==5)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
@@ -39,6 +40,7 @@ void CWE416_Use_After_Free__malloc_free_char_06_bad()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printLine(data);
@@ -56,6 +58,7 @@ static void goodB2G1()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE==5)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
@@ -64,6 +67,12 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -78,6 +87,7 @@ static void goodB2G2()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE==5)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
@@ -86,6 +96,7 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -100,6 +111,12 @@ static void goodG2B1()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
@@ -107,6 +124,7 @@ static void goodG2B1()
         data[100-1] = '\0';
         /* FIX: Do not free data in the source */
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printLine(data);
@@ -120,6 +138,7 @@ static void goodG2B2()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(STATIC_CONST_FIVE==5)
     {
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
@@ -127,6 +146,7 @@ static void goodG2B2()
         data[100-1] = '\0';
         /* FIX: Do not free data in the source */
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printLine(data);

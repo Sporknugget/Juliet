@@ -24,6 +24,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t password[100] = L"";
         size_t passwordLen = 0;
@@ -66,6 +69,12 @@ void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_15_bad()
             fclose(pFile);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -75,6 +84,13 @@ void CWE534_Info_Exposure_Debug_Log__w32_wchar_t_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         wchar_t password[100] = L"";
         size_t passwordLen = 0;
@@ -117,11 +133,16 @@ static void good1()
             fclose(pFile);
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         wchar_t password[100] = L"";
         size_t passwordLen = 0;
@@ -163,6 +184,12 @@ static void good2()
         {
             fclose(pFile);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

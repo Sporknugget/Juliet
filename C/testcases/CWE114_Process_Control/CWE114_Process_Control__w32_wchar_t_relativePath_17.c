@@ -24,9 +24,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE114_Process_Control__w32_wchar_t_relativePath_17_bad()
 {
+    int i;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Specify just the file name for the library, not the full path */
         wcscpy(data, L"winsrv.dll");
@@ -55,9 +57,11 @@ void CWE114_Process_Control__w32_wchar_t_relativePath_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Specify the full pathname for the library */
         wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");

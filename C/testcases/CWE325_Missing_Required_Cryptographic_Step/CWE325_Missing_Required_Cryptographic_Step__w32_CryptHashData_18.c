@@ -28,6 +28,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE325_Missing_Required_Cryptographic_Step__w32_CryptHashData_18_bad()
 {
+    goto sink;
+sink:
     {
         BYTE payload[100];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -86,6 +88,8 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptHashData_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         BYTE payload[100];
         DWORD payloadLen = strlen(PAYLOAD);

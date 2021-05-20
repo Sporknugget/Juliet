@@ -63,6 +63,7 @@ void CWE78_OS_Command_Injection__char_connect_socket_w32_execv_12_bad()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -132,6 +133,11 @@ void CWE78_OS_Command_Injection__char_connect_socket_w32_execv_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        strcat(data, "*.*");
+    }
     {
         char *args[] = {COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL};
         /* execv - specify the path where the command is located */
@@ -151,6 +157,12 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = COMMAND_ARG2;
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Append a fixed string to data (not user / external input) */
+        strcat(data, "*.*");
+    }
+    else
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");

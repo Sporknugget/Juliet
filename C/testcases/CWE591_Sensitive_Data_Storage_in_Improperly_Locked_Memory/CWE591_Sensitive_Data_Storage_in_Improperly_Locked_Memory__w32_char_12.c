@@ -28,6 +28,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_12_bad(
     char * password;
     /* Initialize Data */
     password = "";
+    if(globalReturnsTrueOrFalse())
     {
         password = (char *)malloc(100*sizeof(char));
         if (password == NULL)
@@ -36,6 +37,23 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_12_bad(
             exit(1);
         }
         /* FLAW: Do not lock the memory */
+        /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
+        strcpy(password, "Password1234!");
+    }
+    else
+    {
+        password = (char *)malloc(100*sizeof(char));
+        if (password == NULL)
+        {
+            printLine("Memory could not be allocated");
+            exit(1);
+        }
+        /* FIX: Use VirtualLock() to lock the buffer into memory */
+        if(!VirtualLock(password, 100*sizeof(char)))
+        {
+            printLine("Memory could not be locked");
+            exit(1);
+        }
         /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
         strcpy(password, "Password1234!");
     }
@@ -75,6 +93,24 @@ static void goodG2B()
     char * password;
     /* Initialize Data */
     password = "";
+    if(globalReturnsTrueOrFalse())
+    {
+        password = (char *)malloc(100*sizeof(char));
+        if (password == NULL)
+        {
+            printLine("Memory could not be allocated");
+            exit(1);
+        }
+        /* FIX: Use VirtualLock() to lock the buffer into memory */
+        if(!VirtualLock(password, 100*sizeof(char)))
+        {
+            printLine("Memory could not be locked");
+            exit(1);
+        }
+        /* INCIDENTAL FLAW: CWE-259 Hardcoded Password */
+        strcpy(password, "Password1234!");
+    }
+    else
     {
         password = (char *)malloc(100*sizeof(char));
         if (password == NULL)

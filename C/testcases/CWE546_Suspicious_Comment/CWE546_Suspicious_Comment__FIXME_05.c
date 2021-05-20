@@ -25,6 +25,7 @@ static int staticFalse = 0; /* false */
 
 void CWE546_Suspicious_Comment__FIXME_05_bad()
 {
+    if(staticTrue)
     {
         /* FLAW: The following comment has the letters 'FIXME' in it*/
         /* FIXME: This comment has the letters 'FIXME' in it, which is certainly
@@ -38,6 +39,15 @@ void CWE546_Suspicious_Comment__FIXME_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");
@@ -47,6 +57,7 @@ void CWE546_Suspicious_Comment__FIXME_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         /* FIX: Removed the suspicious comments */
         printLine("Hello");

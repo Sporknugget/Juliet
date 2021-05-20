@@ -40,6 +40,7 @@ void CWE427_Uncontrolled_Search_Path_Element__char_environment_16_bad()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -52,6 +53,7 @@ void CWE427_Uncontrolled_Search_Path_Element__char_environment_16_bad()
                 strncat(data+dataLen, environment, 250-dataLen-1);
             }
         }
+        break;
     }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
@@ -67,9 +69,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[250] = "PATH=";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Set the path as the "system" path */
         strcat(data, NEW_PATH);
+        break;
     }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);

@@ -26,6 +26,7 @@ Template File: point-flaw-10.tmpl.c
 
 void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_10_bad()
 {
+    if(globalTrue)
     {
         {
             char path[BAD_PATH_SIZE];
@@ -53,6 +54,15 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_10_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFalse) instead of if(globalTrue) */
+static void good1()
+{
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */
@@ -75,6 +85,7 @@ void CWE785_Path_Manipulation_Function_Without_Max_Sized_Buffer__w32_10_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalTrue)
     {
         {
             /* FIX: ensure MAX_PATH allocated in 'path' */

@@ -39,6 +39,7 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_06_bad()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: rename() might fail, in which case the return value will be non-zero, but
          * we are checking to see if the return value is 0 */
@@ -53,6 +54,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_06_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
+static void good1()
+{
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)
@@ -65,6 +75,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_rename_06_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: check for the correct return value */
         if (RENAME(OLD_GOOD_FILE_NAME, NEW_GOOD_FILE_NAME) != 0)

@@ -54,6 +54,7 @@ void CWE134_Uncontrolled_Format_String__char_connect_socket_fprintf_06_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32
@@ -123,6 +124,7 @@ void CWE134_Uncontrolled_Format_String__char_connect_socket_fprintf_06_bad()
 #endif
         }
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fprintf(stdout, data);
@@ -139,6 +141,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32
@@ -208,6 +211,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         fprintf(stdout, "%s\n", data);
@@ -220,6 +229,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE==5)
     {
         {
 #ifdef _WIN32
@@ -289,6 +299,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Specify the format disallowing a format string vulnerability */
         fprintf(stdout, "%s\n", data);
@@ -301,10 +312,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fprintf(stdout, data);
@@ -317,10 +335,12 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(STATIC_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
         fprintf(stdout, data);

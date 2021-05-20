@@ -24,8 +24,12 @@ void CWE400_Resource_Exhaustion__rand_for_loop_18_bad()
     int count;
     /* Initialize count */
     count = -1;
+    goto source;
+source:
     /* POTENTIAL FLAW: Set count to a random value */
     count = RAND32();
+    goto sink;
+sink:
     {
         size_t i = 0;
         /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */
@@ -46,8 +50,12 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    goto source;
+source:
     /* POTENTIAL FLAW: Set count to a random value */
     count = RAND32();
+    goto sink;
+sink:
     {
         size_t i = 0;
         /* FIX: Validate count before using it as the for loop variant */
@@ -67,8 +75,12 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    goto source;
+source:
     /* FIX: Use a relatively small number */
     count = 20;
+    goto sink;
+sink:
     {
         size_t i = 0;
         /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */

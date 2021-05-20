@@ -19,12 +19,14 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE758_Undefined_Behavior__double_pointer_alloca_use_16_bad()
 {
+    while(1)
     {
         {
             double * * pointer = (double * *)ALLOCA(sizeof(double *));
             double * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             printDoubleLine(*data);
         }
+        break;
     }
 }
 
@@ -35,6 +37,7 @@ void CWE758_Undefined_Behavior__double_pointer_alloca_use_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             double * data;
@@ -49,6 +52,7 @@ static void good1()
                 printDoubleLine(*data);
             }
         }
+        break;
     }
 }
 

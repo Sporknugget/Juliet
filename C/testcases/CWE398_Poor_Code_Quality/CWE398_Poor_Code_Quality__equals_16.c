@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE398_Poor_Code_Quality__equals_16_bad()
 {
+    while(1)
     {
         {
             int intOne = 1;
@@ -27,6 +28,7 @@ void CWE398_Poor_Code_Quality__equals_16_bad()
             intOne = intOne;
             printIntLine(intOne);
         }
+        break;
     }
 }
 
@@ -37,6 +39,7 @@ void CWE398_Poor_Code_Quality__equals_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             int intOne = 1, intFive = 5;
@@ -45,6 +48,7 @@ static void good1()
             intOne = intFive;
             printIntLine(intOne);
         }
+        break;
     }
 }
 

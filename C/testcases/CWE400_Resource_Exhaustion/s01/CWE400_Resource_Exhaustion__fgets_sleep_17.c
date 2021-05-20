@@ -31,9 +31,11 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE400_Resource_Exhaustion__fgets_sleep_17_bad()
 {
+    int i,j;
     int count;
     /* Initialize count */
     count = -1;
+    for(i = 0; i < 1; i++)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -49,6 +51,7 @@ void CWE400_Resource_Exhaustion__fgets_sleep_17_bad()
             }
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);
@@ -63,9 +66,11 @@ void CWE400_Resource_Exhaustion__fgets_sleep_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int count;
     /* Initialize count */
     count = -1;
+    for(i = 0; i < 1; i++)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -81,6 +86,7 @@ static void goodB2G()
             }
         }
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Validate count before using it as a parameter in the sleep function */
         if (count > 0 && count <= 2000)
@@ -98,13 +104,16 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int count;
     /* Initialize count */
     count = -1;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Sleep function using count as the parameter with no validation */
         SLEEP(count);

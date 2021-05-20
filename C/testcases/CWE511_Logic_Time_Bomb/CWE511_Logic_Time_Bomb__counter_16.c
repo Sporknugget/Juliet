@@ -28,6 +28,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE511_Logic_Time_Bomb__counter_16_bad()
 {
+    while(1)
     {
         {
             int count = 0;
@@ -42,6 +43,7 @@ void CWE511_Logic_Time_Bomb__counter_16_bad()
             }
             while(1 == 1);   /* infinite loop */
         }
+        break;
     }
 }
 
@@ -52,6 +54,7 @@ void CWE511_Logic_Time_Bomb__counter_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             int count = 0;
@@ -66,6 +69,7 @@ static void good1()
             }
             while(1 == 1);   /* infinite loop */
         }
+        break;
     }
 }
 

@@ -27,6 +27,9 @@ namespace CWE390_Error_Without_Action__empty_catch_15
 
 void bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         try
         {
@@ -39,6 +42,12 @@ void bad()
             /* FLAW: Catch, but do not handle the out_of_range error */
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -48,6 +57,13 @@ void bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         try
         {
@@ -62,11 +78,16 @@ static void good1()
             exit(1);
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         try
         {
@@ -80,6 +101,12 @@ static void good2()
             printLine("Range specified was invalid");
             exit(1);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

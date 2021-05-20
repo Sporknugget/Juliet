@@ -25,8 +25,10 @@ namespace CWE124_Buffer_Underwrite__new_char_loop_17
 
 void bad()
 {
+    int i;
     char * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             char * dataBuffer = new char[100];
@@ -61,8 +63,10 @@ void bad()
 /* goodG2B() - use goodsource in the for statement */
 static void goodG2B()
 {
+    int h;
     char * data;
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         {
             char * dataBuffer = new char[100];

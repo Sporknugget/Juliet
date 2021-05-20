@@ -23,6 +23,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE244_Heap_Inspection__w32_char_realloc_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * password = (char *)malloc(100*sizeof(char));
@@ -73,6 +74,55 @@ void CWE244_Heap_Inspection__w32_char_realloc_12_bad()
             free(password);
         }
     }
+    else
+    {
+        {
+            char * password = (char *)malloc(100*sizeof(char));
+            if (password == NULL) {exit(-1);}
+            size_t passwordLen = 0;
+            HANDLE hUser;
+            char * username = "User";
+            char * domain = "Domain";
+            /* Initialize password */
+            password[0] = '\0';
+            if (fgets(password, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                password[0] = '\0';
+            }
+            /* Remove the carriage return from the string that is inserted by fgets() */
+            passwordLen = strlen(password);
+            if (passwordLen > 0)
+            {
+                password[passwordLen-1] = '\0';
+            }
+            /* Use the password in LogonUser() to establish that it is "sensitive" */
+            if (LogonUserA(
+                        username,
+                        domain,
+                        password,
+                        LOGON32_LOGON_NETWORK,
+                        LOGON32_PROVIDER_DEFAULT,
+                        &hUser) != 0)
+            {
+                printLine("User logged in successfully.");
+                CloseHandle(hUser);
+            }
+            else
+            {
+                printLine("Unable to login.");
+            }
+            /* FIX: Zeroize the password buffer before reallocating it */
+            SecureZeroMemory(password, 100 * sizeof(char));
+            password = realloc(password, 200 * sizeof(char));
+            if (password == NULL) {exit(-1);}
+            /* Use the password buffer again */
+            strcpy(password, "Nothing to see here");
+            printLine(password);
+            free(password);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -82,6 +132,56 @@ void CWE244_Heap_Inspection__w32_char_realloc_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * password = (char *)malloc(100*sizeof(char));
+            if (password == NULL) {exit(-1);}
+            size_t passwordLen = 0;
+            HANDLE hUser;
+            char * username = "User";
+            char * domain = "Domain";
+            /* Initialize password */
+            password[0] = '\0';
+            if (fgets(password, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                password[0] = '\0';
+            }
+            /* Remove the carriage return from the string that is inserted by fgets() */
+            passwordLen = strlen(password);
+            if (passwordLen > 0)
+            {
+                password[passwordLen-1] = '\0';
+            }
+            /* Use the password in LogonUser() to establish that it is "sensitive" */
+            if (LogonUserA(
+                        username,
+                        domain,
+                        password,
+                        LOGON32_LOGON_NETWORK,
+                        LOGON32_PROVIDER_DEFAULT,
+                        &hUser) != 0)
+            {
+                printLine("User logged in successfully.");
+                CloseHandle(hUser);
+            }
+            else
+            {
+                printLine("Unable to login.");
+            }
+            /* FIX: Zeroize the password buffer before reallocating it */
+            SecureZeroMemory(password, 100 * sizeof(char));
+            password = realloc(password, 200 * sizeof(char));
+            if (password == NULL) {exit(-1);}
+            /* Use the password buffer again */
+            strcpy(password, "Nothing to see here");
+            printLine(password);
+            free(password);
+        }
+    }
+    else
     {
         {
             char * password = (char *)malloc(100*sizeof(char));

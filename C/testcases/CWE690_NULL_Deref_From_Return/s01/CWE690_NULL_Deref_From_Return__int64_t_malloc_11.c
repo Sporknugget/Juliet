@@ -26,6 +26,7 @@ void CWE690_NULL_Deref_From_Return__int64_t_malloc_11_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int64_t *)malloc(1*sizeof(int64_t));
+    if(globalReturnsTrue())
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         data[0] = 5LL;
@@ -45,6 +46,12 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int64_t *)malloc(1*sizeof(int64_t));
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
@@ -63,6 +70,7 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (int64_t *)malloc(1*sizeof(int64_t));
+    if(globalReturnsTrue())
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)

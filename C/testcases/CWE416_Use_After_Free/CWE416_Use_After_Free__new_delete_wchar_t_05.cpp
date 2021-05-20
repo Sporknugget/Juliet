@@ -35,12 +35,14 @@ void bad()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(staticTrue)
     {
         data = new wchar_t;
         *data = L'A';
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printWcharLine(*data);
@@ -58,12 +60,19 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(staticTrue)
     {
         data = new wchar_t;
         *data = L'A';
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -78,12 +87,14 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(staticTrue)
     {
         data = new wchar_t;
         *data = L'A';
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete data;
     }
+    if(staticTrue)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -98,11 +109,18 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = new wchar_t;
         *data = L'A';
         /* FIX: Do not delete data in the source */
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printWcharLine(*data);
@@ -116,11 +134,13 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data */
     data = NULL;
+    if(staticTrue)
     {
         data = new wchar_t;
         *data = L'A';
         /* FIX: Do not delete data in the source */
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printWcharLine(*data);

@@ -31,6 +31,7 @@ static int staticFive = 5;
 
 void CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_07_bad()
 {
+    if(staticFive==5)
     {
         {
             WSADATA wsaData;
@@ -113,6 +114,15 @@ void CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_07_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             WSADATA wsaData;
@@ -193,6 +203,7 @@ void CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_07_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             WSADATA wsaData;

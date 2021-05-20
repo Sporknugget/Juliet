@@ -29,6 +29,7 @@ static int staticFalse = 0; /* false */
 
 void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_05_bad()
 {
+    if(staticTrue)
     {
         {
             twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
@@ -55,6 +56,15 @@ void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
@@ -83,6 +93,7 @@ void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));

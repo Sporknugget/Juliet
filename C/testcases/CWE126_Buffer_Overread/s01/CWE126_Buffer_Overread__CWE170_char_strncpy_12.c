@@ -21,6 +21,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_strncpy_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char data[150], dest[100];
@@ -34,6 +35,20 @@ void CWE126_Buffer_Overread__CWE170_char_strncpy_12_bad()
             printLine(dest);
         }
     }
+    else
+    {
+        {
+            char data[150], dest[100];
+            /* Initialize data */
+            memset(data, 'A', 149);
+            data[149] = '\0';
+            /* strncpy() does not null terminate if the string in the src buffer is larger than
+             * the number of characters being copied to the dest buffer */
+            strncpy(dest, data, 99);
+            dest[99] = '\0'; /* FIX: Explicitly null terminate dest after the use of strncpy() */
+            printLine(dest);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -43,6 +58,21 @@ void CWE126_Buffer_Overread__CWE170_char_strncpy_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char data[150], dest[100];
+            /* Initialize data */
+            memset(data, 'A', 149);
+            data[149] = '\0';
+            /* strncpy() does not null terminate if the string in the src buffer is larger than
+             * the number of characters being copied to the dest buffer */
+            strncpy(dest, data, 99);
+            dest[99] = '\0'; /* FIX: Explicitly null terminate dest after the use of strncpy() */
+            printLine(dest);
+        }
+    }
+    else
     {
         {
             char data[150], dest[100];

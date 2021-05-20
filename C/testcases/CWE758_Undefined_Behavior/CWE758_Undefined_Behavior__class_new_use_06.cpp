@@ -27,6 +27,7 @@ namespace CWE758_Undefined_Behavior__class_new_use_06
 
 void bad()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         {
             TwoIntsClass * pointer = new TwoIntsClass;
@@ -42,6 +43,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
+static void good1()
+{
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             TwoIntsClass data;
@@ -62,6 +72,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         {
             TwoIntsClass data;

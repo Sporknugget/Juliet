@@ -48,6 +48,7 @@ void CWE134_Uncontrolled_Format_String__char_environment_vprintf_09_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Append input from an environment variable to data */
@@ -61,6 +62,7 @@ void CWE134_Uncontrolled_Format_String__char_environment_vprintf_09_bad()
             }
         }
     }
+    if(GLOBAL_CONST_TRUE)
     {
         badVaSinkB(data, data);
     }
@@ -87,6 +89,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Append input from an environment variable to data */
@@ -100,6 +103,12 @@ static void goodB2G1()
             }
         }
     }
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         goodB2G1VaSinkG(data, data);
     }
@@ -122,6 +131,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Append input from an environment variable to data */
@@ -135,6 +145,7 @@ static void goodB2G2()
             }
         }
     }
+    if(GLOBAL_CONST_TRUE)
     {
         goodB2G2VaSinkG(data, data);
     }
@@ -157,10 +168,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(GLOBAL_CONST_TRUE)
     {
         goodG2B1VaSinkB(data, data);
     }
@@ -183,10 +201,12 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(GLOBAL_CONST_TRUE)
     {
         goodG2B2VaSinkB(data, data);
     }

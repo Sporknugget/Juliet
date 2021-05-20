@@ -36,10 +36,12 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_rand_05_bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    if(staticTrue)
     {
         {
             wchar_t * myString;
@@ -73,10 +75,17 @@ static void goodB2G1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * myString;
@@ -106,10 +115,12 @@ static void goodB2G2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Set data to a random value */
         data = rand();
     }
+    if(staticTrue)
     {
         {
             wchar_t * myString;
@@ -139,10 +150,17 @@ static void goodG2B1()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(staticTrue)
     {
         {
             wchar_t * myString;
@@ -172,10 +190,12 @@ static void goodG2B2()
     size_t data;
     /* Initialize data */
     data = 0;
+    if(staticTrue)
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
     }
+    if(staticTrue)
     {
         {
             wchar_t * myString;

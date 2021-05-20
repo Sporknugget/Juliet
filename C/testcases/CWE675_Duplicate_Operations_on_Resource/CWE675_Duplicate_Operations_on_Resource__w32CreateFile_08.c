@@ -38,6 +38,7 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_08_bad()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(staticReturnsTrue())
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -49,6 +50,7 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_08_bad()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
@@ -64,6 +66,7 @@ static void goodB2G1()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(staticReturnsTrue())
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -75,6 +78,12 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -87,6 +96,7 @@ static void goodB2G2()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(staticReturnsTrue())
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -98,6 +108,7 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    if(staticReturnsTrue())
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -110,6 +121,12 @@ static void goodG2B1()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Open, but do not close the file in the source */
         data = CreateFile("GoodSource_w32CreateFile.txt",
@@ -120,6 +137,7 @@ static void goodG2B1()
                           FILE_ATTRIBUTE_NORMAL,
                           NULL);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
@@ -131,6 +149,7 @@ static void goodG2B2()
 {
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    if(staticReturnsTrue())
     {
         /* FIX: Open, but do not close the file in the source */
         data = CreateFile("GoodSource_w32CreateFile.txt",
@@ -141,6 +160,7 @@ static void goodG2B2()
                           FILE_ATTRIBUTE_NORMAL,
                           NULL);
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);

@@ -24,6 +24,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE534_Info_Exposure_Debug_Log__w32_char_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char password[100] = "";
@@ -68,6 +69,51 @@ void CWE534_Info_Exposure_Debug_Log__w32_char_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            char password[100] = "";
+            size_t passwordLen = 0;
+            HANDLE pHandle;
+            char * username = "User";
+            char * domain = "Domain";
+            FILE * pFile = fopen("debug.txt", "a+");
+            if (fgets(password, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                password[0] = '\0';
+            }
+            /* Remove the carriage return from the string that is inserted by fgets() */
+            passwordLen = strlen(password);
+            if (passwordLen > 0)
+            {
+                password[passwordLen-1] = '\0';
+            }
+            /* Use the password in LogonUser() to establish that it is "sensitive" */
+            if (LogonUserA(
+                        username,
+                        domain,
+                        password,
+                        LOGON32_LOGON_NETWORK,
+                        LOGON32_PROVIDER_DEFAULT,
+                        &pHandle) != 0)
+            {
+                printLine("User logged in successfully.");
+                CloseHandle(pHandle);
+            }
+            else
+            {
+                printLine("Unable to login.");
+            }
+            /* FIX: Do not write sensitive data to the log */
+            fprintf(pFile, "User attempted access\n");
+            if (pFile)
+            {
+                fclose(pFile);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -77,6 +123,52 @@ void CWE534_Info_Exposure_Debug_Log__w32_char_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char password[100] = "";
+            size_t passwordLen = 0;
+            HANDLE pHandle;
+            char * username = "User";
+            char * domain = "Domain";
+            FILE * pFile = fopen("debug.txt", "a+");
+            if (fgets(password, 100, stdin) == NULL)
+            {
+                printLine("fgets() failed");
+                /* Restore NUL terminator if fgets fails */
+                password[0] = '\0';
+            }
+            /* Remove the carriage return from the string that is inserted by fgets() */
+            passwordLen = strlen(password);
+            if (passwordLen > 0)
+            {
+                password[passwordLen-1] = '\0';
+            }
+            /* Use the password in LogonUser() to establish that it is "sensitive" */
+            if (LogonUserA(
+                        username,
+                        domain,
+                        password,
+                        LOGON32_LOGON_NETWORK,
+                        LOGON32_PROVIDER_DEFAULT,
+                        &pHandle) != 0)
+            {
+                printLine("User logged in successfully.");
+                CloseHandle(pHandle);
+            }
+            else
+            {
+                printLine("Unable to login.");
+            }
+            /* FIX: Do not write sensitive data to the log */
+            fprintf(pFile, "User attempted access\n");
+            if (pFile)
+            {
+                fclose(pFile);
+            }
+        }
+    }
+    else
     {
         {
             char password[100] = "";

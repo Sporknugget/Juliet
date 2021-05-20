@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__union_16_bad()
 {
+    while(1)
     {
         {
             union
@@ -35,6 +36,7 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_16_bad()
             unionStructLong.structChars.charFourth |= 0x80; /* "set the MSB" */
             printIntLine(unionStructLong.longNumber);
         }
+        break;
     }
 }
 
@@ -45,6 +47,7 @@ void CWE188_Reliance_on_Data_Memory_Layout__union_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             long longNumber;
@@ -58,6 +61,7 @@ static void good1()
             longNumber |= LONG_MIN;
             printIntLine(longNumber);
         }
+        break;
     }
 }
 

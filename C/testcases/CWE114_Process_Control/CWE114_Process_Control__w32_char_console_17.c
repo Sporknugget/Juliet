@@ -24,9 +24,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE114_Process_Control__w32_char_console_17_bad()
 {
+    int i;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
             /* Read input from the console */
@@ -78,9 +80,11 @@ void CWE114_Process_Control__w32_char_console_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Specify the full pathname for the library */
         strcpy(data, "C:\\Windows\\System32\\winsrv.dll");

@@ -46,6 +46,8 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_18_bad()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -102,6 +104,8 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_18_bad()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -140,6 +144,8 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -196,6 +202,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));
@@ -229,9 +237,13 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
     * access an index of the array in the sink that is out-of-bounds */
     data = 7;
+    goto sink;
+sink:
     {
         int i;
         int * buffer = (int *)malloc(10 * sizeof(int));

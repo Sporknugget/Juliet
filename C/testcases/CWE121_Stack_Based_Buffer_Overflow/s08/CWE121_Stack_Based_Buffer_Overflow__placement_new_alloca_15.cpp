@@ -26,8 +26,20 @@ void bad()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -40,6 +52,12 @@ void bad()
         classTwo->intTwo = 10; /* POTENTIAL FLAW: If sizeof(data) < sizeof(TwoIntsClass) then this line will be a buffer overflow */
         printIntLine(classTwo->intOne);
         /* skip printing classTwo->intTwo since that could be a buffer overread */
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -53,8 +71,24 @@ static void goodB2G1()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -65,6 +99,8 @@ static void goodB2G1()
         /* Initialize and make use of the class */
         classOne->intOne = 5;
         printIntLine(classOne->intOne);
+    }
+    break;
     }
 }
 
@@ -74,8 +110,20 @@ static void goodB2G2()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    switch(6)
+    {
+    case 6:
         /* POTENTIAL FLAW: Initialize data to a buffer smaller than the sizeof(TwoIntsClass) */
         data = dataBadBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -87,6 +135,12 @@ static void goodB2G2()
         classOne->intOne = 5;
         printIntLine(classOne->intOne);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -95,8 +149,20 @@ static void goodG2B1()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -110,6 +176,12 @@ static void goodG2B1()
         printIntLine(classTwo->intOne);
         /* skip printing classTwo->intTwo since that could be a buffer overread */
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -118,8 +190,20 @@ static void goodG2B2()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA(sizeof(OneIntClass));
     char * dataGoodBuffer = (char *)ALLOCA(sizeof(TwoIntsClass));
+    switch(6)
+    {
+    case 6:
         /* FIX: Initialize to a buffer at least the sizeof(TwoIntsClass) */
         data = dataGoodBuffer;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* The Visual C++ compiler generates a warning if you initialize the class with ().
          * This will cause the compile to default-initialize the object.
@@ -132,6 +216,12 @@ static void goodG2B2()
         classTwo->intTwo = 10; /* POTENTIAL FLAW: If sizeof(data) < sizeof(TwoIntsClass) then this line will be a buffer overflow */
         printIntLine(classTwo->intOne);
         /* skip printing classTwo->intTwo since that could be a buffer overread */
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

@@ -24,6 +24,7 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_partial_init_16_
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
+    while(1)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -33,7 +34,9 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_partial_init_16_
                 data[i] = (double)i;
             }
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -43,6 +46,7 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_partial_init_16_
                 printDoubleLine(data[i]);
             }
         }
+        break;
     }
 }
 
@@ -56,6 +60,7 @@ static void goodB2G()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
+    while(1)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -65,7 +70,9 @@ static void goodB2G()
                 data[i] = (double)i;
             }
         }
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -82,6 +89,7 @@ static void goodB2G()
                 printDoubleLine(data[i]);
             }
         }
+        break;
     }
 }
 
@@ -91,6 +99,7 @@ static void goodG2B()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
+    while(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -100,7 +109,9 @@ static void goodG2B()
                 data[i] = (double)i;
             }
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -110,6 +121,7 @@ static void goodG2B()
                 printDoubleLine(data[i]);
             }
         }
+        break;
     }
 }
 

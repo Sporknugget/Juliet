@@ -21,13 +21,16 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE675_Duplicate_Operations_on_Resource__freopen_17_bad()
 {
+    int i,j;
     FILE * data;
     data = NULL; /* Initialize data */
+    for(i = 0; i < 1; i++)
     {
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);
@@ -41,13 +44,16 @@ void CWE675_Duplicate_Operations_on_Resource__freopen_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     FILE * data;
     data = NULL; /* Initialize data */
+    for(i = 0; i < 1; i++)
     {
         data = freopen("BadSource_freopen.txt","w+",stdin);
         /* POTENTIAL FLAW: Close the file in the source */
         fclose(data);
     }
+    for(k = 0; k < 1; k++)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -58,12 +64,15 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     FILE * data;
     data = NULL; /* Initialize data */
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Open, but do not close the file in the source */
         data = fopen("GoodSource_fopen.txt", "w+");
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         fclose(data);

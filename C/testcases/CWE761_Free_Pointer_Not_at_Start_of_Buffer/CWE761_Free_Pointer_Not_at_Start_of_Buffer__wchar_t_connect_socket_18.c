@@ -116,6 +116,8 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_socket_18_bad()
         }
 #endif
     }
+    goto sink;
+sink:
     /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
      * memory block not at the start of the buffer */
     for (; *data != L'\0'; data++)
@@ -207,6 +209,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         size_t i;
         /* FIX: Use a loop variable to traverse through the string pointed to by data */

@@ -45,6 +45,9 @@ static void helperGood(int sig)
 
 void CWE364_Signal_Handler_Race_Condition__basic_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         structSigAtomic *gStructSigAtomic = NULL;
         signal(SIGINT, SIG_DFL);
@@ -80,6 +83,12 @@ void CWE364_Signal_Handler_Race_Condition__basic_15_bad()
             CWE364_Signal_Handler_Race_Condition__basic_15StructSigAtomicBad = NULL;
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -89,6 +98,13 @@ void CWE364_Signal_Handler_Race_Condition__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         structSigAtomic *gStructSigAtomic = NULL;
         signal(SIGINT, SIG_DFL);
@@ -122,11 +138,16 @@ static void good1()
         }
         signal(SIGINT, helperGood);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         structSigAtomic *gStructSigAtomic = NULL;
         signal(SIGINT, SIG_DFL);
@@ -159,6 +180,12 @@ static void good2()
             CWE364_Signal_Handler_Race_Condition__basic_15StructSigAtomicGood = NULL;
         }
         signal(SIGINT, helperGood);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

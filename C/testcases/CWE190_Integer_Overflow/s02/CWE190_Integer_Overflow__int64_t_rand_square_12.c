@@ -26,15 +26,35 @@ void CWE190_Integer_Overflow__int64_t_rand_square_12_bad()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
             int64_t result = data * data;
             printLongLongLine(result);
+        }
+    }
+    else
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
+        {
+            int64_t result = data * data;
+            printLongLongLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
         }
     }
 }
@@ -50,10 +70,30 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (int64_t)RAND64();
     }
+    else
+    {
+        /* POTENTIAL FLAW: Use a random value */
+        data = (int64_t)RAND64();
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Add a check to prevent an overflow from occurring */
+        if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
+        {
+            int64_t result = data * data;
+            printLongLongLine(result);
+        }
+        else
+        {
+            printLine("data value is too large to perform arithmetic safely.");
+        }
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (imaxabs((intmax_t)data) <= sqrtl(LLONG_MAX))
@@ -75,10 +115,25 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    else
+    {
+        /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
+        data = 2;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */
+            int64_t result = data * data;
+            printLongLongLine(result);
+        }
+    }
+    else
     {
         {
             /* POTENTIAL FLAW: if (data*data) > LLONG_MAX, this will overflow */

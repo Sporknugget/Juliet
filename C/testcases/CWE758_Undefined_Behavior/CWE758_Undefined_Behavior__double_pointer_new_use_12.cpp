@@ -22,12 +22,29 @@ namespace CWE758_Undefined_Behavior__double_pointer_new_use_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             double * * pointer = new double *;
             double * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             delete pointer;
             printDoubleLine(*data);
+        }
+    }
+    else
+    {
+        {
+            double * data;
+            /* initialize both the pointer and the data pointed to */
+            data = new double;
+            *data = 5.0;
+            double * * pointer = new double *;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                double * data = *pointer;
+                printDoubleLine(*data);
+            }
+            delete pointer;
         }
     }
 }
@@ -39,6 +56,23 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            double * data;
+            /* initialize both the pointer and the data pointed to */
+            data = new double;
+            *data = 5.0;
+            double * * pointer = new double *;
+            *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
+            {
+                double * data = *pointer;
+                printDoubleLine(*data);
+            }
+            delete pointer;
+        }
+    }
+    else
     {
         {
             double * data;

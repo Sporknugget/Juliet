@@ -27,12 +27,22 @@ void bad()
 {
     int * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
             static int dataBuffer;
             dataBuffer = 5;
             data = &dataBuffer;
+        }
+    }
+    else
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            int * dataBuffer = new int;
+            *dataBuffer = 5;
+            data = dataBuffer;
         }
     }
     printIntLine(*data);
@@ -50,6 +60,16 @@ static void goodG2B()
 {
     int * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            int * dataBuffer = new int;
+            *dataBuffer = 5;
+            data = dataBuffer;
+        }
+    }
+    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

@@ -32,6 +32,7 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_13_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             FILE *pFile;
@@ -51,6 +52,7 @@ void CWE256_Plaintext_Storage_of_Password__w32_wchar_t_13_bad()
             }
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             HANDLE pHandle;
@@ -86,6 +88,7 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             FILE *pFile;
@@ -105,6 +108,12 @@ static void goodB2G1()
             }
         }
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             HANDLE pHandle;
@@ -190,6 +199,7 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             FILE *pFile;
@@ -209,6 +219,7 @@ static void goodB2G2()
             }
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             HANDLE pHandle;
@@ -294,6 +305,12 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             FILE *pFile;
@@ -367,6 +384,7 @@ static void goodG2B1()
             }
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             HANDLE pHandle;
@@ -398,6 +416,7 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             FILE *pFile;
@@ -471,6 +490,7 @@ static void goodG2B2()
             }
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             HANDLE pHandle;

@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE758_Undefined_Behavior__struct_malloc_use_16_bad()
 {
+    while(1)
     {
         {
             twoIntsStruct * pointer = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
@@ -28,6 +29,7 @@ void CWE758_Undefined_Behavior__struct_malloc_use_16_bad()
             printIntLine(data.intOne);
             printIntLine(data.intTwo);
         }
+        break;
     }
 }
 
@@ -38,6 +40,7 @@ void CWE758_Undefined_Behavior__struct_malloc_use_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             twoIntsStruct data;
@@ -53,6 +56,7 @@ static void good1()
             }
             free(pointer);
         }
+        break;
     }
 }
 

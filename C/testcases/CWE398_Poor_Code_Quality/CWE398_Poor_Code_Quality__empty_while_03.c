@@ -19,6 +19,7 @@ Template File: point-flaw-03.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_while_03_bad()
 {
+    if(5==5)
     {
         /* FLAW: An empty while statement has no effect */
         {
@@ -35,6 +36,15 @@ void CWE398_Poor_Code_Quality__empty_while_03_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(5!=5) instead of if(5==5) */
+static void good1()
+{
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Do not include an empty while statement */
         {
@@ -51,6 +61,7 @@ void CWE398_Poor_Code_Quality__empty_while_03_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(5==5)
     {
         /* FIX: Do not include an empty while statement */
         {

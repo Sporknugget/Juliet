@@ -20,10 +20,12 @@ Template File: source-sinks-17.tmpl.c
 
 void CWE775_Missing_Release_of_File_Descriptor_or_Handle__fopen_no_close_17_bad()
 {
+    int j;
     FILE * data;
     data = NULL;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = fopen("BadSource_fopen.txt", "w+");
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
@@ -37,10 +39,12 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__fopen_no_close_17_bad(
 /* goodB2G() - use the goodsink in the for statement */
 static void goodB2G()
 {
+    int k;
     FILE * data;
     data = NULL;
     /* POTENTIAL FLAW: Open a file without closing it */
     data = fopen("BadSource_fopen.txt", "w+");
+    for(k = 0; k < 1; k++)
     {
         /* FIX: If the file is still opened, close it */
         if (data != NULL)

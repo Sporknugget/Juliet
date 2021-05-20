@@ -23,6 +23,8 @@ void CWE194_Unexpected_Sign_Extension__rand_strncpy_18_bad()
     short data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FLAW: Use a random value that could be less than 0 */
     data = (short)RAND32();
     {
@@ -51,6 +53,8 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a positive integer less than &InitialDataSize&*/
     data = 100-1;
     {

@@ -33,10 +33,12 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new wchar_t;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -54,10 +56,17 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new wchar_t;
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -70,10 +79,12 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new wchar_t;
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -86,11 +97,18 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -104,11 +122,13 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Allocate memory from the heap using malloc() */
         data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
          * require a call to delete to deallocate the memory */

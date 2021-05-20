@@ -27,6 +27,7 @@ void bad()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * dataBuffer = new char[100];
@@ -34,6 +35,16 @@ void bad()
             dataBuffer[100-1] = '\0';
             /* FLAW: Set data pointer to before the allocated memory buffer */
             data = dataBuffer - 8;
+        }
+    }
+    else
+    {
+        {
+            char * dataBuffer = new char[100];
+            memset(dataBuffer, 'A', 100-1);
+            dataBuffer[100-1] = '\0';
+            /* FIX: Set data pointer to the allocated memory buffer */
+            data = dataBuffer;
         }
     }
     {
@@ -64,6 +75,17 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * dataBuffer = new char[100];
+            memset(dataBuffer, 'A', 100-1);
+            dataBuffer[100-1] = '\0';
+            /* FIX: Set data pointer to the allocated memory buffer */
+            data = dataBuffer;
+        }
+    }
+    else
     {
         {
             char * dataBuffer = new char[100];

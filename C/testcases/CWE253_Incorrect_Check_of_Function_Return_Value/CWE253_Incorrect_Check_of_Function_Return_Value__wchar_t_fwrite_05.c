@@ -29,6 +29,7 @@ static int staticFalse = 0; /* false */
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fwrite_05_bad()
 {
+    if(staticTrue)
     {
         /* FLAW: fwrite() might fail, in which case the return value will not be equal to strlen(data),
          * but we are checking to see if the return value is less than 0 */
@@ -43,6 +44,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fwrite_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))
@@ -55,6 +65,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fwrite_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         /* FIX: check for the correct return value */
         if (fwrite((wchar_t *)L"string", sizeof(wchar_t), wcslen(L"string"), stdout) != wcslen(L"string"))

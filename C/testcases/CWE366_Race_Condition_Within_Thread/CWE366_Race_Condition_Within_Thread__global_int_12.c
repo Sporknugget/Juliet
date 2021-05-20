@@ -58,6 +58,7 @@ static void helperGood(void *args)
 
 void CWE366_Race_Condition_Within_Thread__global_int_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             stdThread threadA = NULL;
@@ -82,6 +83,35 @@ void CWE366_Race_Condition_Within_Thread__global_int_12_bad()
             printIntLine(gBadInt);
         }
     }
+    else
+    {
+        {
+            stdThread threadA = NULL;
+            stdThread threadB = NULL;
+            if (!stdThreadLockCreate(&gGoodLock))
+            {
+                return;
+            }
+            if (!stdThreadCreate(helperGood, NULL, &threadA))
+            {
+                threadA = NULL;
+            }
+            if (!stdThreadCreate(helperGood, NULL, &threadB))
+            {
+                threadB = NULL;
+            }
+            if (threadA && stdThreadJoin(threadA))
+            {
+                stdThreadDestroy(threadA);
+            }
+            if (threadB && stdThreadJoin(threadB))
+            {
+                stdThreadDestroy(threadB);
+            }
+            stdThreadLockDestroy(gGoodLock);
+            printIntLine(gGoodInt);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -91,6 +121,36 @@ void CWE366_Race_Condition_Within_Thread__global_int_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            stdThread threadA = NULL;
+            stdThread threadB = NULL;
+            if (!stdThreadLockCreate(&gGoodLock))
+            {
+                return;
+            }
+            if (!stdThreadCreate(helperGood, NULL, &threadA))
+            {
+                threadA = NULL;
+            }
+            if (!stdThreadCreate(helperGood, NULL, &threadB))
+            {
+                threadB = NULL;
+            }
+            if (threadA && stdThreadJoin(threadA))
+            {
+                stdThreadDestroy(threadA);
+            }
+            if (threadB && stdThreadJoin(threadB))
+            {
+                stdThreadDestroy(threadB);
+            }
+            stdThreadLockDestroy(gGoodLock);
+            printIntLine(gGoodInt);
+        }
+    }
+    else
     {
         {
             stdThread threadA = NULL;

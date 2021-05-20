@@ -21,8 +21,11 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_17_bad()
 {
+    int i,j;
     int * data;
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -33,6 +36,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_17_bad(
             }
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -52,8 +56,11 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_17_bad(
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     int * data;
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    for(i = 0; i < 1; i++)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -64,6 +71,7 @@ static void goodB2G()
             }
         }
     }
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -86,9 +94,11 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     int * data;
     data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Completely initialize data */
         {
@@ -99,6 +109,7 @@ static void goodG2B()
             }
         }
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

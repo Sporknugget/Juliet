@@ -36,6 +36,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_file_10_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalTrue)
     {
         {
             /* Read input from a file */
@@ -59,6 +60,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_file_10_bad()
             }
         }
     }
+    if(globalTrue)
     {
         {
             int i, n, intVariable;
@@ -87,6 +89,7 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalTrue)
     {
         {
             /* Read input from a file */
@@ -110,6 +113,12 @@ static void goodB2G1()
             }
         }
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int i, n, intVariable;
@@ -137,6 +146,7 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalTrue)
     {
         {
             /* Read input from a file */
@@ -160,6 +170,7 @@ static void goodB2G2()
             }
         }
     }
+    if(globalTrue)
     {
         {
             int i, n, intVariable;
@@ -187,10 +198,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
     }
+    if(globalTrue)
     {
         {
             int i, n, intVariable;
@@ -215,10 +233,12 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(globalTrue)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
     }
+    if(globalTrue)
     {
         {
             int i, n, intVariable;

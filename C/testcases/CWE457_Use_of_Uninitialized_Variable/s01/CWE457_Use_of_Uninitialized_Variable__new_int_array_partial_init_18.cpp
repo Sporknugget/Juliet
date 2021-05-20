@@ -25,6 +25,8 @@ void bad()
 {
     int * data;
     data = new int[10];
+    goto source;
+source:
     /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -33,6 +35,8 @@ void bad()
             data[i] = i;
         }
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;
@@ -54,6 +58,8 @@ static void goodB2G()
 {
     int * data;
     data = new int[10];
+    goto source;
+source:
     /* POTENTIAL FLAW: Partially initialize data */
     {
         int i;
@@ -62,6 +68,8 @@ static void goodB2G()
             data[i] = i;
         }
     }
+    goto sink;
+sink:
     /* FIX: Ensure data is initialized before use */
     {
         int i;
@@ -86,6 +94,8 @@ static void goodG2B()
 {
     int * data;
     data = new int[10];
+    goto source;
+source:
     /* FIX: Completely initialize data */
     {
         int i;
@@ -94,6 +104,8 @@ static void goodG2B()
             data[i] = i;
         }
     }
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use data without initializing it */
     {
         int i;

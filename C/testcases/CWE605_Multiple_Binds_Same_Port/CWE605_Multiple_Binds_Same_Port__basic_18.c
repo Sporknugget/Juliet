@@ -43,6 +43,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE605_Multiple_Binds_Same_Port__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         char data[100] = "";
 #ifdef _WIN32
@@ -144,6 +146,8 @@ void CWE605_Multiple_Binds_Same_Port__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char data[100] = "";
 #ifdef _WIN32

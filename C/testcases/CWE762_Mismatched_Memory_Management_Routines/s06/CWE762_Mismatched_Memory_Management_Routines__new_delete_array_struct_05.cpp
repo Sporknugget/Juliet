@@ -33,10 +33,12 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new twoIntsStruct;
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -54,10 +56,17 @@ static void goodB2G1()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new twoIntsStruct;
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -70,10 +79,12 @@ static void goodB2G2()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new twoIntsStruct;
     }
+    if(staticTrue)
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -86,10 +97,17 @@ static void goodG2B1()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new twoIntsStruct[100];
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -103,10 +121,12 @@ static void goodG2B2()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new twoIntsStruct[100];
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */

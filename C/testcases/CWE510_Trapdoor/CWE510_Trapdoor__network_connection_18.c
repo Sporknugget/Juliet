@@ -38,6 +38,8 @@ Template File: point-flaw-badonly-18.tmpl.c
 
 void CWE510_Trapdoor__network_connection_18_bad()
 {
+    goto sink;
+sink:
     {
 #ifdef _WIN32
         WSADATA wsaData;

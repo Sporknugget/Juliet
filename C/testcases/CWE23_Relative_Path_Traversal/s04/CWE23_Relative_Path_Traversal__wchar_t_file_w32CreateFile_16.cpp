@@ -41,6 +41,7 @@ void bad()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from a file */
@@ -63,6 +64,7 @@ void bad()
                 }
             }
         }
+        break;
     }
     {
         HANDLE hFile;
@@ -91,9 +93,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed file name */
         wcscat(data, L"file.txt");
+        break;
     }
     {
         HANDLE hFile;

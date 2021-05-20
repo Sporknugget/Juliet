@@ -24,12 +24,14 @@ void CWE126_Buffer_Overread__malloc_char_memcpy_16_bad()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         /* FLAW: Use a small buffer */
         data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
+        break;
     }
     {
         char dest[100];
@@ -53,12 +55,14 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         /* FIX: Use a large buffer */
         data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
+        break;
     }
     {
         char dest[100];

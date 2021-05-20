@@ -40,6 +40,7 @@ void CWE134_Uncontrolled_Format_String__char_file_snprintf_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from a file */
@@ -62,7 +63,9 @@ void CWE134_Uncontrolled_Format_String__char_file_snprintf_16_bad()
                 }
             }
         }
+        break;
     }
+    while(1)
     {
         {
             char dest[100] = "";
@@ -70,6 +73,7 @@ void CWE134_Uncontrolled_Format_String__char_file_snprintf_16_bad()
             SNPRINTF(dest, 100-1, data);
             printLine(dest);
         }
+        break;
     }
 }
 
@@ -83,6 +87,7 @@ static void goodB2G()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from a file */
@@ -105,7 +110,9 @@ static void goodB2G()
                 }
             }
         }
+        break;
     }
+    while(1)
     {
         {
             char dest[100] = "";
@@ -113,6 +120,7 @@ static void goodB2G()
             SNPRINTF(dest, 100-1, "%s", data);
             printLine(dest);
         }
+        break;
     }
 }
 
@@ -122,10 +130,13 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
+        break;
     }
+    while(1)
     {
         {
             char dest[100] = "";
@@ -133,6 +144,7 @@ static void goodG2B()
             SNPRINTF(dest, 100-1, data);
             printLine(dest);
         }
+        break;
     }
 }
 

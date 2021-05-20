@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_case_18_bad()
 {
+    goto sink;
+sink:
     /* FLAW: An empty case statement has no effect */
     {
         int x = (rand() % 3);
@@ -38,6 +40,8 @@ void CWE398_Poor_Code_Quality__empty_case_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     /* FIX: Do not include an empty case statement */
     {
         int x = (rand() % 3);

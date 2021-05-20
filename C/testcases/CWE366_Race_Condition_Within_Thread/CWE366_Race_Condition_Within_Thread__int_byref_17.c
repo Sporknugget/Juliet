@@ -54,6 +54,8 @@ static void helperGood(void *args)
 
 void CWE366_Race_Condition_Within_Thread__int_byref_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             stdThread threadA = NULL;
@@ -88,6 +90,8 @@ void CWE366_Race_Condition_Within_Thread__int_byref_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             stdThread threadA = NULL;

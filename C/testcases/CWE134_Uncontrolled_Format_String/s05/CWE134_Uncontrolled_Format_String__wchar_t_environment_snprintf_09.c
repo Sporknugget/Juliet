@@ -42,6 +42,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_snprintf_09_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Append input from an environment variable to data */
@@ -55,6 +56,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_environment_snprintf_09_bad()
             }
         }
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t dest[100] = L"";
@@ -75,6 +77,7 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Append input from an environment variable to data */
@@ -88,6 +91,12 @@ static void goodB2G1()
             }
         }
     }
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t dest[100] = L"";
@@ -104,6 +113,7 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         {
             /* Append input from an environment variable to data */
@@ -117,6 +127,7 @@ static void goodB2G2()
             }
         }
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t dest[100] = L"";
@@ -133,10 +144,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t dest[100] = L"";
@@ -153,10 +171,12 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
     }
+    if(GLOBAL_CONST_TRUE)
     {
         {
             wchar_t dest[100] = L"";

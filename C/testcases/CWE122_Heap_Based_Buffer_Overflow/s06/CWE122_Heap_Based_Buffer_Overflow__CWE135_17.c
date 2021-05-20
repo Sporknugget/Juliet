@@ -23,8 +23,10 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_17_bad()
 {
+    int i,j;
     void * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -35,6 +37,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_17_bad()
             data = (void *)dataBadBuffer;
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -55,8 +58,10 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     void * data;
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         {
             wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
@@ -67,6 +72,7 @@ static void goodB2G()
             data = (void *)dataBadBuffer;
         }
     }
+    for(k = 0; k < 1; k++)
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -83,8 +89,10 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     void * data;
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         {
             char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
@@ -95,6 +103,7 @@ static void goodG2B()
             data = (void *)dataGoodBuffer;
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */

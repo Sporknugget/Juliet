@@ -24,6 +24,8 @@ void CWE126_Buffer_Overread__malloc_char_memcpy_18_bad()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* FLAW: Use a small buffer */
     data = (char *)malloc(50*sizeof(char));
     if (data == NULL) {exit(-1);}
@@ -51,6 +53,8 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Use a large buffer */
     data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}

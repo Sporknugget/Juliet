@@ -26,8 +26,12 @@ void bad()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
     data = new TwoIntsClass;
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
      * require a call to delete to deallocate the memory */
     free(data);
@@ -43,8 +47,12 @@ static void goodB2G()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
     data = new TwoIntsClass;
+    goto sink;
+sink:
     /* FIX: Deallocate the memory using delete */
     delete data;
 }
@@ -55,9 +63,13 @@ static void goodG2B()
     TwoIntsClass * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* FIX: Allocate memory from the heap using malloc() */
     data = (TwoIntsClass *)malloc(100*sizeof(TwoIntsClass));
     if (data == NULL) {exit(-1);}
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
      * require a call to delete to deallocate the memory */
     free(data);

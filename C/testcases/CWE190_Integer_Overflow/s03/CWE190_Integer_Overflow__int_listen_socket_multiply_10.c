@@ -46,6 +46,7 @@ void CWE190_Integer_Overflow__int_listen_socket_multiply_10_bad()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         {
 #ifdef _WIN32
@@ -117,6 +118,7 @@ void CWE190_Integer_Overflow__int_listen_socket_multiply_10_bad()
 #endif
         }
     }
+    if(globalTrue)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -137,6 +139,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         {
 #ifdef _WIN32
@@ -208,6 +211,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -231,6 +240,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         {
 #ifdef _WIN32
@@ -302,6 +312,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(globalTrue)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -325,10 +336,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    if(globalTrue)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {
@@ -345,10 +363,12 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    if(globalTrue)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
     }
+    if(globalTrue)
     {
         if(data > 0) /* ensure we won't have an underflow */
         {

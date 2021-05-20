@@ -46,6 +46,7 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_16_bad()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -103,7 +104,9 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_16_bad()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -111,6 +114,7 @@ void CWE191_Integer_Underflow__int_connect_socket_multiply_16_bad()
             int result = data * 2;
             printIntLine(result);
         }
+        break;
     }
 }
 
@@ -124,6 +128,7 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -181,7 +186,9 @@ static void goodB2G()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -196,6 +203,7 @@ static void goodB2G()
                 printLine("data value is too small to perform multiplication.");
             }
         }
+        break;
     }
 }
 
@@ -205,10 +213,13 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
+        break;
     }
+    while(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -216,6 +227,7 @@ static void goodG2B()
             int result = data * 2;
             printIntLine(result);
         }
+        break;
     }
 }
 

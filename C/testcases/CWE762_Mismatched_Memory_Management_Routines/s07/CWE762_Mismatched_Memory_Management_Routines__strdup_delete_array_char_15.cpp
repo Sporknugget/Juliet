@@ -28,14 +28,32 @@ void bad()
     char * data;
     /* Initialize data*/
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         char myString[] = "myString";
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = strdup(myString);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -48,13 +66,31 @@ static void goodB2G1()
     char * data;
     /* Initialize data*/
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         char myString[] = "myString";
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = strdup(myString);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Deallocate the memory using free() */
         free(data);
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -63,13 +99,31 @@ static void goodB2G2()
     char * data;
     /* Initialize data*/
     data = NULL;
+    switch(6)
+    {
+    case 6:
     {
         char myString[] = "myString";
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = strdup(myString);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: Deallocate the memory using free() */
         free(data);
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -78,11 +132,29 @@ static void goodG2B1()
     char * data;
     /* Initialize data*/
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Allocate memory from the heap using new [] */
         data = new char[100];
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -91,11 +163,29 @@ static void goodG2B2()
     char * data;
     /* Initialize data*/
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Allocate memory from the heap using new [] */
         data = new char[100];
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete [] data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void good()

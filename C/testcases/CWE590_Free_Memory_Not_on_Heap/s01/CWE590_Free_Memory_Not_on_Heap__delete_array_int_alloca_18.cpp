@@ -27,6 +27,8 @@ void bad()
 {
     int * data;
     data = NULL; /* Initialize data */
+    goto source;
+source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         int * dataBuffer = (int *)ALLOCA(100*sizeof(int));
@@ -53,6 +55,8 @@ static void goodG2B()
 {
     int * data;
     data = NULL; /* Initialize data */
+    goto source;
+source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         int * dataBuffer = new int[100];

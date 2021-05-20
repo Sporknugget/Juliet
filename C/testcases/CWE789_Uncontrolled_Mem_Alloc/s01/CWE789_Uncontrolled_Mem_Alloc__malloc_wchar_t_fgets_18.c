@@ -32,6 +32,8 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_fgets_18_bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -45,6 +47,8 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_fgets_18_bad()
             printLine("fgets() failed.");
         }
     }
+    goto sink;
+sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough
@@ -76,6 +80,8 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -89,6 +95,8 @@ static void goodB2G()
             printLine("fgets() failed.");
         }
     }
+    goto sink;
+sink:
     {
         wchar_t * myString;
         /* FIX: Include a MAXIMUM limitation for memory allocation and a check to ensure data is large enough
@@ -116,8 +124,12 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
+    goto source;
+source:
     /* FIX: Use a relatively small number for memory allocation */
     data = 20;
+    goto sink;
+sink:
     {
         wchar_t * myString;
         /* POTENTIAL FLAW: No MAXIMUM limitation for memory allocation, but ensure data is large enough

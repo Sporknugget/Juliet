@@ -29,10 +29,12 @@ void CWE190_Integer_Overflow__int64_t_fscanf_postinc_07_bad()
 {
     int64_t data;
     data = 0LL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -52,10 +54,17 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < LLONG_MAX)
@@ -76,10 +85,12 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(staticFive==5)
     {
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data < LLONG_MAX)
@@ -100,10 +111,17 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */
@@ -119,10 +137,12 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
+    if(staticFive==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
         data = 2;
     }
+    if(staticFive==5)
     {
         {
             /* POTENTIAL FLAW: Incrementing data could cause an overflow */

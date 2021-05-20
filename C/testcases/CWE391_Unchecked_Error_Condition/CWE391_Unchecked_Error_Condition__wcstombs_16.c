@@ -21,6 +21,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE391_Unchecked_Error_Condition__wcstombs_16_bad()
 {
+    while(1)
     {
         {
             size_t bytesTranslated = 0;
@@ -31,6 +32,7 @@ void CWE391_Unchecked_Error_Condition__wcstombs_16_bad()
             printUnsignedLine(bytesTranslated);
             printLine(charString);
         }
+        break;
     }
 }
 
@@ -41,6 +43,7 @@ void CWE391_Unchecked_Error_Condition__wcstombs_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             size_t bytesTranslated = 0;
@@ -57,6 +60,7 @@ static void good1()
             printUnsignedLine(bytesTranslated);
             printLine(charString);
         }
+        break;
     }
 }
 

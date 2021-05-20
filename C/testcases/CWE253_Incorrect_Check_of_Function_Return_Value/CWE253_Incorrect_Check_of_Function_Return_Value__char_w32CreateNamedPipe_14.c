@@ -26,6 +26,7 @@ Template File: point-flaw-14.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32CreateNamedPipe_14_bad()
 {
+    if(globalFive==5)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -60,6 +61,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32CreateNamedPipe_14
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalFive!=5) instead of if(globalFive==5) */
+static void good1()
+{
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";
@@ -92,6 +102,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_w32CreateNamedPipe_14
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalFive==5)
     {
         {
             char * pipeName = "\\\\.\\pipe\\mypipe";

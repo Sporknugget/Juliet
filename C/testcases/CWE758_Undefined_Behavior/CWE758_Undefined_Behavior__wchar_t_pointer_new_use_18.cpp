@@ -22,6 +22,8 @@ namespace CWE758_Undefined_Behavior__wchar_t_pointer_new_use_18
 
 void bad()
 {
+    goto sink;
+sink:
     {
         wchar_t * * pointer = new wchar_t *;
         wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
@@ -37,6 +39,8 @@ void bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         wchar_t * data;
         data = L"string";

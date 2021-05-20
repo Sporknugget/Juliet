@@ -23,12 +23,21 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_15_bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
         /* FLAW: Using sizeof the pointer and not the data type in malloc() */
         data = (twoIntsStruct *)malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Attempt to use data, which may not have enough memory allocated */
     printStructLine(data);
     free(data);
@@ -44,11 +53,20 @@ static void goodG2B1()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Using sizeof the data type in malloc() */
         data = (twoIntsStruct *)malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
+        break;
+    }
     /* POTENTIAL FLAW: Attempt to use data, which may not have enough memory allocated */
     printStructLine(data);
     free(data);
@@ -60,11 +78,20 @@ static void goodG2B2()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Using sizeof the data type in malloc() */
         data = (twoIntsStruct *)malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: Attempt to use data, which may not have enough memory allocated */
     printStructLine(data);
     free(data);

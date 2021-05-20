@@ -39,10 +39,12 @@ void bad()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -67,10 +69,17 @@ static void goodB2G1()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -99,10 +108,12 @@ static void goodB2G2()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(staticReturnsTrue())
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -131,6 +142,12 @@ static void goodG2B1()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -142,6 +159,7 @@ static void goodG2B1()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -162,6 +180,7 @@ static void goodG2B2()
 {
     twoIntsStruct * data;
     data = new twoIntsStruct[10];
+    if(staticReturnsTrue())
     {
         /* FIX: Completely initialize data */
         {
@@ -173,6 +192,7 @@ static void goodG2B2()
             }
         }
     }
+    if(staticReturnsTrue())
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

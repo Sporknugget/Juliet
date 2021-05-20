@@ -38,6 +38,7 @@ void CWE563_Unused_Variable__unused_init_variable_int64_t_08_bad()
     int64_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    if(staticReturnsTrue())
     {
         /* FLAW: Do not use the variable */
         /* do nothing */
@@ -55,6 +56,12 @@ static void goodB2G1()
     int64_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data */
         printLongLongLine(data);
@@ -67,6 +74,7 @@ static void goodB2G2()
     int64_t data;
     /* POTENTIAL FLAW: Initialize, but do not use data */
     data = 5LL;
+    if(staticReturnsTrue())
     {
         /* FIX: Use data */
         printLongLongLine(data);

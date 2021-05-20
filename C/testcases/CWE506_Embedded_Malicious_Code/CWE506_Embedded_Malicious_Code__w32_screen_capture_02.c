@@ -23,6 +23,7 @@ Template File: point-flaw-badonly-02.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_02_bad()
 {
+    if(1)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

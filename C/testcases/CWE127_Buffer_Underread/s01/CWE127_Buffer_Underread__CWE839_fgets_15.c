@@ -26,6 +26,9 @@ void CWE127_Buffer_Underread__CWE839_fgets_15_bad()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -39,6 +42,15 @@ void CWE127_Buffer_Underread__CWE839_fgets_15_bad()
             printLine("fgets() failed.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int buffer[10] = { 0 };
         /* POTENTIAL FLAW: Attempt to access a negative index of the array
@@ -51,6 +63,12 @@ void CWE127_Buffer_Underread__CWE839_fgets_15_bad()
         {
             printLine("ERROR: Array index is too big.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -64,6 +82,9 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -77,6 +98,19 @@ static void goodB2G1()
             printLine("fgets() failed.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int buffer[10] = { 0 };
         /* FIX: Properly validate the array index and prevent a buffer underread */
@@ -88,6 +122,8 @@ static void goodB2G1()
         {
             printLine("ERROR: Array index is out-of-bounds");
         }
+    }
+    break;
     }
 }
 
@@ -97,6 +133,9 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
     {
         char inputBuffer[CHAR_ARRAY_SIZE] = "";
         /* POTENTIAL FLAW: Read data from the console using fgets() */
@@ -110,6 +149,15 @@ static void goodB2G2()
             printLine("fgets() failed.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int buffer[10] = { 0 };
         /* FIX: Properly validate the array index and prevent a buffer underread */
@@ -122,6 +170,12 @@ static void goodB2G2()
             printLine("ERROR: Array index is out-of-bounds");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -130,9 +184,21 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int buffer[10] = { 0 };
         /* POTENTIAL FLAW: Attempt to access a negative index of the array
@@ -146,6 +212,12 @@ static void goodG2B1()
             printLine("ERROR: Array index is too big.");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -154,9 +226,21 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int buffer[10] = { 0 };
         /* POTENTIAL FLAW: Attempt to access a negative index of the array
@@ -169,6 +253,12 @@ static void goodG2B2()
         {
             printLine("ERROR: Array index is too big.");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

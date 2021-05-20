@@ -27,6 +27,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         BYTE payload[200];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -88,6 +91,12 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_15_bad()
         /* use encrypted block */
         printBytesLine((BYTE *) payload, payloadLen);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -97,6 +106,13 @@ void CWE780_Use_of_RSA_Algorithm_Without_OAEP__w32_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         BYTE payload[200];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -158,11 +174,16 @@ static void good1()
         /* use encrypted block */
         printBytesLine((BYTE *) payload, payloadLen);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         BYTE payload[200];
         DWORD payloadLen = strlen(PAYLOAD);
@@ -223,6 +244,12 @@ static void good2()
         }
         /* use encrypted block */
         printBytesLine((BYTE *) payload, payloadLen);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

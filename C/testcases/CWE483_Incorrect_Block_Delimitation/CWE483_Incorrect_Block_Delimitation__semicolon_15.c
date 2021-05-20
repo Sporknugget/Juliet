@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE483_Incorrect_Block_Delimitation__semicolon_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int x = (rand() % 3);
         int y = 0;
@@ -33,6 +36,12 @@ void CWE483_Incorrect_Block_Delimitation__semicolon_15_bad()
             printLine("x was 0\n");
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -42,6 +51,13 @@ void CWE483_Incorrect_Block_Delimitation__semicolon_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int x = (rand() % 3);
         int y = 0;
@@ -56,11 +72,16 @@ static void good1()
             printLine("x was 0\n");
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int x = (rand() % 3);
         int y = 0;
@@ -74,6 +95,12 @@ static void good2()
         {
             printLine("x was 0\n");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

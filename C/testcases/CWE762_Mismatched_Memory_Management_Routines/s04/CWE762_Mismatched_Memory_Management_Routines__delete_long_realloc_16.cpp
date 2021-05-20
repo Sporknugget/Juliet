@@ -26,16 +26,20 @@ void bad()
     long * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+        break;
     }
 }
 
@@ -49,15 +53,19 @@ static void goodB2G()
     long * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         data = NULL;
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (long *)realloc(data, 100*sizeof(long));
         if (data == NULL) {exit(-1);}
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate the memory using free() */
         free(data);
+        break;
     }
 }
 
@@ -67,14 +75,18 @@ static void goodG2B()
     long * data;
     /* Initialize data*/
     data = NULL;
+    while(1)
     {
         /* FIX: Allocate memory from the heap using new */
         data = new long;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete - the source memory allocation function may
          * require a call to free() to deallocate the memory */
         delete data;
+        break;
     }
 }
 

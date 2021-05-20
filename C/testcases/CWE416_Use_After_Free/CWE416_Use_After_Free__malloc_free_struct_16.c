@@ -26,6 +26,7 @@ void CWE416_Use_After_Free__malloc_free_struct_16_bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    while(1)
     {
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -39,11 +40,14 @@ void CWE416_Use_After_Free__malloc_free_struct_16_bad()
         }
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printStructLine(&data[0]);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+        break;
     }
 }
 
@@ -57,6 +61,7 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    while(1)
     {
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -70,12 +75,15 @@ static void goodB2G()
         }
         /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
         free(data);
+        break;
     }
+    while(1)
     {
         /* FIX: Don't use data that may have been freed already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
         /* do nothing */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -85,6 +93,7 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    while(1)
     {
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
@@ -97,11 +106,14 @@ static void goodG2B()
             }
         }
         /* FIX: Do not free data in the source */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been freed */
         printStructLine(&data[0]);
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
+        break;
     }
 }
 

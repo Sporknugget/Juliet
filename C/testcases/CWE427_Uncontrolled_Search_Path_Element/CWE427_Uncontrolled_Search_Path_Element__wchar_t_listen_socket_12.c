@@ -53,6 +53,7 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_listen_socket_12_bad()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -134,6 +135,11 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_listen_socket_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Set the path as the "system" path */
+        wcscat(data, NEW_PATH);
+    }
     /* POTENTIAL FLAW: Set a new environment variable with a path that is possibly insecure */
     PUTENV(data);
 }
@@ -149,6 +155,12 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Set the path as the "system" path */
+        wcscat(data, NEW_PATH);
+    }
+    else
     {
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);

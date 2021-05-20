@@ -23,8 +23,12 @@ void CWE191_Integer_Underflow__int64_t_min_sub_18_bad()
 {
     int64_t data;
     data = 0LL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use the minimum size of the data type */
     data = LLONG_MIN;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         int64_t result = data - 1;
@@ -41,8 +45,12 @@ static void goodB2G()
 {
     int64_t data;
     data = 0LL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use the minimum size of the data type */
     data = LLONG_MIN;
+    goto sink;
+sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > LLONG_MIN)
     {
@@ -60,8 +68,12 @@ static void goodG2B()
 {
     int64_t data;
     data = 0LL;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
     data = -2;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         int64_t result = data - 1;

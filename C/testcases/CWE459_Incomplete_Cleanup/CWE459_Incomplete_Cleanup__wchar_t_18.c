@@ -30,6 +30,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE459_Incomplete_Cleanup__wchar_t_18_bad()
 {
+    goto sink;
+sink:
     {
         wchar_t * filename;
         wchar_t tmpl[] = L"badXXXXXX";
@@ -56,6 +58,8 @@ void CWE459_Incomplete_Cleanup__wchar_t_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         wchar_t * filename;
         wchar_t tmpl[] = L"goodXXXXXX";

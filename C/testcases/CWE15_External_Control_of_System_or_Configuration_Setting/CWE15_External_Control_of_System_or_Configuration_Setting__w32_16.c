@@ -31,6 +31,7 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_16_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         {
             WSADATA wsaData;
@@ -101,6 +102,7 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_16_bad()
                 WSACleanup();
             }
         }
+        break;
     }
     /* POTENTIAL FLAW: set the hostname to data obtained from a potentially external source */
     if (!SetComputerNameA(data))
@@ -120,9 +122,11 @@ static void goodG2B()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: get the hostname from a string literal */
         strcpy(data, "hostname");
+        break;
     }
     /* POTENTIAL FLAW: set the hostname to data obtained from a potentially external source */
     if (!SetComputerNameA(data))

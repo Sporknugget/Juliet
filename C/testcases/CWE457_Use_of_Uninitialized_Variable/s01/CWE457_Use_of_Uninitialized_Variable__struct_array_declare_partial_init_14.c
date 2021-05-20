@@ -24,6 +24,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_declare_partial_init_14_
     twoIntsStruct * data;
     twoIntsStruct dataUninitArray[10];
     data = dataUninitArray;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -35,6 +36,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_declare_partial_init_14_
             }
         }
     }
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -58,6 +60,7 @@ static void goodB2G1()
     twoIntsStruct * data;
     twoIntsStruct dataUninitArray[10];
     data = dataUninitArray;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -69,6 +72,12 @@ static void goodB2G1()
             }
         }
     }
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -96,6 +105,7 @@ static void goodB2G2()
     twoIntsStruct * data;
     twoIntsStruct dataUninitArray[10];
     data = dataUninitArray;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Partially initialize data */
         {
@@ -107,6 +117,7 @@ static void goodB2G2()
             }
         }
     }
+    if(globalFive==5)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -134,6 +145,12 @@ static void goodG2B1()
     twoIntsStruct * data;
     twoIntsStruct dataUninitArray[10];
     data = dataUninitArray;
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -145,6 +162,7 @@ static void goodG2B1()
             }
         }
     }
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -164,6 +182,7 @@ static void goodG2B2()
     twoIntsStruct * data;
     twoIntsStruct dataUninitArray[10];
     data = dataUninitArray;
+    if(globalFive==5)
     {
         /* FIX: Completely initialize data */
         {
@@ -175,6 +194,7 @@ static void goodG2B2()
             }
         }
     }
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

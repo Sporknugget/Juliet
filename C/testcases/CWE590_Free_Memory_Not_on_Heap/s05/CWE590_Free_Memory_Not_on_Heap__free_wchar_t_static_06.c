@@ -28,6 +28,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_wchar_t_static_06_bad()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
@@ -51,6 +52,12 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
@@ -75,6 +82,7 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL; /* Initialize data */
+    if(STATIC_CONST_FIVE==5)
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

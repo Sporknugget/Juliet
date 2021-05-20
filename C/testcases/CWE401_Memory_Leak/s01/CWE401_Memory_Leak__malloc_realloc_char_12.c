@@ -23,6 +23,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE401_Memory_Leak__malloc_realloc_char_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char * data = (char *)malloc(100*sizeof(char));
@@ -41,6 +42,28 @@ void CWE401_Memory_Leak__malloc_realloc_char_12_bad()
             }
         }
     }
+    else
+    {
+        {
+            char * data = (char *)malloc(100*sizeof(char));
+            if (data == NULL) {exit(-1);}
+            char * tmpData;
+            /* Initialize and make use of data */
+            strcpy(data, "A String");
+            printLine(data);
+            tmpData = (char *)realloc(data, (130000)*sizeof(char));
+            /* FIX: Ensure realloc() was successful before assigning data to the memory block
+            * allocated with realloc() */
+            if (tmpData != NULL)
+            {
+                data = tmpData;
+                /* Reinitialize and make use of data */
+                strcpy(data, "New String");
+                printLine(data);
+            }
+            free(data);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -50,6 +73,29 @@ void CWE401_Memory_Leak__malloc_realloc_char_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char * data = (char *)malloc(100*sizeof(char));
+            if (data == NULL) {exit(-1);}
+            char * tmpData;
+            /* Initialize and make use of data */
+            strcpy(data, "A String");
+            printLine(data);
+            tmpData = (char *)realloc(data, (130000)*sizeof(char));
+            /* FIX: Ensure realloc() was successful before assigning data to the memory block
+            * allocated with realloc() */
+            if (tmpData != NULL)
+            {
+                data = tmpData;
+                /* Reinitialize and make use of data */
+                strcpy(data, "New String");
+                printLine(data);
+            }
+            free(data);
+        }
+    }
+    else
     {
         {
             char * data = (char *)malloc(100*sizeof(char));

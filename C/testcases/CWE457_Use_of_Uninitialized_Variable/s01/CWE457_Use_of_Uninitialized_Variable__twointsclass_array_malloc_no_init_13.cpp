@@ -26,10 +26,12 @@ void bad()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -50,10 +52,17 @@ static void goodB2G1()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         for(int i=0; i<10; i++)
@@ -75,10 +84,12 @@ static void goodB2G2()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Ensure data is initialized before use */
         for(int i=0; i<10; i++)
@@ -100,6 +111,12 @@ static void goodG2B1()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         for(int i=0; i<10; i++)
@@ -108,6 +125,7 @@ static void goodG2B1()
             data[i].intTwo = i;
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)
@@ -124,6 +142,7 @@ static void goodG2B2()
     TwoIntsClass * data;
     data = reinterpret_cast<TwoIntsClass *>(malloc(10*sizeof(TwoIntsClass)));
     if (data == NULL) {exit(-1);}
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Completely initialize data */
         for(int i=0; i<10; i++)
@@ -132,6 +151,7 @@ static void goodG2B2()
             data[i].intTwo = i;
         }
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         for(int i=0; i<10; i++)

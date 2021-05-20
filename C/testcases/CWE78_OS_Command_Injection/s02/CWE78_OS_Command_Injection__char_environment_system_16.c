@@ -46,6 +46,7 @@ void CWE78_OS_Command_Injection__char_environment_system_16_bad()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -58,6 +59,7 @@ void CWE78_OS_Command_Injection__char_environment_system_16_bad()
                 strncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
+        break;
     }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)
@@ -77,9 +79,11 @@ static void goodG2B()
     char * data;
     char data_buf[100] = FULL_COMMAND;
     data = data_buf;
+    while(1)
     {
         /* FIX: Append a fixed string to data (not user / external input) */
         strcat(data, "*.*");
+        break;
     }
     /* POTENTIAL FLAW: Execute command in data possibly leading to command injection */
     if (SYSTEM(data) != 0)

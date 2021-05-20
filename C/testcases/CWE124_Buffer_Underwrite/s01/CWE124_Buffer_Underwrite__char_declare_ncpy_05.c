@@ -33,6 +33,7 @@ void CWE124_Buffer_Underwrite__char_declare_ncpy_05_bad()
     char dataBuffer[100];
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
+    if(staticTrue)
     {
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
@@ -60,6 +61,12 @@ static void goodG2B1()
     char dataBuffer[100];
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
@@ -83,6 +90,7 @@ static void goodG2B2()
     char dataBuffer[100];
     memset(dataBuffer, 'A', 100-1);
     dataBuffer[100-1] = '\0';
+    if(staticTrue)
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;

@@ -30,10 +30,12 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 void CWE563_Unused_Variable__unused_value_char_04_bad()
 {
     char data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';
@@ -49,10 +51,17 @@ void CWE563_Unused_Variable__unused_value_char_04_bad()
 static void goodB2G1()
 {
     char data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use data without over-writing its value */
         printHexCharLine(data);
@@ -63,10 +72,12 @@ static void goodB2G1()
 static void goodB2G2()
 {
     char data;
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Initialize, but do not use data */
         data = 'C';
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use data without over-writing its value */
         printHexCharLine(data);
@@ -77,11 +88,18 @@ static void goodB2G2()
 static void goodG2B1()
 {
     char data;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 'C';
         printHexCharLine(data);
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';
@@ -93,11 +111,13 @@ static void goodG2B1()
 static void goodG2B2()
 {
     char data;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Initialize and use data before it is overwritten */
         data = 'C';
         printHexCharLine(data);
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Possibly over-write the initial value of data before using it */
         data = 'Z';

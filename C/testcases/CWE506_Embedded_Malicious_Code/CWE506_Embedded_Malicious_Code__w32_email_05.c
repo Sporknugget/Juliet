@@ -31,6 +31,7 @@ static int staticTrue = 1; /* true */
 
 void CWE506_Embedded_Malicious_Code__w32_email_05_bad()
 {
+    if(staticTrue)
     {
         {
             WSADATA wsaData;

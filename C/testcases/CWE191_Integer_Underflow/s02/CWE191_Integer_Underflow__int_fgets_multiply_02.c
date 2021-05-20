@@ -26,6 +26,7 @@ void CWE191_Integer_Underflow__int_fgets_multiply_02_bad()
     int data;
     /* Initialize data */
     data = 0;
+    if(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -41,6 +42,7 @@ void CWE191_Integer_Underflow__int_fgets_multiply_02_bad()
             }
         }
     }
+    if(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -61,6 +63,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    if(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -76,6 +79,12 @@ static void goodB2G1()
             }
         }
     }
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -99,6 +108,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    if(1)
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -114,6 +124,7 @@ static void goodB2G2()
             }
         }
     }
+    if(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -137,10 +148,17 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
+    if(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -157,10 +175,12 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    if(1)
     {
         /* FIX: Use a small, non-zero value that will not cause an integer underflow in the sinks */
         data = -2;
     }
+    if(1)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

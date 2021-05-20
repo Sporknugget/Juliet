@@ -23,6 +23,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));
@@ -72,6 +74,8 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_wchar_t_alloca_1
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             wchar_t * password = (wchar_t *)ALLOCA(100*sizeof(wchar_t));

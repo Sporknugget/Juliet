@@ -22,6 +22,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE284_Improper_Access_Control__w32_wchar_t_CreateDesktop_16_bad()
 {
+    while(1)
     {
         {
             HDESK hDesk;
@@ -44,6 +45,7 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateDesktop_16_bad()
                 CloseDesktop(hDesk);
             }
         }
+        break;
     }
 }
 
@@ -54,6 +56,7 @@ void CWE284_Improper_Access_Control__w32_wchar_t_CreateDesktop_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             HDESK hDesk;
@@ -76,6 +79,7 @@ static void good1()
                 CloseDesktop(hDesk);
             }
         }
+        break;
     }
 }
 

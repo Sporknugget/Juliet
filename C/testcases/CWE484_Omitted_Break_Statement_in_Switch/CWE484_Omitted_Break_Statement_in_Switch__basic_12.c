@@ -19,6 +19,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE484_Omitted_Break_Statement_in_Switch__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             int x = (rand() % 3);
@@ -27,6 +28,29 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_12_bad()
             {
             case 0:
                 printLine("0");
+            case 1:
+                printLine("1");
+                break;
+            case 2:
+                printLine("2");
+                break;
+            default:
+                printLine("Invalid Number");
+                break;
+            }
+        }
+    }
+    else
+    {
+        {
+            int x = (rand() % 3);
+            /* FIX: Use break in all cases that you do not intend "fall-through"
+             * behavior */
+            switch (x)
+            {
+            case 0:
+                printLine("0");
+                break;
             case 1:
                 printLine("1");
                 break;
@@ -48,6 +72,30 @@ void CWE484_Omitted_Break_Statement_in_Switch__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            int x = (rand() % 3);
+            /* FIX: Use break in all cases that you do not intend "fall-through"
+             * behavior */
+            switch (x)
+            {
+            case 0:
+                printLine("0");
+                break;
+            case 1:
+                printLine("1");
+                break;
+            case 2:
+                printLine("2");
+                break;
+            default:
+                printLine("Invalid Number");
+                break;
+            }
+        }
+    }
+    else
     {
         {
             int x = (rand() % 3);

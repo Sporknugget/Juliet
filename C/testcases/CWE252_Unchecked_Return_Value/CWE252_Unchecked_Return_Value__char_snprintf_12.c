@@ -31,6 +31,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_snprintf_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the
@@ -39,6 +40,20 @@ void CWE252_Unchecked_Return_Value__char_snprintf_12_bad()
             char * data = dataBuffer;
             /* FLAW: Do not check the return value */
             SNPRINTF(data,100-strlen(SRC)-1, "%s\n", SRC);
+        }
+    }
+    else
+    {
+        {
+            /* By initializing dataBuffer, we ensure this will not be the
+             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgets() and other variants */
+            char dataBuffer[100] = "";
+            char * data = dataBuffer;
+            /* FIX: check the return value */
+            if (SNPRINTF(data,100-strlen(SRC)-1, "%s\n", SRC) < 0)
+            {
+                printLine("snprintf failed!");
+            }
         }
     }
 }
@@ -50,6 +65,21 @@ void CWE252_Unchecked_Return_Value__char_snprintf_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* By initializing dataBuffer, we ensure this will not be the
+             * CWE 690 (Unchecked Return Value To NULL Pointer) flaw for fgets() and other variants */
+            char dataBuffer[100] = "";
+            char * data = dataBuffer;
+            /* FIX: check the return value */
+            if (SNPRINTF(data,100-strlen(SRC)-1, "%s\n", SRC) < 0)
+            {
+                printLine("snprintf failed!");
+            }
+        }
+    }
+    else
     {
         {
             /* By initializing dataBuffer, we ensure this will not be the

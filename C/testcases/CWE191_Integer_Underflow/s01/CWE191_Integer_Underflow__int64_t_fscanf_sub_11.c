@@ -24,10 +24,12 @@ void CWE191_Integer_Underflow__int64_t_fscanf_sub_11_bad()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -46,10 +48,17 @@ static void goodB2G1()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -69,10 +78,12 @@ static void goodB2G2()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Use a value input from the console */
         fscanf (stdin, "%" SCNd64, &data);
     }
+    if(globalReturnsTrue())
     {
         /* FIX: Add a check to prevent an underflow from occurring */
         if (data > LLONG_MIN)
@@ -92,10 +103,17 @@ static void goodG2B1()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
@@ -110,10 +128,12 @@ static void goodG2B2()
 {
     int64_t data;
     data = 0LL;
+    if(globalReturnsTrue())
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(globalReturnsTrue())
     {
         {
             /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */

@@ -52,6 +52,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_05_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticTrue)
     {
         {
 #ifdef _WIN32
@@ -123,6 +124,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_05_bad()
 #endif
         }
     }
+    if(staticTrue)
     {
         {
             int i;
@@ -163,6 +165,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticTrue)
     {
         {
 #ifdef _WIN32
@@ -234,6 +237,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int i;
@@ -269,6 +278,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticTrue)
     {
         {
 #ifdef _WIN32
@@ -340,6 +350,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(staticTrue)
     {
         {
             int i;
@@ -375,11 +386,18 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(staticTrue)
     {
         {
             int i;
@@ -416,11 +434,13 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticTrue)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(staticTrue)
     {
         {
             int i;

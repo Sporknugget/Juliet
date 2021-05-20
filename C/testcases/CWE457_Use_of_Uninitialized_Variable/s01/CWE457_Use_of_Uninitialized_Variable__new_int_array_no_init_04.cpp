@@ -32,10 +32,12 @@ void bad()
 {
     int * data;
     data = new int[10];
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -59,10 +61,17 @@ static void goodB2G1()
 {
     int * data;
     data = new int[10];
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -89,10 +98,12 @@ static void goodB2G2()
 {
     int * data;
     data = new int[10];
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
     }
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -119,6 +130,12 @@ static void goodG2B1()
 {
     int * data;
     data = new int[10];
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Completely initialize data */
         {
@@ -129,6 +146,7 @@ static void goodG2B1()
             }
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -148,6 +166,7 @@ static void goodG2B2()
 {
     int * data;
     data = new int[10];
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Completely initialize data */
         {
@@ -158,6 +177,7 @@ static void goodG2B2()
             }
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {

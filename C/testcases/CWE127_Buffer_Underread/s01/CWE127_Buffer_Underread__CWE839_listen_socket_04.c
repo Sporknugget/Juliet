@@ -52,6 +52,7 @@ void CWE127_Buffer_Underread__CWE839_listen_socket_04_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -123,6 +124,7 @@ void CWE127_Buffer_Underread__CWE839_listen_socket_04_bad()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int buffer[10] = { 0 };
@@ -150,6 +152,7 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -221,6 +224,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int buffer[10] = { 0 };
@@ -243,6 +252,7 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -314,6 +324,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int buffer[10] = { 0 };
@@ -336,11 +347,18 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int buffer[10] = { 0 };
@@ -364,11 +382,13 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
          * access an index of the array in the sink that is out-of-bounds */
         data = 7;
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int buffer[10] = { 0 };

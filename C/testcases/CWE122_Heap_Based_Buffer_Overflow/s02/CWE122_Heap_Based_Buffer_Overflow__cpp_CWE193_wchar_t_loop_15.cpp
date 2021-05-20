@@ -32,8 +32,17 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FLAW: Did not leave space for a null terminator */
         data = new wchar_t[10];
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         wchar_t source[10+1] = SRC_STRING;
         size_t i, sourceLen;
@@ -58,8 +67,17 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Allocate space for a null terminator */
         data = new wchar_t[10+1];
+        break;
+    }
     {
         wchar_t source[10+1] = SRC_STRING;
         size_t i, sourceLen;
@@ -80,8 +98,17 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
+    switch(6)
+    {
+    case 6:
         /* FIX: Allocate space for a null terminator */
         data = new wchar_t[10+1];
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         wchar_t source[10+1] = SRC_STRING;
         size_t i, sourceLen;

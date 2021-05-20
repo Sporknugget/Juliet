@@ -19,12 +19,17 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE398_Poor_Code_Quality__empty_case_15_bad()
 {
+    switch(6)
+    {
+    case 6:
         /* FLAW: An empty case statement has no effect */
     {
         int x = (rand() % 3);
         switch (x)
         {
         case 0:
+            break;
+        }
     }
     printLine("Hello from bad()");
     break;
@@ -42,6 +47,13 @@ void CWE398_Poor_Code_Quality__empty_case_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Do not include an empty case statement */
     {
         int x = (rand() % 3);
@@ -49,6 +61,8 @@ static void good1()
         {
         case 0:
             printLine("Inside the case statement");
+            break;
+        }
     }
     printLine("Hello from good()");
     break;
@@ -58,6 +72,9 @@ static void good1()
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
         /* FIX: Do not include an empty case statement */
     {
         int x = (rand() % 3);
@@ -65,6 +82,8 @@ static void good2()
         {
         case 0:
             printLine("Inside the case statement");
+            break;
+        }
     }
     printLine("Hello from good()");
     break;

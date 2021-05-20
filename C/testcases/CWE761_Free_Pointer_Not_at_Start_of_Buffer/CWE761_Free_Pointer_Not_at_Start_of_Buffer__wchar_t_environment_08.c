@@ -60,6 +60,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_08_bad()
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    if(staticReturnsTrue())
     {
         /* FLAW: We are incrementing the pointer in the loop - this will cause us to free the
          * memory block not at the start of the buffer */
@@ -97,6 +98,12 @@ static void goodB2G1()
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             size_t i;
@@ -132,6 +139,7 @@ static void goodB2G2()
             wcsncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    if(staticReturnsTrue())
     {
         {
             size_t i;

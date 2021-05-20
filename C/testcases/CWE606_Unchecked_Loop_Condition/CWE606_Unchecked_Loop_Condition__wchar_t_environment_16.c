@@ -38,6 +38,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_environment_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -50,7 +51,9 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_environment_16_bad()
                 wcsncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
+        break;
     }
+    while(1)
     {
         {
             int i, n, intVariable;
@@ -66,6 +69,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_environment_16_bad()
                 printIntLine(intVariable);
             }
         }
+        break;
     }
 }
 
@@ -79,6 +83,7 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Append input from an environment variable to data */
@@ -91,7 +96,9 @@ static void goodB2G()
                 wcsncat(data+dataLen, environment, 100-dataLen-1);
             }
         }
+        break;
     }
+    while(1)
     {
         {
             int i, n, intVariable;
@@ -110,6 +117,7 @@ static void goodB2G()
                 }
             }
         }
+        break;
     }
 }
 
@@ -119,10 +127,13 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
+        break;
     }
+    while(1)
     {
         {
             int i, n, intVariable;
@@ -138,6 +149,7 @@ static void goodG2B()
                 printIntLine(intVariable);
             }
         }
+        break;
     }
 }
 

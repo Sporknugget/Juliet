@@ -26,6 +26,7 @@ void CWE400_Resource_Exhaustion__fgets_for_loop_12_bad()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -41,6 +42,12 @@ void CWE400_Resource_Exhaustion__fgets_for_loop_12_bad()
             }
         }
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             size_t i = 0;
@@ -48,6 +55,20 @@ void CWE400_Resource_Exhaustion__fgets_for_loop_12_bad()
             for (i = 0; i < (size_t)count; i++)
             {
                 printLine("Hello");
+            }
+        }
+    }
+    else
+    {
+        {
+            size_t i = 0;
+            /* FIX: Validate count before using it as the for loop variant */
+            if (count > 0 && count <= 20)
+            {
+                for (i = 0; i < (size_t)count; i++)
+                {
+                    printLine("Hello");
+                }
             }
         }
     }
@@ -65,6 +86,7 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE] = "";
@@ -80,6 +102,37 @@ static void goodB2G()
             }
         }
     }
+    else
+    {
+        {
+            char inputBuffer[CHAR_ARRAY_SIZE] = "";
+            /* POTENTIAL FLAW: Read count from the console using fgets() */
+            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
+            {
+                /* Convert to int */
+                count = atoi(inputBuffer);
+            }
+            else
+            {
+                printLine("fgets() failed.");
+            }
+        }
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t i = 0;
+            /* FIX: Validate count before using it as the for loop variant */
+            if (count > 0 && count <= 20)
+            {
+                for (i = 0; i < (size_t)count; i++)
+                {
+                    printLine("Hello");
+                }
+            }
+        }
+    }
+    else
     {
         {
             size_t i = 0;
@@ -103,10 +156,28 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t i = 0;
+            /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */
+            for (i = 0; i < (size_t)count; i++)
+            {
+                printLine("Hello");
+            }
+        }
+    }
+    else
     {
         {
             size_t i = 0;

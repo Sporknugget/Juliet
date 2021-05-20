@@ -26,6 +26,7 @@ Template File: point-flaw-badonly-09.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_email_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         {
             WSADATA wsaData;

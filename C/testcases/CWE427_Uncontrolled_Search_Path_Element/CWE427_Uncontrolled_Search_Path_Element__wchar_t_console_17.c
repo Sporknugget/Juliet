@@ -29,9 +29,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE427_Uncontrolled_Search_Path_Element__wchar_t_console_17_bad()
 {
+    int i;
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
             /* Read input from the console */
@@ -70,9 +72,11 @@ void CWE427_Uncontrolled_Search_Path_Element__wchar_t_console_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     wchar_t * data;
     wchar_t dataBuffer[250] = L"PATH=";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Set the path as the "system" path */
         wcscat(data, NEW_PATH);

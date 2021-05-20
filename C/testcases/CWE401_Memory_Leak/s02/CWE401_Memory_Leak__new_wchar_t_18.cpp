@@ -29,11 +29,15 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new wchar_t;
     /* Initialize and make use of data */
     *data = L'A';
     printHexCharLine((char)*data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
@@ -47,11 +51,15 @@ static void goodB2G()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory on the heap */
     data = new wchar_t;
     /* Initialize and make use of data */
     *data = L'A';
     printHexCharLine((char)*data);
+    goto sink;
+sink:
     /* FIX: Deallocate memory */
     delete data;
 }
@@ -61,12 +69,16 @@ static void goodG2B()
 {
     wchar_t * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Use memory allocated on the stack */
     wchar_t dataGoodBuffer;
     data = &dataGoodBuffer;
     /* Initialize and make use of data */
     *data = L'A';
     printHexCharLine((char)*data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }

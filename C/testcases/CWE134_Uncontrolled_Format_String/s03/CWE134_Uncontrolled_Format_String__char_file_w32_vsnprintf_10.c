@@ -48,6 +48,7 @@ void CWE134_Uncontrolled_Format_String__char_file_w32_vsnprintf_10_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalTrue)
     {
         {
             /* Read input from a file */
@@ -71,6 +72,7 @@ void CWE134_Uncontrolled_Format_String__char_file_w32_vsnprintf_10_bad()
             }
         }
     }
+    if(globalTrue)
     {
         badVaSinkB(data, data);
     }
@@ -99,6 +101,7 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalTrue)
     {
         {
             /* Read input from a file */
@@ -122,6 +125,12 @@ static void goodB2G1()
             }
         }
     }
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         goodB2G1VaSinkG(data, data);
     }
@@ -146,6 +155,7 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalTrue)
     {
         {
             /* Read input from a file */
@@ -169,6 +179,7 @@ static void goodB2G2()
             }
         }
     }
+    if(globalTrue)
     {
         goodB2G2VaSinkG(data, data);
     }
@@ -193,10 +204,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(globalTrue)
     {
         goodG2B1VaSinkB(data, data);
     }
@@ -221,10 +239,12 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    if(globalTrue)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    if(globalTrue)
     {
         goodG2B2VaSinkB(data, data);
     }

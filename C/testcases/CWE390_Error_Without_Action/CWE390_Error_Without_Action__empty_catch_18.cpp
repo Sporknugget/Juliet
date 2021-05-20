@@ -27,6 +27,8 @@ namespace CWE390_Error_Without_Action__empty_catch_18
 
 void bad()
 {
+    goto sink;
+sink:
     {
         try
         {
@@ -48,6 +50,8 @@ void bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         try
         {

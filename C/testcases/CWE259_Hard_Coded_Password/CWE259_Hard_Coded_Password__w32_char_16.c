@@ -30,9 +30,11 @@ void CWE259_Hard_Coded_Password__w32_char_16_bad()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    while(1)
     {
         /* FLAW: Use a hardcoded password */
         strcpy(password, PASSWORD);
+        break;
     }
     {
         HANDLE pHandle;
@@ -67,6 +69,7 @@ static void goodG2B()
     char * password;
     char passwordBuffer[100] = "";
     password = passwordBuffer;
+    while(1)
     {
         {
             size_t passwordLen = 0;
@@ -84,6 +87,7 @@ static void goodG2B()
                 password[passwordLen-1] = '\0';
             }
         }
+        break;
     }
     {
         HANDLE pHandle;

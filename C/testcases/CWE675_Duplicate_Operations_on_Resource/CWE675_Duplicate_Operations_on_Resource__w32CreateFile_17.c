@@ -23,8 +23,10 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_17_bad()
 {
+    int i,j;
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    for(i = 0; i < 1; i++)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -36,6 +38,7 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_17_bad()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);
@@ -49,8 +52,10 @@ void CWE675_Duplicate_Operations_on_Resource__w32CreateFile_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    for(i = 0; i < 1; i++)
     {
         data = CreateFile("BadSource_w32CreateFile.txt",
                           (GENERIC_WRITE|GENERIC_READ),
@@ -62,6 +67,7 @@ static void goodB2G()
         /* POTENTIAL FLAW: Close the file in the source */
         CloseHandle(data);
     }
+    for(k = 0; k < 1; k++)
     {
         /* Do nothing */
         /* FIX: Don't close the file in the sink */
@@ -72,8 +78,10 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     HANDLE data;
     data = INVALID_HANDLE_VALUE; /* Initialize data */
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Open, but do not close the file in the source */
         data = CreateFile("GoodSource_w32CreateFile.txt",
@@ -84,6 +92,7 @@ static void goodG2B()
                           FILE_ATTRIBUTE_NORMAL,
                           NULL);
     }
+    for(j = 0; j < 1; j++)
     {
         /* POTENTIAL FLAW: Close the file in the sink (it may have been closed in the Source) */
         CloseHandle(data);

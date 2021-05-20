@@ -58,6 +58,7 @@ static void helperGood(void *args)
 
 void CWE366_Race_Condition_Within_Thread__global_int_11_bad()
 {
+    if(globalReturnsTrue())
     {
         {
             stdThread threadA = NULL;
@@ -88,6 +89,15 @@ void CWE366_Race_Condition_Within_Thread__global_int_11_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(globalReturnsFalse()) instead of if(globalReturnsTrue()) */
+static void good1()
+{
+    if(globalReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             stdThread threadA = NULL;
@@ -121,6 +131,7 @@ void CWE366_Race_Condition_Within_Thread__global_int_11_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(globalReturnsTrue())
     {
         {
             stdThread threadA = NULL;

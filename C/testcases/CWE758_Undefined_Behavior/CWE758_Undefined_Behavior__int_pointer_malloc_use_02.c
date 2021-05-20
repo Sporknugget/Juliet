@@ -19,6 +19,7 @@ Template File: point-flaw-02.tmpl.c
 
 void CWE758_Undefined_Behavior__int_pointer_malloc_use_02_bad()
 {
+    if(1)
     {
         {
             int * * pointer = (int * *)malloc(sizeof(int *));
@@ -34,6 +35,15 @@ void CWE758_Undefined_Behavior__int_pointer_malloc_use_02_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int * data;
@@ -56,6 +66,7 @@ void CWE758_Undefined_Behavior__int_pointer_malloc_use_02_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         {
             int * data;

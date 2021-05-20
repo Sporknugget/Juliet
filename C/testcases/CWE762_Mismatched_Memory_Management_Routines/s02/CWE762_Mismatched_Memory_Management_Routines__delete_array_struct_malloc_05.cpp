@@ -33,11 +33,13 @@ void bad()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -55,11 +57,18 @@ static void goodB2G1()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Free memory using free() */
         free(data);
@@ -72,11 +81,13 @@ static void goodB2G2()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires free() to free the memory */
         data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
+    if(staticTrue)
     {
         /* FIX: Free memory using free() */
         free(data);
@@ -89,10 +100,17 @@ static void goodG2B1()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory using new [] */
         data = new twoIntsStruct[100];
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */
@@ -106,10 +124,12 @@ static void goodG2B2()
     twoIntsStruct * data;
     /* Initialize data*/
     data = NULL;
+    if(staticTrue)
     {
         /* FIX: Allocate memory using new [] */
         data = new twoIntsStruct[100];
     }
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to free() to deallocate the memory */

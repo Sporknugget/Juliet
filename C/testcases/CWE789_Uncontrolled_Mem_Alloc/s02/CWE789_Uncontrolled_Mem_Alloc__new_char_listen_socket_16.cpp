@@ -54,6 +54,7 @@ void bad()
     size_t data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -124,7 +125,9 @@ void bad()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         {
             char * myString;
@@ -144,6 +147,7 @@ void bad()
                 printLine("Input is less than the length of the source string");
             }
         }
+        break;
     }
 }
 
@@ -157,6 +161,7 @@ static void goodB2G()
     size_t data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -227,7 +232,9 @@ static void goodB2G()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         {
             char * myString;
@@ -247,6 +254,7 @@ static void goodB2G()
                 printLine("Input is less than the length of the source string or too large");
             }
         }
+        break;
     }
 }
 
@@ -256,10 +264,13 @@ static void goodG2B()
     size_t data;
     /* Initialize data */
     data = 0;
+    while(1)
     {
         /* FIX: Use a relatively small number for memory allocation */
         data = 20;
+        break;
     }
+    while(1)
     {
         {
             char * myString;
@@ -279,6 +290,7 @@ static void goodG2B()
                 printLine("Input is less than the length of the source string");
             }
         }
+        break;
     }
 }
 

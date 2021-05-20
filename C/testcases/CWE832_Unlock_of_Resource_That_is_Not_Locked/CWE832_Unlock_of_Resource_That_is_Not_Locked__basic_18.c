@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         static stdThreadLock badLock = NULL;
         printLine("Creating lock...");
@@ -44,6 +46,8 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         static stdThreadLock goodLock = NULL;
         printLine("Creating lock...");

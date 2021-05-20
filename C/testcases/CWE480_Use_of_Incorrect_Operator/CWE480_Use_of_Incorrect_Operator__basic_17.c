@@ -48,6 +48,8 @@ static char * helperGood()
 
 void CWE480_Use_of_Incorrect_Operator__basic_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: This will never be true becuase the () was omitted.  Also INCIDENTAL CWE 570 Expression Is Always False */
         if(helperBad == NULL)
@@ -64,6 +66,8 @@ void CWE480_Use_of_Incorrect_Operator__basic_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         /* FIX: add () to function call */
         if(helperGood() == NULL) /* this will sometimes be true (depending on the rand() in helperGood) */

@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_18_bad()
 {
+    goto sink;
+sink:
     {
         STARTUPINFOW si;
         PROCESS_INFORMATION pi;
@@ -63,6 +65,8 @@ void CWE272_Least_Privilege_Violation__w32_wchar_t_CreateProcess_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         STARTUPINFOW si;
         PROCESS_INFORMATION pi;

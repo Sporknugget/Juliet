@@ -30,6 +30,7 @@ void CWE401_Memory_Leak__strdup_char_07_bad()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         {
             char myString[] = "myString";
@@ -39,6 +40,7 @@ void CWE401_Memory_Leak__strdup_char_07_bad()
             printLine(data);
         }
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
@@ -55,6 +57,7 @@ static void goodB2G1()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         {
             char myString[] = "myString";
@@ -64,6 +67,12 @@ static void goodB2G1()
             printLine(data);
         }
     }
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -75,6 +84,7 @@ static void goodB2G2()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         {
             char myString[] = "myString";
@@ -84,6 +94,7 @@ static void goodB2G2()
             printLine(data);
         }
     }
+    if(staticFive==5)
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
@@ -95,6 +106,12 @@ static void goodG2B1()
 {
     char * data;
     data = NULL;
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
@@ -102,6 +119,7 @@ static void goodG2B1()
         strcpy(data, "a string");
         printLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
@@ -114,6 +132,7 @@ static void goodG2B2()
 {
     char * data;
     data = NULL;
+    if(staticFive==5)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
@@ -121,6 +140,7 @@ static void goodG2B2()
         strcpy(data, "a string");
         printLine(data);
     }
+    if(staticFive==5)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */

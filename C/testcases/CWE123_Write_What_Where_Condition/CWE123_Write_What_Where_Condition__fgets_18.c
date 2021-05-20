@@ -40,6 +40,8 @@ void CWE123_Write_What_Where_Condition__fgets_18_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    goto source;
+source:
     /* FLAW: overwrite linked list pointers with user data */
     if (fgets((char*)&data, sizeof(data), stdin) == NULL)
     {
@@ -80,6 +82,8 @@ static void goodG2B()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    goto source;
+source:
     /* FIX: don't overwrite linked list pointers */
     ; /* empty statement needed by some flow variants */
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this

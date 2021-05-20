@@ -21,6 +21,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2int_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];
@@ -39,6 +40,36 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2int_12_bad()
             printIntLine((int)doubleNumber);
         }
     }
+    else
+    {
+        {
+            char inputBuffer[CHAR_ARRAY_SIZE];
+            double doubleNumber = 0;
+            /* Enter: 1e-50, result should be 0.0 (for bad case)
+             *
+             * Note: alternate input
+             * 999999999999999999999999999999999999999999999999999999999999999
+             */
+            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
+            {
+                /* Read a double */
+                doubleNumber = atof(inputBuffer);
+            }
+            else
+            {
+                printLine("fgets() failed.");
+            }
+            /* FIX: check to make sure conversion is safe */
+            if (doubleNumber > INT_MAX || doubleNumber < INT_MIN)
+            {
+                printLine("Value is too small or large to be represented as an int");
+            }
+            else
+            {
+                printIntLine((int)doubleNumber);
+            }
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -48,6 +79,37 @@ void CWE681_Incorrect_Conversion_Between_Numeric_Types__double2int_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char inputBuffer[CHAR_ARRAY_SIZE];
+            double doubleNumber = 0;
+            /* Enter: 1e-50, result should be 0.0 (for bad case)
+             *
+             * Note: alternate input
+             * 999999999999999999999999999999999999999999999999999999999999999
+             */
+            if (fgets(inputBuffer, CHAR_ARRAY_SIZE, stdin) != NULL)
+            {
+                /* Read a double */
+                doubleNumber = atof(inputBuffer);
+            }
+            else
+            {
+                printLine("fgets() failed.");
+            }
+            /* FIX: check to make sure conversion is safe */
+            if (doubleNumber > INT_MAX || doubleNumber < INT_MIN)
+            {
+                printLine("Value is too small or large to be represented as an int");
+            }
+            else
+            {
+                printIntLine((int)doubleNumber);
+            }
+        }
+    }
+    else
     {
         {
             char inputBuffer[CHAR_ARRAY_SIZE];

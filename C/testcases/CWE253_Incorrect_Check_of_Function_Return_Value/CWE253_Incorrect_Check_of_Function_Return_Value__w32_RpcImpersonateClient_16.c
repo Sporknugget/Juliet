@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_16_bad()
 {
+    while(1)
     {
         /* FLAW: RpcImpersonateClient() could fail and would not return RPC_S_OK, but we
          * are failing if the return value is RPC_S_OK */
@@ -32,6 +33,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
     }
 }
 
@@ -42,6 +44,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__w32_RpcImpersonateClient_1
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         /* FIX: check for the correct return value */
         if (RpcImpersonateClient(0) != RPC_S_OK)
@@ -50,6 +53,7 @@ static void good1()
         }
         /* We'll leave out most of the implementation since it has nothing to do with the CWE
          * and since the checkers are looking for certain function calls anyway */
+        break;
     }
 }
 

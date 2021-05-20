@@ -23,6 +23,7 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__char_fprintf_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         /* FLAW: fprintf() might fail, in which case the return value will be negative, but
          * we are checking to see if the return value is 0 */
@@ -37,6 +38,15 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_fprintf_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check for the correct return value */
         if (fprintf(stdout, "%s\n", "string") < 0)
@@ -49,6 +59,7 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__char_fprintf_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: check for the correct return value */
         if (fprintf(stdout, "%s\n", "string") < 0)

@@ -27,6 +27,7 @@ static int staticFalse = 0; /* false */
 
 void CWE617_Reachable_Assertion__zero_05_bad()
 {
+    if(staticTrue)
     {
         /* FLAW: this assertion can be reached, and will always trigger */
         assert(0); /* INCIDENTAL: CWE 571 - expression is always true - it's "true" because assert(e) basically does if (!(e)) */
@@ -37,6 +38,15 @@ void CWE617_Reachable_Assertion__zero_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
         * function, assert(1)
@@ -48,6 +58,7 @@ void CWE617_Reachable_Assertion__zero_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         /* FIX: ensure assertions cannot be triggered, in this case, to avoid an empty
         * function, assert(1)

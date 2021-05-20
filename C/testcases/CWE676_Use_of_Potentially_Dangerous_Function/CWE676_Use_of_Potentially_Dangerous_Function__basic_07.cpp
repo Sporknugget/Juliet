@@ -33,6 +33,7 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_07
 
 void bad()
 {
+    if(staticFive==5)
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -49,6 +50,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFive!=5) instead of if(staticFive==5) */
+static void good1()
+{
+    if(staticFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
@@ -64,6 +74,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticFive==5)
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];

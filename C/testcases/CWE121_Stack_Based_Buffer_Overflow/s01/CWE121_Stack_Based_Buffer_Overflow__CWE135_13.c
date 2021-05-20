@@ -28,10 +28,12 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_13_bad()
 {
     void * data;
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -52,10 +54,17 @@ static void goodB2G1()
 {
     void * data;
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -72,10 +81,12 @@ static void goodB2G2()
 {
     void * data;
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* POTENTIAL FLAW: Set data to point to a wide string */
         data = (void *)WIDE_STRING;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* FIX: treating pointer like a wchar_t*  */
@@ -92,10 +103,17 @@ static void goodG2B1()
 {
     void * data;
     data = NULL;
+    if(GLOBAL_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
@@ -112,10 +130,12 @@ static void goodG2B2()
 {
     void * data;
     data = NULL;
+    if(GLOBAL_CONST_FIVE==5)
     {
         /* FIX: Set data to point to a char string */
         data = (void *)CHAR_STRING;
     }
+    if(GLOBAL_CONST_FIVE==5)
     {
         {
             /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */

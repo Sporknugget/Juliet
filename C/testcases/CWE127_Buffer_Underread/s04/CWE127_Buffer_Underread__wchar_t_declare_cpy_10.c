@@ -26,6 +26,7 @@ void CWE127_Buffer_Underread__wchar_t_declare_cpy_10_bad()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    if(globalTrue)
     {
         /* FLAW: Set data pointer to before the allocated memory buffer */
         data = dataBuffer - 8;
@@ -51,6 +52,12 @@ static void goodG2B1()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    if(globalFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;
@@ -72,6 +79,7 @@ static void goodG2B2()
     wchar_t dataBuffer[100];
     wmemset(dataBuffer, L'A', 100-1);
     dataBuffer[100-1] = L'\0';
+    if(globalTrue)
     {
         /* FIX: Set data pointer to the allocated memory buffer */
         data = dataBuffer;

@@ -23,6 +23,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE244_Heap_Inspection__w32_char_realloc_16_bad()
 {
+    while(1)
     {
         {
             char * password = (char *)malloc(100*sizeof(char));
@@ -72,6 +73,7 @@ void CWE244_Heap_Inspection__w32_char_realloc_16_bad()
             printLine(password);
             free(password);
         }
+        break;
     }
 }
 
@@ -82,6 +84,7 @@ void CWE244_Heap_Inspection__w32_char_realloc_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             char * password = (char *)malloc(100*sizeof(char));
@@ -129,6 +132,7 @@ static void good1()
             printLine(password);
             free(password);
         }
+        break;
     }
 }
 

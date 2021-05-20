@@ -23,6 +23,7 @@ Template File: point-flaw-09.tmpl.c
 
 void CWE252_Unchecked_Return_Value__char_fputs_09_bad()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         /* FLAW: Do not check the return value */
         fputs("string", stdout);
@@ -33,6 +34,15 @@ void CWE252_Unchecked_Return_Value__char_fputs_09_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(GLOBAL_CONST_FALSE) instead of if(GLOBAL_CONST_TRUE) */
+static void good1()
+{
+    if(GLOBAL_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: check the return value */
         if (fputs("string", stdout) == EOF)
@@ -45,6 +55,7 @@ void CWE252_Unchecked_Return_Value__char_fputs_09_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(GLOBAL_CONST_TRUE)
     {
         /* FIX: check the return value */
         if (fputs("string", stdout) == EOF)

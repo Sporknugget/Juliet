@@ -52,9 +52,11 @@ Template File: sources-sinks-17.tmpl.c
 
 void CWE134_Uncontrolled_Format_String__char_listen_socket_snprintf_17_bad()
 {
+    int i,j;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -136,6 +138,7 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_snprintf_17_bad()
 #endif
         }
     }
+    for(j = 0; j < 1; j++)
     {
         {
             char dest[100] = "";
@@ -153,9 +156,11 @@ void CWE134_Uncontrolled_Format_String__char_listen_socket_snprintf_17_bad()
 /* goodB2G() - use badsource and goodsink in the for statements */
 static void goodB2G()
 {
+    int i,k;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    for(i = 0; i < 1; i++)
     {
         {
 #ifdef _WIN32
@@ -237,6 +242,7 @@ static void goodB2G()
 #endif
         }
     }
+    for(k = 0; k < 1; k++)
     {
         {
             char dest[100] = "";
@@ -250,13 +256,16 @@ static void goodB2G()
 /* goodG2B() - use goodsource and badsink in the for statements */
 static void goodG2B()
 {
+    int h,j;
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         strcpy(data, "fixedstringtest");
     }
+    for(j = 0; j < 1; j++)
     {
         {
             char dest[100] = "";

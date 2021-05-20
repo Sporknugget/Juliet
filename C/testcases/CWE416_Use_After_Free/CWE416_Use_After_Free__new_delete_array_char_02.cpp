@@ -29,6 +29,7 @@ void bad()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(1)
     {
         data = new char[100];
         memset(data, 'A', 100-1);
@@ -36,6 +37,7 @@ void bad()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLine(data);
@@ -53,6 +55,7 @@ static void goodB2G1()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(1)
     {
         data = new char[100];
         memset(data, 'A', 100-1);
@@ -60,6 +63,12 @@ static void goodB2G1()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -74,6 +83,7 @@ static void goodB2G2()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(1)
     {
         data = new char[100];
         memset(data, 'A', 100-1);
@@ -81,6 +91,7 @@ static void goodB2G2()
         /* POTENTIAL FLAW: Delete data in the source - the bad sink attempts to use data */
         delete [] data;
     }
+    if(1)
     {
         /* FIX: Don't use data that may have been deleted already */
         /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not deleted */
@@ -95,12 +106,19 @@ static void goodG2B1()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         data = new char[100];
         memset(data, 'A', 100-1);
         data[100-1] = '\0';
         /* FIX: Do not delete data in the source */
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLine(data);
@@ -114,12 +132,14 @@ static void goodG2B2()
     char * data;
     /* Initialize data */
     data = NULL;
+    if(1)
     {
         data = new char[100];
         memset(data, 'A', 100-1);
         data[100-1] = '\0';
         /* FIX: Do not delete data in the source */
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Use of data that may have been deleted */
         printLine(data);

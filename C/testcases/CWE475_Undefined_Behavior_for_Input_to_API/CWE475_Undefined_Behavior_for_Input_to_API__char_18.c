@@ -21,6 +21,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE475_Undefined_Behavior_for_Input_to_API__char_18_bad()
 {
+    goto sink;
+sink:
     {
         char dataBuffer[100] = "";
         char * data = dataBuffer;
@@ -38,6 +40,8 @@ void CWE475_Undefined_Behavior_for_Input_to_API__char_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char dataBuffer[100] = "";
         char * data = dataBuffer;

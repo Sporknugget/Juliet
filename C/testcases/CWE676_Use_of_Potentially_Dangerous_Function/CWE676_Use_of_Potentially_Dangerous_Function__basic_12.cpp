@@ -28,11 +28,23 @@ namespace CWE676_Use_of_Potentially_Dangerous_Function__basic_12
 
 void bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];
             /* FLAW: using cin in an inherently dangerous fashion */
             /* INCIDENTAL CWE120 Buffer Overflow since cin extraction is unbounded. */
+            cin >> charBuffer;
+            charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
+            printLine(charBuffer);
+        }
+    }
+    else
+    {
+        {
+            char charBuffer[CHAR_BUFFER_SIZE];
+            /* FIX: Use cin after specifying the length of the input */
+            cin.width(CHAR_BUFFER_SIZE);
             cin >> charBuffer;
             charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
             printLine(charBuffer);
@@ -47,6 +59,18 @@ void bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char charBuffer[CHAR_BUFFER_SIZE];
+            /* FIX: Use cin after specifying the length of the input */
+            cin.width(CHAR_BUFFER_SIZE);
+            cin >> charBuffer;
+            charBuffer[CHAR_BUFFER_SIZE-1] = '\0';
+            printLine(charBuffer);
+        }
+    }
+    else
     {
         {
             char charBuffer[CHAR_BUFFER_SIZE];

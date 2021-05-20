@@ -32,6 +32,7 @@ static int staticReturnsFalse()
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__char_08_bad()
 {
+    if(staticReturnsTrue())
     {
         {
             char * badChar = NULL;
@@ -49,6 +50,15 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__char_08_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticReturnsFalse()) instead of if(staticReturnsTrue()) */
+static void good1()
+{
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * goodChar = NULL;
@@ -65,6 +75,7 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__char_08_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticReturnsTrue())
     {
         {
             char * goodChar = NULL;

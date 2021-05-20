@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE468_Incorrect_Pointer_Scaling__int_18_bad()
 {
+    goto sink;
+sink:
     {
         int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         int *intPointer = intArray;
@@ -36,6 +38,8 @@ void CWE468_Incorrect_Pointer_Scaling__int_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         int intArray[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         int *intPointer = intArray;

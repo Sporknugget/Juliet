@@ -21,6 +21,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             static stdThreadLock badLock = NULL;
@@ -37,6 +38,25 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_12_bad()
             stdThreadLockDestroy(badLock);
         }
     }
+    else
+    {
+        {
+            static stdThreadLock goodLock = NULL;
+            printLine("Creating lock...");
+            if (!stdThreadLockCreate(&goodLock))
+            {
+                printLine("Could not create lock");
+                exit(1);
+            }
+            /* FIX: Acquire the lock before attempting to release it */
+            printLine("Acquiring lock...");
+            stdThreadLockAcquire(goodLock);
+            printLine("Releasing lock...");
+            stdThreadLockRelease(goodLock);
+            printLine("Destroying lock...");
+            stdThreadLockDestroy(goodLock);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -46,6 +66,26 @@ void CWE832_Unlock_of_Resource_That_is_Not_Locked__basic_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            static stdThreadLock goodLock = NULL;
+            printLine("Creating lock...");
+            if (!stdThreadLockCreate(&goodLock))
+            {
+                printLine("Could not create lock");
+                exit(1);
+            }
+            /* FIX: Acquire the lock before attempting to release it */
+            printLine("Acquiring lock...");
+            stdThreadLockAcquire(goodLock);
+            printLine("Releasing lock...");
+            stdThreadLockRelease(goodLock);
+            printLine("Destroying lock...");
+            stdThreadLockDestroy(goodLock);
+        }
+    }
+    else
     {
         {
             static stdThreadLock goodLock = NULL;

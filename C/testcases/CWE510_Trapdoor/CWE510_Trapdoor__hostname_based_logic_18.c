@@ -46,6 +46,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE510_Trapdoor__hostname_based_logic_18_bad()
 {
+    goto sink;
+sink:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -141,6 +143,8 @@ void CWE510_Trapdoor__hostname_based_logic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
 #ifdef _WIN32
         WSADATA wsaData;

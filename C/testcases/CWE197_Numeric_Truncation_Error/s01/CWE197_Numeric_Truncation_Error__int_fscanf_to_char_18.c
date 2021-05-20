@@ -23,6 +23,8 @@ void CWE197_Numeric_Truncation_Error__int_fscanf_to_char_18_bad()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* POTENTIAL FLAW: Read data from the console using fscanf() */
     fscanf(stdin, "%d", &data);
     {
@@ -42,6 +44,8 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    goto source;
+source:
     /* FIX: Use a positive integer less than CHAR_MAX*/
     data = CHAR_MAX-5;
     {

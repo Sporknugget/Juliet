@@ -24,10 +24,17 @@ void CWE400_Resource_Exhaustion__rand_for_loop_12_bad()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             size_t i = 0;
@@ -35,6 +42,20 @@ void CWE400_Resource_Exhaustion__rand_for_loop_12_bad()
             for (i = 0; i < (size_t)count; i++)
             {
                 printLine("Hello");
+            }
+        }
+    }
+    else
+    {
+        {
+            size_t i = 0;
+            /* FIX: Validate count before using it as the for loop variant */
+            if (count > 0 && count <= 20)
+            {
+                for (i = 0; i < (size_t)count; i++)
+                {
+                    printLine("Hello");
+                }
             }
         }
     }
@@ -52,10 +73,31 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
     }
+    else
+    {
+        /* POTENTIAL FLAW: Set count to a random value */
+        count = RAND32();
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t i = 0;
+            /* FIX: Validate count before using it as the for loop variant */
+            if (count > 0 && count <= 20)
+            {
+                for (i = 0; i < (size_t)count; i++)
+                {
+                    printLine("Hello");
+                }
+            }
+        }
+    }
+    else
     {
         {
             size_t i = 0;
@@ -79,10 +121,28 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a relatively small number */
         count = 20;
     }
+    else
+    {
+        /* FIX: Use a relatively small number */
+        count = 20;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            size_t i = 0;
+            /* POTENTIAL FLAW: For loop using count as the loop variant and no validation */
+            for (i = 0; i < (size_t)count; i++)
+            {
+                printLine("Hello");
+            }
+        }
+    }
+    else
     {
         {
             size_t i = 0;

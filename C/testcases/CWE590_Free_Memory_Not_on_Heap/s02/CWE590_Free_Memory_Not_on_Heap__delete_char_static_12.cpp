@@ -27,12 +27,22 @@ void bad()
 {
     char * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: data is allocated on the stack and deallocated in the BadSink */
             static char dataBuffer;
             dataBuffer = 'A';
             data = &dataBuffer;
+        }
+    }
+    else
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            char * dataBuffer = new char;
+            *dataBuffer = 'A';
+            data = dataBuffer;
         }
     }
     printHexCharLine(*data);
@@ -50,6 +60,16 @@ static void goodG2B()
 {
     char * data;
     data = NULL; /* Initialize data */
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* FIX: data is allocated on the heap and deallocated in the BadSink */
+            char * dataBuffer = new char;
+            *dataBuffer = 'A';
+            data = dataBuffer;
+        }
+    }
+    else
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */

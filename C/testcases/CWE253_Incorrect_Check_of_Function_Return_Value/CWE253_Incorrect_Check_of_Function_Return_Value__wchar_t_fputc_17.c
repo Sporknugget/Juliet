@@ -23,6 +23,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fputc_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: fputwc() might fail, in which case the return value will be WEOF (-1), but
          * we are checking to see if the return value is 0 */
@@ -40,6 +42,8 @@ void CWE253_Incorrect_Check_of_Function_Return_Value__wchar_t_fputc_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         /* FIX: check for the correct return value */
         if (fputwc((wchar_t)L'A', stdout) == WEOF)

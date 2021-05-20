@@ -46,6 +46,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_16_bad()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -103,7 +104,9 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_16_bad()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         {
             int i;
@@ -131,6 +134,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_16_bad()
             }
             free(buffer);
         }
+        break;
     }
 }
 
@@ -144,6 +148,7 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         {
 #ifdef _WIN32
@@ -201,7 +206,9 @@ static void goodB2G()
             }
 #endif
         }
+        break;
     }
+    while(1)
     {
         {
             int i;
@@ -228,6 +235,7 @@ static void goodB2G()
             }
             free(buffer);
         }
+        break;
     }
 }
 
@@ -237,11 +245,14 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* FIX: Use a value greater than 0, but less than 10 to avoid attempting to
         * access an index of the array in the sink that is out-of-bounds */
         data = 7;
+        break;
     }
+    while(1)
     {
         {
             int i;
@@ -269,6 +280,7 @@ static void goodG2B()
             }
             free(buffer);
         }
+        break;
     }
 }
 

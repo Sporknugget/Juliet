@@ -34,6 +34,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_snprintf_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from the console */
@@ -60,7 +61,9 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_snprintf_16_bad()
                 }
             }
         }
+        break;
     }
+    while(1)
     {
         {
             wchar_t dest[100] = L"";
@@ -68,6 +71,7 @@ void CWE134_Uncontrolled_Format_String__wchar_t_console_snprintf_16_bad()
             SNPRINTF(dest, 100-1, data);
             printWLine(dest);
         }
+        break;
     }
 }
 
@@ -81,6 +85,7 @@ static void goodB2G()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         {
             /* Read input from the console */
@@ -107,7 +112,9 @@ static void goodB2G()
                 }
             }
         }
+        break;
     }
+    while(1)
     {
         {
             wchar_t dest[100] = L"";
@@ -115,6 +122,7 @@ static void goodB2G()
             SNPRINTF(dest, 100-1, L"%s", data);
             printWLine(dest);
         }
+        break;
     }
 }
 
@@ -124,10 +132,13 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: Use a fixed string that does not contain a format specifier */
         wcscpy(data, L"fixedstringtest");
+        break;
     }
+    while(1)
     {
         {
             wchar_t dest[100] = L"";
@@ -135,6 +146,7 @@ static void goodG2B()
             SNPRINTF(dest, 100-1, data);
             printWLine(dest);
         }
+        break;
     }
 }
 

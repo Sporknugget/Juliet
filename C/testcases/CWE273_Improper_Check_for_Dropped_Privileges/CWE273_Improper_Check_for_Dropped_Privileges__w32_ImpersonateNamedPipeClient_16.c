@@ -24,6 +24,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_16_bad()
 {
+    while(1)
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -59,6 +60,7 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClien
             }
             CloseHandle(hPipe);
         }
+        break;
     }
 }
 
@@ -69,6 +71,7 @@ void CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClien
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             HANDLE hPipe = INVALID_HANDLE_VALUE;
@@ -107,6 +110,7 @@ static void good1()
             }
             CloseHandle(hPipe);
         }
+        break;
     }
 }
 

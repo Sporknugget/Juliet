@@ -29,10 +29,12 @@ void CWE191_Integer_Underflow__char_rand_multiply_05_bad()
 {
     char data;
     data = ' ';
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (char)RAND32();
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -52,10 +54,17 @@ static void goodB2G1()
 {
     char data;
     data = ' ';
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (char)RAND32();
     }
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -78,10 +87,12 @@ static void goodB2G2()
 {
     char data;
     data = ' ';
+    if(staticTrue)
     {
         /* POTENTIAL FLAW: Use a random value */
         data = (char)RAND32();
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -104,10 +115,17 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -123,10 +141,12 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
+    if(staticTrue)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(staticTrue)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

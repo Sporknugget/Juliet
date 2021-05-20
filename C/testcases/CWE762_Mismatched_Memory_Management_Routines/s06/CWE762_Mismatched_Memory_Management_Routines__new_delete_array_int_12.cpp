@@ -26,14 +26,26 @@ void bad()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new int;
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new [] */
+        data = new int[100];
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */
         delete [] data;
+    }
+    else
+    {
+        /* FIX: Deallocate the memory using delete */
+        delete data;
     }
 }
 
@@ -49,10 +61,22 @@ static void goodB2G()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new int;
     }
+    else
+    {
+        /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
+        data = new int;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate the memory using delete */
+        delete data;
+    }
+    else
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -67,10 +91,23 @@ static void goodG2B()
     int * data;
     /* Initialize data*/
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new int[100];
     }
+    else
+    {
+        /* FIX: Allocate memory from the heap using new [] */
+        data = new int[100];
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
+         * require a call to delete to deallocate the memory */
+        delete [] data;
+    }
+    else
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */

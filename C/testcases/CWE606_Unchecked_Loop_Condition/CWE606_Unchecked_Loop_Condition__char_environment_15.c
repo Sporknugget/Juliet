@@ -38,6 +38,9 @@ void CWE606_Unchecked_Loop_Condition__char_environment_15_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -49,6 +52,15 @@ void CWE606_Unchecked_Loop_Condition__char_environment_15_bad()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -62,6 +74,12 @@ void CWE606_Unchecked_Loop_Condition__char_environment_15_bad()
             }
             printIntLine(intVariable);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -75,6 +93,9 @@ static void goodB2G1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -86,6 +107,19 @@ static void goodB2G1()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -102,6 +136,8 @@ static void goodB2G1()
                 printIntLine(intVariable);
             }
         }
+    }
+    break;
     }
 }
 
@@ -111,6 +147,9 @@ static void goodB2G2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         /* Append input from an environment variable to data */
         size_t dataLen = strlen(data);
@@ -122,6 +161,15 @@ static void goodB2G2()
             strncat(data+dataLen, environment, 100-dataLen-1);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -139,6 +187,12 @@ static void goodB2G2()
             }
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -147,8 +201,20 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -163,6 +229,12 @@ static void goodG2B1()
             printIntLine(intVariable);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -171,8 +243,20 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Set data to a number less than MAX_LOOP */
         strcpy(data, "15");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         int i, n, intVariable;
         if (sscanf(data, "%d", &n) == 1)
@@ -186,6 +270,12 @@ static void goodG2B2()
             }
             printIntLine(intVariable);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

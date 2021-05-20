@@ -28,8 +28,12 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE135_18_bad()
 {
     void * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Set data to point to a wide string */
     data = (void *)WIDE_STRING;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
@@ -48,8 +52,12 @@ static void goodB2G()
 {
     void * data;
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Set data to point to a wide string */
     data = (void *)WIDE_STRING;
+    goto sink;
+sink:
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
@@ -64,8 +72,12 @@ static void goodG2B()
 {
     void * data;
     data = NULL;
+    goto source;
+source:
     /* FIX: Set data to point to a char string */
     data = (void *)CHAR_STRING;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);

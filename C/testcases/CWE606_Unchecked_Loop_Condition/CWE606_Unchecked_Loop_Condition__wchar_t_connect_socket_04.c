@@ -57,6 +57,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_connect_socket_04_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -126,6 +127,7 @@ void CWE606_Unchecked_Loop_Condition__wchar_t_connect_socket_04_bad()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;
@@ -154,6 +156,7 @@ static void goodB2G1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -223,6 +226,12 @@ static void goodB2G1()
 #endif
         }
     }
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             int i, n, intVariable;
@@ -250,6 +259,7 @@ static void goodB2G2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         {
 #ifdef _WIN32
@@ -319,6 +329,7 @@ static void goodB2G2()
 #endif
         }
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;
@@ -346,10 +357,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;
@@ -374,10 +392,12 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    if(STATIC_CONST_TRUE)
     {
         /* FIX: Set data to a number less than MAX_LOOP */
         wcscpy(data, L"15");
     }
+    if(STATIC_CONST_TRUE)
     {
         {
             int i, n, intVariable;

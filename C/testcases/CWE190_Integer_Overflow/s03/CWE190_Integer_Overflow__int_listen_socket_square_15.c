@@ -48,6 +48,9 @@ void CWE190_Integer_Overflow__int_listen_socket_square_15_bad()
     int data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -117,10 +120,25 @@ void CWE190_Integer_Overflow__int_listen_socket_square_15_bad()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
         int result = data * data;
         printIntLine(result);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -134,6 +152,9 @@ static void goodB2G1()
     int data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -203,6 +224,19 @@ static void goodB2G1()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data > INT_MIN && abs(data) < (long)sqrt((double)INT_MAX))
         {
@@ -213,6 +247,8 @@ static void goodB2G1()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -221,6 +257,9 @@ static void goodB2G2()
     int data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -290,6 +329,15 @@ static void goodB2G2()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* FIX: Add a check to prevent an overflow from occurring */
         if (data > INT_MIN && abs(data) < (long)sqrt((double)INT_MAX))
         {
@@ -300,6 +348,12 @@ static void goodB2G2()
         {
             printLine("data value is too large to perform arithmetic safely.");
         }
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -308,12 +362,30 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = 0;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
         int result = data * data;
         printIntLine(result);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -323,12 +395,30 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = 0;
+    switch(6)
+    {
+    case 6:
         /* FIX: Use a small, non-zero value that will not cause an integer overflow in the sinks */
         data = 2;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
     {
         /* POTENTIAL FLAW: if (data*data) > INT_MAX, this will overflow */
         int result = data * data;
         printIntLine(result);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

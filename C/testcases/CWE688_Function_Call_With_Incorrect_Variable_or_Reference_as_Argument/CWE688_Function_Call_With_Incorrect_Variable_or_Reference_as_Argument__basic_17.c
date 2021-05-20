@@ -21,6 +21,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             char dest[DEST_SIZE];
@@ -39,6 +41,8 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             char dest[DEST_SIZE];

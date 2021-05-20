@@ -61,6 +61,7 @@ void CWE123_Write_What_Where_Condition__listen_socket_12_bad()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -127,6 +128,11 @@ void CWE123_Write_What_Where_Condition__listen_socket_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: don't overwrite linked list pointers */
+        ; /* empty statement needed by some flow variants */
+    }
     /* POTENTIAL FLAW: The following removes 'a' from the list.  Because of the possible overflow this
      * causes a "write-what-where" aka "write4".  It does another write as
      * well.  But this is the prototypical "write-what-where" at least from
@@ -162,6 +168,12 @@ static void goodG2B()
     data.list.prev = head.prev;
     head.next = &data.list;
     head.prev = &data.list;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: don't overwrite linked list pointers */
+        ; /* empty statement needed by some flow variants */
+    }
+    else
     {
         /* FIX: don't overwrite linked list pointers */
         ; /* empty statement needed by some flow variants */

@@ -38,6 +38,8 @@ static int _mkstemp(const char * t){
 
 void CWE459_Incomplete_Cleanup__char_18_bad()
 {
+    goto sink;
+sink:
     {
         char filename[] = "badXXXXXX";
         FILE *pFile;
@@ -63,6 +65,8 @@ void CWE459_Incomplete_Cleanup__char_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         char filename[] = "goodXXXXXX";
         FILE *pFile;

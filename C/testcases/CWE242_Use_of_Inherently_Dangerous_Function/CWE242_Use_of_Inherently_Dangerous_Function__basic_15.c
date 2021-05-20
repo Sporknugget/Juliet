@@ -21,6 +21,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE242_Use_of_Inherently_Dangerous_Function__basic_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char dest[DEST_SIZE];
         char *result;
@@ -38,6 +41,12 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_15_bad()
         dest[DEST_SIZE-1] = '\0';
         printLine(dest);
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -47,6 +56,13 @@ void CWE242_Use_of_Inherently_Dangerous_Function__basic_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char dest[DEST_SIZE];
         char *result;
@@ -62,11 +78,16 @@ static void good1()
         dest[DEST_SIZE-1] = '\0';
         printLine(dest);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char dest[DEST_SIZE];
         char *result;
@@ -81,6 +102,12 @@ static void good2()
         }
         dest[DEST_SIZE-1] = '\0';
         printLine(dest);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

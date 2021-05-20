@@ -23,10 +23,33 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE338_Weak_PRNG__w32_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* FLAW: Use of rand() as a PRNG */
             int data = rand();
+            printIntLine(data);
+        }
+    }
+    else
+    {
+        {
+            HCRYPTPROV hCryptProv;
+            int data;
+            if (!CryptAcquireContextW(&hCryptProv, 0, 0, PROV_RSA_FULL, 0))
+            {
+                exit(1);
+            }
+            /* FIX: Use of CryptGenRandom() as a more secure PRNG */
+            if (!CryptGenRandom(hCryptProv, sizeof(data), (BYTE *) &data))
+            {
+                CryptReleaseContext(hCryptProv, 0);
+                exit(1);
+            }
+            if (hCryptProv)
+            {
+                CryptReleaseContext(hCryptProv, 0);
+            }
             printIntLine(data);
         }
     }
@@ -39,6 +62,29 @@ void CWE338_Weak_PRNG__w32_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            HCRYPTPROV hCryptProv;
+            int data;
+            if (!CryptAcquireContextW(&hCryptProv, 0, 0, PROV_RSA_FULL, 0))
+            {
+                exit(1);
+            }
+            /* FIX: Use of CryptGenRandom() as a more secure PRNG */
+            if (!CryptGenRandom(hCryptProv, sizeof(data), (BYTE *) &data))
+            {
+                CryptReleaseContext(hCryptProv, 0);
+                exit(1);
+            }
+            if (hCryptProv)
+            {
+                CryptReleaseContext(hCryptProv, 0);
+            }
+            printIntLine(data);
+        }
+    }
+    else
     {
         {
             HCRYPTPROV hCryptProv;

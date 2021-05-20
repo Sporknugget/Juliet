@@ -26,8 +26,12 @@ void bad()
     long * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
     data = new long[100];
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
      * require a call to delete [] to deallocate the memory */
     free(data);
@@ -43,8 +47,12 @@ static void goodB2G()
     long * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* POTENTIAL FLAW: Allocate memory with a function that requires delete [] to free the memory */
     data = new long[100];
+    goto sink;
+sink:
     /* FIX: Deallocate the memory using delete [] */
     delete [] data;
 }
@@ -55,9 +63,13 @@ static void goodG2B()
     long * data;
     /* Initialize data*/
     data = NULL;
+    goto source;
+source:
     /* FIX: Allocate memory from the heap using malloc() */
     data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Deallocate memory using free() - the source memory allocation function may
      * require a call to delete [] to deallocate the memory */
     free(data);

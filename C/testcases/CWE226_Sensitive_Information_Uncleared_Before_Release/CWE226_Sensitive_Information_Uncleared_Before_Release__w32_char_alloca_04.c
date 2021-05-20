@@ -29,6 +29,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -75,6 +76,15 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_04_b
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));
@@ -122,6 +132,7 @@ void CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_04_b
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             char * password = (char *)ALLOCA(100*sizeof(char));

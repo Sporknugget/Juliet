@@ -39,6 +39,7 @@ void CWE690_NULL_Deref_From_Return__char_calloc_08_bad()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)calloc(20, sizeof(char));
+    if(staticReturnsTrue())
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
         strcpy(data, "Initialize");
@@ -58,6 +59,12 @@ static void goodB2G1()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)calloc(20, sizeof(char));
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)
@@ -76,6 +83,7 @@ static void goodB2G2()
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
     data = (char *)calloc(20, sizeof(char));
+    if(staticReturnsTrue())
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */
         if (data != NULL)

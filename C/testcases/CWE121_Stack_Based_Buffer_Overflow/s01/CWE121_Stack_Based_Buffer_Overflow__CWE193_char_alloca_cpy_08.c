@@ -44,6 +44,7 @@ void CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_08_bad()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA((10)*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof(char));
+    if(staticReturnsTrue())
     {
         /* FLAW: Set a pointer to a buffer that does not leave room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -68,6 +69,12 @@ static void goodG2B1()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA((10)*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof(char));
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */
@@ -88,6 +95,7 @@ static void goodG2B2()
     char * data;
     char * dataBadBuffer = (char *)ALLOCA((10)*sizeof(char));
     char * dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof(char));
+    if(staticReturnsTrue())
     {
         /* FIX: Set a pointer to a buffer that leaves room for a NULL terminator when performing
          * string copies in the sinks  */

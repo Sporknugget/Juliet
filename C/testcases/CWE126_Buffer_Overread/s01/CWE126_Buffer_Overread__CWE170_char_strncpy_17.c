@@ -21,6 +21,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE126_Buffer_Overread__CWE170_char_strncpy_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             char data[150], dest[100];
@@ -43,6 +45,8 @@ void CWE126_Buffer_Overread__CWE170_char_strncpy_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             char data[150], dest[100];

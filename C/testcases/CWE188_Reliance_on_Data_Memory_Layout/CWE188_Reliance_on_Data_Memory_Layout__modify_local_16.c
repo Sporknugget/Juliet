@@ -19,6 +19,7 @@ Template File: point-flaw-16.tmpl.c
 
 void CWE188_Reliance_on_Data_Memory_Layout__modify_local_16_bad()
 {
+    while(1)
     {
         {
             struct
@@ -35,6 +36,7 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_16_bad()
             printIntLine(structCharInt.charFirst);
             printIntLine(structCharInt.intSecond);
         }
+        break;
     }
 }
 
@@ -45,6 +47,7 @@ void CWE188_Reliance_on_Data_Memory_Layout__modify_local_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             struct
@@ -59,6 +62,7 @@ static void good1()
             printIntLine(structCharInt.charFirst);
             printIntLine(structCharInt.intSecond);
         }
+        break;
     }
 }
 

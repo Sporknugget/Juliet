@@ -25,6 +25,7 @@ static int staticFalse = 0; /* false */
 
 void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_05_bad()
 {
+    if(staticTrue)
     {
         {
             /* FLAW: Assigning fixed address to pointer */
@@ -38,6 +39,15 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             /* FIX: Assign the pointer to a stack variable */
@@ -51,6 +61,7 @@ void CWE587_Assignment_of_Fixed_Address_to_Pointer__basic_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             /* FIX: Assign the pointer to a stack variable */

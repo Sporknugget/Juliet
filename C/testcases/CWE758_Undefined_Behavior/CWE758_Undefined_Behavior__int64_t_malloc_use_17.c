@@ -19,6 +19,8 @@ Template File: point-flaw-17.tmpl.c
 
 void CWE758_Undefined_Behavior__int64_t_malloc_use_17_bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         {
             int64_t * pointer = (int64_t *)malloc(sizeof(int64_t));
@@ -37,6 +39,8 @@ void CWE758_Undefined_Behavior__int64_t_malloc_use_17_bad()
 /* good1() uses the GoodSinkBody in the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         {
             int64_t data;

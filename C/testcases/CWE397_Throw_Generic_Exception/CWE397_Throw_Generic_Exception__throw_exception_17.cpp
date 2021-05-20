@@ -28,6 +28,8 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_17
 
 void bad()
 {
+    int j;
+    for(j = 0; j < 1; j++)
     {
         /* FLAW: throw std::exception class, which is very generic */
         throw exception();
@@ -41,6 +43,8 @@ void bad()
 /* good1() changes the conditions on the for statements */
 static void good1()
 {
+    int k;
+    for(k = 0; k < 1; k++)
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");

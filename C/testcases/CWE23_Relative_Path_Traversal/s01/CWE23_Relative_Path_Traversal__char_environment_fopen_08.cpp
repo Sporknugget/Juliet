@@ -60,6 +60,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         {
             /* Append input from an environment variable to data */
@@ -94,6 +95,12 @@ static void goodG2B1()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");
@@ -115,6 +122,7 @@ static void goodG2B2()
     char * data;
     char dataBuffer[FILENAME_MAX] = BASEPATH;
     data = dataBuffer;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a fixed file name */
         strcat(data, "file.txt");

@@ -29,6 +29,7 @@ static int staticFalse = 0; /* false */
 
 void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_05_bad()
 {
+    if(staticTrue)
     {
         {
             wchar_t string1[] = SOURCE_STRING;
@@ -52,6 +53,15 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t string1[] = SOURCE_STRING;
@@ -73,6 +83,7 @@ void CWE469_Use_of_Pointer_Subtraction_to_Determine_Size__wchar_t_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             wchar_t string1[] = SOURCE_STRING;

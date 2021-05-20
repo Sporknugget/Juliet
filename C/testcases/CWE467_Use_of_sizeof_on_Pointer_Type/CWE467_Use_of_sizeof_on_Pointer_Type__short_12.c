@@ -19,6 +19,7 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__short_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             short * badShort = NULL;
@@ -30,6 +31,18 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__short_12_bad()
             free(badShort);
         }
     }
+    else
+    {
+        {
+            short * goodShort = NULL;
+            /* FIX: Using sizeof the data type in malloc() */
+            goodShort = (short *)malloc(sizeof(*goodShort));
+            if (goodShort == NULL) {exit(-1);}
+            *goodShort = 6;
+            printShortLine(*goodShort);
+            free(goodShort);
+        }
+    }
 }
 
 #endif /* OMITBAD */
@@ -39,6 +52,19 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__short_12_bad()
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            short * goodShort = NULL;
+            /* FIX: Using sizeof the data type in malloc() */
+            goodShort = (short *)malloc(sizeof(*goodShort));
+            if (goodShort == NULL) {exit(-1);}
+            *goodShort = 6;
+            printShortLine(*goodShort);
+            free(goodShort);
+        }
+    }
+    else
     {
         {
             short * goodShort = NULL;

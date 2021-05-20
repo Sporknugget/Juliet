@@ -28,11 +28,29 @@ void bad()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -45,12 +63,30 @@ static void goodB2G1()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(8)
+    {
+    case 7:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
         ; /* empty statement needed for some flow variants */
+        break;
+    }
 }
 
 /* goodB2G2() - use badsource and goodsink by reversing the blocks in the second switch */
@@ -59,12 +95,30 @@ static void goodB2G2()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
         data = new TwoIntsClass;
         /* POTENTIAL FLAW: delete data in the source - the bad sink deletes data as well */
         delete data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* do nothing */
         /* FIX: Don't attempt to delete the memory */
         ; /* empty statement needed for some flow variants */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B1() - use goodsource and badsink by changing the first switch to switch(5) */
@@ -73,10 +127,28 @@ static void goodG2B1()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         data = new TwoIntsClass;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 /* goodG2B2() - use goodsource and badsink by reversing the blocks in the first switch */
@@ -85,10 +157,28 @@ static void goodG2B2()
     TwoIntsClass * data;
     /* Initialize data */
     data = NULL;
+    switch(6)
+    {
+    case 6:
         data = new TwoIntsClass;
         /* FIX: Do NOT delete data in the source - the bad sink deletes data */
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
+    switch(7)
+    {
+    case 7:
         /* POTENTIAL FLAW: Possibly deleting memory twice */
         delete data;
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 void good()

@@ -25,6 +25,7 @@ void CWE401_Memory_Leak__strdup_char_16_bad()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         {
             char myString[] = "myString";
@@ -33,11 +34,14 @@ void CWE401_Memory_Leak__strdup_char_16_bad()
             /* Use data */
             printLine(data);
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 
@@ -50,6 +54,7 @@ static void goodB2G()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         {
             char myString[] = "myString";
@@ -58,10 +63,13 @@ static void goodB2G()
             /* Use data */
             printLine(data);
         }
+        break;
     }
+    while(1)
     {
         /* FIX: Deallocate memory initialized in the source */
         free(data);
+        break;
     }
 }
 
@@ -70,17 +78,21 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         /* FIX: Use memory allocated on the stack with ALLOCA */
         data = (char *)ALLOCA(100*sizeof(char));
         /* Initialize then use data */
         strcpy(data, "a string");
         printLine(data);
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: No deallocation of memory */
         /* no deallocation */
         ; /* empty statement needed for some flow variants */
+        break;
     }
 }
 

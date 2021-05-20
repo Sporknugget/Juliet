@@ -27,6 +27,7 @@ void bad()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         {
             char * dataBuffer = new char[100];
@@ -35,6 +36,7 @@ void bad()
             /* FLAW: Set data pointer to before the allocated memory buffer */
             data = dataBuffer - 8;
         }
+        break;
     }
     {
         char source[100];
@@ -57,6 +59,7 @@ static void goodG2B()
 {
     char * data;
     data = NULL;
+    while(1)
     {
         {
             char * dataBuffer = new char[100];
@@ -65,6 +68,7 @@ static void goodG2B()
             /* FIX: Set data pointer to the allocated memory buffer */
             data = dataBuffer;
         }
+        break;
     }
     {
         char source[100];

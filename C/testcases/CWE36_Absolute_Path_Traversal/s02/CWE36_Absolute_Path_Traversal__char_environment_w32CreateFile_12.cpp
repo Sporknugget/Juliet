@@ -40,6 +40,7 @@ void bad()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* Append input from an environment variable to data */
@@ -52,6 +53,16 @@ void bad()
                 strncat(data+dataLen, environment, FILENAME_MAX-dataLen-1);
             }
         }
+    }
+    else
+    {
+#ifdef _WIN32
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "c:\\temp\\file.txt");
+#else
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "/tmp/file.txt");
+#endif
     }
     {
         HANDLE hFile;
@@ -81,6 +92,17 @@ static void goodG2B()
     char * data;
     char dataBuffer[FILENAME_MAX] = "";
     data = dataBuffer;
+    if(globalReturnsTrueOrFalse())
+    {
+#ifdef _WIN32
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "c:\\temp\\file.txt");
+#else
+        /* FIX: Use a fixed, full path and file name */
+        strcat(data, "/tmp/file.txt");
+#endif
+    }
+    else
     {
 #ifdef _WIN32
         /* FIX: Use a fixed, full path and file name */

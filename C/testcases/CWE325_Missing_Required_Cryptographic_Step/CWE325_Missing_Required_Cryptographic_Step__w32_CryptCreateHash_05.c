@@ -34,6 +34,7 @@ static int staticFalse = 0; /* false */
 
 void CWE325_Missing_Required_Cryptographic_Step__w32_CryptCreateHash_05_bad()
 {
+    if(staticTrue)
     {
         {
             BYTE payload[100];
@@ -91,6 +92,15 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptCreateHash_05_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(staticFalse) instead of if(staticTrue) */
+static void good1()
+{
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             BYTE payload[100];
@@ -152,6 +162,7 @@ void CWE325_Missing_Required_Cryptographic_Step__w32_CryptCreateHash_05_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(staticTrue)
     {
         {
             BYTE payload[100];

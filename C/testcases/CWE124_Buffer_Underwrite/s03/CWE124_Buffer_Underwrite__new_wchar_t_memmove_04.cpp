@@ -33,6 +33,7 @@ void bad()
 {
     wchar_t * data;
     data = NULL;
+    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];
@@ -65,6 +66,12 @@ static void goodG2B1()
 {
     wchar_t * data;
     data = NULL;
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];
@@ -93,6 +100,7 @@ static void goodG2B2()
 {
     wchar_t * data;
     data = NULL;
+    if(STATIC_CONST_TRUE)
     {
         {
             wchar_t * dataBuffer = new wchar_t[100];

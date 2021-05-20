@@ -31,6 +31,9 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_15_bad()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
         WSADATA wsaData;
         BOOL wsaDataInit = FALSE;
@@ -100,6 +103,12 @@ void CWE15_External_Control_of_System_or_Configuration_Setting__w32_15_bad()
             WSACleanup();
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: set the hostname to data obtained from a potentially external source */
     if (!SetComputerNameA(data))
     {
@@ -118,8 +127,17 @@ static void goodG2B1()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: get the hostname from a string literal */
         strcpy(data, "hostname");
+        break;
+    }
     /* POTENTIAL FLAW: set the hostname to data obtained from a potentially external source */
     if (!SetComputerNameA(data))
     {
@@ -134,8 +152,17 @@ static void goodG2B2()
     char * data;
     char dataBuffer[100] = "";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: get the hostname from a string literal */
         strcpy(data, "hostname");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     /* POTENTIAL FLAW: set the hostname to data obtained from a potentially external source */
     if (!SetComputerNameA(data))
     {

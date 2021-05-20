@@ -20,9 +20,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_17_bad()
 {
+    int i;
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    for(i = 0; i < 1; i++)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
         /* FLAW: Using sizeof the pointer and not the data type in malloc() */
@@ -43,9 +45,11 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
+    for(h = 0; h < 1; h++)
     {
         /* FIX: Using sizeof the data type in malloc() */
         data = (twoIntsStruct *)malloc(sizeof(*data));

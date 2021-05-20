@@ -33,6 +33,7 @@ namespace CWE397_Throw_Generic_Exception__throw_exception_06
 
 void bad()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: throw std::exception class, which is very generic */
         throw exception();
@@ -43,6 +44,15 @@ void bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
+static void good1()
+{
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");
@@ -52,6 +62,7 @@ void bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Throw a specific exception */
         throw range_error("Test");

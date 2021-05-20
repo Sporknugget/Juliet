@@ -32,6 +32,7 @@ typedef struct _charVoid
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_16_bad()
 {
+    while(1)
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -45,6 +46,7 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_16_bad()
             printWLine((wchar_t *)structCharVoid->charFirst);
             printWLine((wchar_t *)structCharVoid->voidSecond);
         }
+        break;
     }
 }
 
@@ -55,6 +57,7 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_16_bad()
 /* good1() uses the GoodSinkBody in the while loop */
 static void good1()
 {
+    while(1)
     {
         {
             charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
@@ -68,6 +71,7 @@ static void good1()
             printWLine((wchar_t *)structCharVoid->charFirst);
             printWLine((wchar_t *)structCharVoid->voidSecond);
         }
+        break;
     }
 }
 

@@ -26,6 +26,8 @@ void CWE416_Use_After_Free__malloc_free_long_18_bad()
     long * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
     {
@@ -37,6 +39,8 @@ void CWE416_Use_After_Free__malloc_free_long_18_bad()
     }
     /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
     free(data);
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use of data that may have been freed */
     printLongLine(data[0]);
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
@@ -52,6 +56,8 @@ static void goodB2G()
     long * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
     {
@@ -63,6 +69,8 @@ static void goodB2G()
     }
     /* POTENTIAL FLAW: Free data in the source - the bad sink attempts to use data */
     free(data);
+    goto sink;
+sink:
     /* FIX: Don't use data that may have been freed already */
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */
     /* do nothing */
@@ -75,6 +83,8 @@ static void goodG2B()
     long * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
     {
@@ -85,6 +95,8 @@ static void goodG2B()
         }
     }
     /* FIX: Do not free data in the source */
+    goto sink;
+sink:
     /* POTENTIAL FLAW: Use of data that may have been freed */
     printLongLine(data[0]);
     /* POTENTIAL INCIDENTAL - Possible memory leak here if data was not freed */

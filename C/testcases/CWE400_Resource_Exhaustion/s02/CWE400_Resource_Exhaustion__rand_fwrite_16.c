@@ -26,10 +26,13 @@ void CWE400_Resource_Exhaustion__rand_fwrite_16_bad()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
+        break;
     }
+    while(1)
     {
         {
             size_t i = 0;
@@ -54,6 +57,7 @@ void CWE400_Resource_Exhaustion__rand_fwrite_16_bad()
                 fclose(pFile);
             }
         }
+        break;
     }
 }
 
@@ -67,10 +71,13 @@ static void goodB2G()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         /* POTENTIAL FLAW: Set count to a random value */
         count = RAND32();
+        break;
     }
+    while(1)
     {
         {
             size_t i = 0;
@@ -94,6 +101,7 @@ static void goodB2G()
                 }
             }
         }
+        break;
     }
 }
 
@@ -103,10 +111,13 @@ static void goodG2B()
     int count;
     /* Initialize count */
     count = -1;
+    while(1)
     {
         /* FIX: Use a relatively small number */
         count = 20;
+        break;
     }
+    while(1)
     {
         {
             size_t i = 0;
@@ -131,6 +142,7 @@ static void goodG2B()
                 fclose(pFile);
             }
         }
+        break;
     }
 }
 

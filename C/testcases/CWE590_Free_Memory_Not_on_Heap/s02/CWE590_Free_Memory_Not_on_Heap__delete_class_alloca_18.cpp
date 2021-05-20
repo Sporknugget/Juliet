@@ -27,6 +27,8 @@ void bad()
 {
     TwoIntsClass * data;
     data = NULL; /* Initialize data */
+    goto source;
+source:
     {
         /* FLAW: data is allocated on the stack and deallocated in the BadSink */
         TwoIntsClass * dataBuffer = (TwoIntsClass *)ALLOCA(sizeof(TwoIntsClass));
@@ -48,6 +50,8 @@ static void goodG2B()
 {
     TwoIntsClass * data;
     data = NULL; /* Initialize data */
+    goto source;
+source:
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
         TwoIntsClass * dataBuffer = new TwoIntsClass;

@@ -24,6 +24,7 @@ static const int STATIC_CONST_FIVE = 5;
 
 void CWE758_Undefined_Behavior__char_pointer_alloca_use_06_bad()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         {
             char * * pointer = (char * *)ALLOCA(sizeof(char *));
@@ -37,6 +38,15 @@ void CWE758_Undefined_Behavior__char_pointer_alloca_use_06_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FIVE!=5) instead of if(STATIC_CONST_FIVE==5) */
+static void good1()
+{
+    if(STATIC_CONST_FIVE!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             char * data;
@@ -54,6 +64,7 @@ void CWE758_Undefined_Behavior__char_pointer_alloca_use_06_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_FIVE==5)
     {
         {
             char * data;

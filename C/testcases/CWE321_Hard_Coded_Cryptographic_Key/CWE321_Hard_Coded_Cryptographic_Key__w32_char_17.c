@@ -28,9 +28,11 @@ Template File: sources-sink-17.tmpl.c
 
 void CWE321_Hard_Coded_Cryptographic_Key__w32_char_17_bad()
 {
+    int i;
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
+    for(i = 0; i < 1; i++)
     {
         /* FLAW: Use a hardcoded value for the hash input causing a hardcoded crypto key in the sink */
         strcpy(cryptoKey, CRYPTO_KEY);
@@ -102,9 +104,11 @@ void CWE321_Hard_Coded_Cryptographic_Key__w32_char_17_bad()
 /* goodG2B() - use goodsource and badsink by changing the conditions on the for statements */
 static void goodG2B()
 {
+    int h;
     char * cryptoKey;
     char cryptoKeyBuffer[100] = "";
     cryptoKey = cryptoKeyBuffer;
+    for(h = 0; h < 1; h++)
     {
         {
             size_t cryptoKeyLen = strlen(cryptoKey);

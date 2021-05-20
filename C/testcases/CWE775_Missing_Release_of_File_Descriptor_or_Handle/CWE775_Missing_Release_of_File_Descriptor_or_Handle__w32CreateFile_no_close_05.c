@@ -39,6 +39,7 @@ void CWE775_Missing_Release_of_File_Descriptor_or_Handle__w32CreateFile_no_close
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(staticTrue)
     {
         /* FLAW: No attempt to close the file */
         ; /* empty statement needed for some flow variants */
@@ -63,6 +64,12 @@ static void goodB2G1()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(staticFalse)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: If the file is still opened, close it */
         if (data != INVALID_HANDLE_VALUE)
@@ -86,6 +93,7 @@ static void goodB2G2()
                       OPEN_ALWAYS,
                       FILE_ATTRIBUTE_NORMAL,
                       NULL);
+    if(staticTrue)
     {
         /* FIX: If the file is still opened, close it */
         if (data != INVALID_HANDLE_VALUE)

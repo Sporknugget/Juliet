@@ -46,6 +46,7 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_strncpy_12_bad()
     short data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
     {
         {
 #ifdef _WIN32
@@ -114,6 +115,11 @@ void CWE194_Unexpected_Sign_Extension__connect_socket_strncpy_12_bad()
 #endif
         }
     }
+    else
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
+    }
     {
         char source[100];
         char dest[100] = "";
@@ -141,6 +147,12 @@ static void goodG2B()
     short data;
     /* Initialize data */
     data = 0;
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Use a positive integer less than &InitialDataSize&*/
+        data = 100-1;
+    }
+    else
     {
         /* FIX: Use a positive integer less than &InitialDataSize&*/
         data = 100-1;

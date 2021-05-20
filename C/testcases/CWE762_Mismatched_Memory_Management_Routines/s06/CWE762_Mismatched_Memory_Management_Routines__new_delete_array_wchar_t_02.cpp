@@ -27,10 +27,12 @@ void bad()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new wchar_t;
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -48,10 +50,17 @@ static void goodB2G1()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new wchar_t;
     }
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -64,10 +73,12 @@ static void goodB2G2()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(1)
     {
         /* POTENTIAL FLAW: Allocate memory with a function that requires delete to free the memory */
         data = new wchar_t;
     }
+    if(1)
     {
         /* FIX: Deallocate the memory using delete */
         delete data;
@@ -80,10 +91,17 @@ static void goodG2B1()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new wchar_t[100];
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */
@@ -97,10 +115,12 @@ static void goodG2B2()
     wchar_t * data;
     /* Initialize data*/
     data = NULL;
+    if(1)
     {
         /* FIX: Allocate memory from the heap using new [] */
         data = new wchar_t[100];
     }
+    if(1)
     {
         /* POTENTIAL FLAW: Deallocate memory using delete [] - the source memory allocation function may
          * require a call to delete to deallocate the memory */

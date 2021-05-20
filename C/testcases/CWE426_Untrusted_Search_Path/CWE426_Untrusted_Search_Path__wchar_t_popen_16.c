@@ -47,9 +47,11 @@ void CWE426_Untrusted_Search_Path__wchar_t_popen_16_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FLAW: the full path is not specified */
         wcscpy(data, BAD_OS_COMMAND);
+        break;
     }
     {
         FILE *pipe;
@@ -73,9 +75,11 @@ static void goodG2B()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    while(1)
     {
         /* FIX: full path is specified */
         wcscpy(data, GOOD_OS_COMMAND);
+        break;
     }
     {
         FILE *pipe;

@@ -47,6 +47,9 @@ void CWE114_Process_Control__w32_wchar_t_listen_socket_15_bad()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -126,6 +129,12 @@ void CWE114_Process_Control__w32_wchar_t_listen_socket_15_bad()
         }
 #endif
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         HMODULE hModule;
         /* POTENTIAL FLAW: If the path to the library is not specified, an attacker may be able to
@@ -153,8 +162,17 @@ static void goodG2B1()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
         /* FIX: Specify the full pathname for the library */
         wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");
+        break;
+    }
     {
         HMODULE hModule;
         /* POTENTIAL FLAW: If the path to the library is not specified, an attacker may be able to
@@ -178,8 +196,17 @@ static void goodG2B2()
     wchar_t * data;
     wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
+    switch(6)
+    {
+    case 6:
         /* FIX: Specify the full pathname for the library */
         wcscpy(data, L"C:\\Windows\\System32\\winsrv.dll");
+        break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
     {
         HMODULE hModule;
         /* POTENTIAL FLAW: If the path to the library is not specified, an attacker may be able to

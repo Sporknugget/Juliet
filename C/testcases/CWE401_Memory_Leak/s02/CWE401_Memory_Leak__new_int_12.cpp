@@ -29,6 +29,7 @@ void bad()
 {
     int * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int;
@@ -36,9 +37,24 @@ void bad()
         *data = 5;
         printIntLine(*data);
     }
+    else
+    {
+        /* FIX: Use memory allocated on the stack */
+        int dataGoodBuffer;
+        data = &dataGoodBuffer;
+        /* Initialize and make use of data */
+        *data = 5;
+        printIntLine(*data);
+    }
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
+    }
+    else
+    {
+        /* FIX: Deallocate memory */
+        delete data;
     }
 }
 
@@ -53,6 +69,7 @@ static void goodB2G()
 {
     int * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new int;
@@ -60,6 +77,20 @@ static void goodB2G()
         *data = 5;
         printIntLine(*data);
     }
+    else
+    {
+        /* POTENTIAL FLAW: Allocate memory on the heap */
+        data = new int;
+        /* Initialize and make use of data */
+        *data = 5;
+        printIntLine(*data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Deallocate memory */
+        delete data;
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -73,6 +104,7 @@ static void goodG2B()
 {
     int * data;
     data = NULL;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use memory allocated on the stack */
         int dataGoodBuffer;
@@ -81,6 +113,21 @@ static void goodG2B()
         *data = 5;
         printIntLine(*data);
     }
+    else
+    {
+        /* FIX: Use memory allocated on the stack */
+        int dataGoodBuffer;
+        data = &dataGoodBuffer;
+        /* Initialize and make use of data */
+        *data = 5;
+        printIntLine(*data);
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* POTENTIAL FLAW: No deallocation */
+        ; /* empty statement needed for some flow variants */
+    }
+    else
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

@@ -33,6 +33,7 @@ typedef struct _charVoid
 
 void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_02_bad()
 {
+    if(1)
     {
         {
             charVoid structCharVoid;
@@ -52,6 +53,15 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_02_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(0) instead of if(1) */
+static void good1()
+{
+    if(0)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             charVoid structCharVoid;
@@ -70,6 +80,7 @@ void CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memmove_02_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(1)
     {
         {
             charVoid structCharVoid;

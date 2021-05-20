@@ -23,10 +23,12 @@ void CWE191_Integer_Underflow__char_min_multiply_03_bad()
 {
     char data;
     data = ' ';
+    if(5==5)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
+    if(5==5)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -46,10 +48,17 @@ static void goodB2G1()
 {
     char data;
     data = ' ';
+    if(5==5)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -72,10 +81,12 @@ static void goodB2G2()
 {
     char data;
     data = ' ';
+    if(5==5)
     {
         /* POTENTIAL FLAW: Use the minimum size of the data type */
         data = CHAR_MIN;
     }
+    if(5==5)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -98,10 +109,17 @@ static void goodG2B1()
 {
     char data;
     data = ' ';
+    if(5!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(5==5)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {
@@ -117,10 +135,12 @@ static void goodG2B2()
 {
     char data;
     data = ' ';
+    if(5==5)
     {
         /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
         data = -2;
     }
+    if(5==5)
     {
         if(data < 0) /* ensure we won't have an overflow */
         {

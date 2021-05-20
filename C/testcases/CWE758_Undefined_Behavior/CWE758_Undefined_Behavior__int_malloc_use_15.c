@@ -19,12 +19,21 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE758_Undefined_Behavior__int_malloc_use_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         int * pointer = (int *)malloc(sizeof(int));
         if (pointer == NULL) {exit(-1);}
         int data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         free(pointer);
         printIntLine(data);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -35,6 +44,13 @@ void CWE758_Undefined_Behavior__int_malloc_use_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         int data;
         int * pointer = (int *)malloc(sizeof(int));
@@ -47,11 +63,16 @@ static void good1()
         }
         free(pointer);
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         int data;
         int * pointer = (int *)malloc(sizeof(int));
@@ -63,6 +84,12 @@ static void good2()
             printIntLine(data);
         }
         free(pointer);
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

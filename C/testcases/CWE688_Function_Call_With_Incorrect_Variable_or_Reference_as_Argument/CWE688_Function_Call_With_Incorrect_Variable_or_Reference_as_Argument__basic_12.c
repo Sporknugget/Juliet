@@ -21,12 +21,23 @@ Template File: point-flaw-12.tmpl.c
 
 void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basic_12_bad()
 {
+    if(globalReturnsTrueOrFalse())
     {
         {
             char dest[DEST_SIZE];
             int intFive = 5;
             /* FLAW: int argument passed, expecting string argument */
             sprintf(dest, "%s", intFive);
+            printLine(dest);
+        }
+    }
+    else
+    {
+        {
+            char dest[DEST_SIZE];
+            int intFive = 5;
+            /* FIX: use the correct format string */
+            sprintf(dest, "%d", intFive);
             printLine(dest);
         }
     }
@@ -39,6 +50,17 @@ void CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument__basi
 /* good1() uses the GoodSink on both sides of the "if" statement */
 static void good1()
 {
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            char dest[DEST_SIZE];
+            int intFive = 5;
+            /* FIX: use the correct format string */
+            sprintf(dest, "%d", intFive);
+            printLine(dest);
+        }
+    }
+    else
     {
         {
             char dest[DEST_SIZE];

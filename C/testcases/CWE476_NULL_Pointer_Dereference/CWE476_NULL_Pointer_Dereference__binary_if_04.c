@@ -25,6 +25,7 @@ static const int STATIC_CONST_FALSE = 0; /* false */
 
 void CWE476_NULL_Pointer_Dereference__binary_if_04_bad()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             twoIntsStruct *twoIntsStructPointer = NULL;
@@ -42,6 +43,15 @@ void CWE476_NULL_Pointer_Dereference__binary_if_04_bad()
 
 #ifndef OMITGOOD
 
+/* good1() uses if(STATIC_CONST_FALSE) instead of if(STATIC_CONST_TRUE) */
+static void good1()
+{
+    if(STATIC_CONST_FALSE)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         {
             twoIntsStruct *twoIntsStructPointer = NULL;
@@ -58,6 +68,7 @@ void CWE476_NULL_Pointer_Dereference__binary_if_04_bad()
 /* good2() reverses the bodies in the if statement */
 static void good2()
 {
+    if(STATIC_CONST_TRUE)
     {
         {
             twoIntsStruct *twoIntsStructPointer = NULL;

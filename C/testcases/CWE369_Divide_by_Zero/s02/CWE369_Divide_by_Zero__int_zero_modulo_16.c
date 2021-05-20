@@ -24,13 +24,17 @@ void CWE369_Divide_by_Zero__int_zero_modulo_16_bad()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* POTENTIAL FLAW: Set data to zero */
         data = 0;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
+        break;
     }
 }
 
@@ -44,10 +48,13 @@ static void goodB2G()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* POTENTIAL FLAW: Set data to zero */
         data = 0;
+        break;
     }
+    while(1)
     {
         /* FIX: test for a zero denominator */
         if( data != 0 )
@@ -58,6 +65,7 @@ static void goodB2G()
         {
             printLine("This would result in a divide by zero");
         }
+        break;
     }
 }
 
@@ -67,13 +75,17 @@ static void goodG2B()
     int data;
     /* Initialize data */
     data = -1;
+    while(1)
     {
         /* FIX: Use a value not equal to zero */
         data = 7;
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         printIntLine(100 % data);
+        break;
     }
 }
 

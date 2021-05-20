@@ -24,10 +24,13 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_no_init_16_bad()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -37,6 +40,7 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_declare_no_init_16_bad()
                 printDoubleLine(data[i]);
             }
         }
+        break;
     }
 }
 
@@ -50,10 +54,13 @@ static void goodB2G()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
+    while(1)
     {
         /* POTENTIAL FLAW: Don't initialize data */
         ; /* empty statement needed for some flow variants */
+        break;
     }
+    while(1)
     {
         /* FIX: Ensure data is initialized before use */
         {
@@ -70,6 +77,7 @@ static void goodB2G()
                 printDoubleLine(data[i]);
             }
         }
+        break;
     }
 }
 
@@ -79,6 +87,7 @@ static void goodG2B()
     double * data;
     double dataUninitArray[10];
     data = dataUninitArray;
+    while(1)
     {
         /* FIX: Completely initialize data */
         {
@@ -88,7 +97,9 @@ static void goodG2B()
                 data[i] = (double)i;
             }
         }
+        break;
     }
+    while(1)
     {
         /* POTENTIAL FLAW: Use data without initializing it */
         {
@@ -98,6 +109,7 @@ static void goodG2B()
                 printDoubleLine(data[i]);
             }
         }
+        break;
     }
 }
 

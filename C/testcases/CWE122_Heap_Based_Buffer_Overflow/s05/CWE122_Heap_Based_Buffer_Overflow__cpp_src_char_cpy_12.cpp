@@ -27,10 +27,17 @@ void bad()
 {
     char * data;
     data = new char[100];
+    if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
+    }
+    else
+    {
+        /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
+        memset(data, 'A', 50-1); /* fill with 'A's */
+        data[50-1] = '\0'; /* null terminate */
     }
     {
         char dest[50] = "";
@@ -51,6 +58,13 @@ static void goodG2B()
 {
     char * data;
     data = new char[100];
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
+        memset(data, 'A', 50-1); /* fill with 'A's */
+        data[50-1] = '\0'; /* null terminate */
+    }
+    else
     {
         /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
         memset(data, 'A', 50-1); /* fill with 'A's */

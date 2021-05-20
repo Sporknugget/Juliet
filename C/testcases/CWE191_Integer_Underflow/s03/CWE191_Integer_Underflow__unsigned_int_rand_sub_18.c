@@ -23,8 +23,12 @@ void CWE191_Integer_Underflow__unsigned_int_rand_sub_18_bad()
 {
     unsigned int data;
     data = 0;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a random value */
     data = (unsigned int)RAND32();
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         unsigned int result = data - 1;
@@ -41,8 +45,12 @@ static void goodB2G()
 {
     unsigned int data;
     data = 0;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a random value */
     data = (unsigned int)RAND32();
+    goto sink;
+sink:
     /* FIX: Add a check to prevent an underflow from occurring */
     if (data > 0)
     {
@@ -60,8 +68,12 @@ static void goodG2B()
 {
     unsigned int data;
     data = 0;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an underflow in the sinks */
     data = -2;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Subtracting 1 from data could cause an underflow */
         unsigned int result = data - 1;

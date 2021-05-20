@@ -48,6 +48,8 @@ void CWE369_Divide_by_Zero__float_listenSocket_18_bad()
     float data;
     /* Initialize data */
     data = 0.0F;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -117,6 +119,8 @@ void CWE369_Divide_by_Zero__float_listenSocket_18_bad()
         }
 #endif
     }
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         int result = (int)(100.0 / data);
@@ -134,6 +138,8 @@ static void goodB2G()
     float data;
     /* Initialize data */
     data = 0.0F;
+    goto source;
+source:
     {
 #ifdef _WIN32
         WSADATA wsaData;
@@ -203,6 +209,8 @@ static void goodB2G()
         }
 #endif
     }
+    goto sink;
+sink:
     /* FIX: Check for value of or near zero before dividing */
     if(fabs(data) > 0.000001)
     {
@@ -221,8 +229,12 @@ static void goodG2B()
     float data;
     /* Initialize data */
     data = 0.0F;
+    goto source;
+source:
     /* FIX: Use a hardcoded number that won't a divide by zero */
     data = 2.0F;
+    goto sink;
+sink:
     {
         /* POTENTIAL FLAW: Possibly divide by zero */
         int result = (int)(100.0 / data);

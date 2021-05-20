@@ -23,6 +23,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE338_Weak_PRNG__w32_18_bad()
 {
+    goto sink;
+sink:
     {
         /* FLAW: Use of rand() as a PRNG */
         int data = rand();
@@ -37,6 +39,8 @@ void CWE338_Weak_PRNG__w32_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         HCRYPTPROV hCryptProv;
         int data;

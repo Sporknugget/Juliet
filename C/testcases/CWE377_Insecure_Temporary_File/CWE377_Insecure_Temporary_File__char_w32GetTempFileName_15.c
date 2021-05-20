@@ -34,6 +34,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         char filename[MAX_PATH] = "";
         int fileDesc;
@@ -52,6 +55,12 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_15_bad()
             CLOSE(fileDesc);
         }
     }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    }
 }
 
 #endif /* OMITBAD */
@@ -61,6 +70,13 @@ void CWE377_Insecure_Temporary_File__char_w32GetTempFileName_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         char filename[MAX_PATH] = "";
         int fileDesc;
@@ -81,11 +97,16 @@ static void good1()
             CLOSE(fileDesc);
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         char filename[MAX_PATH] = "";
         int fileDesc;
@@ -105,6 +126,12 @@ static void good2()
             printLine("Temporary file was opened...now closing file");
             CLOSE(fileDesc);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

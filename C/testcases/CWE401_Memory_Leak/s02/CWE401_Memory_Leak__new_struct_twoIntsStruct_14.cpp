@@ -29,6 +29,7 @@ void bad()
 {
     struct _twoIntsStruct * data;
     data = NULL;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new struct _twoIntsStruct;
@@ -37,6 +38,7 @@ void bad()
         data->intTwo = 0;
         printStructLine((twoIntsStruct *)data);
     }
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -52,6 +54,7 @@ static void goodB2G1()
 {
     struct _twoIntsStruct * data;
     data = NULL;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new struct _twoIntsStruct;
@@ -60,6 +63,12 @@ static void goodB2G1()
         data->intTwo = 0;
         printStructLine((twoIntsStruct *)data);
     }
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -71,6 +80,7 @@ static void goodB2G2()
 {
     struct _twoIntsStruct * data;
     data = NULL;
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
         data = new struct _twoIntsStruct;
@@ -79,6 +89,7 @@ static void goodB2G2()
         data->intTwo = 0;
         printStructLine((twoIntsStruct *)data);
     }
+    if(globalFive==5)
     {
         /* FIX: Deallocate memory */
         delete data;
@@ -90,6 +101,12 @@ static void goodG2B1()
 {
     struct _twoIntsStruct * data;
     data = NULL;
+    if(globalFive!=5)
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use memory allocated on the stack */
         struct _twoIntsStruct dataGoodBuffer;
@@ -99,6 +116,7 @@ static void goodG2B1()
         data->intTwo = 0;
         printStructLine((twoIntsStruct *)data);
     }
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */
@@ -110,6 +128,7 @@ static void goodG2B2()
 {
     struct _twoIntsStruct * data;
     data = NULL;
+    if(globalFive==5)
     {
         /* FIX: Use memory allocated on the stack */
         struct _twoIntsStruct dataGoodBuffer;
@@ -119,6 +138,7 @@ static void goodG2B2()
         data->intTwo = 0;
         printStructLine((twoIntsStruct *)data);
     }
+    if(globalFive==5)
     {
         /* POTENTIAL FLAW: No deallocation */
         ; /* empty statement needed for some flow variants */

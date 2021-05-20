@@ -19,6 +19,9 @@ Template File: point-flaw-15.tmpl.c
 
 void CWE476_NULL_Pointer_Dereference__deref_after_check_15_bad()
 {
+    switch(6)
+    {
+    case 6:
     {
         /* FLAW: Check for NULL, but still dereference the pointer */
         int *intPointer = NULL;
@@ -26,6 +29,12 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_15_bad()
         {
             printIntLine(*intPointer);
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 
@@ -36,6 +45,13 @@ void CWE476_NULL_Pointer_Dereference__deref_after_check_15_bad()
 /* good1() changes the switch to switch(5) */
 static void good1()
 {
+    switch(5)
+    {
+    case 6:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
+    default:
     {
         /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
         int *intPointer = NULL;
@@ -44,11 +60,16 @@ static void good1()
             printLine("pointer is NULL");
         }
     }
+    break;
+    }
 }
 
 /* good2() reverses the blocks in the switch */
 static void good2()
 {
+    switch(6)
+    {
+    case 6:
     {
         /* FIX: Check for NULL and do not dereference the pointer if it is NULL */
         int *intPointer = NULL;
@@ -56,6 +77,12 @@ static void good2()
         {
             printLine("pointer is NULL");
         }
+    }
+    break;
+    default:
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+        break;
     }
 }
 

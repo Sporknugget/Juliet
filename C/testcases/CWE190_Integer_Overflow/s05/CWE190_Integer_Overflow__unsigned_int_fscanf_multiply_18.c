@@ -23,8 +23,12 @@ void CWE190_Integer_Overflow__unsigned_int_fscanf_multiply_18_bad()
 {
     unsigned int data;
     data = 0;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a value input from the console */
     fscanf (stdin, "%u", &data);
+    goto sink;
+sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* POTENTIAL FLAW: if (data*2) > UINT_MAX, this will overflow */
@@ -42,8 +46,12 @@ static void goodB2G()
 {
     unsigned int data;
     data = 0;
+    goto source;
+source:
     /* POTENTIAL FLAW: Use a value input from the console */
     fscanf (stdin, "%u", &data);
+    goto sink;
+sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* FIX: Add a check to prevent an overflow from occurring */
@@ -64,8 +72,12 @@ static void goodG2B()
 {
     unsigned int data;
     data = 0;
+    goto source;
+source:
     /* FIX: Use a small, non-zero value that will not cause an overflow in the sinks */
     data = 2;
+    goto sink;
+sink:
     if(data > 0) /* ensure we won't have an underflow */
     {
         /* POTENTIAL FLAW: if (data*2) > UINT_MAX, this will overflow */

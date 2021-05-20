@@ -23,6 +23,7 @@ Template File: point-flaw-badonly-14.tmpl.c
 
 void CWE506_Embedded_Malicious_Code__w32_screen_capture_14_bad()
 {
+    if(globalFive==5)
     {
         {
             /* adapted from http://msdn.microsoft.com/en-us/library/dd183402 */

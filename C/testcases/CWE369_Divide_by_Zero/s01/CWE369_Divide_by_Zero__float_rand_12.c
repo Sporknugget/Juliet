@@ -26,15 +26,35 @@ void CWE369_Divide_by_Zero__float_rand_12_bad()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a random number that could possibly equal zero */
         data = (float)RAND32();
     }
+    else
+    {
+        /* FIX: Use a hardcoded number that won't a divide by zero */
+        data = 2.0F;
+    }
+    if(globalReturnsTrueOrFalse())
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */
             int result = (int)(100.0 / data);
             printIntLine(result);
+        }
+    }
+    else
+    {
+        /* FIX: Check for value of or near zero before dividing */
+        if(fabs(data) > 0.000001)
+        {
+            int result = (int)(100.0 / data);
+            printIntLine(result);
+        }
+        else
+        {
+            printLine("This would result in a divide by zero");
         }
     }
 }
@@ -51,10 +71,30 @@ static void goodB2G()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(globalReturnsTrueOrFalse())
     {
         /* POTENTIAL FLAW: Use a random number that could possibly equal zero */
         data = (float)RAND32();
     }
+    else
+    {
+        /* POTENTIAL FLAW: Use a random number that could possibly equal zero */
+        data = (float)RAND32();
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        /* FIX: Check for value of or near zero before dividing */
+        if(fabs(data) > 0.000001)
+        {
+            int result = (int)(100.0 / data);
+            printIntLine(result);
+        }
+        else
+        {
+            printLine("This would result in a divide by zero");
+        }
+    }
+    else
     {
         /* FIX: Check for value of or near zero before dividing */
         if(fabs(data) > 0.000001)
@@ -77,10 +117,25 @@ static void goodG2B()
     float data;
     /* Initialize data */
     data = 0.0F;
+    if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a hardcoded number that won't a divide by zero */
         data = 2.0F;
     }
+    else
+    {
+        /* FIX: Use a hardcoded number that won't a divide by zero */
+        data = 2.0F;
+    }
+    if(globalReturnsTrueOrFalse())
+    {
+        {
+            /* POTENTIAL FLAW: Possibly divide by zero */
+            int result = (int)(100.0 / data);
+            printIntLine(result);
+        }
+    }
+    else
     {
         {
             /* POTENTIAL FLAW: Possibly divide by zero */

@@ -37,6 +37,7 @@ void CWE197_Numeric_Truncation_Error__int_large_to_short_08_bad()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* FLAW: Use a number larger than SHRT_MAX */
         data = SHRT_MAX + 5;
@@ -58,6 +59,12 @@ static void goodG2B1()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsFalse())
+    {
+        /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
+        printLine("Benign, fixed string");
+    }
+    else
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;
@@ -75,6 +82,7 @@ static void goodG2B2()
     int data;
     /* Initialize data */
     data = -1;
+    if(staticReturnsTrue())
     {
         /* FIX: Use a positive integer less than CHAR_MAX*/
         data = CHAR_MAX-5;

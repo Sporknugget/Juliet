@@ -19,6 +19,8 @@ Template File: point-flaw-18.tmpl.c
 
 void CWE481_Assigning_Instead_of_Comparing__basic_18_bad()
 {
+    goto sink;
+sink:
     {
         int intRand = rand();
         /* FLAW: should be == and INCIDENTIAL CWE 571 Expression Is Always True */
@@ -36,6 +38,8 @@ void CWE481_Assigning_Instead_of_Comparing__basic_18_bad()
 /* good1() reverses the blocks on the goto statement */
 static void good1()
 {
+    goto sink;
+sink:
     {
         int intRand = rand();
         /* FIX: used == instead of = */

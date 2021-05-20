@@ -23,6 +23,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_18_bad()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
     /* FLAW: Using sizeof the pointer and not the data type in malloc() */
     data = (int64_t *)malloc(sizeof(data));
@@ -43,6 +45,8 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data */
     data = NULL;
+    goto source;
+source:
     /* FIX: Using sizeof the data type in malloc() */
     data = (int64_t *)malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
